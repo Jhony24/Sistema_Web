@@ -8,7 +8,7 @@
 
     <form action="../../index.html" method="post">
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Full name" type="text">
+        <input class="form-control" placeholder="Nombres Completos" type="text">
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
@@ -20,34 +20,27 @@
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Retype password" type="password">
+        <input class="form-control" placeholder="Confirmar password" type="password">
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
       <div class="row">
         <div class="col-xs-8">
           <div class="checkbox icheck">
-            <label>
+            <label class="hidden">
               <input type="checkbox"> I agree to the <a href="#">terms</a>
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-xs-4">
-          <button class="btn btn-primary btn-block btn-flat" type="submit">Register</button>
+          <button class="btn btn-primary btn-block btn-flat" type="submit">Registrarme</button>
         </div>
         <!-- /.col -->
       </div>
     </form>
 
-    <div class="social-auth-links text-center">
-      <p>- OR -</p>
-      <a class="btn btn-block btn-social btn-facebook btn-flat" href="#"><i class="fa fa-facebook"></i> Sign up using
-        Facebook</a>
-      <a class="btn btn-block btn-social btn-google btn-flat" href="#"><i class="fa fa-google-plus"></i> Sign up using
-        Google+</a>
-    </div>
 
-    <a [routerLink]="'/login/'" class="text-center">I already have a membership</a>
+    <a [routerLink]="'/login/'" class="text-center">Tengo una cuenta</a>
   </div>
   <!-- /.form-box -->
 </div>
