@@ -20,12 +20,13 @@ import { ListEmpresasComponent } from './empresas/list-empresas/list-empresas.co
 
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
+import { PostulacionesComponent } from './postulaciones/postulaciones.component';
 
 
 
 
 @NgModule({
-  declarations: [PagesComponent, AddPracticasComponent, EditPracticasComponent, ListPracticasComponent, AddPasantiasComponent, EditPasantiasComponent, ListPasantiasComponent, AddAreasComponent, EditAreasComponent, ListAreasComponent, AddEmpresasComponent, EditEmpresasComponent, ListEmpresasComponent],
+  declarations: [PagesComponent, AddPracticasComponent, EditPracticasComponent, ListPracticasComponent, AddPasantiasComponent, EditPasantiasComponent, ListPasantiasComponent, AddAreasComponent, EditAreasComponent, ListAreasComponent, AddEmpresasComponent, EditEmpresasComponent, ListEmpresasComponent, PostulacionesComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,

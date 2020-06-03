@@ -13,6 +13,7 @@ import { AddEmpresasComponent } from './empresas/add-empresas/add-empresas.compo
 import { EditEmpresasComponent } from './empresas/edit-empresas/edit-empresas.component';
 import { ListEmpresasComponent } from './empresas/list-empresas/list-empresas.component';
 import { ListAreasComponent } from './areas/list-areas/list-areas.component';
+import { PostulacionesComponent } from './postulaciones/postulaciones.component';
 
 
 const routes: Routes = [
@@ -30,6 +31,7 @@ const routes: Routes = [
       {path: 'add-empresas', component: AddEmpresasComponent},
       {path: 'edit-empresas', component: EditEmpresasComponent},
       {path: 'list-empresas', component: ListEmpresasComponent},
+      {path: 'postulaciones', component: PostulacionesComponent}
      
     ]
   }

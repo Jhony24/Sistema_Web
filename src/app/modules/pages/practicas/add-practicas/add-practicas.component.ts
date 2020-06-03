@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-practicas',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPracticasComponent implements OnInit {
 
-  constructor() { }
+  constructor(private ruta:Router) { }
 
   ngOnInit(): void {
+  }
+
+  volver_lista(): void {
+    this.ruta.navigate(['/principal/list-practicas-profesionales']);
   }
 
 }
