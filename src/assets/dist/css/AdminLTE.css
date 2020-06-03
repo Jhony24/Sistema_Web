@@ -3294,10 +3294,11 @@ table.text-center th {
  */
 .login-logo,
 .register-logo {
-  font-size: 35px;
+  font-size: 25px;
   text-align: center;
   margin-bottom: 25px;
   font-weight: 300;
+  width: 500px;
 }
 .login-logo a,
 .register-logo a {

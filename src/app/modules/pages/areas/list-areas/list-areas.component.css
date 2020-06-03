@@ -1,0 +1,10 @@
+.container_p {
+  padding: 25px;
+  width: 900px;
+  margin-left: initial;
+}
+table {
+  padding: 25px;
+  margin-left: auto;
+  margin-right: auto;
+}

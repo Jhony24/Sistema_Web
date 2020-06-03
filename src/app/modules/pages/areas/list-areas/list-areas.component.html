@@ -1,0 +1,50 @@
+<div class="container_p">
+    <form>
+        <h2>Listado de Areas para Practicas Pre-Profesionales o Pasantias</h2>
+        <button class="btn btn-primary" (click)="add_cargo()">Nueva Area</button>&nbsp;&nbsp;&nbsp;
+        <table class="table table-hover">
+            <thead style="text-align: center;">
+                <tr style="text-align: center;">
+                    <th class="hidden">Id</th>
+                    <th style="text-align: center;">Nro.</th>
+                    <th style="text-align: center;">Nombre</th>
+                    <th style="text-align: center;">Carrera</th>
+                    <th style="text-align: center;">Estado</th>
+                    <th style="text-align: center;">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="text-align: center;">
+                    <td class="hidden">{{ "index" }}</td>
+                    <td>{{1}}</td>
+                    <td>{{"Laborales 1"}}</td>
+                    <td>{{"Computacion"}}</td>
+                    <td>{{"Activa"}}</td>
+                    <td>
+                        <button style="margin: 5px" class="btn btn-success">
+                            Editar
+                        </button>
+                        <button class="btn btn-danger">
+                            Borrar
+                        </button>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td class="hidden">{{ "index" }}</td>
+                    <td>{{1}}</td>
+                    <td>{{"Laborales 1"}}</td>
+                    <td>{{"Computacion"}}</td>
+                    <td>{{"Activa"}}</td>
+                    <td>
+                        <button style="margin: 5px" class="btn btn-success">
+                            Editar
+                        </button>
+                        <button class="btn btn-danger">
+                            Borrar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>

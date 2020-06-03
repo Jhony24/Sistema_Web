@@ -1,0 +1,53 @@
+<div class="container_p">
+    <form>
+        <h1><b>Listado de Empresas para realizar Practicas Pre-Profesionales o Pasantias</b></h1>
+        <button class="btn btn-primary" (click)="add_empresas()">Nueva Empresa</button>&nbsp;&nbsp;&nbsp;
+        <table class="table table-hover">
+            <thead style="text-align: center;">
+                <tr style="text-align: center;">
+                    <th class="hidden">Id</th>
+                    <th style="text-align: center;">Nro.</th>
+                    <th style="text-align: center;">Nombre Empresa</th>
+                    <th style="text-align: center;">Representante Legal</th>
+                    <th style="text-align: center;">Dirección:</th>
+                    <th style="text-align: center;">Telefonos:</th>
+                    <th style="text-align: center;">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="text-align: center;">
+                    <td class="hidden">{{ "index" }}</td>
+                    <td>{{1}}</td>
+                    <td >{{"MARKETINGDIGITAL BRAVO & BELTRÁN CÍA. LTDA"}}</td>
+                    <td>{{"Jhony Mendoza"}}</td>
+                    <td>{{"Cdla 8 de dicmebre"}}</td>
+                    <td>{{"0991933291"}}</td>
+                    <td>
+                        <button style="margin: 5px" class="btn btn-success">
+                            Editar
+                        </button>
+                        <button class="btn btn-danger">
+                            Borrar
+                        </button>
+                    </td>
+                </tr>
+                <tr style="text-align: center;">
+                    <td class="hidden">{{ "index" }}</td>
+                    <td>{{1}}</td>
+                    <td>{{"SERVICIOS DE INGENIERÍA Y CONSULTORÍA SIC ELECTRITELECOM CIA LTDA"}}</td>
+                    <td>{{"Computacion"}}</td>
+                    <td>{{"Activa"}}</td>
+                    <td>{{"0991933291"}}</td>
+                    <td>
+                        <button style="margin: 5px" class="btn btn-success">
+                            Editar
+                        </button>
+                        <button class="btn btn-danger">
+                            Borrar
+                        </button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </form>
+</div>
