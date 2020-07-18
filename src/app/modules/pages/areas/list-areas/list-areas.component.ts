@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AreaserviceService } from '../../services/areaservice.service';
+import { Area } from '../../models/Area';
+import { CarreraserviceService } from '../../services/carreraservice.service';
 
 @Component({
   selector: 'app-list-areas',
@@ -8,12 +11,32 @@ import { Router } from '@angular/router';
 })
 export class ListAreasComponent implements OnInit {
 
-  constructor(private ruta: Router) { }
+  listareas = new Array<Area>();
+  nombreArea = "";
 
-  ngOnInit(): void {
+  constructor(private ruta: Router,private servicioCarrera:CarreraserviceService, private sericioArea: AreaserviceService) { }
+
+  ngOnInit() {
+    this.listar_areas();
   }
 
-  add_cargo(): void {
+  listar_areas(){
+    this.sericioArea.getListadoAreas().subscribe(
+      data =>{
+        this.listareas=data;
+      }
+    );
+  }
+
+  getCarreraId(id:number){
+    this.servicioCarrera.getListadoCarreras().subscribe(
+      data=>{
+        this.listareas=data,
+        console.log('lotsao de carreras' + this.listareas);
+      }
+    )
+  }
+  add_areas(): void {
     this.ruta.navigate(['/principal/add-areas']);
   }
 

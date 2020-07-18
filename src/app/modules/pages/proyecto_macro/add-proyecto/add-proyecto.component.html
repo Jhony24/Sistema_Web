@@ -1,0 +1,159 @@
+<div class="container_p">
+  <form>
+    <div class="titulo">
+      <h1><b>Ingreso de Proyectos Macro</b></h1>
+    </div>
+    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
+    >&nbsp;&nbsp;&nbsp;
+    <br />
+    <br />
+    <div class="container">
+      <mat-card>
+        <mat-card-title>Datos</mat-card-title>
+
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Seleccionar Carrera</label>
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <select
+                  style="margin: 7px; width: 400px;"
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                >
+                  <option>-- Seleccionar Carrera --</option>
+                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                </select>
+              </div>
+              <button
+                [routerLink]="'/principal/add-carreras'"
+                type="submit"
+                class="btn btn-primary mb-2"
+                style="background-color: green;"
+              >
+                Nueva Carrera
+              </button>
+            </form>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Seleccionar Area</label>
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <select
+                  style="margin: 7px; width: 400px;"
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                >
+                  <option>-- Seleccionar Areas --</option>
+                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                </select>
+              </div>
+              <button
+                [routerLink]="'/principal/add-areas'"
+                type="submit"
+                class="btn btn-primary mb-2"
+                style="background-color: green;"
+              >
+                Nueva Area
+              </button>
+            </form>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Seleccionar Empresa</label>
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <select
+                  style="margin: 7px; width: 400px;"
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                >
+                  <option>-- Seleccionar Empresa --</option>
+                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                </select>
+              </div>
+              <button
+                [routerLink]="'/principal/add-empresas'"
+                type="submit"
+                class="btn btn-primary mb-2"
+                style="background-color: green;"
+              >
+                Nueva Empresa
+              </button>
+            </form>
+          </div>
+          <div class="form-group">
+            <label for="inputNombre">Nombre de Proyecto Macro</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nombre_empresa"
+              id="inputNombre"
+            />
+          </div>
+          <div class="form-group">
+            <label for="inputNombre">Nombre de Encargado del Proyecto</label>
+            <input
+              type="text"
+              class="form-control"
+              name="nombre_empresa"
+              id="inputNombre"
+            />
+          </div>
+
+          <div style="margin-left: initial;" class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputNombre">Estudiantes Requeridos</label>
+              <input
+                type="number"
+                class="form-control"
+                name="nombre_empresa"
+                id="inputNombre"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputNombre">Horas Totales a Cumplir</label>
+              <input
+                type="number"
+                class="form-control"
+                name="nombre_empresa"
+                id="inputNombre"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputNombre">Ciclo para realizar Proyecto</label>
+              <input
+                type="number"
+                class="form-control"
+                name="nombre_empresa"
+                id="inputNombre"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputDireccion">Fecha de Inicio</label>
+              <input
+                type="date"
+                class="form-control"
+                name="direccion"
+                id="inputDireccion"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputDireccion">Fecha de Finazalizacion</label>
+              <input
+                type="date"
+                class="form-control"
+                name="direccion"
+                id="inputDireccion"
+              />
+            </div>
+          </div>
+        </form>
+        <button type="submit" class="btn btn-success">Registrar Proyecto Macro</button>
+      </mat-card>
+    </div>
+  </form>
+</div>

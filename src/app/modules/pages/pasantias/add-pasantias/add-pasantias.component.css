@@ -1,0 +1,13 @@
+.container_p {
+    padding: 25px;
+    width: auto;
+    margin-left: initial;
+  }
+  .container {
+    width: auto;
+    margin-left: initial;
+  } 
+  mat-card{
+    background-color:transparent;
+  }
+  

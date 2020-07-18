@@ -1,0 +1,15 @@
+.container_p {
+    padding: 25px;
+    width: 800px;
+    margin-left: initial;
+  }
+  .container {
+    width: 650px;
+    margin-left: initial;
+  } 
+  mat-card{
+    background-color:transparent;
+  }
+  .Swal-wide{ 
+    width:850px; 
+} 

@@ -1,0 +1,42 @@
+<div class="container_p">
+    <form>
+        <h1><b>Listado de Convenios para realizar Practicas Pre-Profesionales o Pasantias</b></h1>
+        <button class="btn btn-primary" (click)="add_convenios()">Nuevo Convenio</button>&nbsp;&nbsp;&nbsp;
+        <button class="btn btn-primary" (click)="add_empresas()">Nueva Empresa</button>&nbsp;&nbsp;&nbsp;
+        <br>
+        <br>
+        
+        <table class="table table-hover">
+            <thead style="text-align: center;">
+                <tr style="text-align: center;">
+                    <th class="hidden">Id</th>
+                    <th style="text-align: center;">Tipo</th>
+                    <th style="text-align: center;">Nombre Empresa</th>
+                    <th style="text-align: center;">Fecha Inicio</th>
+                    <th style="text-align: center;">Fecha de Culminacion</th>
+                    <th style="text-align: center;">Objeto</th>
+                    <th style="text-align: center;">Opciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr style="text-align: center;">
+                    <td class="hidden">{{ "index" }}</td>
+                    <td>{{'Carta Compromiso'}}</td>
+                    <td >{{"MARKETINGDIGITAL BRAVO & BELTRÁN CÍA. LTDA"}}</td>
+                    <td>{{"2017/05/20"}}</td>
+                    <td>{{"3 años"}}</td>
+                    <td>{{"Cooperación interinstitucional para pasantías y prácticas preprofesionales"}}</td>
+                    <td>
+                        <div class="float-right mx-1 btn btn-success" style="margin: 5px;" >
+                            <i class="fa fa-edit"></i>
+                          </div>
+                          <div class="float-right mx-1 btn btn-danger" >
+                            <i class="fa fa-trash"></i>
+                          </div>
+                    </td>
+                </tr>
+        
+            </tbody>
+        </table>
+    </form>
+</div>

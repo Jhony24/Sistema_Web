@@ -1,78 +1,171 @@
 <div class="container_p">
-    <form>
-        <div class="titulo">
-        <h1><b>Ingreso de Practicas Pre-Profesionales o Pasantias</b></h1>
+  <form>
+    <div class="titulo">
+      <h1><b>Ingreso de Practicas Pre-Profesionales</b></h1>
     </div>
-        <button class="btn btn-primary" (click)="volver_lista()">Volver</button>&nbsp;&nbsp;&nbsp;
-        <br />
-        <br />
-        <div class="container">
-            <mat-card>
-                <mat-card-title>Datos</mat-card-title>
+    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
+    >&nbsp;&nbsp;&nbsp;
+    <br />
+    <br />
+    <div class="container">
+      <mat-card>
+        <mat-card-title>Datos</mat-card-title>
 
-                <form>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Seleccionar Area</label>
-                        <form class="form-inline">
-                            <div class="form-group mx-sm-3 mb-2">
-                              <label for="inputPassword2" class="sr-only">Password</label>
-                              <select style="margin: 7px; width: 400px;" class="form-control" id="exampleFormControlSelect1">
-                                <option>-- Seleccionar Areas --</option>
-                                <option>{{ "Ingenieria en Sistemas" }}</option>
-                              </select>                            </div>
-                            <button [routerLink]="'/principal/add-areas'"type="submit" class="btn btn-primary mb-2" style="background-color: green;">Nueva Area</button>
-                          </form>
-                    </div>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Seleccionar Carrera</label>
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <select
+                  style="margin: 7px; width: 400px;"
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                >
+                  <option>-- Seleccionar Carrera --</option>
+                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                </select>
+              </div>
+              <button
+                [routerLink]="'/principal/add-carreras'"
+                type="submit"
+                class="btn btn-primary mb-2"
+                style="background-color: green;"
+              >
+                Nueva Carrera
+              </button>
+            </form>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Seleccionar Area</label>
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <select
+                  style="margin: 7px; width: 400px;"
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                >
+                  <option>-- Seleccionar Areas --</option>
+                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                </select>
+              </div>
+              <button
+                [routerLink]="'/principal/add-areas'"
+                type="submit"
+                class="btn btn-primary mb-2"
+                style="background-color: green;"
+              >
+                Nueva Area
+              </button>
+            </form>
+          </div>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Seleccionar Empresa</label>
-                        <form class="form-inline">
-                            <div class="form-group mx-sm-3 mb-2">
-                              <label for="inputPassword2" class="sr-only">Password</label>
-                              <select style="margin: 7px; width: 400px;" class="form-control" id="exampleFormControlSelect1">
-                                <option>-- Seleccionar Empresa --</option>
-                                <option>{{ "Ingenieria en Sistemas" }}</option>
-                              </select>                            </div>
-                            <button [routerLink]="'/principal/add-empresas'" type="submit" class="btn btn-primary mb-2" style="background-color: green;">Nueva Empresa</button>
-                          </form>
-                    </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Seleccionar Empresa</label>
+            <form class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <select
+                  style="margin: 7px; width: 400px;"
+                  class="form-control"
+                  id="exampleFormControlSelect1"
+                >
+                  <option>-- Seleccionar Empresa --</option>
+                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                </select>
+              </div>
+              <button
+                [routerLink]="'/principal/add-empresas'"
+                type="submit"
+                class="btn btn-primary mb-2"
+                style="background-color: green;"
+              >
+                Nueva Empresa
+              </button>
+            </form>
+          </div>
 
-                    <div style="margin-left: initial;" class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputNombre">Cupos Disponibles</label>
-                            <input type="number" class="form-control" name="nombre_empresa" id="inputNombre" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputDireccion">Fecha de Inicio</label>
-                            <input type="date" class="form-control" name="direccion" id="inputDireccion" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputDireccion">Horario Entrada</label>
-                            <input type="time" class="form-control" name="direccion" id="inputDireccion" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputDireccion">Horario Salida</label>
-                            <input type="time" class="form-control" name="direccion" id="inputDireccion" />
-                        </div>
-                       
-                       
-                    </div>
+          <div style="margin-left: initial;" class="form-row">
+            <div class="form-group col-md-4">
+              <label for="inputNombre">Cupos Disponibles</label>
+              <input
+                type="number"
+                class="form-control"
+                name="nombre_empresa"
+                id="inputNombre"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputNombre">Horas Totales a Cumplir</label>
+              <input
+                type="number"
+                class="form-control"
+                name="nombre_empresa"
+                id="inputNombre"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputNombre">Ciclo para realizar Practica</label>
+              <input
+                type="number"
+                class="form-control"
+                name="nombre_empresa"
+                id="inputNombre"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputDireccion">Fecha de Inicio</label>
+              <input
+                type="date"
+                class="form-control"
+                name="direccion"
+                id="inputDireccion"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputDireccion">Horario Entrada</label>
+              <input
+                type="time"
+                class="form-control"
+                name="direccion"
+                id="inputDireccion"
+              />
+            </div>
+            <div class="form-group col-md-4">
+              <label for="inputDireccion">Horario Salida</label>
+              <input
+                type="time"
+                class="form-control"
+                name="direccion"
+                id="inputDireccion"
+              />
+            </div>
+          </div>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Descripcion de Actividades a realizar</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Requisitos del Estudiante</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
-                   
-                
-                   
-
-                </form>
-                <button type="submit" class="btn btn-primary">Registrar</button>
-            </mat-card>
-        </div>
-    </form>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlTextarea1"
+              >Descripcion de Actividades a realizar</label
+            >
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlTextarea1"
+              >Requisitos del Estudiante</label
+            >
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            ></textarea>
+          </div>
+        </form>
+        <button type="submit" class="btn btn-success">Registrar Practica</button>
+      </mat-card>
+    </div>
+  </form>
 </div>

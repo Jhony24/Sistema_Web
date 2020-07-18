@@ -5,14 +5,10 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img
-          alt="User Image"
-          class="img-circle"
-          src="assets/dist/img/user2-160x160.jpg"
-        />
+        <img alt="User Image" class="img-circle" src="assets/dist/img/user2-160x160.jpg" />
       </div>
       <div class="pull-left info">
-        <br>
+        <br />
         <p>Jhony Mendoza</p>
       </div>
     </div>
@@ -20,38 +16,71 @@
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">MENU DE NAVEGACION</li>
 
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Practicas</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a [routerLink]="'/principal/list-practicas-profesionales'" class="nav-link"><i
+                class="fa fa-graduation-cap"></i>
+              <span>Practicas Pre-Profesionales</span></a>
+          </li>
+          <li>
+            <a [routerLink]="'/principal/list-pasantias'" class="nav-link"><i class="fa fa-money"></i>
+              <span>Pasantias</span></a>
+          </li>
+          <li>
+            <a [routerLink]="'/principal/list-proyecto'" class="nav-link"><i class="fa fa-puzzle-piece"></i>
+              <span>Proyecto Macro</span></a>
+          </li>
+        </ul>
+      </li>
       
-
+      <!--<li>
+        <a [routerLink]="'/principal/list-carreras'" class="nav-link"><i class="fa fa-share-alt"></i>
+          <span>Carreras</span></a>
+      </li>-->
       <li>
-        <a [routerLink]="'/principal/list-practicas-profesionales'" class="nav-link"
-          ><i class="fa fa-graduation-cap"></i> <span>Practicas Pre-Profesionales</span></a
-        >
+        <a [routerLink]="'/principal/list-convenio'" class="nav-link"><i class="fa fa-handshake-o"></i>
+          <span>Convenios</span></a>
       </li>
       <li>
-        <a [routerLink]="'/principal/list-pasantias'" class="nav-link"
-          ><i class="fa fa-money"></i> <span>Pasantias</span></a
-        >
+        <a [routerLink]="'/principal/list-areas'" class="nav-link"><i class="fa fa-share-alt"></i>
+          <span>Areas</span></a>
       </li>
-
-      <li>
-        <a [routerLink]="'/principal/list-proyecto-macro'" class="nav-link"
-          ><i class="fa fa-puzzle-piece"></i> <span>Proyecto Macro</span></a
-        >
+     
+      <li class="treeview">
+        <a [routerLink]="'/principal/postulaciones'" class="nav-link">
+          <i class="fa fa-address-book"></i>
+          <span>Postulaciones</span>
+          <span class="pull-right-container">
+            <span class="label label-primary pull-right">Nuevos</span>
+          </span>
+        </a>
       </li>
-      <li>
-        <a [routerLink]="'/principal/postulaciones'" class="nav-link"
-          ><i class="fa fa-address-book"></i> <span>Postulaciones</span></a
-        >
-      </li>
-      <li>
-        <a [routerLink]="'/principal/list-areas'" class="nav-link"
-          ><i class="fa fa-share-alt"></i> <span>Areas</span></a
-        >
-      </li>
-      <li>
-        <a [routerLink]="'/principal/list-empresas'" class="nav-link"
-          ><i class="fa fa-building"></i> <span>Empresas</span></a
-        >
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Administrador</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a href="../../index.html"><i class="fa fa-user"></i> Usuarios</a>
+          </li>
+          <li>
+            <a href="../../index2.html"><i class="fa fa-circle-o"></i> Roles</a>
+          </li>
+          <li>
+            <a [routerLink]="'/principal/list-carreras'" class="nav-link"><i class="fa fa-share-alt"></i>
+              <span>Carreras</span></a>
+          </li>
+        </ul>
       </li>
     </ul>
   </section>

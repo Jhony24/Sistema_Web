@@ -21,19 +21,40 @@ import { ListEmpresasComponent } from './empresas/list-empresas/list-empresas.co
 import {MatCardModule} from '@angular/material/card';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { PostulacionesComponent } from './postulaciones/postulaciones.component';
+import { AddCarrerasComponent } from './carreras/add-carreras/add-carreras.component';
+import { EditCarrerasComponent } from './carreras/edit-carreras/edit-carreras.component';
+import { ListCarrerasComponent } from './carreras/list-carreras/list-carreras.component';
+import { AddProyectoComponent } from './proyecto_macro/add-proyecto/add-proyecto.component';
+import { EditProyectoComponent } from './proyecto_macro/edit-proyecto/edit-proyecto.component';
+import { ListProyectoComponent } from './proyecto_macro/list-proyecto/list-proyecto.component';
+
+import { HttpClientModule } from "@angular/common/http";
+import { FormsModule } from "@angular/forms";
+
+import {ReactiveFormsModule} from '@angular/forms';
+import { AddConveniosComponent } from './convenios/add-convenios/add-convenios.component';
+import { EditConveniosComponent } from './convenios/edit-convenios/edit-convenios.component';
+import { ListConveniosComponent } from './convenios/list-convenios/list-convenios.component';
+import { AddBasicoComponent } from './proyecto_basico/add-basico/add-basico.component';
+import { EditBasicoComponent } from './proyecto_basico/edit-basico/edit-basico.component';
+import { ListBasicoComponent } from './proyecto_basico/list-basico/list-basico.component';
+
 
 
 
 
 @NgModule({
-  declarations: [PagesComponent, AddPracticasComponent, EditPracticasComponent, ListPracticasComponent, AddPasantiasComponent, EditPasantiasComponent, ListPasantiasComponent, AddAreasComponent, EditAreasComponent, ListAreasComponent, AddEmpresasComponent, EditEmpresasComponent, ListEmpresasComponent, PostulacionesComponent],
+  declarations: [PagesComponent, AddPracticasComponent, EditPracticasComponent, ListPracticasComponent, AddPasantiasComponent, EditPasantiasComponent, ListPasantiasComponent, AddAreasComponent, EditAreasComponent, ListAreasComponent, AddEmpresasComponent, EditEmpresasComponent, ListEmpresasComponent, PostulacionesComponent, AddCarrerasComponent, EditCarrerasComponent, ListCarrerasComponent, AddProyectoComponent, EditProyectoComponent, ListProyectoComponent, AddConveniosComponent, EditConveniosComponent, ListConveniosComponent, AddBasicoComponent, EditBasicoComponent, ListBasicoComponent],
   imports: [
     CommonModule,
     PagesRoutingModule,
     LayoutModule,
     RouterModule,
     MatCardModule,
-    MatFormFieldModule
+    MatFormFieldModule,
+    HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule
   ]
 })
 export class PagesModule {

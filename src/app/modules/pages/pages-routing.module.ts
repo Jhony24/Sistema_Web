@@ -14,6 +14,18 @@ import { EditEmpresasComponent } from './empresas/edit-empresas/edit-empresas.co
 import { ListEmpresasComponent } from './empresas/list-empresas/list-empresas.component';
 import { ListAreasComponent } from './areas/list-areas/list-areas.component';
 import { PostulacionesComponent } from './postulaciones/postulaciones.component';
+import { ListCarrerasComponent } from './carreras/list-carreras/list-carreras.component';
+import { AddCarrerasComponent } from './carreras/add-carreras/add-carreras.component';
+import { EditCarrerasComponent } from './carreras/edit-carreras/edit-carreras.component';
+import { AddProyectoComponent } from './proyecto_macro/add-proyecto/add-proyecto.component';
+import { EditProyectoComponent } from './proyecto_macro/edit-proyecto/edit-proyecto.component';
+import { ListProyectoComponent } from './proyecto_macro/list-proyecto/list-proyecto.component';
+import { AddConveniosComponent } from './convenios/add-convenios/add-convenios.component';
+import { EditConveniosComponent } from './convenios/edit-convenios/edit-convenios.component';
+import { ListConveniosComponent } from './convenios/list-convenios/list-convenios.component';
+import { AddBasicoComponent } from './proyecto_basico/add-basico/add-basico.component';
+import { EditBasicoComponent } from './proyecto_basico/edit-basico/edit-basico.component';
+import { ListBasicoComponent } from './proyecto_basico/list-basico/list-basico.component';
 
 
 const routes: Routes = [
@@ -31,7 +43,23 @@ const routes: Routes = [
       {path: 'add-empresas', component: AddEmpresasComponent},
       {path: 'edit-empresas', component: EditEmpresasComponent},
       {path: 'list-empresas', component: ListEmpresasComponent},
-      {path: 'postulaciones', component: PostulacionesComponent}
+      {path: 'postulaciones', component: PostulacionesComponent},
+      {path: 'add-carreras',component: AddCarrerasComponent},
+      {path: 'edit-carreras',component: EditCarrerasComponent},
+      {path: 'list-carreras',component: ListCarrerasComponent},
+      {path: 'add-proyecto',component: AddProyectoComponent},
+      {path: 'edit-proyecto',component: EditProyectoComponent},
+      {path: 'list-proyecto', component: ListProyectoComponent},
+      {path: 'add-convenio', component: AddConveniosComponent},
+      {path: 'edit-convenio', component: EditConveniosComponent},
+      {path: 'list-convenio', component: ListConveniosComponent},
+      {path: 'add-basico', component: AddBasicoComponent},
+      {path: 'edit-basico', component: EditBasicoComponent},
+      {path: 'list-basico', component: ListBasicoComponent}
+
+
+
+      
      
     ]
   }

@@ -1,55 +1,118 @@
 <div class="container_p">
-    <form>
-        <div class="titulo">
-        <h1><b>Ingreso de Empresas para realizar Practicas Pre-Profesionales o Pasantias</b></h1>
+  <form>
+    <div class="titulo">
+      <h1>
+        <b
+          >Ingreso de Empresas para realizar Practicas Pre-Profesionales o
+          Pasantias</b
+        >
+      </h1>
     </div>
-        <button class="btn btn-primary" (click)="volver_lista()">Volver</button>&nbsp;&nbsp;&nbsp;
-        <br />
-        <br />
-        <div class="container">
-            <mat-card>
-                <mat-card-title>Datos</mat-card-title>
+    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
+    >&nbsp;&nbsp;&nbsp;
+    <br />
+    <br />
+    <div class="container">
+      <mat-card>
+        <mat-card-title>Datos</mat-card-title>
 
-                <form>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Nombre de Empresa/Institución/Dependencia</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Gestion de Redes, Laborales 1, etc" />
-                    </div>
-                    <div class="form-group">
-                        <label for="exampleFormControlInput1">Nombre de Representante Legal</label>
-                        <input type="text" class="form-control" id="exampleFormControlInput1"
-                            placeholder="Gestion de Redes, Laborales 1, etc" />
-                    </div>
-                    
-                    <div style="margin-left: initial;" class="form-row">
-                        <div class="form-group col-md-6">
-                            <label for="inputNombre">RUC</label>
-                            <input type="text" class="form-control" name="nombre_empresa" id="inputNombre" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputDireccion">Dirección</label>
-                            <input type="text" class="form-control" name="direccion" id="inputDireccion" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputTelefono">Telefono</label>
-                            <input type="number" class="form-control" name="telefono" id="inputtelefono" />
-                        </div>
-                        <div class="form-group col-md-6">
-                            <label for="inputTelefono">Correo Electronico</label>
-                            <input type="email" class="form-control" name="telefono" id="inputtelefono" />
-                        </div>
-                    </div>
+        <form>
+          <div class="form-group">
+            <label for="exampleFormControlInput1"
+              >Nombre de Empresa/Institución/Dependencia</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Gestion de Redes, Laborales 1, etc"
+            />
+          </div>
 
-                    <div class="form-group">
-                        <label for="exampleFormControlTextarea1">Actividades que realiza la
-                            empresa/institucion/dependencia</label>
-                        <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
-                    </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1">Tipo de Empresa</label>
+            <br />
+            <input
+              type="checkbox"
+              name="vehicle1"
+              value="Bike"
+              style="margin: 5px;"
+            />
+            <label for="vehicle1">Publica</label>
+            <br />
+            <input
+              type="checkbox"
+              name="vehicle1"
+              value="Bike"
+              style="margin: 5px;"
+            />
+            <label for="vehicle1">Privada</label>
+            <br />
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlInput1"
+              >Nombre de Representante Legal</label
+            >
+            <input
+              type="text"
+              class="form-control"
+              id="exampleFormControlInput1"
+              placeholder="Gestion de Redes, Laborales 1, etc"
+            />
+          </div>
 
-                </form>
-                <button type="submit" class="btn btn-primary">Registrar</button>
-            </mat-card>
-        </div>
-    </form>
+          <div style="margin-left: initial;" class="form-row">
+            <div class="form-group col-md-6">
+              <label for="inputNombre">RUC</label>
+              <input
+                type="text"
+                class="form-control"
+                name="nombre_empresa"
+                id="inputNombre"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputDireccion">Dirección</label>
+              <input
+                type="text"
+                class="form-control"
+                name="direccion"
+                id="inputDireccion"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputTelefono">Telefono</label>
+              <input
+                type="number"
+                class="form-control"
+                name="telefono"
+                id="inputtelefono"
+              />
+            </div>
+            <div class="form-group col-md-6">
+              <label for="inputTelefono">Correo Electronico</label>
+              <input
+                type="email"
+                class="form-control"
+                name="telefono"
+                id="inputtelefono"
+              />
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1"
+              >Actividades que realiza la empresa/institucion/dependencia</label
+            >
+            <textarea
+              class="form-control"
+              id="exampleFormControlTextarea1"
+              rows="3"
+            ></textarea>
+          </div>
+        </form>
+        <button type="submit" class="btn btn-success">Registrar Empresa</button>
+      </mat-card>
+    </div>
+  </form>
 </div>

@@ -1,7 +1,7 @@
 <div class="container_p">
     <form>
-        <h2>Listado de Areas para Practicas Pre-Profesionales o Pasantias</h2>
-        <button class="btn btn-primary" (click)="add_cargo()">Nueva Area</button>&nbsp;&nbsp;&nbsp;
+        <h1><b>Listado de Areas para Practicas Pre-Profesionales o Pasantias</b></h1>
+        <button class="btn btn-primary" (click)="add_areas()">Nueva Area</button>&nbsp;&nbsp;&nbsp;
         <table class="table table-hover">
             <thead style="text-align: center;">
                 <tr style="text-align: center;">
@@ -14,12 +14,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr style="text-align: center;">
-                    <td class="hidden">{{ "index" }}</td>
-                    <td>{{1}}</td>
-                    <td>{{"Laborales 1"}}</td>
-                    <td>{{"Computacion"}}</td>
-                    <td>{{"Activa"}}</td>
+                <tr *ngFor="let area of listareas let indice =index" style="text-align: center;">
+                    <td class="hidden">{{ area.id }}</td>
+                    <td>{{indice+1}}</td>
+                    <td>{{area.nombrearea}}</td>
+                    <td>{{area.nombrecarreras}}</td>
+                    <td>{{area.areaestados == 0 ? '-' : 'HABILITADO'}}</td>
                     <td>
                         <div class="float-right mx-1 btn btn-success" style="margin: 5px;" >
                             <i class="fa fa-edit"></i>
@@ -29,21 +29,7 @@
                           </div>
                     </td>
                 </tr>
-                <tr style="text-align: center;">
-                    <td class="hidden">{{ "index" }}</td>
-                    <td>{{1}}</td>
-                    <td>{{"Laborales 1"}}</td>
-                    <td>{{"Computacion"}}</td>
-                    <td>{{"Activa"}}</td>
-                    <td>
-                        <div class="float-right mx-1 btn btn-success" style="margin: 5px;" >
-                            <i class="fa fa-edit"></i>
-                          </div>
-                          <div class="float-right mx-1 btn btn-danger" >
-                            <i class="fa fa-trash"></i>
-                          </div>
-                    </td>
-                </tr>
+                
             </tbody>
         </table>
     </form>

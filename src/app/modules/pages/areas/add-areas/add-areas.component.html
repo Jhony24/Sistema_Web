@@ -1,7 +1,9 @@
 <div class="container_p">
   <form>
-    <h1><b>Ingreso de Areas para Practicas Pre-Profesionales o Pasantias</b></h1>
-    <button class="btn btn-primary" (click)="volver_lista()">Volver</button
+    <h1>
+      <b>Ingreso de Areas para Practicas Pre-Profesionales o Pasantias</b>
+    </h1>
+    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
     >&nbsp;&nbsp;&nbsp;
     <br />
     <br />
@@ -9,35 +11,46 @@
       <mat-card>
         <mat-card-title>Datos</mat-card-title>
 
-        <form>
+        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Nombre de Area</label>
+            <label for="idcarrera">Seleccionar Carrera</label>
+            <form [formGroup]="validarForm" class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <select
+                  formControlName="idcarrera"
+                  class="form-control"
+                  (change)="selectChangeCarrera($event)"
+                >
+                  <option value="" selected>--Elegir opcion--</option>
+                  <option
+                    *ngFor="let carrera of listcarreras"
+                    [ngValue]="carrera.id"
+                  >
+                    {{ carrera.nombrecarreras }}
+                  </option>
+                </select>
+              </div>
+           
+            </form>
+          </div>
+
+          <div class="form-group">
+            <label for="nombrearea">Nombre de Area</label>
             <input
-              type="text"
+              autocomplete="off"
+              formControlName="nombrearea"
+              placeholder="Nombre Completo"
+              name="nombrearea"
               class="form-control"
-              id="exampleFormControlInput1"
-              placeholder="Gestion de Redes, Laborales 1, etc"
+              id="nombrearea"
+              required
             />
           </div>
-          <div class="form-group">
-            <label for="exampleFormControlSelect1">Seleccionar Carrera</label>
-            <select class="form-control" id="exampleFormControlSelect1">
-              <option>-- Selecciona Carrera --</option>
-              <option>{{ "Ingenieria en Sistemas" }}</option>
-            </select>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1"
-              >Descripciones Generales de Area</label
-            >
-            <textarea
-              class="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-            ></textarea>
-          </div>
+
+          <button type="submit" class="btn btn-success">
+            <b>Registrar Area</b>
+          </button>
         </form>
-        <button type="submit" class="btn btn-primary">Registrar</button>
       </mat-card>
     </div>
   </form>
