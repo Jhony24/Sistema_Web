@@ -1,39 +1,42 @@
 <div class="login-box">
   <div class="login-logo">
-    <a><b style="font-size: 28px;">Sistema de Gestión<br>para Cupos</b></a>
+    <a
+      ><b style="font-size: 28px;"
+        >Sistema de Gestión para<br /><br />Cupos en Practicas
+      </b></a
+    >
   </div>
   <!-- /.login-logo -->
   <div class="login-box-body">
-    <p class="login-box-msg">Sign in to start your session</p>
+    <p class="login-box-msg">Inicia Sesión para comenzar</p>
 
-
-      <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Email" type="email">
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-      </div>
-      <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Password" type="password">
-        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
-      </div>
-      <div class="row">
-       <div class="col-xs-8">
-          <div class="checkbox icheck">
-            <label class="hidden">
-              <input type="checkbox"> Remember Me
-            </label>
-          </div>
+    <div class="form-group has-feedback">
+      <input class="form-control" placeholder="Email" type="email" />
+      <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+    </div>
+    <div class="form-group has-feedback">
+      <input class="form-control" placeholder="Password" type="password" />
+      <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+        <div class="checkbox icheck">
+          <label> <input type="checkbox" /> Remember Me </label>
         </div>
-        <!-- /.col -->
-        <div class="col-xs-4">
-          <button [routerLink]="'/principal'" class="btn btn-primary btn-block btn-flat">Iniciar Sesión</button>
-        </div>
-        <!-- /.col -->
       </div>
+      <!-- /.col -->
+      <div class="col-md-6">
+        <button
+          [routerLink]="'/principal'"
+          class="btn btn-primary btn-block btn-flat col-md-4">
+          Iniciar Sesión
+        </button>
+      </div>
+      <!-- /.col -->
+    </div>
 
-
-    <a href="#">Olvide mi contraseña</a><br>
+    <a href="#">Olvide mi contraseña</a><br />
     <a [routerLink]="'/login/register'" class="text-center">Registrarme</a>
-
   </div>
   <!-- /.login-box-body -->
 </div>
