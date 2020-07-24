@@ -1,33 +1,38 @@
 <div class="container_p">
-    <form>
-        <h1><b>Listado de Carreras</b></h1>
-        <button class="btn btn-primary" (click)="add_carreras()">Nueva Carrera</button>&nbsp;&nbsp;&nbsp;
-        <table class="table table-hover">
-            <thead style="text-align: center;">
-                <tr style="text-align: center;">
-                    <th class="hidden">Id</th>
-                    <th style="text-align: center;">Nro.</th>
-                    <th style="text-align: center;">Nombre</th>
-                    <th style="text-align: center;">Estado</th>
-                    <th style="text-align: center;">Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let carrera of listcarreras ; let indice =index" style="text-align: center;">
-                    <td class="hidden">{{ carrera.id }}</td>
-                    <td>{{indice+1}}</td>
-                    <td>{{carrera.nombrecarreras}}</td>
-                    <td>{{carrera.estadocarreras == 0 ? '-' : 'HABILITADO'}}</td>
-                    <td>
-                        <div class="float-right mx-1 btn btn-success" style="margin: 5px;" >
-                            <i class="fa fa-edit"></i>
-                          </div>
-                          <div class="float-right mx-1 btn btn-danger" >
-                            <i class="fa fa-trash"></i>
-                          </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+  <form>
+    <h1><b>Listado de Carreras</b></h1>
+    <button class="btn btn-primary" (click)="add_carreras()">
+      Nueva Carrera</button
+    >&nbsp;&nbsp;&nbsp;
+    <table class="table table-hover">
+      <thead style="text-align: center;">
+        <tr style="text-align: center;">
+          <th class="hidden">Id</th>
+          <th style="text-align: center;">Nro.</th>
+          <th style="text-align: center;">Nombre</th>
+          <th style="text-align: center;">Estado</th>
+          <th style="text-align: center;">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let carrera of listcarreras; let indice = index"
+          style="text-align: center;"
+        >
+          <td class="hidden">{{ carrera.id }}</td>
+          <td>{{ indice + 1 }}</td>
+          <td>{{ carrera.nombrecarreras }}</td>
+          <td>{{ carrera.estadocarreras == 0 ? "-" : "HABILITADO" }}</td>
+          <td>
+            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+              <i class="fa fa-edit"></i>
+            </div>
+            <div class="float-right mx-1 btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
 </div>

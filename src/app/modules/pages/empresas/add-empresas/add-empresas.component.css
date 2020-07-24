@@ -1,17 +1,16 @@
 .container_p {
-    padding: 25px;
-    width: 800px;
-    margin-left: initial;
-  }
-  .container {
-    width: 650px;
-    margin-left: initial;
-  } 
-  mat-card{
-    background-color:transparent;
-  }
-  .titulo {
-    width: 900px;
-    margin-left: initial;
-  } 
-  
+  padding: 25px;
+  width: 800px;
+  margin-left: initial;
+}
+.container {
+  width: 650px;
+  margin-left: initial;
+}
+mat-card {
+  background-color: transparent;
+}
+.titulo {
+  width: 900px;
+  margin-left: initial;
+}

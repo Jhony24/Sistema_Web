@@ -1,56 +1,61 @@
 <div class="container_p">
-    <form>
-        <h1><b>Listado de Pasantías Disponibles</b></h1>
-        <button class="btn btn-primary" (click)="add_pasantias()">Nueva Pasantía</button>&nbsp;&nbsp;&nbsp;
-        <table class="table table-hover">
-            <thead style="text-align: center;">
-                <tr style="text-align: center;">
-                    <th class="hidden">Id</th>
-                    <th style="text-align: center;">Area</th>
-                    <th style="text-align: center;">Carrera</th>
-                    <th style="text-align: center;">Empresa</th>
-                    <th style="text-align: center;">Cupos Disponibles</th>
-                    <th style="text-align: center;">Fecha de Inicio</th>
-                    <th style="text-align: center;">Opciones</th>
+  <form>
+    <h1><b>Listado de Pasantías Disponibles</b></h1>
+    <button class="btn btn-primary" (click)="add_pasantias()">
+      Nueva Pasantía</button
+    >&nbsp;&nbsp;&nbsp;
+    <table class="table table-hover">
+      <thead style="text-align: center;">
+        <tr style="text-align: center;">
+          <th class="hidden">Id</th>
+          <th style="text-align: center;">Area</th>
+          <th style="text-align: center;">Carrera</th>
+          <th style="text-align: center;">Empresa</th>
+          <th style="text-align: center;">Cupos Disponibles</th>
+          <th style="text-align: center;">Fecha de Inicio</th>
+          <th style="text-align: center;">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr style="text-align: center;">
+          <td class="hidden">{{ "index" }}</td>
+          <td>{{ "Gestion de Redes" }}</td>
+          <td>{{ "Ingenieroa en Sistemas" }}</td>
+          <td>
+            {{
+              "SERVICIOS DE INGENIERÍA Y CONSULTORÍA SIC ELECTRITELECOM CIA LTDA"
+            }}
+          </td>
+          <td>{{ 5 }}</td>
+          <td>{{ "2020-8-6" }}</td>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr style="text-align: center;">
-                    <td class="hidden">{{ "index" }}</td>
-                    <td>{{"Gestion de Redes"}}</td>
-                    <td>{{"Ingenieroa en Sistemas"}}</td>
-                    <td >{{"SERVICIOS DE INGENIERÍA Y CONSULTORÍA SIC ELECTRITELECOM CIA LTDA"}}</td>
-                    <td>{{5}}</td>
-                    <td>{{"2020-8-6"}}</td>
+          <td>
+            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+              <i class="fa fa-edit"></i>
+            </div>
+            <div class="float-right mx-1 btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+        <tr style="text-align: center;">
+          <td class="hidden">{{ "index" }}</td>
+          <td>{{ "Desarrollo de Software" }}</td>
+          <td>{{ "Ingenieria en Sistemas" }}</td>
+          <td>{{ "Cooperativa de Ahorro y Crédito CREDIAMIGO" }}</td>
+          <td>{{ 5 }}</td>
+          <td>{{ "2020-8-6" }}</td>
 
-                    <td>
-                        <div class="float-right mx-1 btn btn-success" style="margin: 5px;" >
-                            <i class="fa fa-edit"></i>
-                          </div>
-                          <div class="float-right mx-1 btn btn-danger" >
-                            <i class="fa fa-trash"></i>
-                          </div>
-                    </td>
-                </tr>
-                <tr style="text-align: center;">
-                    <td class="hidden">{{ "index" }}</td>
-                    <td>{{"Desarrollo de Software"}}</td>
-                    <td>{{"Ingenieria en Sistemas"}}</td>
-                    <td >{{"Cooperativa de Ahorro y Crédito CREDIAMIGO"}}</td>
-                    <td>{{5}}</td>
-                    <td>{{"2020-8-6"}}</td>
-
-                    <td>
-                        <div class="float-right mx-1 btn btn-success" style="margin: 5px;" >
-                            <i class="fa fa-edit"></i>
-                          </div>
-                          <div class="float-right mx-1 btn btn-danger" >
-                            <i class="fa fa-trash"></i>
-                          </div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-    </form>
+          <td>
+            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+              <i class="fa fa-edit"></i>
+            </div>
+            <div class="float-right mx-1 btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
 </div>

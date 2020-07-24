@@ -1,36 +1,41 @@
 <div class="container_p">
-    <form>
-        <h1><b>Listado de Areas para Practicas Pre-Profesionales o Pasantias</b></h1>
-        <button class="btn btn-primary" (click)="add_areas()">Nueva Area</button>&nbsp;&nbsp;&nbsp;
-        <table class="table table-hover">
-            <thead style="text-align: center;">
-                <tr style="text-align: center;">
-                    <th class="hidden">Id</th>
-                    <th style="text-align: center;">Nro.</th>
-                    <th style="text-align: center;">Nombre</th>
-                    <th style="text-align: center;">Carrera</th>
-                    <th style="text-align: center;">Estado</th>
-                    <th style="text-align: center;">Opciones</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr *ngFor="let area of listareas let indice =index" style="text-align: center;">
-                    <td class="hidden">{{ area.id }}</td>
-                    <td>{{indice+1}}</td>
-                    <td>{{area.nombrearea}}</td>
-                    <td>{{area.nombrecarreras}}</td>
-                    <td>{{area.areaestados == 0 ? '-' : 'HABILITADO'}}</td>
-                    <td>
-                        <div class="float-right mx-1 btn btn-success" style="margin: 5px;" >
-                            <i class="fa fa-edit"></i>
-                          </div>
-                          <div class="float-right mx-1 btn btn-danger" >
-                            <i class="fa fa-trash"></i>
-                          </div>
-                    </td>
-                </tr>
-                
-            </tbody>
-        </table>
-    </form>
+  <form>
+    <h1>
+      <b>Listado de Areas para Practicas Pre-Profesionales o Pasantias</b>
+    </h1>
+    <button class="btn btn-primary" (click)="add_areas()">Nueva Area</button
+    >&nbsp;&nbsp;&nbsp;
+    <table class="table table-hover">
+      <thead style="text-align: center;">
+        <tr style="text-align: center;">
+          <th class="hidden">Id</th>
+          <th style="text-align: center;">Nro.</th>
+          <th style="text-align: center;">Nombre</th>
+          <th style="text-align: center;">Nombre Carrera</th>
+          <th style="text-align: center;">Estado</th>
+          <th style="text-align: center;">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let area of listareas; let indice = index"
+          style="text-align: center;"
+        >
+          <td class="hidden">{{ area.id }}</td>
+          <td>{{ indice + 1 }}</td>
+          <td>{{ area.nombrearea }}</td>
+          <td>{{ area.nombrecarreras }}</td>
+          <td>{{ area.areaestados == 0 ? "-" : "HABILITADO" }}</td>
+          <td>
+            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+              <i class="fa fa-edit"></i>
+            </div>
+            <div class="float-right mx-1 btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
 </div>

@@ -6,56 +6,118 @@
   <div class="register-box-body">
     <p class="login-box-msg">Formulario de Registro</p>
 
-    <form action="../../index.html" method="post">
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit()">
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Cedula" type="text">
+        <input
+          class="form-control"
+          placeholder="Cedula"
+          type="number"
+          name="cedula"
+          id="inpucedula"
+          [(ngModel)]="form.cedula"
+          required
+        />
         <span class="fa fa-id-card form-control-feedback"></span>
+        <div class="alert alert-danger" [hidden]="!error.cedula">
+          {{ error.cedula }}
+        </div>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Nombres Completos" type="text">
+        <input
+          class="form-control"
+          placeholder="Nombres Completos"
+          type="text"
+          name="nombre_completo"
+          id="inputnombre_completo"
+          [(ngModel)]="form.nombre_completo"
+          required
+        />
         <span class="glyphicon glyphicon-user form-control-feedback"></span>
+        <div class="alert alert-danger" [hidden]="!error.nombre_completo">
+          {{ error.nombre_completo }}
+        </div>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Email" type="email">
+        <input
+          class="form-control"
+          placeholder="Email"
+          type="email"
+          name="email"
+          id="inputemail"
+          [(ngModel)]="form.email"
+          required
+        />
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <div class="alert alert-danger" [hidden]="!error.email">
+          {{ error.email }}
+        </div>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Password" type="password">
+        <input
+          class="form-control"
+          placeholder="Password"
+          type="password"
+          name="password"
+          id="inputpassword"
+          [(ngModel)]="form.password"
+          required
+        />
+        <div class="alert alert-danger" [hidden]="!error.password">
+          {{ error.password }}
+        </div>
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
       <div class="form-group has-feedback">
-        <input class="form-control" placeholder="Confirmar password" type="password">
+        <input
+          class="form-control"
+          placeholder="Confirmar password"
+          type="password"
+          name="password_confirmation"
+          id="inputPassword3"
+          [(ngModel)]="form.password_confirmation"
+          required
+        />
         <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
       </div>
 
       <div class="form-group has-feedback">
-        <select class="form-control">
+        <select
+          class="form-control"
+          name="idcarrera"
+          id="inputidcarrera"
+          [(ngModel)]="form.idcarrera"
+          required
+        >
           <option>
             -- Seleccionar Carrera --
           </option>
-          <option>
-            {{'Carrera'}}
+          <option *ngFor="let carrera of listcarreras" [ngValue]="carrera.id">
+            {{ carrera.nombrecarreras }}
           </option>
         </select>
       </div>
 
-      
       <div class="row">
         <div class="col-md-6">
           <div class="checkbox icheck">
             <label>
-              <input type="checkbox"> I agree to the <a href="#">terms</a>
+              <input type="checkbox" /> I agree to the <a href="#">terms</a>
             </label>
           </div>
         </div>
         <!-- /.col -->
         <div class="col-md-6">
-          <button class="btn btn-primary btn-block btn-flat" type="submit">Registrarme</button>
+          <button
+            class="btn btn-primary btn-block btn-flat"
+            type="submit"
+            [disabled]="!registerForm.valid"
+          >
+            Registrarme
+          </button>
         </div>
         <!-- /.col -->
       </div>
     </form>
-
 
     <a [routerLink]="'/login/'" class="text-center">Tengo una cuenta</a>
   </div>
