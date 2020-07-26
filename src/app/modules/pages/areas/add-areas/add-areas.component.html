@@ -17,19 +17,20 @@
             <form [formGroup]="validarForm" class="form-inline">
               <div class="form-group mx-sm-3 mb-2">
                 <select
-                  formControlName="idcarrera"
                   class="form-control"
                   (change)="selectChangeCarrera($event)"
+                  formControlName="idcarrera"
                 >
-                  <option value="" selected>--Elegir opcion--</option>
+                  <option value="" hidden selected>Seleccionar Carrera</option>
                   <option
                     *ngFor="let carrera of listcarreras"
                     [ngValue]="carrera.id"
+                    value="1"
+                    >{{ carrera.nombrecarreras }}</option
                   >
-                    {{ carrera.nombrecarreras }}
-                  </option>
                 </select>
               </div>
+              <div></div>
             </form>
           </div>
 

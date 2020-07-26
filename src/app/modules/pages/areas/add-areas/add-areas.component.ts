@@ -17,6 +17,8 @@ export class AddAreasComponent implements OnInit {
   selectCarrera: string = "";
   listcarreras = new Array<Carrera>();
 
+  opcionSeleccionado: string = "0"; // Iniciamos
+
   constructor(
     private formBuilder: FormBuilder,
     private ruta: Router,
@@ -38,7 +40,13 @@ export class AddAreasComponent implements OnInit {
   onSubmit() {
     this.servicioarea.crearArea(this.validarForm.value).subscribe((data) => {
       this.ruta.navigate(["/principal/list-areas"]);
-      Swal.fire("Good job!", "You clicked the button!", "success");
+      Swal.fire({
+        position: "top",
+        icon: "success",
+        title: "Your work has been saved",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   }
 
@@ -50,6 +58,7 @@ export class AddAreasComponent implements OnInit {
     this.serviciocarrera.getListadoCarreras().subscribe(
       (data) => {
         this.listcarreras = data;
+        console.log("carreras", this.listcarreras);
       },
       (err) => {}
     );

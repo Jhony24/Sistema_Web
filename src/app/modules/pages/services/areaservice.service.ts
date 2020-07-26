@@ -6,6 +6,7 @@ import { TokenService } from "../../auth/services/token.service";
 import { Users } from "../models/Users";
 import { AuthInterceptorService } from "./auth-interceptor.service";
 import { Roles } from "../models/Roles";
+import { identifierModuleUrl } from '@angular/compiler';
 
 @Injectable({
   providedIn: "root",
@@ -32,6 +33,7 @@ export class AreaserviceService {
     return this.http.get<Area[]>(this.API_REST);
   }
 
+  //obtener rol del usuario registrado
   getRoles(): Observable<any[]> {
     return this.http.get<Roles[]>(this.API_REST_R);
   }
@@ -41,9 +43,21 @@ export class AreaserviceService {
   }
 
   //obtener carrera segun id
+  getArea(id:number):Observable<any>{
+    return this.http.get<Area>(this.API_REST+'/'+id);
+  }
 
   //crear areas
   crearArea(newarea: Area): Observable<any> {
     return this.http.post<Area>(this.API_REST, newarea);
+  }
+  //actualizar area
+  actualizarArea(myarea:Area): Observable<any>{
+    return this.http.put<Area>(this.API_REST+'/'+myarea.id,myarea);
+  }
+
+  //eliminar area
+  eliminarArea(id:number):Observable<any>{
+    return this.http.delete<Area>(this.API_REST+'/'+id);
   }
 }

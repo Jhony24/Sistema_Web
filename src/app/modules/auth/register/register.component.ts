@@ -70,7 +70,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   listar_carreras(){
-    this.serviciocarrera.getListadoCarreras().subscribe(
+    this.serviciocarrera.getListadoCarrerasAdmin().subscribe(
       data=>{
         this.listcarreras=data
       },(err)=>{

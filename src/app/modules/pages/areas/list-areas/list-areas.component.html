@@ -27,11 +27,11 @@
           <td>{{ area.nombrecarreras }}</td>
           <td>{{ area.areaestados == 0 ? "-" : "HABILITADO" }}</td>
           <td>
-            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+            <div routerLink="/principal/edit-areas/{{area.id}}" class="float-right mx-1 btn btn-success" style="margin: 5px;">
               <i class="fa fa-edit"></i>
             </div>
-            <div class="float-right mx-1 btn btn-danger">
-              <i class="fa fa-trash"></i>
+            <div (click)="eliminar_area(area)" class="float-right mx-1 btn btn-danger">
+              <i  class="fa fa-trash"></i>
             </div>
           </td>
         </tr>

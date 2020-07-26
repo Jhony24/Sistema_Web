@@ -45,7 +45,7 @@ const routes: Routes = [
       { path: "edit-pasantias", component: EditPasantiasComponent },
       { path: "list-pasantias", component: ListPasantiasComponent },
       { path: "add-areas", component: AddAreasComponent },
-      { path: "edit-areas", component: EditAreasComponent },
+      { path: "edit-areas/:id", component: EditAreasComponent },
       { path: "list-areas", component: ListAreasComponent },
       { path: "add-empresas", component: AddEmpresasComponent },
       { path: "edit-empresas", component: EditEmpresasComponent },

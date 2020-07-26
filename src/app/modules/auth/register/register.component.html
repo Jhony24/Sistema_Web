@@ -88,18 +88,19 @@
           [(ngModel)]="form.idcarrera"
           required
         >
-          <option>
-            -- Seleccionar Carrera --
-          </option>
-          <option *ngFor="let carrera of listcarreras" [ngValue]="carrera.id">
-            {{ carrera.nombrecarreras }}
-          </option>
+        <option value="" hidden selected>Seleccionar Carrera</option>
+        <option
+          *ngFor="let carrera of listcarreras"
+          [ngValue]="carrera.id"
+          value="1"
+          >{{ carrera.nombrecarreras }}</option
+        >
         </select>
       </div>
 
-      <div style="display: none;" class="row">
+      <div class="row">
         <div class="col-md-6">
-          <div class="checkbox icheck">
+          <div style="display: none;" class="checkbox icheck">
             <label>
               <input type="checkbox" /> I agree to the <a href="#">terms</a>
             </label>

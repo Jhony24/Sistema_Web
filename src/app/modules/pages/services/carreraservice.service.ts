@@ -10,7 +10,7 @@ export class CarreraserviceService {
   formcarreras: Carrera;
 
   private API_REST = "http://127.0.0.1:8000/api/carrera";
-  private API_REST_Admin = "http://127.0.0.1:8000/api/carreraAdmin";
+  private API_REST_Admin = "http://127.0.0.1:8000/api/carreraR";
 
   constructor(private http: HttpClient) {}
 
@@ -18,7 +18,7 @@ export class CarreraserviceService {
   getListadoCarreras(): Observable<any[]> {
     return this.http.get<Carrera[]>(this.API_REST);
   }
-
+  //obtener carreras para registrarse
   getListadoCarrerasAdmin(): Observable<any[]> {
     return this.http.get<Carrera[]>(this.API_REST_Admin);
   }
