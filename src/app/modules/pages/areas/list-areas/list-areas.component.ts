@@ -1,9 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import { AreaserviceService } from "../../services/areaservice.service";
 import { Area } from "../../models/Area";
-import { CarreraserviceService } from "../../services/carreraservice.service";
 import Swal from 'sweetalert2';
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: "app-list-areas",
@@ -15,8 +14,7 @@ export class ListAreasComponent implements OnInit {
 
   constructor(
     private ruta: Router,
-    private servicioCarrera: CarreraserviceService,
-    private sericioArea: AreaserviceService
+    private servicio: ServiceService
   ) {}
 
   ngOnInit() {
@@ -24,13 +22,13 @@ export class ListAreasComponent implements OnInit {
   }
 
   listar_areas() {
-    this.sericioArea.getListadoAreas().subscribe((data) => {
+    this.servicio.getListadoAreas().subscribe((data) => {
       this.listareas = data;
     });
   }
 
   getCarreraId(id: number) {
-    this.servicioCarrera.getListadoCarreras().subscribe((data: []) => {
+    this.servicio.getListadoCarreras().subscribe((data: []) => {
       this.listareas = data;
     });
   }
@@ -50,7 +48,7 @@ export class ListAreasComponent implements OnInit {
       cancelButtonText:'Cancelar'
     }).then((result) => {
       if (result.value) {
-        this.sericioArea.eliminarArea(area.id).subscribe(
+        this.servicio.eliminarArea(area.id).subscribe(
           data=>{
             this.listar_areas();
           },(err)=>{
@@ -67,9 +65,4 @@ export class ListAreasComponent implements OnInit {
 
   }
 
-  editar_area(myoperativo: Area): void {
-    localStorage.removeItem('editarOperativoId');
-    localStorage.setItem('editarOperativoId', myoperativo.id.toString());
-    this.ruta.navigate(["/principal/edit-areas"]);
-  }
 }

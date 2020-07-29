@@ -5,8 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Area } from "../../models/Area";
 import { Carrera } from "../../models/Carrera";
-import { AreaserviceService } from "../../services/areaservice.service";
-import { CarreraserviceService } from "../../services/carreraservice.service";
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: "app-edit-areas",
@@ -28,15 +27,13 @@ export class EditAreasComponent implements OnInit {
 
   constructor(
     private activateRote: ActivatedRoute,
-    private serviciocarrera: CarreraserviceService,
-    private servicioarea: AreaserviceService,
+    private servicio: ServiceService,
     private ruta: Router,
-    private formBuilder: FormBuilder
   ) {
     this.id = this.activateRote.snapshot.params["id"];
     if (this.id) {
       this.editing = true;
-      this.servicioarea.getListadoAreas().subscribe(
+      this.servicio.getListadoAreas().subscribe(
         (data: Area[]) => {
           this.areas = data;
           this.area = this.areas.find((m) => {
@@ -53,14 +50,14 @@ export class EditAreasComponent implements OnInit {
   }
 
   put() {
-    this.servicioarea.actualizarArea(this.area).subscribe((data) => {
+    this.servicio.actualizarArea(this.area).subscribe((data) => {
       this.ruta.navigate(["/principal/list-areas"]);
       Swal.fire("Good ediraste!", "You clicked the button!", "success");
     });
   }
 
   listar_carreras() {
-    this.serviciocarrera.getListadoCarreras().subscribe(
+    this.servicio.getListadoCarreras().subscribe(
       (data) => {
         this.listcarreras = data;
       },

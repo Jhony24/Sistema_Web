@@ -14,15 +14,27 @@ import { AfterLoginService } from "../../auth/services/after-login.service";
 import { AuthService } from "../../auth/services/auth.service";
 import { TokenService } from "../../auth/services/token.service";
 import { HeaderComponent } from "../../layout/header/header.component";
+import { Users } from '../models/Users';
 
 @Injectable({
   providedIn: "root",
 })
 export class AuthInterceptorService implements HttpInterceptor {
+
+  user: Users = {
+    cedula:null,
+    nombre_completo:null,
+    email:null,
+    telefono:null,
+    genero:null,
+    ciclo:null,
+    idcarrera:null,
+    estadousuario:1
+    };
   constructor(
     private ruta: Router,
     private toke: TokenService,
-    private auth: AuthService
+    private auth: AuthService,
   ) {}
 
   intercept(
@@ -42,6 +54,7 @@ export class AuthInterceptorService implements HttpInterceptor {
       });
     }
 
+
     return next.handle(request).pipe(
       catchError((err: HttpErrorResponse) => {
         if (err.status === 401) {
@@ -49,6 +62,7 @@ export class AuthInterceptorService implements HttpInterceptor {
           this.auth.changeAuthStatus(false);
           this.ruta.navigateByUrl("/login");
         }
+        
 
         return throwError(err);
       })

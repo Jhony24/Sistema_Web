@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { Carrera } from "../../models/Carrera";
-import { CarreraserviceService } from "../../services/carreraservice.service";
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: "app-list-carreras",
@@ -13,7 +13,7 @@ export class ListCarrerasComponent implements OnInit {
 
   constructor(
     private ruta: Router,
-    private servicioCarrera: CarreraserviceService
+    private servicio: ServiceService
   ) {}
 
   ngOnInit() {
@@ -21,7 +21,7 @@ export class ListCarrerasComponent implements OnInit {
   }
 
   listar_carreras() {
-    this.servicioCarrera.getListadoCarrerasAdmin().subscribe((data) => {
+    this.servicio.getListadoCarrerasAdmin().subscribe((data) => {
       this.listcarreras = data;
     });
   }

@@ -1,0 +1,64 @@
+<div class="container_p">
+  <form>
+    <h1>
+      <b>Edición de Areas para Practicas Pre-Profesionales o Pasantias</b>
+    </h1>
+    <button class="btn btn-danger">Volver</button>&nbsp;&nbsp;&nbsp;
+    <br />
+    <br />
+    <div class="container">
+      <mat-card>
+        <mat-card-title>Datos</mat-card-title>
+
+        <form>
+          <div class="form-group">
+            <label for="cedula">Cedula</label>
+            <input
+            autocomplete="off"
+            [(ngModel)]="user.cedula"
+            placeholder="Nombre Completo"
+            name="cedula"
+            class="form-control"
+            id="cedula"
+            disabled
+            
+            />
+          </div>
+          <div class="form-group" >
+            <label for="cedula">Nombre</label>
+            <input
+            autocomplete="off"
+            [(ngModel)]="user.nombre_completo"
+            placeholder="Nombre Completo"
+            name="nombre_completo"
+            class="form-control"
+            id="nombre_completo"
+            disabled
+            
+            />
+          </div>
+          <div class="form-group" >
+            <label for="cedula">Correo Electromico</label>
+            <input
+            autocomplete="off"
+            [(ngModel)]="user.email"
+            name="email"
+            class="form-control"
+            id="email"
+            disabled
+            
+            />
+          </div>
+         
+
+          <button (click)="put()" class="btn btn-success"> 
+            <b>Activar</b>
+          </button>&nbsp;&nbsp;&nbsp;
+          <button class="btn btn-danger">
+            <b>Desactivar</b>
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </form>
+</div>

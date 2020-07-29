@@ -1,8 +1,9 @@
 import { HttpClient } from '@angular/common/http';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Carrera } from '../../pages/models/Carrera';
-import { CarreraserviceService } from '../../pages/services/carreraservice.service';
+import { ServiceService } from '../../pages/services/service.service';
 import { JarwisService } from '../services/jarwis.service';
 import { TokenService } from '../services/token.service';
 
@@ -17,7 +18,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   listcarreras = new Array<Carrera>();
   constructor(
-    private serviciocarrera:CarreraserviceService, 
+    private servicio:ServiceService, 
     private Jarwis:JarwisService,
     private token:TokenService,
     private ruta:Router) {
@@ -29,7 +30,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     email:null,
     password:null,
     password_confirmation:null,
-    idcarrera:null
+    idcarrera:null,
+    estadousuario:0
   }
 
   public error=<any>[];
@@ -56,13 +58,18 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.Jarwis.registro(this.form).subscribe(
       data=>this.handleResponse(data),
       error=>this.handleError(error)
-      
     );
   }
 
   handleResponse(data){
     this.token.handle(data.access_token);
-    this.ruta.navigateByUrl('/principal');
+    Swal.fire(
+      'Usuario Registrado!',
+      'Por favor espere su confirmación que su cuenta ha sido activada!',
+      'success'
+    );
+    this.token.remove();
+    this.ruta.navigateByUrl('/login');
   }
 
   handleError(error){
@@ -70,7 +77,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   listar_carreras(){
-    this.serviciocarrera.getListadoCarrerasAdmin().subscribe(
+    this.servicio.getListadoCarrerasAdmin().subscribe(
       data=>{
         this.listcarreras=data
       },(err)=>{

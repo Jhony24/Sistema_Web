@@ -26,6 +26,8 @@ import { ListConveniosComponent } from "./convenios/list-convenios/list-convenio
 import { AddBasicoComponent } from "./proyecto_basico/add-basico/add-basico.component";
 import { EditBasicoComponent } from "./proyecto_basico/edit-basico/edit-basico.component";
 import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.component";
+import { ListUserComponent } from "./usuarios/list-user/list-user.component";
+import { ActivarUserComponent } from "./usuarios/activar-user/activar-user.component";
 
 const routes: Routes = [
   {
@@ -63,6 +65,8 @@ const routes: Routes = [
       { path: "add-basico", component: AddBasicoComponent },
       { path: "edit-basico", component: EditBasicoComponent },
       { path: "list-basico", component: ListBasicoComponent },
+      { path: "list-user", component: ListUserComponent },
+      { path: "activar/:id", component: ActivarUserComponent },
     ],
   },
 ];

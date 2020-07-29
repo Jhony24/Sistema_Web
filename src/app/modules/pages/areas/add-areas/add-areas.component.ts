@@ -2,9 +2,8 @@ import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { Carrera } from "../../models/Carrera";
-import { AreaserviceService } from "../../services/areaservice.service";
-import { CarreraserviceService } from "../../services/carreraservice.service";
 import Swal from "sweetalert2";
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: "app-add-areas",
@@ -22,8 +21,7 @@ export class AddAreasComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private ruta: Router,
-    private servicioarea: AreaserviceService,
-    private serviciocarrera: CarreraserviceService
+    private servicio: ServiceService
   ) {}
 
   ngOnInit() {
@@ -38,12 +36,12 @@ export class AddAreasComponent implements OnInit {
   }
 
   onSubmit() {
-    this.servicioarea.crearArea(this.validarForm.value).subscribe((data) => {
+    this.servicio.crearArea(this.validarForm.value).subscribe((data) => {
       this.ruta.navigate(["/principal/list-areas"]);
       Swal.fire({
-        position: "top",
+        position: "top-right",
         icon: "success",
-        title: "Your work has been saved",
+        title: "Area registrada correctamente",
         showConfirmButton: false,
         timer: 1500,
       });
@@ -55,7 +53,7 @@ export class AddAreasComponent implements OnInit {
   }
 
   listar_carreras() {
-    this.serviciocarrera.getListadoCarreras().subscribe(
+    this.servicio.getListadoCarreras().subscribe(
       (data) => {
         this.listcarreras = data;
         console.log("carreras", this.listcarreras);

@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
-import { CarreraserviceService } from "../../services/carreraservice.service";
 import Swal from "sweetalert2";
 import { Carrera } from "../../models/Carrera";
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: "app-add-carreras",
@@ -16,7 +16,7 @@ export class AddCarrerasComponent implements OnInit {
   constructor(
     private formBuilder: FormBuilder,
     private ruta: Router,
-    private servicioCarrera: CarreraserviceService
+    private servicio: ServiceService
   ) {}
 
   ngOnInit() {
@@ -27,7 +27,7 @@ export class AddCarrerasComponent implements OnInit {
     });
   }
   onSubmit() {
-    this.servicioCarrera
+    this.servicio
       .crearCarrera(this.validarForm.value)
       .subscribe((data) => {
         this.ruta.navigate(["/principal/list-carreras"]);

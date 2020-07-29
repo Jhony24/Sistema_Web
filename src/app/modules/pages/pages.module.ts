@@ -40,6 +40,8 @@ import { ListConveniosComponent } from "./convenios/list-convenios/list-convenio
 import { AddBasicoComponent } from "./proyecto_basico/add-basico/add-basico.component";
 import { EditBasicoComponent } from "./proyecto_basico/edit-basico/edit-basico.component";
 import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.component";
+import { ListUserComponent } from './usuarios/list-user/list-user.component';
+import { ActivarUserComponent } from './usuarios/activar-user/activar-user.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.c
     AddBasicoComponent,
     EditBasicoComponent,
     ListBasicoComponent,
+    ListUserComponent,
+    ActivarUserComponent,
   ],
   imports: [
     CommonModule,

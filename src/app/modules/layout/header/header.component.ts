@@ -4,7 +4,7 @@ import { AuthService } from "../../auth/services/auth.service";
 import { JarwisService } from "../../auth/services/jarwis.service";
 import { TokenService } from "../../auth/services/token.service";
 import { Users } from "../../pages/models/Users";
-import { AreaserviceService } from "../../pages/services/areaservice.service";
+import { ServiceService } from '../../pages/services/service.service';
 
 @Component({
   selector: "app-header",
@@ -20,13 +20,13 @@ export class HeaderComponent implements OnInit {
     private ruta: Router,
     private Token: TokenService,
     private auth: AuthService,
-    private area: AreaserviceService
+    private servicio: ServiceService
   ) {
-    this.area.getuser().subscribe((data: any) => {
+    this.servicio.getuser().subscribe((data: any) => {
       this.UserProfile = data;
     });
 
-    this.area.getRoles().subscribe((data: any) => {
+    this.servicio.getRoles().subscribe((data: any) => {
       this.role = data;
     });
   }

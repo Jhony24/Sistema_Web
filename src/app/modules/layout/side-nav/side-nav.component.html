@@ -13,8 +13,11 @@
       </div>
       <div class="pull-left info">
         <br />
-        <p>
-          {{ UserProfile.nombre_completo }}
+        <p *ngIf="role=='admin'">
+          Administrador
+        </p>
+        <p *ngIf="role=='user'">
+          Usuario
         </p>
       </div>
     </div>
@@ -84,7 +87,7 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a href="../../index.html"><i class="fa fa-user"></i> Usuarios</a>
+            <a  [routerLink]="'/principal/list-user'" class="nav-link"><i class="fa fa-user"></i> Usuarios</a>
           </li>
           <li>
             <a href="../../index2.html"><i class="fa fa-circle-o"></i> Roles</a>
