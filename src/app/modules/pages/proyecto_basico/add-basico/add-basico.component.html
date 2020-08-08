@@ -11,60 +11,73 @@
       <mat-card>
         <mat-card-title>Datos</mat-card-title>
 
-        <form>
+        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="exampleFormControlInput1"
-              >Seleccionar Poryecto Macro</label
-            >
             <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  id="exampleFormControlSelect1"
-                >
-                  <option>-- Seleccionar Carrera --</option>
-                  <option>{{ "Ingenieria en Sistemas" }}</option>
-                </select>
+              <div class="form-group">
+                <label for="id">Proyecto Macro Seleccionado</label>
+                <form class="form-inline">
+                  <div class="form-group mx-sm-3 mb-2">
+                    <select
+                      disabled
+                      class="form-control"
+                      name="id"
+                      id="id"
+                      [(ngModel)]="macro.id"
+                    >
+                      <option
+                        *ngFor="let macro of listmacro"
+                        [ngValue]="macro.id"
+                        value="macro.id"
+                      >
+                        {{ macro.nombre_prmacro }}
+                      </option>
+                    </select>
+                  </div>
+                  <div></div>
+                </form>
               </div>
-              <button
-                [routerLink]="'/principal/add-proyecto'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
-              >
-                Nuevo Proyecto Macro
-              </button>
             </form>
           </div>
+          <form [formGroup]="validarForm">
+            <div class="form-group">
+              <input
+                type="hidden"
+                class="form-control"
+                name="idmacro"
+                id="idmacro"
+                formControlName="idmacro"
+                [value]="macro.id"
+              />
+            </div>
 
-          <div class="form-group">
-            <label for="inputNombre">Nombre de Proyecto Basico</label>
-            <input
-              type="text"
-              class="form-control"
-              name="nombre_empresa"
-              id="inputNombre"
-            />
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlTextarea1"
-              >Descripcion de Actividades a realizar</label
-            >
-            <textarea
-              class="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-            ></textarea>
-          </div>
+            <div class="form-group">
+              <label for="inputNombre">Nombre de Proyecto Basico</label>
+              <input
+                type="text"
+                class="form-control"
+                name="nombre_prbasico"
+                id="nombre_prbasico"
+                formControlName="nombre_prbasico"
+              />
+            </div>
+            <div class="form-group">
+              <label for="exampleFormControlTextarea1"
+                >Descripcion de Actividades a realizar</label
+              >
+              <textarea
+                class="form-control"
+                id="actividades"
+                name="actividades"
+                formControlName="actividades"
+                rows="3"
+              ></textarea>
+            </div>
+          </form>
+          <button type="submit" class="btn btn-success">
+            Registrar Proyecto Basico</button
+          >&nbsp;&nbsp;&nbsp;
         </form>
-        <button type="submit" class="btn btn-success">
-          Registrar Proyecto Basico</button
-        >&nbsp;&nbsp;&nbsp;
-        <button type="submit" class="btn btn-primary">
-          Nuevo Proyecto Basico
-        </button>
       </mat-card>
     </div>
   </form>

@@ -10,6 +10,7 @@ import { ServiceService } from '../../services/service.service';
 })
 export class ListCarrerasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
+  role="";
 
   constructor(
     private ruta: Router,
@@ -18,6 +19,9 @@ export class ListCarrerasComponent implements OnInit {
 
   ngOnInit() {
     this.listar_carreras();
+    this.servicio.getRoles().subscribe((data: any) => {
+      this.role = data;
+    });
   }
 
   listar_carreras() {

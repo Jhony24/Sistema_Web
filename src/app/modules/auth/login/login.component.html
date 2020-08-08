@@ -10,7 +10,7 @@
   <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="login-box-body">
       <p class="login-box-msg">Inicia Sesión para comenzar</p>
-      <div class="alert alert-danger" [hidden]="!error">
+      <div style="text-align: center;" class="alert alert-danger" [hidden]="!error">
         {{ error }}
       </div>
       <div class="form-group has-feedback">

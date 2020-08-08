@@ -16,13 +16,48 @@
       <mat-card>
         <mat-card-title>Datos</mat-card-title>
 
-        <form>
+        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
+
+          <div class="form-group">
+            <label for="idcarrera">Seleccionar Carrera</label>
+            <form [formGroup]="validarForm" class="form-inline">
+              <div class="form-group mx-sm-3 mb-2">
+                <label for="inputPassword2" class="sr-only">Password</label>
+                <select
+                  class="form-control"
+                  (change)="selectChangeCarrera($event)"
+                  formControlName="idcarrera"
+                >
+                  <option value="" hidden selected>Seleccionar Carrera</option>
+                  <option
+                
+                    *ngFor="let carrera of listcarreras"
+                    [ngValue]="carrera.id"
+                    >{{ carrera.nombrecarreras }}
+                    </option
+                  >
+                 
+                </select>
+              </div>
+              <br>
+             
+             
+            </form>
+          </div>
+
+
+       
+
+
+         
           <div class="form-group">
             <label for="exampleFormControlInput1"
               >Nombre de Empresa/Institución/Dependencia</label
             >
             <input
               type="text"
+              formControlName="nombreempresa"
+              name="nombreempresa"
               class="form-control"
               id="exampleFormControlInput1"
               placeholder="Gestion de Redes, Laborales 1, etc"
@@ -32,22 +67,13 @@
           <div class="form-group">
             <label for="exampleFormControlInput1">Tipo de Empresa</label>
             <br />
-            <input
-              type="checkbox"
-              name="vehicle1"
-              value="Bike"
-              style="margin: 5px;"
-            />
-            <label for="vehicle1">Publica</label>
+            <input value ="Privada"style="margin: 5px;" type="radio" name="sexo" id="hombre" formControlName="tipo_empresa" />
+            <label for="hombre">Privada</label>
+
+            <input value="Publica" style="margin: 5px;" type="radio" name="sexo" id="mujer" formControlName="tipo_empresa" />
+            <label for="mujer">Publica</label>
             <br />
-            <input
-              type="checkbox"
-              name="vehicle1"
-              value="Bike"
-              style="margin: 5px;"
-            />
-            <label for="vehicle1">Privada</label>
-            <br />
+          
           </div>
           <div class="form-group">
             <label for="exampleFormControlInput1"
@@ -56,7 +82,9 @@
             <input
               type="text"
               class="form-control"
-              id="exampleFormControlInput1"
+              formControlName="nombrerepresentante"
+              name="nombrerepresentante"
+              id="nombrerepresentante"
               placeholder="Gestion de Redes, Laborales 1, etc"
             />
           </div>
@@ -67,8 +95,9 @@
               <input
                 type="text"
                 class="form-control"
-                name="nombre_empresa"
-                id="inputNombre"
+                formControlName="ruc"
+                name="ruc"
+                id="ruc"
               />
             </div>
             <div class="form-group col-md-6">
@@ -76,6 +105,7 @@
               <input
                 type="text"
                 class="form-control"
+                formControlName="direccion"
                 name="direccion"
                 id="inputDireccion"
               />
@@ -85,8 +115,9 @@
               <input
                 type="number"
                 class="form-control"
+                formControlName="telefono"
                 name="telefono"
-                id="inputtelefono"
+                id="telefono"
               />
             </div>
             <div class="form-group col-md-6">
@@ -94,8 +125,9 @@
               <input
                 type="email"
                 class="form-control"
-                name="telefono"
-                id="inputtelefono"
+                formControlName="correo"
+                name="correo"
+                id="inputcorreo"
               />
             </div>
           </div>
@@ -106,12 +138,17 @@
             >
             <textarea
               class="form-control"
+              formControlName="actividades"
+              name="actividades"
               id="exampleFormControlTextarea1"
               rows="3"
             ></textarea>
           </div>
+
+          <button type="submit" class="btn btn-success">
+            Registrar Empresa
+          </button>
         </form>
-        <button type="submit" class="btn btn-success">Registrar Empresa</button>
       </mat-card>
     </div>
   </form>

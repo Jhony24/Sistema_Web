@@ -9,8 +9,8 @@
     <button class="btn btn-primary" (click)="add_convenios()">
       Nuevo Convenio</button
     >&nbsp;&nbsp;&nbsp;
-    <button class="btn btn-primary" (click)="add_empresas()">
-      Nueva Empresa</button
+    <button class="btn btn-primary" (click)="list_empresas()">
+      Empresas o Instituciones</button
     >&nbsp;&nbsp;&nbsp;
     <br />
     <br />
@@ -28,19 +28,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="text-align: center;">
-          <td class="hidden">{{ "index" }}</td>
-          <td>{{ "Carta Compromiso" }}</td>
-          <td>{{ "MARKETINGDIGITAL BRAVO & BELTRÁN CÍA. LTDA" }}</td>
-          <td>{{ "2017/05/20" }}</td>
-          <td>{{ "3 años" }}</td>
+        <tr *ngFor="let convenio of listconvenios" style="text-align: center;">
+          <td class="hidden">{{convenio.id }}</td>
+          <td>{{ convenio.tipo_convenio }}</td>
+          <td>{{ convenio.nombreempresa }}</td>
+          <td>{{ convenio.fecha_inicio | date:'dd/MM/yyyy'}}</td>
+          <td>{{ convenio.fecha_culminacion }}</td>
+          <td>{{ convenio.objeto }}</td>
           <td>
-            {{
-              "Cooperación interinstitucional para pasantías y prácticas preprofesionales"
-            }}
-          </td>
-          <td>
-            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+            <div routerLink="/principal/edit-convenio/{{convenio.id}}" class="float-right mx-1 btn btn-success" style="margin: 5px;">
               <i class="fa fa-edit"></i>
             </div>
             <div class="float-right mx-1 btn btn-danger">

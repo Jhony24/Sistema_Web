@@ -1,4 +1,4 @@
-<div class="container_p">
+<div *ngIf="role=='admin'" class="container_p">
   <form>
     <h1><b>Listado de Carreras</b></h1>
     <button class="btn btn-primary" (click)="add_carreras()">
@@ -24,7 +24,7 @@
           <td>{{ carrera.nombrecarreras }}</td>
           <td>{{ carrera.estadocarreras == 0 ? "-" : "HABILITADO" }}</td>
           <td>
-            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+            <div routerLink="/principal/edit-carreras/{{carrera.id}}" class="float-right mx-1 btn btn-success" style="margin: 5px;">
               <i class="fa fa-edit"></i>
             </div>
             <div class="float-right mx-1 btn btn-danger">

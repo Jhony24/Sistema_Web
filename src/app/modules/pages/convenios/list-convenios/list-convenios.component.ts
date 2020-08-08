@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { Convenio } from '../../models/Convenio';
+import { ServiceService } from '../../services/service.service';
 
 @Component({
   selector: "app-list-convenios",
@@ -7,12 +9,20 @@ import { Router } from "@angular/router";
   styleUrls: ["./list-convenios.component.css"],
 })
 export class ListConveniosComponent implements OnInit {
-  constructor(private ruta: Router) {}
+  listconvenios=new Array<Convenio>();
+  constructor(private ruta: Router, private servicio:ServiceService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(){
+    this.listar_convenios();
+  }
+  listar_convenios() {
+    this.servicio.getListadoConvenios().subscribe((data) => {
+      this.listconvenios = data;
+    });
+  }
 
-  add_empresas(): void {
-    this.ruta.navigate(["/principal/add-empresas"]);
+  list_empresas(): void {
+    this.ruta.navigate(["/principal/list-empresas"]);
   }
   add_convenios(): void {
     this.ruta.navigate(["/principal/add-convenio"]);

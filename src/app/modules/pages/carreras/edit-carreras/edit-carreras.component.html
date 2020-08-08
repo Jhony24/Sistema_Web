@@ -1,1 +1,34 @@
-<p>edit-carreras works!</p>
+<div class="container_p">
+    <form>
+      <h1><b>Ingreso de Carreras</b></h1>
+      <button class="btn btn-danger" (click)="volver_lista()">Volver</button
+      >&nbsp;&nbsp;&nbsp;
+      <br />
+      <br />
+      <div class="container">
+        <mat-card>
+          <mat-card-title>Datos</mat-card-title>
+  
+          <form >
+            <div class="form-group">
+              <label for="nombrecarreras">Nombre de Carrera</label>
+  
+              <input
+                autocomplete="off"
+                [(ngModel)]="carrera.nombrecarreras"
+                placeholder="Cargo"
+                name="nombrecarreras"
+                class="form-control"
+                id="nombrecarreras"
+                required
+              />
+            </div>
+            <button (click)="put()" class="btn btn-success">
+              <b>Editar Carrera</b>
+            </button>
+          </form>
+        </mat-card>
+      </div>
+    </form>
+  </div>
+  

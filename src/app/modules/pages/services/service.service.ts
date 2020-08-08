@@ -3,6 +3,11 @@ import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { Area } from "../models/Area";
 import { Carrera } from "../models/Carrera";
+import { Convenio } from "../models/Convenio";
+import { Empresa } from "../models/Empresa";
+import { Practicas } from '../models/Practicas';
+import { ProyectoBasico } from '../models/ProyectoBasico';
+import { ProyectoMacro } from '../models/ProyectoMacro';
 import { Roles } from "../models/Roles";
 import { Users } from "../models/Users";
 
@@ -59,11 +64,16 @@ export class ServiceService {
   getListadoCarrerasAdmin(): Observable<any[]> {
     return this.http.get<Carrera[]>(`${this.API_REST}/carreraR`);
   }
-  //obtener carrera segun id
 
-  //crear carreras
   crearCarrera(newcarrera: Carrera): Observable<any> {
     return this.http.post<Carrera>(`${this.API_REST}/carrera`, newcarrera);
+  }
+
+  actualizarCarrera(mycarrera: Carrera): Observable<any> {
+    return this.http.put<Carrera>(
+      `${this.API_REST}/carrera` + "/" + mycarrera.id,
+      mycarrera
+    );
   }
 
   //////////////Servicio de Usuarios/////////////
@@ -77,4 +87,73 @@ export class ServiceService {
       myarea
     );
   }
+
+  ////////////////Servicio de Empresa////////////////////
+  getListadoEmpresa(): Observable<any[]> {
+    return this.http.get<Empresa[]>(`${this.API_REST}/empresa`);
+  }
+  getEmpresa(id: number): Observable<any> {
+    return this.http.get<Empresa>(`${this.API_REST}/empresa` + "/" + id);
+  }
+  crearEmpresa(newempresa: Empresa): Observable<any> {
+    return this.http.post<Empresa>(`${this.API_REST}/empresa`, newempresa);
+  }
+  actualizarEmpresa(myempresa: Empresa): Observable<any> {
+    return this.http.put<Empresa>(
+      `${this.API_REST}/empresa` + "/" + myempresa.id,
+      myempresa
+    );
+  }
+  eliminarEmpresa(id: number): Observable<any> {
+    return this.http.delete<Empresa>(`${this.API_REST}/empresa` + "/" + id);
+  }
+
+  /////////////Servicio de Convenios//////////
+  getListadoConvenios(): Observable<any[]> {
+    return this.http.get<Convenio[]>(`${this.API_REST}/convenio`);
+  }
+  getConvenio(id: number): Observable<any> {
+    return this.http.get<Convenio>(`${this.API_REST}/convenio` + "/" + id);
+  }
+  crearConvenio(newempresa: Convenio): Observable<any> {
+    return this.http.post<Convenio>(`${this.API_REST}/convenio`, newempresa);
+  }
+  actualizarConvenio(myconvenio: Convenio): Observable<any> {
+    return this.http.put<Convenio>(
+      `${this.API_REST}/convenio` + "/" + myconvenio.id,
+      myconvenio
+    );
+  }
+  eliminarConvenio(id: number): Observable<any> {
+    return this.http.delete<Convenio>(`${this.API_REST}/convenio` + "/" + id);
+  }
+
+
+  ///////////Servicio de Practicas/////////////////
+
+  getListadoPracticas(): Observable<any[]> {
+    return this.http.get<Practicas[]>(`${this.API_REST}/practica`);
+  }
+  getListadoPasantias(): Observable<any[]> {
+    return this.http.get<Practicas[]>(`${this.API_REST}/practicaP`);
+  }
+  crearPractica(newpractica: Practicas): Observable<any> {
+    return this.http.post<Practicas>(`${this.API_REST}/practica`, newpractica);
+  }
+
+  ////////////Servicio de Proyecto macro(////////
+  getListadoProyectoMacro(): Observable<any[]> {
+    return this.http.get<ProyectoMacro[]>(`${this.API_REST}/macro`);
+  }
+  getProyectosBasicos(id:number):Observable<any>{
+    return this.http.get<Convenio>(
+      `${this.API_REST}/macro` + "/" + id
+    );
+  }
+  
+  /////Servicio de Proyecto Basico/////////////
+  crearProyectoBasico(newbasico: ProyectoBasico): Observable<any> {
+    return this.http.post<ProyectoBasico>(`${this.API_REST}/basico`, newbasico);
+  }
+  
 }

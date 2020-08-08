@@ -46,6 +46,7 @@ export class AddAreasComponent implements OnInit {
         timer: 1500,
       });
     });
+    console.log("empresa");
   }
 
   volver_lista(): void {

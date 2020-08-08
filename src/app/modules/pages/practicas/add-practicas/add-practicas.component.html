@@ -11,39 +11,45 @@
       <mat-card>
         <mat-card-title>Datos</mat-card-title>
 
-        <form>
+        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
           <div class="form-group">
-            <label for="exampleFormControlInput1">Seleccionar Carrera</label>
-            <form class="form-inline">
+            <label for="idcarrera">Seleccionar Carrera</label>
+            <form [formGroup]="validarForm" class="form-inline">
               <div class="form-group mx-sm-3 mb-2">
                 <label for="inputPassword2" class="sr-only">Password</label>
                 <select
-                  style="margin: 7px; width: 400px;"
                   class="form-control"
-                  id="exampleFormControlSelect1"
+                  (change)="selectChangeCarrera($event)"
+                  formControlName="idcarrera"
                 >
-                  <option>-- Seleccionar Carrera --</option>
-                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                  <option value="" hidden selected>Seleccionar Carrera</option>
+                  <option
+                    *ngFor="let carrera of listcarreras"
+                    [ngValue]="carrera.id"
+                    >{{ carrera.nombrecarreras }}</option
+                  >
                 </select>
               </div>
             </form>
           </div>
           <div class="form-group">
-            <label for="exampleFormControlInput1">Seleccionar Area</label>
-            <form class="form-inline">
+            <label for="idarea">Seleccionar Area</label>
+            <form [formGroup]="validarForm" class="form-inline">
               <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
                 <select
                   style="margin: 7px; width: 400px;"
                   class="form-control"
-                  id="exampleFormControlSelect1"
+                  (change)="selectChangeArea($event)"
+                  formControlName="idarea"
                 >
-                  <option>-- Seleccionar Areas --</option>
-                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                  <option value="" hidden selected>Seleccionar Area</option>
+                  <option *ngFor="let area of listarea" [ngValue]="area.id">{{
+                    area.nombrearea
+                  }}</option>
                 </select>
               </div>
               <button
-                [routerLink]="'/principal/add-areas'"
+                [routerLink]="'/principal/add-empresas'"
                 type="submit"
                 class="btn btn-primary mb-2"
                 style="background-color: green;"
@@ -52,19 +58,23 @@
               </button>
             </form>
           </div>
-
           <div class="form-group">
-            <label for="exampleFormControlInput1">Seleccionar Empresa</label>
-            <form class="form-inline">
+            <label for="idempresa">Seleccionar Empresa</label>
+            <form [formGroup]="validarForm" class="form-inline">
               <div class="form-group mx-sm-3 mb-2">
                 <label for="inputPassword2" class="sr-only">Password</label>
                 <select
                   style="margin: 7px; width: 400px;"
                   class="form-control"
-                  id="exampleFormControlSelect1"
+                  (change)="selectChangeEmpresa($event)"
+                  formControlName="idempresa"
                 >
-                  <option>-- Seleccionar Empresa --</option>
-                  <option>{{ "Ingenieria en Sistemas" }}</option>
+                  <option value="" hidden selected>Seleccionar Empresa</option>
+                  <option
+                    *ngFor="let empresa of listempresa"
+                    [ngValue]="empresa.id"
+                    >{{ empresa.nombreempresa }}</option
+                  >
                 </select>
               </div>
               <button
@@ -84,8 +94,9 @@
               <input
                 type="number"
                 class="form-control"
-                name="nombre_empresa"
-                id="inputNombre"
+                name="cupos"
+                id="inputcupos"
+                formControlName="cupos"
               />
             </div>
             <div class="form-group col-md-4">
@@ -93,8 +104,9 @@
               <input
                 type="number"
                 class="form-control"
-                name="nombre_empresa"
-                id="inputNombre"
+                name="horas_cumplir"
+                id="horas_cumplir"
+                formControlName="horas_cumplir"
               />
             </div>
             <div class="form-group col-md-4">
@@ -102,8 +114,9 @@
               <input
                 type="number"
                 class="form-control"
-                name="nombre_empresa"
-                id="inputNombre"
+                name="ciclo"
+                id="ciclo"
+                formControlName="ciclo"
               />
             </div>
             <div class="form-group col-md-4">
@@ -111,8 +124,9 @@
               <input
                 type="date"
                 class="form-control"
-                name="direccion"
-                id="inputDireccion"
+                name="fecha_inicio"
+                id="fecha_inicio"
+                formControlName="fecha_inicio"
               />
             </div>
             <div class="form-group col-md-4">
@@ -120,8 +134,9 @@
               <input
                 type="time"
                 class="form-control"
-                name="direccion"
-                id="inputDireccion"
+                name="hora_entrada"
+                id="hora_entrada"
+                formControlName="hora_entrada"
               />
             </div>
             <div class="form-group col-md-4">
@@ -129,8 +144,9 @@
               <input
                 type="time"
                 class="form-control"
-                name="direccion"
-                id="inputDireccion"
+                name="hora_salida"
+                id="hora_salida"
+                formControlName="hora_salida"
               />
             </div>
           </div>
@@ -155,10 +171,11 @@
               rows="3"
             ></textarea>
           </div>
+
+          <button type="submit" class="btn btn-success">
+            Registrar Practica
+          </button>
         </form>
-        <button type="submit" class="btn btn-success">
-          Registrar Practica
-        </button>
       </mat-card>
     </div>
   </form>

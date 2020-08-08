@@ -23,9 +23,9 @@
                 >
                   <option value="" hidden selected>Seleccionar Carrera</option>
                   <option
+                    
                     *ngFor="let carrera of listcarreras"
                     [ngValue]="carrera.id"
-                    value="1"
                     >{{ carrera.nombrecarreras }}</option
                   >
                 </select>

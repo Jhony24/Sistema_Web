@@ -10,6 +10,7 @@ export class Users {
   email: string;
   password?: string;
   estadousuario:number;
+  nombrecarreras?:string;
   nombre_rol?: string;
   created_at?: Date;
   updated_at?: Date;
