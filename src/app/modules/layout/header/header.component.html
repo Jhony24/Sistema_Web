@@ -22,23 +22,18 @@
 
         <!-- User Account: style can be found in dropdown.less -->
         <li class="dropdown user user-menu">
-          <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-            <img
-              alt="User Image"
-              class="user-image"
-              src="assets/dist/img/user2-160x160.jpg"
-            />
-            <span class="hidden-xs">{{ UserProfile.nombre_completo }}</span>
+          <a>
+            <span>Bienvenido/a:</span>&nbsp;
+            <span class="hidden-xs"
+              ><b>{{ UserProfile.nombre_completo }}</b></span
+            >&nbsp;&nbsp;
+
+            <span (click)="logout()" class="fa fa-sign-out"></span>
           </a>
+
           <ul class="dropdown-menu">
             <!-- User image -->
             <li class="user-header">
-              <img
-                alt="User Image"
-                class="img-circle"
-                src="assets/dist/img/user2-160x160.jpg"
-              />
-
               <p>
                 {{ UserProfile.nombre_completo }}
 
