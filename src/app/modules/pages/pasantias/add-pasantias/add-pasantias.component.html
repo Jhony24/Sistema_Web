@@ -1,133 +1,204 @@
 <div class="container_p">
   <form>
     <div class="titulo">
-      <h1><b>Ingreso de Pasantias</b></h1>
+      <h1><b>Formulario de Ingreso de Pasantias</b></h1>
     </div>
-    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
     >&nbsp;&nbsp;&nbsp;
     <br />
     <br />
     <div class="container">
-      <mat-card>
-        <mat-card-title>Datos</mat-card-title>
+      <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+          <div class="form-group">
+            <div class="form-group col-md-6" style="width: auto">
+              <label for="idcarrera">Seleccionar Carrera</label>
 
-        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="idcarrera">Seleccionar Carrera</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  class="form-control"
-                  (change)="selectChangeCarrera($event)"
-                  formControlName="idcarrera"
-                >
-                  <option value="" hidden selected>Seleccionar Carrera</option>
-                  <option
-                    *ngFor="let carrera of listcarreras"
-                    [ngValue]="carrera.id"
-                    >{{ carrera.nombrecarreras }}</option
-                  >
-                </select>
-              </div>
-            </form>
-          </div>
-          <div class="form-group">
-            <label for="idarea">Seleccionar Area</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  (change)="selectChangeArea($event)"
-                  formControlName="idarea"
-                >
-                  <option value="" hidden selected>Seleccionar Area</option>
-                  <option *ngFor="let area of listarea" [ngValue]="area.id">{{
-                    area.nombrearea
-                  }}</option>
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-empresas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
+              <select
+                style="width: auto"
+                required
+                class="form-control"
+                (change)="selectChangeCarrera($event)"
+                formControlName="idcarrera"
               >
-                Nueva Area
-              </button>
-            </form>
+                <option value="" hidden selected>Seleccionar Carrera</option>
+                <option
+                  *ngFor="let carrera of listcarreras"
+                  [ngValue]="carrera.id"
+                >
+                  {{ carrera.nombrecarreras }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
+                "
+                class="alert alert-danger"
+              >
+                <div
+                  *ngIf="idcarrera.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
+        </div>
+        <div class="container">
+          <div class="form-group col-md-6" style="width: auto">
+            <label for="idempresa">Seleccionar Area</label>
+            <select
+              required
+              class="form-control"
+              (change)="selectChangeArea($event)"
+              formControlName="idarea"
+            >
+              <option value="" hidden selected>Seleccionar Area</option>
+              <option *ngFor="let area of listarea" [ngValue]="area.id">
+                {{ area.nombrearea }}
+              </option>
+            </select>
+
+            <div
+              *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
+              class="alert alert-danger"
+            >
+              <div
+                *ngIf="idarea.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="form-group col-md-6" style="width: auto">
             <label for="idempresa">Seleccionar Empresa</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  (change)="selectChangeEmpresa($event)"
-                  formControlName="idempresa"
-                >
-                  <option value="" hidden selected>Seleccionar Empresa</option>
-                  <option
-                    *ngFor="let empresa of listempresa"
-                    [ngValue]="empresa.id"
-                    >{{ empresa.nombreempresa }}</option
-                  >
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-empresas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
+            <select
+              required
+              class="form-control"
+              (change)="selectChangeEmpresa($event)"
+              formControlName="idempresa"
+            >
+              <option value="" hidden selected>Seleccionar Empresa</option>
+              <option
+                *ngFor="let empresa of listempresa"
+                [ngValue]="empresa.id"
               >
-                Nueva Empresa
-              </button>
-            </form>
+                {{ empresa.nombreempresa }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                idempresa.invalid && (idempresa.dirty || idempresa.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div
+                *ngIf="idempresa.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
+            </div>
           </div>
+        </div>
 
-          <div style="margin-left: initial;" class="form-row">
+        <div style="margin-left: initial" class="form-row">
+          <div class="container">
             <div class="form-group col-md-4">
               <label for="inputNombre">Cupos Disponibles</label>
               <input
+                required
                 type="number"
                 class="form-control"
                 name="cupos"
                 id="inputcupos"
+                min="1"
                 formControlName="cupos"
+                placeholder="Ej. 3"
               />
+              <div
+                *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
+                class="alert alert-danger"
+              >
+                <div
+                  *ngIf="cupos.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
             </div>
             <div class="form-group col-md-4">
               <label for="inputNombre">Horas Totales a Cumplir</label>
               <input
+                required
                 type="number"
                 class="form-control"
                 name="horas_cumplir"
                 id="horas_cumplir"
                 formControlName="horas_cumplir"
+                placeholder="Ej. 180"
+                min="1"
               />
+              <div
+                *ngIf="
+                  horas_cumplir.invalid &&
+                  (horas_cumplir.dirty || horas_cumplir.touched)
+                "
+                class="alert alert-danger"
+              >
+                <div
+                  *ngIf="horas_cumplir.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
             </div>
             <div class="form-group col-md-4">
               <label for="inputNombre">Ciclo para realizar Practica</label>
               <input
-                type="number"
+                type="text"
                 class="form-control"
                 name="ciclo"
                 id="ciclo"
                 formControlName="ciclo"
+                min="1"
+                placeholder="Ej. 180"
               />
             </div>
+          </div>
+          <div class="container">
             <div class="form-group col-md-3">
               <label for="inputDireccion">Fecha de Inicio</label>
               <input
+                required
                 type="date"
                 class="form-control"
                 name="fecha_inicio"
                 id="fecha_inicio"
                 formControlName="fecha_inicio"
               />
+              <div
+                *ngIf="
+                  fecha_inicio.invalid &&
+                  (fecha_inicio.dirty || fecha_inicio.touched)
+                "
+                class="alert alert-danger"
+              >
+                <div
+                  *ngIf="fecha_inicio.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
             </div>
             <div class="form-group col-md-3">
               <label for="inputDireccion">Horario Entrada</label>
@@ -157,19 +228,46 @@
                 name="salario"
                 id="salario"
                 formControlName="salario"
-                value="0.0"
+                placeholder="Ej. 80.00"
               />
             </div>
           </div>
+        </div>
+
+        <div class="container">
           <div class="form-group col-md-6">
             <label for="exampleFormControlTextarea1"
               >Descripcion de Actividades a realizar</label
             >
             <textarea
               class="form-control"
-              id="exampleFormControlTextarea1"
               rows="3"
-            ></textarea>
+              name="actividades"
+              id="actividades"
+              formControlName="actividades"
+            >
+            </textarea>
+            <div
+              *ngIf="
+                actividades.invalid &&
+                (actividades.dirty || actividades.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!actividades"
+            >
+              <div
+                *ngIf="actividades.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="actividades.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
           </div>
           <div class="form-group col-md-6">
             <label for="exampleFormControlTextarea1"
@@ -177,16 +275,43 @@
             >
             <textarea
               class="form-control"
-              id="exampleFormControlTextarea1"
               rows="3"
+              name="requerimientos"
+              id="requerimientos"
+              formControlName="requerimientos"
             ></textarea>
+            <div
+              *ngIf="
+                requerimientos.invalid &&
+                (requerimientos.dirty || requerimientos.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!requerimientos"
+            >
+              <div
+                *ngIf="requerimientos.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="requerimientos.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
           </div>
-        
-        <button type="submit" class="btn btn-success">
-          Registrar Pasantía
-        </button>
+        </div>
+        <div class="container">
+          <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-success">
+              <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>
+              <b>Registrar Pasantía</b>
+            </button>
+          </div>
+        </div>
       </form>
-      </mat-card>
     </div>
   </form>
 </div>

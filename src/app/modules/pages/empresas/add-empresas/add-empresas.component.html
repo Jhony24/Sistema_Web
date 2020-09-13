@@ -3,83 +3,135 @@
     <div class="titulo">
       <h1>
         <b
-          >Ingreso de Empresas para realizar Practicas Pre-Profesionales o
-          Pasantias</b
+          >Formulario de Ingreso de Empresas o Instituciones para realizar
+          Practicas Pre-Profesionales o Pasantias</b
         >
       </h1>
     </div>
-    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
     >&nbsp;&nbsp;&nbsp;
     <br />
     <br />
     <div class="container">
-      <mat-card>
-        <mat-card-title>Datos</mat-card-title>
-
-        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
-
+      <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
+        <div class="container">
           <div class="form-group">
-            <label for="idcarrera">Seleccionar Carrera</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  class="form-control"
-                  (change)="selectChangeCarrera($event)"
-                  formControlName="idcarrera"
+            <div class="form-group col-md-6" style="width: auto">
+              <label for="idcarrera">Seleccionar Carrera</label>
+
+              <select
+                style="width: auto"
+                required
+                class="form-control"
+                (change)="selectChangeCarrera($event)"
+                formControlName="idcarrera"
+              >
+                <option value="" hidden selected>Seleccionar Carrera</option>
+                <option
+                  *ngFor="let carrera of listcarreras"
+                  [ngValue]="carrera.id"
                 >
-                  <option value="" hidden selected>Seleccionar Carrera</option>
-                  <option
-                
-                    *ngFor="let carrera of listcarreras"
-                    [ngValue]="carrera.id"
-                    >{{ carrera.nombrecarreras }}
-                    </option
-                  >
-                 
-                </select>
+                  {{ carrera.nombrecarreras }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
+                "
+                class="alert alert-danger"
+              >
+                <div
+                  *ngIf="idcarrera.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
               </div>
-              <br>
-             
-             
-            </form>
+            </div>
           </div>
-
-
-       
-
-
-         
-          <div class="form-group">
+        </div>
+        <div class="container">
+          <div class="form-group col-md-12">
             <label for="exampleFormControlInput1"
               >Nombre de Empresa/Institución/Dependencia</label
             >
             <input
+              required
               type="text"
               formControlName="nombreempresa"
               name="nombreempresa"
               class="form-control"
               id="exampleFormControlInput1"
-              placeholder="Gestion de Redes, Laborales 1, etc"
+              placeholder="Ej. Kradac"
             />
-          </div>
+            <div
+              *ngIf="
+                nombreempresa.invalid &&
+                (nombreempresa.dirty || nombreempresa.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!nombreempresa"
+            >
+              <div
+                *ngIf="nombreempresa.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
 
-          <div class="form-group">
+              <div
+                *ngIf="nombreempresa.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="nombreempresa.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="form-group col-md-6">
             <label for="exampleFormControlInput1">Tipo de Empresa</label>
             <br />
-            <input value ="Privada"style="margin: 5px;" type="radio" name="sexo" id="hombre" formControlName="tipo_empresa" />
-            <label for="hombre">Privada</label>
+            <input
+              required
+              value="Privada"
+              style="margin: 5px"
+              type="radio"
+              name="tipo_empresa"
+              id="tipo_empresa"
+              formControlName="tipo_empresa"
+            />
+            <label for="tipo_empresa">Privada</label>
 
-            <input value="Publica" style="margin: 5px;" type="radio" name="sexo" id="mujer" formControlName="tipo_empresa" />
-            <label for="mujer">Publica</label>
+            <input
+              required
+              value="Publica"
+              style="margin: 5px"
+              type="radio"
+              name="tipo_empresa"
+              id="tipo_empresa"
+              formControlName="tipo_empresa"
+            />
+            <label for="tipo_empresa">Publica</label>
             <br />
-          
           </div>
-          <div class="form-group">
+        </div>
+
+        <div class="container">
+          <div class="form-group col-md-12">
             <label for="exampleFormControlInput1"
               >Nombre de Representante Legal</label
             >
             <input
+              required
               type="text"
               class="form-control"
               formControlName="nombrerepresentante"
@@ -87,52 +139,122 @@
               id="nombrerepresentante"
               placeholder="Gestion de Redes, Laborales 1, etc"
             />
-          </div>
+            <div
+              *ngIf="
+                nombrerepresentante.invalid &&
+                (nombrerepresentante.dirty || nombrerepresentante.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!nombrerepresentante"
+            >
+              <div
+                *ngIf="nombrerepresentante.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
 
-          <div style="margin-left: initial;" class="form-row">
-            <div class="form-group col-md-6">
-              <label for="inputNombre">RUC</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="ruc"
-                name="ruc"
-                id="ruc"
-              />
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputDireccion">Dirección</label>
-              <input
-                type="text"
-                class="form-control"
-                formControlName="direccion"
-                name="direccion"
-                id="inputDireccion"
-              />
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputTelefono">Telefono</label>
-              <input
-                type="number"
-                class="form-control"
-                formControlName="telefono"
-                name="telefono"
-                id="telefono"
-              />
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputTelefono">Correo Electronico</label>
-              <input
-                type="email"
-                class="form-control"
-                formControlName="correo"
-                name="correo"
-                id="inputcorreo"
-              />
+              <div
+                *ngIf="nombrerepresentante.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="nombrerepresentante.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
             </div>
           </div>
+        </div>
+        <div class="container">
+          <div class="form-group col-md-6">
+            <label for="inputNombre">RUC</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="ruc"
+              name="ruc"
+              id="ruc"
+            />
+            <div
+              *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)"
+              class="alert alert-danger"
+              ng-show="!nombrearea"
+            >
+              <div *ngIf="ruc.errors.required" class="container-error-message">
+                Este campo es requerido
+              </div>
+            </div>
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputDireccion">Dirección</label>
+            <input
+              required
+              type="text"
+              class="form-control"
+              formControlName="direccion"
+              name="direccion"
+              id="inputDireccion"
+            />
+            <div
+              *ngIf="
+                direccion.invalid && (direccion.dirty || direccion.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!direccion"
+            >
+              <div
+                *ngIf="direccion.errors.required"
+                class="container-error-message"
+              >
+                Nombre es requerido
+              </div>
 
-          <div class="form-group">
+              <div
+                *ngIf="direccion.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="direccion.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="form-group col-md-6">
+            <label for="inputTelefono">Telefono</label>
+            <input
+              type="text"
+              class="form-control"
+              formControlName="telefono"
+              name="telefono"
+              id="telefono"
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="inputTelefono">Correo Electronico</label>
+            <input
+              type="email"
+              class="form-control"
+              formControlName="correo"
+              name="correo"
+              id="inputcorreo"
+            />
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="form-group col-md-12">
             <label for="exampleFormControlTextarea1"
               >Actividades que realiza la empresa/institucion/dependencia</label
             >
@@ -143,13 +265,38 @@
               id="exampleFormControlTextarea1"
               rows="3"
             ></textarea>
+            <div
+              *ngIf="
+                actividades.invalid &&
+                (actividades.dirty || actividades.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!nombrearea"
+            >
+              <div
+                *ngIf="actividades.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="actividades.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
           </div>
-
-          <button type="submit" class="btn btn-success">
-            Registrar Empresa
-          </button>
-        </form>
-      </mat-card>
+        </div>
+        <div class="container">
+          <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-success">
+              <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>
+              <b>Registrar Empresa</b>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </form>
 </div>

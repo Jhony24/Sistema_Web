@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     password: null,
   };
 
-  public error = null;
+  public prueba = null;
 
   constructor(
     private Jarwis: JarwisService,
@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   handleError(error) {
-    this.error = error.error.error;
+    this.prueba = error.error.error;
   }
   ngOnInit() {
     $("body").addClass("hold-transition login-page");

@@ -1,16 +1,25 @@
 .container_p {
   padding: 25px;
-  width: 800px;
+  width: auto;
   margin-left: initial;
 }
 .container {
-  width: 650px;
+  width: auto;
   margin-left: initial;
 }
 mat-card {
   background-color: transparent;
 }
 .titulo {
-  width: 900px;
+  width: auto;
   margin-left: initial;
 }
+
+.ng-valid[required], .ng-valid.required  {
+  border-left: 5px solid #42A948; /* green */
+}
+
+.ng-invalid:not(form)  {
+  border-left: 5px solid #a94442; /* red */
+}
+

@@ -24,33 +24,14 @@
         <li class="dropdown user user-menu">
           <a>
             <span>Bienvenido/a:</span>&nbsp;
-            <span class="hidden-xs"
+            <span *ngIf="UserProfile" class="hidden-xs"
               ><b>{{ UserProfile.nombre_completo }}</b></span
             >&nbsp;&nbsp;
 
             <span (click)="logout()" class="fa fa-sign-out"></span>
           </a>
 
-          <ul class="dropdown-menu">
-            <!-- User image -->
-            <li class="user-header">
-              <p>
-                {{ UserProfile.nombre_completo }}
 
-                <small
-                  >Docente Responsable de Practicas Pre-Profesionales</small
-                >
-              </p>
-            </li>
-            <!-- Menu Footer-->
-            <li class="user-footer">
-              <div class="pull-right">
-                <a class="btn btn-default btn-flat" href="#" (click)="logout()"
-                  >Cerrar Sesión</a
-                >
-              </div>
-            </li>
-          </ul>
         </li>
         <!-- Control Sidebar Toggle Button -->
       </ul>

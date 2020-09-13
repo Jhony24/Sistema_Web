@@ -1,37 +1,49 @@
 <div class="container_p">
   <form>
     <h1>
-      <b>Listado de Practicas Pre-Profesionales o Pasantias Disponibles</b>
+      <b>Listado de Practicas Pre-Profesionales Disponibles</b>
     </h1>
     <button class="btn btn-primary" (click)="add_practicas()">
-      Nueva Practica</button
+      <span class="glyphicon glyphicon-plus-sign">&nbsp;</span
+      ><b> Nueva Practica</b></button
     >&nbsp;&nbsp;&nbsp;
     <table class="table table-hover">
-      <thead style="text-align: center;">
-        <tr style="text-align: center;">
+      <thead style="text-align: center">
+        <tr style="text-align: center">
           <th class="hidden">Id</th>
-          <th style="text-align: center;">Area</th>
-          <th style="text-align: center;">Empresa</th>
-          <th style="text-align: center;">Cupos Disponibles</th>
-          <th style="text-align: center;">Fecha de Inicio</th>
-          <th style="text-align: center;">Opciones</th>
+          <th style="text-align: center">Area</th>
+          <th style="text-align: center">Empresa</th>
+          <th style="text-align: center">Tipo de Empresa</th>
+          <th style="text-align: center">Cupos Disponibles</th>
+          <th style="text-align: center">Fecha de Inicio</th>
+          <th style="text-align: center">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let practica of listpracticas" style="text-align: center;">
+        <tr *ngFor="let practica of listpracticas" style="text-align: center">
           <td class="hidden">{{ practica.id }}</td>
           <td>{{ practica.nombrearea }}</td>
           <td>
             {{ practica.nombreempresa }}
           </td>
+          <td>{{ practica.tipo_empresa }}</td>
           <td>{{ practica.cupos }}</td>
-          <td>{{ practica.fecha_inicio | date:'dd/MM/yyyy' }}</td>
+          <td>{{ practica.fecha_inicio | date: "dd/MM/yyyy" }}</td>
 
           <td>
-            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+            <div
+              routerLink="/principal/edit-practicas-profesionales/{{
+                practica.id
+              }}"
+              class="float-right mx-1 btn btn-success"
+              style="margin: 5px"
+            >
               <i class="fa fa-edit"></i>
             </div>
-            <div class="float-right mx-1 btn btn-danger">
+            <div
+              (click)="eliminar_practica(practica)"
+              class="float-right mx-1 btn btn-danger"
+            >
               <i class="fa fa-trash"></i>
             </div>
           </td>

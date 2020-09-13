@@ -1,4 +1,4 @@
-<div class="container_p">
+<div *ngIf="role=='admin' else elseBlock" class="container_p">
   <form>
     <h1>
       <b>Listado de Usuarios Registrados</b>
@@ -75,3 +75,7 @@
     </div>
   </div>
 </div>
+
+<ng-template #elseBlock>
+  <p>No tienes acceso</p>
+</ng-template>

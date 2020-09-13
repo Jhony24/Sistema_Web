@@ -1,152 +1,203 @@
 <div class="container_p">
   <form>
     <div class="titulo">
-      <h1><b>Ingreso de Proyectos Macro</b></h1>
+      <h1><b>Formulario de Ingreso para Proyectos Macro</b></h1>
     </div>
-    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
     >&nbsp;&nbsp;&nbsp;
     <br />
     <br />
     <div class="container">
-      <mat-card>
-        <mat-card-title>Datos</mat-card-title>
-
-        <form>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Seleccionar Carrera</label>
-            <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  id="exampleFormControlSelect1"
-                >
-                  <option>-- Seleccionar Carrera --</option>
-                  <option>{{ "Ingenieria en Sistemas" }}</option>
-                </select>
-              </div>
-            
-            </form>
-          </div>
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Seleccionar Area</label>
-            <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  id="exampleFormControlSelect1"
-                >
-                  <option>-- Seleccionar Areas --</option>
-                  <option>{{ "Ingenieria en Sistemas" }}</option>
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-areas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
+      <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
+        <div class="container">
+          <div class="form-group col-md-12" style="width: auto">
+            <label for="idcarrera">Seleccionar Carrera</label>
+            <div class="form-group mx-sm-3 mb-2">
+              <select
+                required
+                class="form-control"
+                (change)="selectChangeCarrera($event)"
+                formControlName="idcarrera"
               >
-                Nueva Area
-              </button>
-            </form>
-          </div>
-
-          <div class="form-group">
-            <label for="exampleFormControlInput1">Seleccionar Empresa</label>
-            <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  id="exampleFormControlSelect1"
+                <option value="" hidden selected>Seleccionar Carrera</option>
+                <option
+                  *ngFor="let carrera of listcarreras"
+                  [ngValue]="carrera.id"
                 >
-                  <option>-- Seleccionar Empresa --</option>
-                  <option>{{ "Ingenieria en Sistemas" }}</option>
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-empresas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
+                  {{ carrera.nombrecarreras }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
+                "
+                class="alert alert-danger"
               >
-                Nueva Empresa
-              </button>
-            </form>
+                <div
+                  *ngIf="idcarrera.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
+        </div>
+        <div class="container">
+          <div class="form-group col-md-12" style="width: auto">
+            <label for="idarea">Seleccionar Area</label>
+            <div class="form-group mx-sm-3 mb-2">
+              <select
+                required
+                class="form-control"
+                (change)="selectChangeArea($event)"
+                formControlName="idarea"
+              >
+                <option value="" hidden selected>Seleccionar Area</option>
+                <option *ngFor="let area of listarea" [ngValue]="area.id">
+                  {{ area.nombrearea }}
+                </option>
+              </select>
+              <div
+                *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
+                class="alert alert-danger"
+              >
+                <div
+                  *ngIf="idarea.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="form-group col-md-12">
             <label for="inputNombre">Nombre de Proyecto Macro</label>
             <input
               type="text"
               class="form-control"
-              name="nombre_empresa"
-              id="inputNombre"
+              name="nombre_prmacro"
+              id="nombre_prmacro"
+              formControlName="nombre_prmacro"
             />
+            <div
+              *ngIf="
+                nombreprmacro.invalid &&
+                (nombreprmacro.dirty || nombreprmacro.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!nombre_prmacro"
+            >
+              <div
+                *ngIf="nombreprmacro.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
+
+              <div
+                *ngIf="nombreprmacro.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="nombreprmacro.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
           </div>
-          <div class="form-group">
+        </div>
+        <div class="container">
+          <div class="form-group col-md-12">
             <label for="inputNombre">Nombre de Encargado del Proyecto</label>
             <input
               type="text"
               class="form-control"
-              name="nombre_empresa"
-              id="inputNombre"
+              name="encargado"
+              id="encargado"
+              formControlName="encargado"
             />
-          </div>
+            <div
+              *ngIf="
+                encargado.invalid && (encargado.dirty || encargado.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!encargado"
+            >
+              <div
+                *ngIf="encargado.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
 
-          <div style="margin-left: initial;" class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Estudiantes Requeridos</label>
-              <input
-                type="number"
-                class="form-control"
-                name="nombre_empresa"
-                id="inputNombre"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Horas Totales a Cumplir</label>
-              <input
-                type="number"
-                class="form-control"
-                name="nombre_empresa"
-                id="inputNombre"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Ciclo para realizar Proyecto</label>
-              <input
-                type="number"
-                class="form-control"
-                name="nombre_empresa"
-                id="inputNombre"
-              />
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputDireccion">Fecha de Inicio</label>
-              <input
-                type="date"
-                class="form-control"
-                name="direccion"
-                id="inputDireccion"
-              />
-            </div>
-            <div class="form-group col-md-6">
-              <label for="inputDireccion">Fecha de Finazalizacion</label>
-              <input
-                type="date"
-                class="form-control"
-                name="direccion"
-                id="inputDireccion"
-              />
+              <div
+                *ngIf="encargado.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="encargado.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
             </div>
           </div>
-        </form>
-        <button type="submit" class="btn btn-success">Registrar Proyecto Macro</button>
-      </mat-card>
+        </div>
+        <div class="container">
+          <div style="margin-left: initial" class="form-row">
+            <div class="form-group col-md-12">
+              <label for="exampleFormControlTextarea1">Descripcion</label>
+              <textarea
+                class="form-control"
+                id="descripcion"
+                name="descripcion"
+                formControlName="descripcion"
+                rows="3"
+              ></textarea>
+              <div
+                *ngIf="
+                  descripcion.invalid &&
+                  (descripcion.dirty || descripcion.touched)
+                "
+                class="alert alert-danger"
+                ng-show="!nombreempresa"
+              >
+                <div
+                  *ngIf="descripcion.errors.minlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+                <div
+                  *ngIf="descripcion.errors.maxlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-success">
+              <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>
+              <b>Registrar Proyecto Macro</b>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </form>
 </div>

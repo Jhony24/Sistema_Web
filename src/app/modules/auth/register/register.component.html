@@ -1,6 +1,6 @@
 <div class="register-box">
   <div class="register-logo">
-    <a><b style="font-size: 27px;">Registro de Usuario</b></a>
+    <a><b style="font-size: 27px">Registro de Usuario</b></a>
   </div>
 
   <div class="register-box-body">
@@ -13,11 +13,10 @@
           placeholder="Cedula"
           type="number"
           name="cedula"
-          id="inpucedula"
+          id="cedula"
           [(ngModel)]="form.cedula"
           required
         />
-        <span class="fa fa-id-card form-control-feedback"></span>
         <div class="alert alert-danger" [hidden]="!error.cedula">
           {{ error.cedula }}
         </div>
@@ -32,9 +31,8 @@
           [(ngModel)]="form.nombre_completo"
           required
         />
-        <span class="glyphicon glyphicon-user form-control-feedback"></span>
-        <div class="alert alert-danger" [hidden]="!error.nombre_completo">
-          {{ error.nombre_completo }}
+        <div class="alert alert-danger" [hidden]="!error.nombre_competo">
+          {{ error }}
         </div>
       </div>
       <div class="form-group has-feedback">
@@ -47,7 +45,6 @@
           [(ngModel)]="form.email"
           required
         />
-        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
         <div class="alert alert-danger" [hidden]="!error.email">
           {{ error.email }}
         </div>
@@ -77,43 +74,41 @@
           [(ngModel)]="form.password_confirmation"
           required
         />
-        <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
+        <span class="glyphicon glyphicon-eye-open form-control-feedback"></span>
       </div>
 
-      <div id="idcarrera" class="form-group has-feedback">
+      <div for="idcarrera" class="form-group has-feedback">
         <select
+          placeholder="Select"
           class="form-control"
           name="idcarrera"
           id="idcarrera"
           [(ngModel)]="form.idcarrera"
           required
         >
-        <option  hidden selected>Seleccionar Carrera</option>
-        <option
-          *ngFor="let carrera of listcarreras"
-          [ngValue]="carrera.id"
-          value="1"
-          >{{ carrera.nombrecarreras }}</option
-        >
+          <option value="0" [selected]>Seleccionar Carrera</option>
+          <option
+            selected
+            *ngFor="let carrera of listcarreras"
+            [ngValue]="carrera.id"
+            value="1"
+          >
+            {{ carrera.nombrecarreras }}
+          </option>
         </select>
       </div>
 
+      
+
       <div class="row">
-        <div class="col-md-6">
-          <div style="display: none;" class="checkbox icheck">
-            <label>
-              <input type="checkbox" /> I agree to the <a href="#">terms</a>
-            </label>
-          </div>
-        </div>
         <!-- /.col -->
-        <div class="col-md-6">
+        <div class="col-md-12">
           <button
             class="btn btn-primary btn-block btn-flat"
             type="submit"
             [disabled]="!registerForm.valid"
           >
-            Registrarme
+            <b>REGISTRARME</b>
           </button>
         </div>
         <!-- /.col -->

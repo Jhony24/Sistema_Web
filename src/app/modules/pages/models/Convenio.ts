@@ -7,6 +7,7 @@ export class Convenio {
     objeto:string;
     idcarrera:number;
     estado_convenio: number;
+    archivo_convenio?:string;
     nombreempresa?:string;
     created_at?: Date;
     updated_at?: Date;

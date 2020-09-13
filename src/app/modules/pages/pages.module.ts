@@ -42,7 +42,7 @@ import { EditBasicoComponent } from "./proyecto_basico/edit-basico/edit-basico.c
 import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.component";
 import { ListUserComponent } from './usuarios/list-user/list-user.component';
 import { ActivarUserComponent } from './usuarios/activar-user/activar-user.component';
-import { ListBasicosComponent } from './proyecto_macro/list-basicos/list-basicos.component';
+import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
 
 @NgModule({
   declarations: [
@@ -74,7 +74,7 @@ import { ListBasicosComponent } from './proyecto_macro/list-basicos/list-basicos
     ListBasicoComponent,
     ListUserComponent,
     ActivarUserComponent,
-    ListBasicosComponent,
+    AprobarComponent,
   ],
   imports: [
     CommonModule,

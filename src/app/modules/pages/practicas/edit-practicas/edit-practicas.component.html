@@ -1,1 +1,186 @@
-<p>edit-practicas works!</p>
+<div class="container_p">
+  <div class="titulo">
+    <h1><b>Ingreso de Practicas Pre-Profesionales</b></h1>
+  </div>
+  <button class="btn btn-danger" (click)="volver_lista()">
+    <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
+  >&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <div class="container">
+    <form (ngSubmit)="put(formPractica)" #formPractica="ngForm">
+      <div class="form-group" style="display: none">
+        <label for="idcarrera">Seleccionar Carrera</label>
+        <select
+          disabled
+          class="form-control"
+          name="idcarrera"
+          id="idcarrera"
+          [(ngModel)]="practica.idcarrera"
+        >
+          <option
+            *ngFor="let carrera of listcarreras"
+            [ngValue]="carrera.id"
+            value="carrera.id"
+          >
+            {{ carrera.nombrecarreras }}
+          </option>
+        </select>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="idarea">Seleccionar Area</label>
+          <select
+            required
+            class="form-control"
+            name="idarea"
+            id="idarea"
+            [(ngModel)]="practica.idarea"
+          >
+            <option *ngFor="let area of listarea" [ngValue]="area.id">
+              {{ area.nombrearea }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="idempresa">Seleccionar Empresa</label>
+          <select
+            required
+            class="form-control"
+            name="idempresa"
+            id="idempresa"
+            [(ngModel)]="practica.idempresa"
+          >
+            <option value="" hidden selected>Seleccionar Empresa</option>
+            <option *ngFor="let empresa of listempresa" [ngValue]="empresa.id">
+              {{ empresa.nombreempresa }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-4">
+          <label for="inputNombre">Cupos Disponibles</label>
+          <input
+            type="number"
+            min="1"
+            class="form-control"
+            name="cupos"
+            id="cupos"
+            #cupos="ngModel"
+            [(ngModel)]="practica.cupos"
+            required
+          />
+          <div *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)">
+            <div *ngIf="cupos.errors.required" class="alert alert-danger">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputNombre">Horas Totales a Cumplir</label>
+          <input
+            type="number"
+            min="1"
+            class="form-control"
+            name="horas_cumplir"
+            id="horas_cumplir"
+            #horas="ngModel"
+            [(ngModel)]="practica.horas_cumplir"
+            required
+          />
+          <div *ngIf="horas.invalid && (horas.dirty || horas.touched)">
+            <div *ngIf="horas.errors.required" class="alert alert-danger">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputNombre">Ciclo para realizar Practica</label>
+          <input
+            type="number"
+            class="form-control"
+            name="ciclo"
+            id="ciclo"
+            [(ngModel)]="practica.ciclo"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-4">
+          <label for="inputDireccion">Fecha de Inicio</label>
+          <input
+            type="date"
+            class="form-control"
+            name="fecha_inicio"
+            id="fecha_inicio"
+            #fecha="ngModel"
+            [(ngModel)]="practica.fecha_inicio"
+            required
+          />
+          <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+            <div *ngIf="fecha.errors.required" class="alert alert-danger">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputDireccion">Horario Entrada</label>
+          <input
+            type="time"
+            class="form-control"
+            name="hora_entrada"
+            id="hora_entrada"
+            [(ngModel)]="practica.hora_entrada"
+          />
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputDireccion">Horario Salida</label>
+          <input
+            type="time"
+            class="form-control"
+            name="hora_salida"
+            id="hora_salida"
+            [(ngModel)]="practica.hora_salida"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlTextarea1"
+            >Descripcion de Actividades a realizar</label
+          >
+          <textarea
+            class="form-control"
+            name="actividades"
+            id="actividades"
+            [(ngModel)]="practica.actividades"
+            rows="3"
+          ></textarea>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlTextarea1"
+            >Requisitos del Estudiante</label
+          >
+          <textarea
+            class="form-control"
+            name="requerimientos"
+            id="requerimientos"
+            [(ngModel)]="practica.requerimientos"
+            rows="3"
+          ></textarea>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh">&nbsp;</span>
+            <b> Actualizar Practica</b>
+          </button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

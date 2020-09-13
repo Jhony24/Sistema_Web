@@ -1,57 +1,98 @@
 <div class="container_p">
-  <form>
+  <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
     <h1>
-      <b>Ingreso de Areas para Practicas Pre-Profesionales o Pasantias</b>
+      <b>Formulario de Ingreso de Areas para Practicas Pre-Profesionales o Pasantias</b>
     </h1>
-    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
-    >&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver
+    </button>
+    &nbsp;&nbsp;&nbsp;
     <br />
     <br />
+
     <div class="container">
-      <mat-card>
-        <mat-card-title>Datos</mat-card-title>
-
-        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="idcarrera">Seleccionar Carrera</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <select
-                  class="form-control"
-                  (change)="selectChangeCarrera($event)"
-                  formControlName="idcarrera"
-                >
-                  <option value="" hidden selected>Seleccionar Carrera</option>
-                  <option
-                    
-                    *ngFor="let carrera of listcarreras"
-                    [ngValue]="carrera.id"
-                    >{{ carrera.nombrecarreras }}</option
-                  >
-                </select>
-              </div>
-              <div></div>
-            </form>
+      <div class="form-group col-md-6" style="width: auto">
+        <label for="idcarrera">Seleccionar Carrera</label>
+        <select
+          required
+          class="form-control"
+          (change)="selectChangeCarrera($event)"
+          formControlName="idcarrera"
+        >
+          <option value="" hidden selected>Seleccionar Carrera</option>
+          <option *ngFor="let carrera of listcarreras" [ngValue]="carrera.id">
+            {{ carrera.nombrecarreras }}
+          </option>
+        </select>
+        <div
+          *ngIf="idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)"
+          class="alert alert-danger"
+        >
+          <div
+            *ngIf="idcarrera.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="nombrearea">Nombre de Area</label>
+        <input
+          autocomplete="off"
+          formControlName="nombrearea"
+          placeholder="Ej. Redes y Telecomunicaciones, Desarrollo de Software"
+          name="nombrearea"
+          class="form-control"
+          id="nombrearea"
+          required
+        />
+        <div class="alert alert-danger" [hidden]="!prueba">
+          {{ "Este nombre ya esta en uso" }}
+        </div>
+        <div *ngIf="listerrores.length > 0" class="container-error-message">
+          <div *ngFor="let e of listerrores">
+            <p>
+              {{ e.length }}
+            </p>
+          </div>
+        </div>
+        <div
+          *ngIf="nombrearea.invalid && (nombrearea.dirty || nombrearea.touched)"
+          class="alert alert-danger"
+          ng-show="!nombrearea"
+        >
+          <div
+            *ngIf="nombrearea.errors.required"
+            class="container-error-message"
+          >
+            Nombre es requerido
           </div>
 
-          <div class="form-group">
-            <label for="nombrearea">Nombre de Area</label>
-            <input
-              autocomplete="off"
-              formControlName="nombrearea"
-              placeholder="Nombre Completo"
-              name="nombrearea"
-              class="form-control"
-              id="nombrearea"
-              required
-            />
+          <div
+            *ngIf="nombrearea.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
           </div>
-
-          <button type="submit" class="btn btn-success">
-            <b>Registrar Area</b>
-          </button>
-        </form>
-      </mat-card>
+          <div
+            *ngIf="nombrearea.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <button type="submit" class="btn btn-success">
+          <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>
+          <b>Registrar Area</b>
+        </button>
+      </div>
     </div>
   </form>
 </div>

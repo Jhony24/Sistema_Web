@@ -27,12 +27,17 @@ export class AddCarrerasComponent implements OnInit {
     });
   }
   onSubmit() {
-    this.servicio
+    if(this.validarForm.valid){
+      this.servicio
       .crearCarrera(this.validarForm.value)
       .subscribe((data) => {
         this.ruta.navigate(["/principal/list-carreras"]);
         Swal.fire("Registro de Carrera", "Satisfactorio!", "success");
       });
+    }else{
+      alert("Complete los campos Obligatorios")
+    }
+   
   }
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-carreras"]);

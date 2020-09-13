@@ -52,7 +52,13 @@ export class EditAreasComponent implements OnInit {
   put() {
     this.servicio.actualizarArea(this.area).subscribe((data) => {
       this.ruta.navigate(["/principal/list-areas"]);
-      Swal.fire("Good ediraste!", "You clicked the button!", "success");
+      Swal.fire({
+        position: "top-right",
+        icon: "success",
+        title: "Area actualizada correctamente",
+        showConfirmButton: false,
+        timer: 1500,
+      });
     });
   }
 

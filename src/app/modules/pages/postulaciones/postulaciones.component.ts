@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Postulacion } from '../models/Postulacion';
+import { ServiceService } from '../services/service.service';
 
 @Component({
   selector: 'app-postulaciones',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PostulacionesComponent implements OnInit {
 
-  constructor() { }
+  listpostulantes = new Array<Postulacion>();
 
-  ngOnInit(): void {
+  constructor(private servicio:ServiceService) { }
+
+  ngOnInit(){
+    this.listar_postulaciones();
+  }
+
+  listar_postulaciones(){
+    this.servicio.getListadoPostulantes().subscribe((data)=>{
+      this.listpostulantes=data;
+      console.log(this.listpostulantes);
+    })
   }
 
 }

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { ProyectoMacro } from '../../models/ProyectoMacro';
 import { ServiceService } from '../../services/service.service';
 
@@ -33,11 +34,34 @@ export class ListProyectoComponent implements OnInit {
     });
   }
 
-  proyectos_basico(macro:ProyectoMacro) {
-    this.ruta.navigate(["/principal/add-areas"]);
-    this.servicio.getProyectosBasicos(macro.id).subscribe((data) => {
-      this.listbasico = data;
-      console.log("holaaa",this.listbasico);
+  eliminar_macro(macro:ProyectoMacro):void{
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: "¿Seguro desea dar de baja al proyecto macro:" + macro.nombre_prmacro +"?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Dar de Baja',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.servicio.eliminarMacro(macro.id).subscribe(
+          data=>{
+            this.listar_macro();
+          },(err)=>{
+            console.log('Hubo un error al Eliminar el Cargo => '+ err.toString());
+          }
+        );
+        Swal.fire(
+          'Dar de Baja!',
+          'Se ha dado de baja al proyecto macro: '+macro.nombre_prmacro,
+          'success'
+        )
+      }
     });
+
   }
+
+  
 }

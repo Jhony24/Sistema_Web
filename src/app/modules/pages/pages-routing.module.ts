@@ -28,6 +28,7 @@ import { EditBasicoComponent } from "./proyecto_basico/edit-basico/edit-basico.c
 import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.component";
 import { ListUserComponent } from "./usuarios/list-user/list-user.component";
 import { ActivarUserComponent } from "./usuarios/activar-user/activar-user.component";
+import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
 
 const routes: Routes = [
   {
@@ -36,7 +37,7 @@ const routes: Routes = [
     children: [
       { path: "add-practicas-profesionales", component: AddPracticasComponent },
       {
-        path: "edit-practicas-profesionales",
+        path: "edit-practicas-profesionales/:id",
         component: EditPracticasComponent,
       },
       {
@@ -44,7 +45,7 @@ const routes: Routes = [
         component: ListPracticasComponent,
       },
       { path: "add-pasantias", component: AddPasantiasComponent },
-      { path: "edit-pasantias", component: EditPasantiasComponent },
+      { path: "edit-pasantias/:id", component: EditPasantiasComponent },
       { path: "list-pasantias", component: ListPasantiasComponent },
       { path: "add-areas", component: AddAreasComponent },
       { path: "edit-areas/:id", component: EditAreasComponent },
@@ -57,16 +58,17 @@ const routes: Routes = [
       { path: "edit-carreras/:id", component: EditCarrerasComponent },
       { path: "list-carreras", component: ListCarrerasComponent },
       { path: "add-proyecto", component: AddProyectoComponent },
-      { path: "edit-proyecto", component: EditProyectoComponent },
+      { path: "edit-proyecto/:id", component: EditProyectoComponent },
       { path: "list-proyecto", component: ListProyectoComponent },
       { path: "add-convenio", component: AddConveniosComponent },
       { path: "edit-convenio/:id", component: EditConveniosComponent },
       { path: "list-convenio", component: ListConveniosComponent },
       { path: "add-basico/:id", component: AddBasicoComponent },
-      { path: "edit-basico", component: EditBasicoComponent },
+      { path: "edit-basico/:id", component: EditBasicoComponent },
       { path: "list-basico/:id", component: ListBasicoComponent },
       { path: "list-user", component: ListUserComponent },
       { path: "activar/:id", component: ActivarUserComponent },
+      {path: "aprobar/:id",component:AprobarComponent}
     ],
   },
 ];

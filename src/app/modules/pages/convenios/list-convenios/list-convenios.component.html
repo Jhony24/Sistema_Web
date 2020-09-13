@@ -7,39 +7,48 @@
       >
     </h1>
     <button class="btn btn-primary" (click)="add_convenios()">
-      Nuevo Convenio</button
+      <span class="glyphicon glyphicon-plus-sign">&nbsp;</span
+      ><b> Nuevo Convenio</b></button
     >&nbsp;&nbsp;&nbsp;
     <button class="btn btn-primary" (click)="list_empresas()">
-      Empresas o Instituciones</button
+      <span class="glyphicon glyphicon-briefcase">&nbsp;</span
+      ><b> Empresas o Instituciones</b></button
     >&nbsp;&nbsp;&nbsp;
     <br />
     <br />
 
     <table class="table table-hover">
-      <thead style="text-align: center;">
-        <tr style="text-align: center;">
+      <thead style="text-align: center">
+        <tr style="text-align: center">
           <th class="hidden">Id</th>
-          <th style="text-align: center;">Tipo</th>
-          <th style="text-align: center;">Nombre Empresa</th>
-          <th style="text-align: center;">Fecha Inicio</th>
-          <th style="text-align: center;">Fecha de Culminacion</th>
-          <th style="text-align: center;">Objeto</th>
-          <th style="text-align: center;">Opciones</th>
+          <th style="text-align: center">Tipo</th>
+          <th style="text-align: center">Nombre Empresa</th>
+          <th style="text-align: center">Fecha Inicio</th>
+          <th style="text-align: center">Fecha de Culminacion</th>
+          <th style="text-align: center">Objeto</th>
+          <th style="text-align: center">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let convenio of listconvenios" style="text-align: center;">
-          <td class="hidden">{{convenio.id }}</td>
+        <tr *ngFor="let convenio of listconvenios" style="text-align: center">
+          <td class="hidden">{{ convenio.id }}</td>
           <td>{{ convenio.tipo_convenio }}</td>
           <td>{{ convenio.nombreempresa }}</td>
-          <td>{{ convenio.fecha_inicio | date:'dd/MM/yyyy'}}</td>
+          <td>{{ convenio.fecha_inicio | date: "dd/MM/yyyy" }}</td>
           <td>{{ convenio.fecha_culminacion }}</td>
           <td>{{ convenio.objeto }}</td>
           <td>
-            <div routerLink="/principal/edit-convenio/{{convenio.id}}" class="float-right mx-1 btn btn-success" style="margin: 5px;">
+            <div
+              routerLink="/principal/edit-convenio/{{ convenio.id }}"
+              class="float-right mx-1 btn btn-success"
+              style="margin: 5px"
+            >
               <i class="fa fa-edit"></i>
             </div>
-            <div class="float-right mx-1 btn btn-danger">
+            <div
+              (click)="eliminar_convenio(convenio)"
+              class="float-right mx-1 btn btn-danger"
+            >
               <i class="fa fa-trash"></i>
             </div>
           </td>

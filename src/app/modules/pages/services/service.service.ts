@@ -5,9 +5,10 @@ import { Area } from "../models/Area";
 import { Carrera } from "../models/Carrera";
 import { Convenio } from "../models/Convenio";
 import { Empresa } from "../models/Empresa";
-import { Practicas } from '../models/Practicas';
-import { ProyectoBasico } from '../models/ProyectoBasico';
-import { ProyectoMacro } from '../models/ProyectoMacro';
+import { Postulacion } from "../models/Postulacion";
+import { Practicas } from "../models/Practicas";
+import { ProyectoBasico } from "../models/ProyectoBasico";
+import { ProyectoMacro } from "../models/ProyectoMacro";
 import { Roles } from "../models/Roles";
 import { Users } from "../models/Users";
 
@@ -18,13 +19,6 @@ export class ServiceService {
   private API_REST = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient) {}
-
-  // return this.http.post(`${this.baseUrl}/register`, data);
-  /*private httpHeader = new HttpHeaders({
-    "Content-Type": "application/json",
-    //'Authorization' : '1104808413'
-    Authorization: "Bearer " + this.toke.get(),
-  });*/
 
   //obtener rol del usuario registrado
   getRoles(): Observable<any[]> {
@@ -76,15 +70,26 @@ export class ServiceService {
     );
   }
 
+  eliminarCarrera(id: number): Observable<any> {
+    return this.http.delete<Carrera>(`${this.API_REST}/carrera` + "/" + id);
+  }
+
   //////////////Servicio de Usuarios/////////////
 
   getListadoUsuarios(): Observable<any[]> {
     return this.http.get<Users[]>(`${this.API_REST}/users`);
   }
-  activarusuario(myarea: Users): Observable<any> {
+  activarusuario(usuario: Users): Observable<any> {
     return this.http.put<Users>(
-      `${this.API_REST}/usuarioA` + "/" + myarea.id,
-      myarea
+      `${this.API_REST}/usuarioA` + "/" + usuario.id,
+      usuario
+    );
+  }
+
+  desactivarusuario(usuario: Users): Observable<any> {
+    return this.http.put<Users>(
+      `${this.API_REST}/usuarioD` + "/" + usuario.id,
+      usuario
     );
   }
 
@@ -115,8 +120,8 @@ export class ServiceService {
   getConvenio(id: number): Observable<any> {
     return this.http.get<Convenio>(`${this.API_REST}/convenio` + "/" + id);
   }
-  crearConvenio(newempresa: Convenio): Observable<any> {
-    return this.http.post<Convenio>(`${this.API_REST}/convenio`, newempresa);
+  crearConvenio(newconvenio: Convenio): Observable<any> {
+    return this.http.post<Convenio>(`${this.API_REST}/convenio`, newconvenio);
   }
   actualizarConvenio(myconvenio: Convenio): Observable<any> {
     return this.http.put<Convenio>(
@@ -127,7 +132,6 @@ export class ServiceService {
   eliminarConvenio(id: number): Observable<any> {
     return this.http.delete<Convenio>(`${this.API_REST}/convenio` + "/" + id);
   }
-
 
   ///////////Servicio de Practicas/////////////////
 
@@ -141,19 +145,65 @@ export class ServiceService {
     return this.http.post<Practicas>(`${this.API_REST}/practica`, newpractica);
   }
 
+  actualizarPractica(mycpractica: Practicas): Observable<any> {
+    return this.http.put<Practicas>(
+      `${this.API_REST}/practica` + "/" + mycpractica.id,
+      mycpractica
+    );
+  }
+  eliminarPractica(id: number): Observable<any> {
+    return this.http.delete<Practicas>(`${this.API_REST}/practica` + "/" + id);
+  }
+
   ////////////Servicio de Proyecto macro(////////
   getListadoProyectoMacro(): Observable<any[]> {
     return this.http.get<ProyectoMacro[]>(`${this.API_REST}/macro`);
   }
-  getProyectosBasicos(id:number):Observable<any>{
-    return this.http.get<Convenio>(
-      `${this.API_REST}/macro` + "/" + id
+  crearProyectoMacro(newmacro: ProyectoMacro): Observable<any> {
+    return this.http.post<ProyectoMacro>(`${this.API_REST}/macro`, newmacro);
+  }
+
+  actualizarMacro(mymacro: ProyectoMacro): Observable<any> {
+    return this.http.put<ProyectoMacro>(
+      `${this.API_REST}/macro` + "/" + mymacro.id,
+      mymacro
     );
   }
-  
+  eliminarMacro(id: number): Observable<any> {
+    return this.http.delete<ProyectoMacro>(`${this.API_REST}/macro` + "/" + id);
+  }
+
   /////Servicio de Proyecto Basico/////////////
+  getba2(): Observable<any[]> {
+    return this.http.get<ProyectoBasico[]>(`${this.API_REST}/basico`);
+  }
+  getbasicosedit(id:number):Observable<any>{
+    return this.http.get<ProyectoBasico>(`${this.API_REST}/basico` + "/" + id);
+  }
+  getProyectosBasicos(id: number): Observable<any> {
+    return this.http.get<ProyectoBasico>(`${this.API_REST}/macro` + "/" + id);
+  }
   crearProyectoBasico(newbasico: ProyectoBasico): Observable<any> {
     return this.http.post<ProyectoBasico>(`${this.API_REST}/basico`, newbasico);
   }
-  
+
+  actualizarBasico(mybasico: ProyectoBasico): Observable<any> {
+    return this.http.put<ProyectoBasico>(
+      `${this.API_REST}/basico` + "/" + mybasico.id,
+      mybasico
+    );
+  }
+  eliminarBasico(id: number): Observable<any> {
+    return this.http.delete<ProyectoBasico>(
+      `${this.API_REST}/basico` + "/" + id
+    );
+  }
+
+  ///////////Servicio de Postulacion/////////////////
+
+  getListadoPostulantes(): Observable<any[]> {
+    return this.http.get<Postulacion[]>(`${this.API_REST}/postulacion`);
+  }
+
+  //aprobar y rechazar postulacion pendiente
 }

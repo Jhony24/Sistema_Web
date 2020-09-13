@@ -3,120 +3,270 @@
     <div class="titulo">
       <h1>
         <b
-          >Ingreso de Convenios para realizar Prácticas Pre-Profesionales o
-          Pasantias</b
+          >Formulario de Ingreso de Convenios para realizar Prácticas
+          Pre-Profesionales o Pasantias</b
         >
       </h1>
     </div>
-    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
     >&nbsp;&nbsp;&nbsp;
     <br />
     <br />
     <div class="container">
-      <mat-card>
-        <mat-card-title>Datos</mat-card-title>
+      <form
+        [formGroup]="validarForm"
+        (ngSubmit)="onSubmit()"
+        enctype="multipart/form-data"
+      >
+        <div class="container">
+          <div class="form-group">
+            <div class="form-group col-md-6" style="width: auto">
+              <label for="idcarrera">Seleccionar Carrera</label>
 
-        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="idcarrera">Seleccionar Carrera</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  class="form-control"
-                  (change)="selectChangeCarrera($event)"
-                  formControlName="idcarrera"
-                >
-                  <option value="" hidden selected>Seleccionar Carrera</option>
-                  <option
-                    *ngFor="let carrera of listcarreras"
-                    [ngValue]="carrera.id"
-                    >{{ carrera.nombrecarreras }}</option
-                  >
-                </select>
-              </div>
-            </form>
-          </div>
-          <div class="form-group">
-            <label for="idempresa">Seleccionar Empresa</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  class="form-control"
-                  (change)="selectChangeEmpresa($event)"
-                  formControlName="idempresa"
-                >
-                  <option value="" hidden selected>Seleccionar Empresa</option>
-                  <option
-                    *ngFor="let empresa of listempresa"
-                    [ngValue]="empresa.id"
-                    >{{ empresa.nombreempresa }}</option
-                  >
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-empresas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
+              <select
+                style="width: auto"
+                required
+                class="form-control"
+                (change)="selectChangeCarrera($event)"
+                formControlName="idcarrera"
               >
-                Nueva Empresa
-              </button>
-            </form>
+                <option value="" hidden selected>Seleccionar Carrera</option>
+                <option
+                  *ngFor="let carrera of listcarreras"
+                  [ngValue]="carrera.id"
+                >
+                  {{ carrera.nombrecarreras }}
+                </option>
+              </select>
+              <div
+                *ngIf="
+                  idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
+                "
+                class="alert alert-danger"
+              >
+                <div
+                  *ngIf="idcarrera.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="form-group">
+        </div>
+        <div class="container">
+          <div class="form-group col-md-6" style="width: auto">
+            <label for="idempresa">Seleccionar Empresa</label>
+            <select
+              required
+              class="form-control"
+              (change)="selectChangeEmpresa($event)"
+              formControlName="idempresa"
+            >
+              <option value="" hidden selected>Seleccionar Empresa</option>
+              <option
+                *ngFor="let empresa of listempresa"
+                [ngValue]="empresa.id"
+              >
+                {{ empresa.nombreempresa }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                idempresa.invalid && (idempresa.dirty || idempresa.touched)
+              "
+              class="alert alert-danger"
+            >
+              <div
+                *ngIf="idempresa.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container">
+          <div class="form-group col-md-12">
             <label for="exampleFormControlInput1">Tipo de Convenio</label>
             <input
+              required
               type="text"
               class="form-control"
               formControlName="tipo_convenio"
               name="tipo_convenio"
               id="tipo_convenio"
-              placeholder="Gestion de Redes, Laborales 1, etc"
+              placeholder="Ej. Carta Compromiso"
             />
+            <div
+              *ngIf="
+                tipo_convenio.invalid &&
+                (tipo_convenio.dirty || tipo_convenio.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!tipo_convenio"
+            >
+              <div
+                *ngIf="tipo_convenio.errors.required"
+                class="container-error-message"
+              >
+                Nombre es requerido
+              </div>
+
+              <div
+                *ngIf="tipo_convenio.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="tipo_convenio.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
           </div>
-          <div style="margin-left: initial;" class="form-row">
+        </div>
+        <div class="container">
+          <div style="margin-left: initial" class="form-row">
             <div class="form-group col-md-6">
               <label for="inputDireccion">Fecha de Inicio</label>
               <input
+                required
                 type="date"
                 class="form-control"
                 formControlName="fecha_inicio"
                 name="fecha_inicio"
                 id="fecha_inicio"
               />
+              <div
+              *ngIf="
+                fecha_incio.invalid &&
+                (fecha_incio.dirty || fecha_incio.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!fecha_incio"
+            >
+              <div
+                *ngIf="fecha_incio.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
+
+             
+             
+            </div>
             </div>
             <div class="form-group col-md-6">
               <label for="inputDireccion">Fecha de Culminación</label>
               <input
+                required
                 type="text"
                 class="form-control"
                 formControlName="fecha_culminacion"
                 name="fecha_culminacion"
                 id="fecha_culminacion"
+                placeholder="Ej. 3 años"
               />
+              <div
+              *ngIf="
+                fecha_culminacion.invalid &&
+                (fecha_culminacion.dirty || fecha_culminacion.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!fecha_culminacion"
+            >
+              <div
+                *ngIf="fecha_culminacion.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
+
+              <div
+                *ngIf="fecha_culminacion.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="fecha_culminacion.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
             </div>
           </div>
-
-          <div class="form-group">
+        </div>
+        <div class="container">
+          <div class="form-group col-md-12">
             <label for="exampleFormControlInput1">Objeto</label>
             <input
+              required
               type="text"
               class="form-control"
               formControlName="objeto"
               name="objeto"
               id="objeto"
-              placeholder="Gestion de Redes, Laborales 1, etc"
+              placeholder="Ej. Cooperación interinstitucional para pasantías y prácticas pre profesionales."
+            />
+            <div
+              *ngIf="
+                objeto.invalid &&
+                (objeto.dirty || objeto.touched)
+              "
+              class="alert alert-danger"
+              ng-show="!objeto"
+            >
+              <div
+                *ngIf="objeto.errors.required"
+                class="container-error-message"
+              >
+                Este campo es requerido
+              </div>
+
+              <div
+                *ngIf="objeto.errors.minlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="objeto.errors.maxlength"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="custom-file col-md-12">
+            <label for="exampleFormControlInput1">Archivo</label>
+            <input
+              type="file"
+              (change)="uploadFile($event)"
+              formControlName="archivo_convenio"
             />
           </div>
+        </div>
 
-          <button type="submit" class="btn btn-success">
-            <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span
-            >Registrar Convenio
-          </button>
-        </form>
-      </mat-card>
+        &nbsp;
+
+        <div class="container">
+          <div class="form-group col-md-6">
+            <button type="submit" class="btn btn-success">
+              <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>
+              <b>Registrar Convenio</b>
+            </button>
+          </div>
+        </div>
+      </form>
     </div>
   </form>
 </div>

@@ -17,6 +17,7 @@ declare var $;
 export class RegisterComponent implements OnInit, OnDestroy {
 
   listcarreras = new Array<Carrera>();
+  list= new Array<String>();
   constructor(
     private servicio:ServiceService, 
     private Jarwis:JarwisService,
@@ -34,7 +35,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
     estadousuario:0
   }
 
-  public error=<any>[];
+  public error = <any>[];
   //let bar = <any>{};
 
 
@@ -48,6 +49,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
         increaseArea: '20%' /* optional */
       });
     });
+
   }
 
   ngOnDestroy(): void {
@@ -57,8 +59,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
   onSubmit(){
     this.Jarwis.registro(this.form).subscribe(
       data=>this.handleResponse(data),
-      error=>this.handleError(error)
+      err=> {
+       this.handleError(err);
+      }
     );
+    
   }
 
   handleResponse(data){
@@ -73,14 +78,16 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   handleError(error){
-    this.error=error.error.error;
-  }
+    this.error=error.error;
+    console.log("handleerror",this.error);
+    }
 
   listar_carreras(){
     this.servicio.getListadoCarrerasAdmin().subscribe(
       data=>{
         this.listcarreras=data
       },(err)=>{
+        this.error=err
         console.log('Hubo un error en lsta carreras' +err);
       }
     )

@@ -12,9 +12,11 @@ const routes: Routes = [
     children: [
       {
         path: "",
+        pathMatch:"full",
         component: LoginComponent,
         //canActivate:[BeforeLoginService]
       },
+     
       {
         path: "register",
         component: RegisterComponent,

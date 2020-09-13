@@ -14,7 +14,6 @@
           <th class="hidden">Id</th>
           <th style="text-align: center;">Cedula</th>
           <th style="text-align: center;">Nombre</th>
-          <th style="text-align: center;">Carrera</th>
           <th style="text-align: center;">Area</th>
           <th style="text-align: center;">Empresa</th>
           <th style="text-align: center;">Opciones</th>
@@ -22,15 +21,15 @@
         </tr>
       </thead>
       <tbody>
-        <tr style="text-align: center;">
-          <td class="hidden">{{ "index" }}</td>
-          <td>{{ "1104808413" }}</td>
-          <td>{{ "Jhony Mendoza" }}</td>
-          <td>{{ "Ingenieria en Sistemas" }}</td>
-          <td>{{ "Redes" }}</td>
-          <td>{{ "MARKETINGDIGITAL BRAVO & BELTRÁN CÍA. LTDA" }}</td>
+        <tr *ngFor="let postulacion of listpostulantes" style="text-align: center;">
+          <td class="hidden">{{ postulacion.id}}</td>
+          <td>{{ postulacion.cedula}}</td>
+          <td>{{ postulacion.nombre_completo}}</td>
+          <td>{{ postulacion.nombrearea }}</td>
+          <td>{{ postulacion.nombreempresa}}</td>
           <td>
             <div
+            routerLink="/principal/aprobar/{{postulacion.id}}"
               class="float-right btn btn-info"
               style="margin: 5px;"
               data-toggle="modal"
@@ -39,7 +38,7 @@
               <i class="glyphicon glyphicon-eye-open"></i>
             </div>
           </td>
-          <td>{{ "Pendiente" }}</td>
+          <td>{{ postulacion.estado_postulacion }}</td>
         </tr>
       </tbody>
     </table>

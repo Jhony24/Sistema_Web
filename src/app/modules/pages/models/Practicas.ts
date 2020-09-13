@@ -10,6 +10,9 @@ export class Practicas {
     fecha_fin?:Date;
     hora_entrada:Time;
     hora_salida:Time;
+    actividades?:string;
+    tipo_empresa?:string;
+    requerimientos?:string;
     salario?:number;
     ppestado:number;
     idcarrera:number;

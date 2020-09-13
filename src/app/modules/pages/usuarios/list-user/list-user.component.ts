@@ -1,17 +1,17 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import { Users } from '../../models/Users';
-import { ServiceService } from '../../services/service.service';
+import { Component, OnInit } from "@angular/core";
+import { ActivatedRoute, Router } from "@angular/router";
+import Swal from "sweetalert2";
+import { Users } from "../../models/Users";
+import { ServiceService } from "../../services/service.service";
 
 @Component({
-  selector: 'app-list-user',
-  templateUrl: './list-user.component.html',
-  styleUrls: ['./list-user.component.css']
+  selector: "app-list-user",
+  templateUrl: "./list-user.component.html",
+  styleUrls: ["./list-user.component.css"],
 })
 export class ListUserComponent implements OnInit {
-
-  listusuarios= new Array<Users>();
+  listusuarios = new Array<Users>();
+  role = "";
   user: Users = {
     cedula: null,
     nombre_completo: null,
@@ -21,29 +21,29 @@ export class ListUserComponent implements OnInit {
     idcarrera: null,
     email: null,
     password: null,
-    estadousuario:1,
+    estadousuario: 1,
     nombre_rol: null,
-    };
-    id: any;
-    editing: boolean = false;
-    usuario: Users[];
+  };
+  id: any;
+  editing: boolean = false;
+  usuario: Users[];
 
-  constructor(private servicio:ServiceService,private activateRote: ActivatedRoute,private ruta:Router) { 
-    
-  }
- 
-  ngOnInit(){
-    this.lista_usuarios();
-  }
-  lista_usuarios() {
-    this.servicio.getListadoUsuarios().subscribe((data)=>{
-      this.listusuarios=data
+  constructor(
+    private servicio: ServiceService,
+    private activateRote: ActivatedRoute,
+    private ruta: Router
+  ) {
+    this.servicio.getRoles().subscribe((data: any) => {
+      this.role = data;
     });
   }
 
-  
-  
-
-  
-
+  ngOnInit() {
+    this.lista_usuarios();
+  }
+  lista_usuarios() {
+    this.servicio.getListadoUsuarios().subscribe((data) => {
+      this.listusuarios = data;
+    });
+  }
 }

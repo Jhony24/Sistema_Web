@@ -7,7 +7,8 @@
       >
     </h1>
     <button class="btn btn-primary" (click)="add_macro()">
-      Nuevo Proyecto Macro</button
+      <span class="glyphicon glyphicon-plus-sign">&nbsp;</span
+      ><b> Nuevo Proyecto Macro</b></button
     >&nbsp;&nbsp;&nbsp;
 
     <br />
@@ -17,22 +18,32 @@
       <thead style="text-align: center;">
         <tr style="text-align: center;">
           <th class="hidden">Id</th>
+          <th style="text-align: center;">N°</th>
           <th style="text-align: center;">Area</th>
           <th style="text-align: center;">Nombre de proyecto</th>
           <th style="text-align: center;">Encargado</th>
-          <th style="text-align: center;">Fecha de Inicio</th>
-          <th style="text-align: center;">Agregar Proyecto Basico</th>
+          <th style="text-align: center;">Proyecto Basico</th>
           <th style="text-align: center;">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let macro of listmacro" style="text-align: center;">
+        <tr
+          *ngFor="let macro of listmacro; let indice = index"
+          style="text-align: center;"
+        >
           <td class="hidden">{{ macro.id }}</td>
+          <td>{{ indice + 1 }}</td>
           <td>{{ macro.nombrearea }}</td>
           <td>{{ macro.nombre_prmacro }}</td>
           <td>{{ macro.encargado }}</td>
-          <td>{{ macro.fecha_inicio | date: "dd/MM/yyyy" }}</td>
           <td>
+            <div
+              routerLink="/principal/list-basico/{{ macro.id }}"
+              class="float-right mx-1 btn btn-info"
+              style="margin: 3px;"
+            >
+              <i class="fa fa-eye"></i>
+            </div>
             <div
               routerLink="/principal/add-basico/{{ macro.id }}"
               class="float-right mx-1 btn btn-primary"
@@ -42,13 +53,17 @@
             </div>
           </td>
           <td>
-            <div routerLink="/principal/list-basico/{{macro.id}}" class="float-right mx-1 btn btn-info" style="margin: 3px;">
-              <i  class="fa fa-eye"></i>
-            </div>
-            <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
+            <div
+              routerLink="/principal/edit-proyecto/{{ macro.id }}"
+              class="float-right mx-1 btn btn-success"
+              style="margin: 5px;"
+            >
               <i class="fa fa-edit"></i>
             </div>
-            <div class="float-right mx-1 btn btn-danger">
+            <div
+              (click)="eliminar_macro(macro)"
+              class="float-right mx-1 btn btn-danger"
+            >
               <i class="fa fa-trash"></i>
             </div>
           </td>

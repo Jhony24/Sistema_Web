@@ -1,48 +1,44 @@
 <div class="container_p">
-    <form>
-        <h1>
-            <b>nombre del proyectomacro
-            </b>
-        </h1>
-      <h2>
-        <b
-          >Lista de Proyectos Basicos</b
-        >
-      </h2>
-      <button class="btn btn-primary" >
-        Nuevo Proyecto Macro</button
-      >&nbsp;&nbsp;&nbsp;
-  
-      <br />
-      <br />
-  
-      <table class="table table-hover">
-        <thead style="text-align: center;">
-          <tr style="text-align: center;">
-            <th class="hidden">Id</th>
-            <th style="text-align: center;">Nombre de Proyecto Basico</th>
-            <th style="text-align: center;">Actividades</th>
-            <th style="text-align: center;">Opciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let basico of listbasico" style="text-align: center;">
-            <td class="hidden">{{ basico.id }}</td>
-            <td>{{ basico.nombre_prbasico }}</td>
-            <td>{{ basico.actividades }}</td>
-           
-            <td>
-             
-              <div class="float-right mx-1 btn btn-success" style="margin: 5px;">
-                <i class="fa fa-edit"></i>
-              </div>
-              <div class="float-right mx-1 btn btn-danger">
-                <i class="fa fa-trash"></i>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </form>
-  </div>
-  
+  <form>
+    <h2>
+      <b>Lista de Proyectos Basicos</b>
+    </h2>
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
+    >&nbsp;&nbsp;&nbsp;
+
+    <br />
+    <br />
+
+    <table class="table table-hover">
+      <thead style="text-align: center;">
+        <tr style="text-align: center;">
+          <th class="hidden">Id</th>
+          <th style="text-align: center;">Nombre de Proyecto Basico</th>
+          <th style="text-align: center;">Estudiantes Requeridos</th>
+          <th style="text-align: center;">Horas a cumplir</th>
+          <th style="text-align: center;">Fecha Inicio</th>
+          <th style="text-align: center;">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let basico of listbasico" style="text-align: center;">
+          <td class="hidden">{{ basico.id }}</td>
+          <td>{{ basico.nombre_prbasico }}</td>
+          <td>{{ basico.estudianes_requeridos }}</td>
+          <td>{{ basico.horas_cumplir }}</td>
+          <td>{{ basico.fecha_inicio }}</td>
+
+          <td>
+            <div routerLink="/principal/edit-basico/{{basico.id}}" class="float-right mx-1 btn btn-success" style="margin: 5px;">
+              <i class="fa fa-edit"></i>
+            </div>
+            <div (click)="eliminar_basico(basico)" class="float-right mx-1 btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

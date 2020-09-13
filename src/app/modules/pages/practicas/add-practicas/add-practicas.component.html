@@ -1,182 +1,236 @@
 <div class="container_p">
-  <form>
-    <div class="titulo">
-      <h1><b>Ingreso de Practicas Pre-Profesionales</b></h1>
-    </div>
-    <button class="btn btn-danger" (click)="volver_lista()">Volver</button
-    >&nbsp;&nbsp;&nbsp;
-    <br />
-    <br />
+  <div class="titulo">
+    <h1><b>Formulario de Ingreso de Practicas Pre-Profesionales</b></h1>
+  </div>
+  <button class="btn btn-danger" (click)="volver_lista()"><span class="glyphicon glyphicon-arrow-left">&nbsp;</span
+    >Volver</button
+  >&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
     <div class="container">
-      <mat-card>
-        <mat-card-title>Datos</mat-card-title>
+      <div class="form-group">
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="idcarrera">Seleccionar Carrera</label>
 
-        <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
-          <div class="form-group">
-            <label for="idcarrera">Seleccionar Carrera</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  class="form-control"
-                  (change)="selectChangeCarrera($event)"
-                  formControlName="idcarrera"
-                >
-                  <option value="" hidden selected>Seleccionar Carrera</option>
-                  <option
-                    *ngFor="let carrera of listcarreras"
-                    [ngValue]="carrera.id"
-                    >{{ carrera.nombrecarreras }}</option
-                  >
-                </select>
-              </div>
-            </form>
-          </div>
-          <div class="form-group">
-            <label for="idarea">Seleccionar Area</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  (change)="selectChangeArea($event)"
-                  formControlName="idarea"
-                >
-                  <option value="" hidden selected>Seleccionar Area</option>
-                  <option *ngFor="let area of listarea" [ngValue]="area.id">{{
-                    area.nombrearea
-                  }}</option>
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-empresas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
-              >
-                Nueva Area
-              </button>
-            </form>
-          </div>
-          <div class="form-group">
-            <label for="idempresa">Seleccionar Empresa</label>
-            <form [formGroup]="validarForm" class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  (change)="selectChangeEmpresa($event)"
-                  formControlName="idempresa"
-                >
-                  <option value="" hidden selected>Seleccionar Empresa</option>
-                  <option
-                    *ngFor="let empresa of listempresa"
-                    [ngValue]="empresa.id"
-                    >{{ empresa.nombreempresa }}</option
-                  >
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-empresas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
-              >
-                Nueva Empresa
-              </button>
-            </form>
-          </div>
-
-          <div style="margin-left: initial;" class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Cupos Disponibles</label>
-              <input
-                type="number"
-                class="form-control"
-                name="cupos"
-                id="inputcupos"
-                formControlName="cupos"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Horas Totales a Cumplir</label>
-              <input
-                type="number"
-                class="form-control"
-                name="horas_cumplir"
-                id="horas_cumplir"
-                formControlName="horas_cumplir"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Ciclo para realizar Practica</label>
-              <input
-                type="number"
-                class="form-control"
-                name="ciclo"
-                id="ciclo"
-                formControlName="ciclo"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputDireccion">Fecha de Inicio</label>
-              <input
-                type="date"
-                class="form-control"
-                name="fecha_inicio"
-                id="fecha_inicio"
-                formControlName="fecha_inicio"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputDireccion">Horario Entrada</label>
-              <input
-                type="time"
-                class="form-control"
-                name="hora_entrada"
-                id="hora_entrada"
-                formControlName="hora_entrada"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputDireccion">Horario Salida</label>
-              <input
-                type="time"
-                class="form-control"
-                name="hora_salida"
-                id="hora_salida"
-                formControlName="hora_salida"
-              />
-            </div>
-          </div>
-
-          <div class="form-group col-md-6">
-            <label for="exampleFormControlTextarea1"
-              >Descripcion de Actividades a realizar</label
+          <select
+            style="width: auto"
+            required
+            class="form-control"
+            (change)="selectChangeCarrera($event)"
+            formControlName="idcarrera"
+          >
+            <option value="" hidden selected>Seleccionar Carrera</option>
+            <option *ngFor="let carrera of listcarreras" [ngValue]="carrera.id">
+              {{ carrera.nombrecarreras }}
+            </option>
+          </select>
+          <div
+            *ngIf="idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)"
+            class="alert alert-danger"
+          >
+            <div
+              *ngIf="idcarrera.errors.required"
+              class="container-error-message"
             >
-            <textarea
-              class="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-            ></textarea>
+              Este campo es requerido
+            </div>
           </div>
-          <div class="form-group col-md-6">
-            <label for="exampleFormControlTextarea1"
-              >Requisitos del Estudiante</label
-            >
-            <textarea
-              class="form-control"
-              id="exampleFormControlTextarea1"
-              rows="3"
-            ></textarea>
-          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6" style="width: auto">
+        <label for="idempresa">Seleccionar Area</label>
+        <select
+          required
+          class="form-control"
+          (change)="selectChangeArea($event)"
+          formControlName="idarea"
+        >
+          <option value="" hidden selected>Seleccionar Area</option>
+          <option *ngFor="let area of listarea" [ngValue]="area.id">
+            {{ area.nombrearea }}
+          </option>
+        </select>
 
-          <button type="submit" class="btn btn-success">
-            Registrar Practica
-          </button>
-        </form>
-      </mat-card>
+        <div
+          *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="idarea.errors.required" class="container-error-message">
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-group col-md-6" style="width: auto">
+        <label for="idempresa">Seleccionar Empresa</label>
+        <select
+          required
+          class="form-control"
+          (change)="selectChangeEmpresa($event)"
+          formControlName="idempresa"
+        >
+          <option value="" hidden selected>Seleccionar Empresa</option>
+          <option *ngFor="let empresa of listempresa" [ngValue]="empresa.id">
+            {{ empresa.nombreempresa }}
+          </option>
+        </select>
+        <div
+          *ngIf="idempresa.invalid && (idempresa.dirty || idempresa.touched)"
+          class="alert alert-danger"
+        >
+          <div
+            *ngIf="idempresa.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+   
+    <div class="container" style="margin-left: initial">
+      <div class="form-group col-md-4">
+        <label for="inputcupos">Cupos Disponibles</label>
+        <input
+          type="number"
+          min="1"
+          placeholder="Ej. 5"
+          class="form-control"
+          name="cupos"
+          id="inputcupos"
+          formControlName="cupos"
+          required
+        />
+        <div
+          *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
+          class="alert alert-danger"
+        >
+          <div *ngIf="cupos.errors.required" class="container-error-message">
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputhoras_cumplir">Horas Totales a Cumplir</label>
+        <input
+          type="number"
+          min="1"
+          placeholder="Ej. 180"
+          class="form-control"
+          name="horas_cumplir"
+          id="horas_cumplir"
+          formControlName="horas_cumplir"
+          required
+        />
+        <div
+          *ngIf="
+            horas_cumplir.invalid &&
+            (horas_cumplir.dirty || horas_cumplir.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div
+            *ngIf="horas_cumplir.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputciclo">Ciclo para realizar Practica</label>
+        <input
+          type="text"
+          placeholder="Ej. 6to ciclo "
+          class="form-control"
+          name="ciclo"
+          id="ciclo"
+          formControlName="ciclo"
+        />
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-4">
+        <label for="inputfecha_inicio">Fecha de Inicio</label>
+        <input
+          type="date"
+          class="form-control"
+          name="fecha_inicio"
+          id="fecha_inicio"
+          formControlName="fecha_inicio"
+          required
+        />
+        <div
+          *ngIf="
+            fecha_inicio.invalid && (fecha_inicio.dirty || fecha_inicio.touched)
+          "
+          class="alert alert-danger"
+        >
+          <div
+            *ngIf="fecha_inicio.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputhoa_entrada">Horario Entrada</label>
+        <input
+          type="time"
+          class="form-control"
+          name="hora_entrada"
+          id="hora_entrada"
+          formControlName="hora_entrada"
+        />
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputhora_salida">Horario Salida</label>
+        <input
+          type="time"
+          class="form-control"
+          name="hora_salida"
+          id="hora_salida"
+          formControlName="hora_salida"
+        />
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="exampleFormControlTextarea1"
+          >Descripcion de Actividades a realizar</label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        ></textarea>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="exampleFormControlTextarea1"
+          >Requisitos del Estudiante</label
+        >
+        <textarea
+          class="form-control"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        ></textarea>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <button type="submit" class="btn btn-success">
+          <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span
+            >
+          <b>Registrar Practica</b> 
+        </button>
+      </div>
     </div>
   </form>
 </div>
