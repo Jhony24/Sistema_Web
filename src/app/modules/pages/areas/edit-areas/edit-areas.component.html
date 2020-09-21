@@ -1,57 +1,84 @@
 <div class="container_p">
-  <form>
-    <h1>
-      <b>Edición de Areas para Practicas Pre-Profesionales o Pasantias</b>
-    </h1>
-    <button class="btn btn-danger">Volver</button>&nbsp;&nbsp;&nbsp;
-    <br />
-    <br />
-    <div class="container">
-      <mat-card>
-        <mat-card-title>Datos</mat-card-title>
-
-        <form>
-          <div class="form-group">
-            <label for="idcarrera">Seleccionar Carrera</label>
-            <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <select
-                  disabled
-                  class="form-control"
-                  name="idcarrera"
-                  id="idcarrera"
-                  [(ngModel)]="area.idcarrera"
-                >
-                  <option
-                    *ngFor="let carrera of listcarreras"
-                    [ngValue]="carrera.id"
-                    value="carrera.id"
-                    >{{ carrera.nombrecarreras }}</option
-                  >
-                </select>
-              </div>
-              <div></div>
-            </form>
+  <h1>
+    <b>Edición de Areas para Practicas Pre-Profesionales o Pasantias</b>
+  </h1>
+  <button class="btn btn-danger" (click)="volver_lista()">
+    <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
+  >&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <div class="container">
+    <form (ngSubmit)="put(formArea)" #formArea="ngForm">
+      <div class="form-group" style="display: none">
+        <label for="idcarrera">Seleccionar Carrera</label>
+        <select
+          disabled
+          class="form-control"
+          name="idcarrera"
+          id="idcarrera"
+          [(ngModel)]="area.idcarrera"
+        >
+          <option
+            *ngFor="let carrera of listcarreras"
+            [ngValue]="carrera.id"
+            value="carrera.id"
+          >
+            {{ carrera.nombrecarreras }}
+          </option>
+        </select>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-12">
+          <label for="nombrearea">Nombre de Area</label>
+          <input
+            minlength="20"
+            maxlength="50"
+            autocomplete="off"
+            [(ngModel)]="area.nombrearea"
+            placeholder="Nombre Completo"
+            #nombre_area="ngModel"
+            name="nombrearea"
+            class="form-control"
+            id="nombrearea"
+            required
+          />
+          <div
+            *ngIf="
+              nombre_area.invalid && (nombre_area.dirty || nombre_area.touched)
+            "
+            class="alert-danger"
+            ng-show="!nombre_area"
+          >
+            <div
+              *ngIf="nombre_area.errors.required"
+              class="container-error-message"
+            >
+              Este campo es requerido
+            </div>
+            <div
+              *ngIf="nombre_area.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+            <div
+              *ngIf="nombre_area.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
           </div>
+        </div>
+      </div>
 
-          <div class="form-group">
-            <label for="nombrearea">Nombre de Area</label>
-            <input
-              autocomplete="off"
-              [(ngModel)]="area.nombrearea"
-              placeholder="Nombre Completo"
-              name="nombrearea"
-              class="form-control"
-              id="nombrearea"
-              required
-            />
-          </div>
-
-          <button (click)="put()" class="btn btn-success">
-            <b>Editar Area</b>
+      <div class="container">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh">&nbsp;</span>
+            <b> Actualizar Area</b>
           </button>
-        </form>
-      </mat-card>
-    </div>
-  </form>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

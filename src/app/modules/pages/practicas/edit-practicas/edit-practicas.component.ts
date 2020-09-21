@@ -80,9 +80,8 @@ export class EditPracticasComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Llene los campos Obligatorios",
+        title: "Campos Obligatorios Vacios o Invalidos",
         showConfirmButton: true,
-        //timer: 1800,
       });
     }
   }

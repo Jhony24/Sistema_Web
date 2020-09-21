@@ -48,7 +48,6 @@ export class ListBasicoComponent implements OnInit {
       this.servicio.getProyectosBasicos(this.id).subscribe(
         (data) => {
           this.listbasico = data;
-          console.log("basico", this.listbasico);
         },
         (error) => {}
       );

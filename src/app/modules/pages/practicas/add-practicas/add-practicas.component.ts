@@ -40,10 +40,12 @@ export class AddPracticasComponent implements OnInit {
       fecha_inicio: ["", Validators.required],
       hora_entrada: [""],
       hora_salida: [""],
-      ppestado: ["1", Validators.required],
+      ppestado: ["1"],
       idcarrera: [this.selectCarrera, Validators.required],
       idarea: [this.selectArea, Validators.required],
       idempresa: [this.selectEmpresa, Validators.required],
+      actividades:["",[Validators.minLength(20),Validators.maxLength(150)]],
+      requerimiento:["",[Validators.minLength(20), Validators.maxLength(150)]]
     });
   }
 
@@ -129,9 +131,14 @@ export class AddPracticasComponent implements OnInit {
   get horas_cumplir() {
     return this.validarForm.get("horas_cumplir");
   }
-  
   get fecha_inicio() {
     return this.validarForm.get("fecha_inicio");
+  }
+  get actividades(){
+    return this.validarForm.get("actividades");
+  }
+  get requerimiento(){
+    return this.validarForm.get("requerimiento");
   }
   
 }

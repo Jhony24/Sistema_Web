@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Carrera } from "../../models/Carrera";
@@ -48,16 +49,30 @@ export class EditConveniosComponent implements OnInit {
     }
   }
 
+  volver_lista(): void {
+    this.ruta.navigate(["/principal/list-convenio"]);
+  }
+
   ngOnInit() {
     this.listar_carreras();
     this.listar_empresas();
   }
 
-  put() {
+  put(myform:NgForm) {
+    if(myform.valid==true){
     this.servicio.actualizarConvenio(this.convenio).subscribe((data) => {
       this.ruta.navigate(["/principal/list-convenio"]);
       Swal.fire("Good ediraste!", "You clicked the button!", "success");
     });
+  }
+  else{
+    Swal.fire({
+      position: "top",
+      icon: "info",
+      title: "Campos Obligatorios Vacios o Invalidos",
+      showConfirmButton: true,
+    });
+  }
   }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(

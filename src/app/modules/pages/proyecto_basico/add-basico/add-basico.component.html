@@ -61,7 +61,7 @@
               *ngIf="
                 idempresa.invalid && (idempresa.dirty || idempresa.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
             >
               <div
                 *ngIf="idempresa.errors.required"
@@ -93,6 +93,17 @@
                 id="nombre_prbasico"
                 formControlName="nombre_prbasico"
               />
+              <div
+                *ngIf="nonbre.invalid && (nonbre.dirty || nonbre.touched)"
+                class="alert-danger"
+              >
+                <div
+                  *ngIf="nonbre.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
             </div>
           </div>
           <div class="container">
@@ -105,6 +116,20 @@
                 id="estudianes_requeridos"
                 formControlName="estudianes_requeridos"
               />
+              <div
+                *ngIf="
+                  estudiantes.invalid &&
+                  (estudiantes.dirty || estudiantes.touched)
+                "
+                class="alert-danger"
+              >
+                <div
+                  *ngIf="estudiantes.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="inputNombre">Horas Totales a Cumplir</label>
@@ -128,9 +153,23 @@
                 id="fecha_inicio"
                 formControlName="fecha_inicio"
               />
+              <div
+                *ngIf="
+                  fecha_inicio.invalid &&
+                  (fecha_inicio.dirty || fecha_inicio.touched)
+                "
+                class="alert-danger"
+              >
+                <div
+                  *ngIf="fecha_inicio.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+              </div>
             </div>
             <div class="form-group col-md-4">
-              <label for="inputDireccion">Fecha de Finazalizacion</label>
+              <label for="inputDireccion">Fecha de Finalizacion</label>
               <input
                 type="date"
                 class="form-control"
@@ -160,6 +199,27 @@
                 formControlName="requerimientos"
                 rows="3"
               ></textarea>
+              <div
+                *ngIf="
+                  requerimientos.invalid &&
+                  (requerimientos.dirty || requerimientos.touched)
+                "
+                class="alert-danger"
+                ng-show="!requerimientos"
+              >
+                <div
+                  *ngIf="requerimientos.errors.minlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+                <div
+                  *ngIf="requerimientos.errors.maxlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+              </div>
             </div>
             <div class="form-group col-md-6">
               <label for="exampleFormControlTextarea1"
@@ -172,6 +232,27 @@
                 formControlName="actividades"
                 rows="3"
               ></textarea>
+              <div
+                *ngIf="
+                  actividades.invalid &&
+                  (actividades.dirty || actividades.touched)
+                "
+                class="alert-danger"
+                ng-show="!actividades"
+              >
+                <div
+                  *ngIf="actividades.errors.minlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+                <div
+                  *ngIf="actividades.errors.maxlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+              </div>
             </div>
           </div>
         </form>

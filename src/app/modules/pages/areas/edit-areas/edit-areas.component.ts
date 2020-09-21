@@ -1,6 +1,6 @@
 import { analyzeAndValidateNgModules } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
+import { FormBuilder, FormGroup, NgForm, Validators } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Area } from "../../models/Area";
@@ -48,8 +48,12 @@ export class EditAreasComponent implements OnInit {
   ngOnInit(): void {
     this.listar_carreras();
   }
+  volver_lista(): void {
+    this.ruta.navigate(["/principal/list-areas"]);
+  }
 
-  put() {
+  put(myform: NgForm) {
+    if(myform.valid==true){
     this.servicio.actualizarArea(this.area).subscribe((data) => {
       this.ruta.navigate(["/principal/list-areas"]);
       Swal.fire({
@@ -60,6 +64,15 @@ export class EditAreasComponent implements OnInit {
         timer: 1500,
       });
     });
+  }else{
+    Swal.fire({
+      position: "top",
+      icon: "info",
+      title: "Campos Obligatorios Vacios o Invalidos",
+      showConfirmButton: true,
+      //timer: 1800,
+    });
+  }
   }
 
   listar_carreras() {

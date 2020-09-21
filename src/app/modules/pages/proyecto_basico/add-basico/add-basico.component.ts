@@ -65,10 +65,10 @@ export class AddBasicoComponent implements OnInit {
       id: 0,
       idmacro: [this.id],
       idempresa: ["", Validators.required],
-      nombre_prbasico: ["", Validators.required],
+      nombre_prbasico: ["", [Validators.required, Validators.minLength(20), Validators.maxLength(100)]],
       estudianes_requeridos: ["", Validators.required],
       ciclo: [""],
-      horas_cumplir: ["", Validators.required],
+      horas_cumplir: [""],
       fecha_inicio: ["", Validators.required],
       fecha_fin: [""],
       actividades: ["", [Validators.minLength(10), Validators.maxLength(200)]],
@@ -111,7 +111,6 @@ export class AddBasicoComponent implements OnInit {
         showConfirmButton: true,
       });
     }
-    console.log("empresa");
   }
 
   volver_lista(): void {
@@ -138,5 +137,21 @@ export class AddBasicoComponent implements OnInit {
 
   get idempresa() {
     return this.validarForm.get("idempresa");
+  }
+  
+  get nonbre() {
+    return this.validarForm.get("nombre_prbasico");
+  }
+  get estudiantes() {
+    return this.validarForm.get("estudianes_requeridos");
+  }
+  get fecha_inicio() {
+    return this.validarForm.get("fecha_inicio");
+  }
+  get actividades() {
+    return this.validarForm.get("actividades");
+  }
+  get requerimientos() {
+    return this.validarForm.get("requerimientos");
   }
 }

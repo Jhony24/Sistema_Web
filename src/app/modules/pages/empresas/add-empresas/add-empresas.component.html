@@ -39,7 +39,7 @@
                 *ngIf="
                   idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
                 "
-                class="alert alert-danger"
+                class="alert-danger"
               >
                 <div
                   *ngIf="idcarrera.errors.required"
@@ -70,7 +70,7 @@
                 nombreempresa.invalid &&
                 (nombreempresa.dirty || nombreempresa.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
               ng-show="!nombreempresa"
             >
               <div
@@ -144,7 +144,7 @@
                 nombrerepresentante.invalid &&
                 (nombrerepresentante.dirty || nombrerepresentante.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
               ng-show="!nombrerepresentante"
             >
               <div
@@ -182,7 +182,7 @@
             />
             <div
               *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)"
-              class="alert alert-danger"
+              class="alert-danger"
               ng-show="!nombrearea"
             >
               <div *ngIf="ruc.errors.required" class="container-error-message">
@@ -204,7 +204,7 @@
               *ngIf="
                 direccion.invalid && (direccion.dirty || direccion.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
               ng-show="!direccion"
             >
               <div
@@ -250,6 +250,16 @@
               name="correo"
               id="inputcorreo"
             />
+            <div class="alert-danger" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
+              
+              <div class="container-error-message" *ngIf="correo.errors.minlength">
+                Longitud de cadena invalida.
+              </div>
+              <div class="container-error-message"
+                *ngIf="(correo.dirty || correo.touched) && correo.invalid && correo.errors.pattern">
+                Direccion de correo invalido
+              </div>
+            </div>
           </div>
         </div>
 
@@ -270,7 +280,7 @@
                 actividades.invalid &&
                 (actividades.dirty || actividades.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
               ng-show="!nombrearea"
             >
               <div

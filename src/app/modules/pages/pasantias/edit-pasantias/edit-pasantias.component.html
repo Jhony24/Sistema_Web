@@ -1,201 +1,254 @@
 <div class="container_p">
-  <form>
-    <div class="titulo">
-      <h1><b>Ingreso de Pasantias</b></h1>
-    </div>
-    <button class="btn btn-danger">Volver</button>&nbsp;&nbsp;&nbsp;
-    <br />
-    <br />
-    <div class="container">
-      <mat-card>
-        <mat-card-title>Datos</mat-card-title>
-
-        <form>
-          <div class="form-group">
-            <label for="idcarrera">Seleccionar Carrera</label>
-            <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  disabled
-                  class="form-control"
-                  name="idcarrera"
-                  id="idcarrera"
-                  [(ngModel)]="pasantia.idcarrera"
-                >
-                  <option value="" hidden selected>Seleccionar Carrera</option>
-                  <option
-                    *ngFor="let carrera of listcarreras"
-                    [ngValue]="carrera.id"
-                    value="carrera.id"
-                  >
-                    {{ carrera.nombrecarreras }}</option
-                  >
-                </select>
-              </div>
-            </form>
-          </div>
-          <div class="form-group">
-            <label for="idarea">Seleccionar Area</label>
-            <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  name="idarea"
-                  id="idarea"
-                  [(ngModel)]="pasantia.idarea"
-                >
-                  <option value="" hidden selected>Seleccionar Area</option>
-                  <option *ngFor="let area of listarea" [ngValue]="area.id">{{
-                    area.nombrearea
-                  }}</option>
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-empresas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
-              >
-                Nueva Area
-              </button>
-            </form>
-          </div>
-          <div class="form-group">
-            <label for="idempresa">Seleccionar Empresa</label>
-            <form class="form-inline">
-              <div class="form-group mx-sm-3 mb-2">
-                <label for="inputPassword2" class="sr-only">Password</label>
-                <select
-                  style="margin: 7px; width: 400px;"
-                  class="form-control"
-                  name="idempresa"
-                  id="idempresa"
-                  [(ngModel)]="pasantia.idempresa"
-                >
-                  <option value="" hidden selected>Seleccionar Empresa</option>
-                  <option
-                    *ngFor="let empresa of listempresa"
-                    [ngValue]="empresa.id"
-                    >{{ empresa.nombreempresa }}
-                  </option>
-                </select>
-              </div>
-              <button
-                [routerLink]="'/principal/add-empresas'"
-                type="submit"
-                class="btn btn-primary mb-2"
-                style="background-color: green;"
-              >
-                Nueva Empresa
-              </button>
-            </form>
-          </div>
-
-          <div style="margin-left: initial;" class="form-row">
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Cupos Disponibles</label>
-              <input
-                type="number"
-                class="form-control"
-                name="cupos"
-                id="inputcupos"
-                [(ngModel)]="pasantia.cupos"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Horas Totales a Cumplir</label>
-              <input
-                type="number"
-                class="form-control"
-                name="horas_cumplir"
-                id="horas_cumplir"
-                [(ngModel)]="pasantia.horas_cumplir"
-              />
-            </div>
-            <div class="form-group col-md-4">
-              <label for="inputNombre">Ciclo para realizar Practica</label>
-              <input
-                type="number"
-                class="form-control"
-                name="ciclo"
-                id="ciclo"
-                [(ngModel)]="pasantia.ciclo"
-              />
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputDireccion">Fecha de Inicio</label>
-              <input
-                type="date"
-                class="form-control"
-                name="fecha_inicio"
-                id="fecha_inicio"
-                [(ngModel)]="pasantia.fecha_inicio"
-              />
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputDireccion">Horario Entrada</label>
-              <input
-                type="time"
-                class="form-control"
-                name="hora_entrada"
-                id="hora_entrada"
-                [(ngModel)]="pasantia.hora_entrada"
-              />
-            </div>
-            <div class="form-group col-md-3">
-              <label for="inputDireccion">Horario Salida</label>
-              <input
-                type="time"
-                class="form-control"
-                name="hora_salida"
-                id="hora_salida"
-                [(ngModel)]="pasantia.hora_salida"
-              />
-            </div>
-            <div class="form-group col-md-3">
-              <label for="salario">Remuneración</label>
-              <input
-                type="text"
-                class="form-control"
-                name="salario"
-                id="salario"
-                [(ngModel)]="pasantia.salario"
-                [value]="0"
-              />
-            </div>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="exampleFormControlTextarea1"
-              >Descripcion de Actividades a realizar</label
+  <div class="titulo">
+    <h1><b>Formulario de Edicion de Pasantías</b></h1>
+  </div>
+  <button class="btn btn-danger" (click)="volver_lista()">
+    <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
+  >&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <div class="container">
+    <form (ngSubmit)="put(formPasantia)" #formPasantia="ngForm">
+      <div class="form-group" style="display: none">
+        <label for="idcarrera">Seleccionar Carrera</label>
+        <div class="form-group mx-sm-3 mb-2">
+          <label for="inputPassword2" class="sr-only">Password</label>
+          <select
+            disabled
+            class="form-control"
+            name="idcarrera"
+            id="idcarrera"
+            [(ngModel)]="pasantia.idcarrera"
+          >
+            <option value="" hidden selected>Seleccionar Carrera</option>
+            <option
+              *ngFor="let carrera of listcarreras"
+              [ngValue]="carrera.id"
+              value="carrera.id"
             >
-            <textarea
+              {{ carrera.nombrecarreras }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="idarea">Seleccionar Area</label>
+          <form class="form-inline">
+            <div class="form-group mx-sm-3 mb-2">
+              <select
+                required
+                class="form-control"
+                name="idarea"
+                id="idarea"
+                [(ngModel)]="pasantia.idarea"
+              >
+                <option value="" hidden selected>Seleccionar Area</option>
+                <option *ngFor="let area of listarea" [ngValue]="area.id">
+                  {{ area.nombrearea }}
+                </option>
+              </select>
+            </div>
+          </form>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="idempresa">Seleccionar Empresa</label>
+          <div class="form-group mx-sm-3 mb-2">
+            <select
+              required
               class="form-control"
-              name="requerimientos"
-              id="requerimientos"
-              [(ngModel)]="pasantia.actividades"
-              rows="3"
-            ></textarea>
-          </div>
-          <div class="form-group col-md-6">
-            <label for="exampleFormControlTextarea1"
-              >Requisitos del Estudiante</label
+              name="idempresa"
+              id="idempresa"
+              [(ngModel)]="pasantia.idempresa"
             >
-            <textarea
-              class="form-control"
-              name="requerimientos"
-              id="requerimientos"
-              [(ngModel)]="pasantia.requerimientos"
-              rows="3"
-            ></textarea>
+              <option value="" hidden selected>Seleccionar Empresa</option>
+              <option
+                *ngFor="let empresa of listempresa"
+                [ngValue]="empresa.id"
+              >
+                {{ empresa.nombreempresa }}
+              </option>
+            </select>
           </div>
+        </div>
+      </div>
 
-          <button (click)="put()" type="submit" class="btn btn-success">
-            Registrar Pasantía
+      <div class="container">
+        <div class="form-group col-md-4">
+          <label for="inputNombre">Cupos Disponibles</label>
+          <input
+            required
+            min="1"
+            type="number"
+            class="form-control"
+            name="cupos"
+            #cupos="ngModel"
+            id="inputcupos"
+            [(ngModel)]="pasantia.cupos"
+          />
+          <div *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)">
+            <div *ngIf="cupos.errors.required" class="alert-danger">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputNombre">Horas Totales a Cumplir</label>
+          <input
+            min="1"
+            type="number"
+            class="form-control"
+            name="horas_cumplir"
+            id="horas_cumplir"
+            [(ngModel)]="pasantia.horas_cumplir"
+          />
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputNombre">Ciclo para realizar Practica</label>
+          <input
+            type="text"
+            class="form-control"
+            name="ciclo"
+            id="ciclo"
+            [(ngModel)]="pasantia.ciclo"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-3">
+          <label for="inputDireccion">Fecha de Inicio</label>
+          <input
+            required
+            type="date"
+            class="form-control"
+            name="fecha_inicio"
+            id="fecha_inicio"
+            #fecha="ngModel"
+            [(ngModel)]="pasantia.fecha_inicio"
+          />
+          <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
+            <div *ngIf="fecha.errors.required" class="alert-danger">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputDireccion">Hora Entrada</label>
+          <input
+            type="time"
+            class="form-control"
+            name="hora_entrada"
+            id="hora_entrada"
+            [(ngModel)]="pasantia.hora_entrada"
+          />
+        </div>
+        <div class="form-group col-md-3">
+          <label for="inputDireccion">Hora Salida</label>
+          <input
+            type="time"
+            class="form-control"
+            name="hora_salida"
+            id="hora_salida"
+            [(ngModel)]="pasantia.hora_salida"
+          />
+        </div>
+        <div class="form-group col-md-3">
+          <label for="salario">Remuneración</label>
+          <input
+            type="text"
+            class="form-control"
+            name="salario"
+            id="salario"
+            [(ngModel)]="pasantia.salario"
+            [value]="0"
+          />
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlTextarea1"
+            >Descripcion de Actividades a realizar</label
+          >
+          <textarea
+            minlength="20"
+            maxlength="200"
+            class="form-control"
+            name="actividades"
+            id="actividades"
+            #actividades="ngModel"
+            [(ngModel)]="pasantia.actividades"
+            rows="3"
+          ></textarea>
+          <div
+            *ngIf="
+              actividades.invalid && (actividades.dirty || actividades.touched)
+            "
+            class="alert-danger"
+            ng-show="!actividades"
+          >
+            <div
+              *ngIf="actividades.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+            <div
+              *ngIf="actividades.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlTextarea1"
+            >Requisitos del Estudiante</label
+          >
+          <textarea
+            minlength="20"
+            maxlength="200"
+            class="form-control"
+            name="requerimientos"
+            id="requerimientos"
+            #requerimientos="ngModel"
+            [(ngModel)]="pasantia.requerimientos"
+            rows="3"
+          ></textarea>
+          <div
+            *ngIf="
+              requerimientos.invalid &&
+              (requerimientos.dirty || requerimientos.touched)
+            "
+            class="alert-danger"
+            ng-show="!requerimientos"
+          >
+            <div
+              *ngIf="requerimientos.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+            <div
+              *ngIf="requerimientos.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh">&nbsp;</span>
+            <b> Actualizar Pasantía</b>
           </button>
-        </form>
-      </mat-card>
-    </div>
-  </form>
+        </div>
+      </div>
+    </form>
+  </div>
 </div>

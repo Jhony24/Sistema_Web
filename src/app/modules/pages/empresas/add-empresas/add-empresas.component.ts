@@ -15,6 +15,8 @@ export class AddEmpresasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   selectCarrera: string = "";
   validarForm: FormGroup;
+  private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+
 
   constructor(
     private ruta: Router,
@@ -33,7 +35,7 @@ export class AddEmpresasComponent implements OnInit {
       ruc: ["", Validators.required],
       direccion: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(150)]],
       telefono: [""],
-      correo: [""],
+      correo: ["",[Validators.minLength(5), Validators.pattern(this.emailPattern)]],
       actividades: ["", [Validators.minLength(10), Validators.maxLength(200)]],
       idcarrera: [this.selectCarrera, Validators.required],
       estadoempresa: ["1"],
@@ -102,5 +104,8 @@ export class AddEmpresasComponent implements OnInit {
   }
   get actividades(){
     return this.validarForm.get("actividades");
+  }
+  get correo(){
+    return this.validarForm.get("correo");
   }
 }

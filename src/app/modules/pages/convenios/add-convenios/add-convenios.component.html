@@ -43,7 +43,7 @@
                 *ngIf="
                   idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
                 "
-                class="alert alert-danger"
+                class="alert-danger"
               >
                 <div
                   *ngIf="idcarrera.errors.required"
@@ -76,7 +76,7 @@
               *ngIf="
                 idempresa.invalid && (idempresa.dirty || idempresa.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
             >
               <div
                 *ngIf="idempresa.errors.required"
@@ -104,7 +104,7 @@
                 tipo_convenio.invalid &&
                 (tipo_convenio.dirty || tipo_convenio.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
               ng-show="!tipo_convenio"
             >
               <div
@@ -142,23 +142,20 @@
                 id="fecha_inicio"
               />
               <div
-              *ngIf="
-                fecha_incio.invalid &&
-                (fecha_incio.dirty || fecha_incio.touched)
-              "
-              class="alert alert-danger"
-              ng-show="!fecha_incio"
-            >
-              <div
-                *ngIf="fecha_incio.errors.required"
-                class="container-error-message"
+                *ngIf="
+                  fecha_incio.invalid &&
+                  (fecha_incio.dirty || fecha_incio.touched)
+                "
+                class="alert-danger"
+                ng-show="!fecha_incio"
               >
-                Este campo es requerido
+                <div
+                  *ngIf="fecha_incio.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
               </div>
-
-             
-             
-            </div>
             </div>
             <div class="form-group col-md-6">
               <label for="inputDireccion">Fecha de Culminación</label>
@@ -172,33 +169,33 @@
                 placeholder="Ej. 3 años"
               />
               <div
-              *ngIf="
-                fecha_culminacion.invalid &&
-                (fecha_culminacion.dirty || fecha_culminacion.touched)
-              "
-              class="alert alert-danger"
-              ng-show="!fecha_culminacion"
-            >
-              <div
-                *ngIf="fecha_culminacion.errors.required"
-                class="container-error-message"
+                *ngIf="
+                  fecha_culminacion.invalid &&
+                  (fecha_culminacion.dirty || fecha_culminacion.touched)
+                "
+                class="alert-danger"
+                ng-show="!fecha_culminacion"
               >
-                Este campo es requerido
-              </div>
+                <div
+                  *ngIf="fecha_culminacion.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
 
-              <div
-                *ngIf="fecha_culminacion.errors.minlength"
-                class="container-error-message"
-              >
-                Longitud de cadena invalida
+                <div
+                  *ngIf="fecha_culminacion.errors.minlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+                <div
+                  *ngIf="fecha_culminacion.errors.maxlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
               </div>
-              <div
-                *ngIf="fecha_culminacion.errors.maxlength"
-                class="container-error-message"
-              >
-                Longitud de cadena invalida
-              </div>
-            </div>
             </div>
           </div>
         </div>
@@ -215,11 +212,8 @@
               placeholder="Ej. Cooperación interinstitucional para pasantías y prácticas pre profesionales."
             />
             <div
-              *ngIf="
-                objeto.invalid &&
-                (objeto.dirty || objeto.touched)
-              "
-              class="alert alert-danger"
+              *ngIf="objeto.invalid && (objeto.dirty || objeto.touched)"
+              class="alert-danger"
               ng-show="!objeto"
             >
               <div

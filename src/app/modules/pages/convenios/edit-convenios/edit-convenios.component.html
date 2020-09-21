@@ -1,127 +1,194 @@
 <div class="container_p">
-    <form>
-      <div class="titulo">
-        <h1>
-          <b
-            >Ingreso de Convenios para realizar Prácticas Pre-Profesionales o
-            Pasantias</b
-          >
-        </h1>
+  <div class="titulo">
+    <h1>
+      <b
+        >Formulario de Edicion de Convenios para realizar Prácticas
+        Pre-Profesionales o Pasantias</b
+      >
+    </h1>
+  </div>
+  <button class="btn btn-danger" (click)="volver_lista()">
+    <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
+  >&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <div class="container">
+    <form (ngSubmit)="put(formConvenio)" #formConvenio="ngForm">
+      <div class="form-group" style="display: none">
+        <label for="idcarrera">Seleccionar Carrera</label>
+        <form class="form-inline">
+          <div class="form-group mx-sm-3 mb-2">
+            <label for="inputPassword2" class="sr-only">Password</label>
+            <select
+              disabled
+              class="form-control"
+              name="idcarrera"
+              id="idcarrera"
+              [(ngModel)]="convenio.idcarrera"
+            >
+              <option value="" hidden selected>Seleccionar Carrera</option>
+              <option
+                *ngFor="let carrera of listcarreras"
+                [ngValue]="carrera.id"
+                value="carrera.id"
+              >
+                {{ carrera.nombrecarreras }}
+              </option>
+            </select>
+          </div>
+        </form>
       </div>
-      <button class="btn btn-danger" >Volver</button
-      >&nbsp;&nbsp;&nbsp;
-      <br />
-      <br />
       <div class="container">
-        <mat-card>
-          <mat-card-title>Datos</mat-card-title>
-  
-          <form>
-            <div class="form-group">
-              <label for="idcarrera">Seleccionar Carrera</label>
-              <form class="form-inline">
-                <div class="form-group mx-sm-3 mb-2">
-                  <label for="inputPassword2" class="sr-only">Password</label>
-                  <select
-                  disabled
-                    class="form-control"
-                    name="idcarrera"
-                    id="idcarrera"
-                    [(ngModel)]="convenio.idcarrera"
-                  >
-                    <option value="" hidden selected>Seleccionar Carrera</option>
-                    <option
-                      *ngFor="let carrera of listcarreras"
-                      [ngValue]="carrera.id"
-                      value="carrera.id"
-                      >{{ carrera.nombrecarreras }}</option
-                    >
-                  </select>
-                </div>
-              </form>
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="idempresa">Seleccionar Empresa</label>
+          <select
+            required
+            class="form-control"
+            name="idempresa"
+            id="idempresa"
+            [(ngModel)]="convenio.idempresa"
+          >
+            <option value="" hidden selected>Seleccionar Empresa</option>
+            <option *ngFor="let empresa of listempresa" [ngValue]="empresa.id">
+              {{ empresa.nombreempresa }}
+            </option>
+          </select>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-12">
+          <label for="exampleFormControlInput1">Tipo de Convenio</label>
+          <input
+            minlength="20"
+            maxlength="100"
+            required
+            type="text"
+            class="form-control"
+            name="tipo_convenio"
+            id="tipo_convenio"
+            #tipo="ngModel"
+            [(ngModel)]="convenio.tipo_convenio"
+            placeholder="Gestion de Redes, Laborales 1, etc"
+          />
+          <div
+            *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)"
+            class="alert-danger"
+            ng-show="!tipo"
+          >
+            <div *ngIf="tipo.errors.required" class="container-error-message">
+              Este campo es requerido
             </div>
-            <div class="form-group">
-              <label for="idempresa">Seleccionar Empresa</label>
-              <form class="form-inline">
-                <div class="form-group mx-sm-3 mb-2">
-                  <label for="inputPassword2" class="sr-only">Password</label>
-                  <select
-                    class="form-control"
-                    name="idempresa"
-                    id="idempresa"
-                    [(ngModel)]="convenio.idempresa"
-                  >
-                    <option value="" hidden selected>Seleccionar Empresa</option>
-                    <option
-                      *ngFor="let empresa of listempresa"
-                      [ngValue]="empresa.id"
-                      >{{ empresa.nombreempresa }}</option
-                    >
-                  </select>
-                </div>
-                <button
-                  [routerLink]="'/principal/add-empresas'"
-                  type="submit"
-                  class="btn btn-primary mb-2"
-                  style="background-color: green;"
-                >
-                  Nueva Empresa
-                </button>
-              </form>
+            <div *ngIf="tipo.errors.minlength" class="container-error-message">
+              Longitud de cadena invalida
             </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Tipo de Convenio</label>
-              <input
-                type="text"
-                class="form-control"
-                name="tipo_convenio"
-                id="tipo_convenio"
-                [(ngModel)]="convenio.tipo_convenio"
-                placeholder="Gestion de Redes, Laborales 1, etc"
-              />
+            <div *ngIf="tipo.errors.maxlength" class="container-error-message">
+              Longitud de cadena invalida
             </div>
-            <div style="margin-left: initial;" class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputDireccion">Fecha de Inicio</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  name="fecha_inicio"
-                  id="fecha_inicio"
-                  [(ngModel)]="convenio.fecha_inicio"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputDireccion">Fecha de Culminación</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="fecha_culminacion"
-                  id="fecha_culminacion"
-                  [(ngModel)]="convenio.fecha_culminacion"
-                />
-              </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6">
+          <label for="inputDireccion">Fecha de Inicio</label>
+          <input
+            required
+            type="date"
+            class="form-control"
+            name="fecha_inicio"
+            id="fecha_inicio"
+            #fecha="ngModel"
+            [(ngModel)]="convenio.fecha_inicio"
+          />
+          <div
+            *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)"
+            class="alert-danger"
+            ng-show="!fecha"
+          >
+            <div *ngIf="fecha.errors.required" class="container-error-message">
+              Este campo es requerido
             </div>
-  
-            <div class="form-group">
-              <label for="exampleFormControlInput1">Objeto</label>
-              <input
-                type="text"
-                class="form-control"
-                name="objeto"
-                id="objeto"
-                [(ngModel)]="convenio.objeto"
-                placeholder="Gestion de Redes, Laborales 1, etc"
-              />
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputDireccion">Fecha de Culminación</label>
+          <input
+            minlength="5"
+            maxlength="20"
+            type="text"
+            class="form-control"
+            name="fecha_culminacion"
+            id="fecha_culminacion"
+            #culminacion="ngModel"
+            [(ngModel)]="convenio.fecha_culminacion"
+          />
+          <div
+            *ngIf="
+              culminacion.invalid && (culminacion.dirty || culminacion.touched)
+            "
+            class="alert-danger"
+            ng-show="!culminacion"
+          >
+            <div
+              *ngIf="culminacion.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
             </div>
-  
-            <button (click)="put()" class="btn btn-success">
-              <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span
-              >Registrar Convenio
-            </button>
-          </form>
-        </mat-card>
+            <div
+              *ngIf="culminacion.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-12">
+          <label for="exampleFormControlInput1">Objeto</label>
+          <input
+            minlength="20"
+            maxlength="200"
+            required
+            type="text"
+            class="form-control"
+            name="objeto"
+            id="objeto"
+            #objeto="ngModel"
+            [(ngModel)]="convenio.objeto"
+            placeholder="Gestion de Redes, Laborales 1, etc"
+          />
+          <div
+            *ngIf="objeto.invalid && (objeto.dirty || objeto.touched)"
+            class="alert-danger"
+            ng-show="!objeto"
+          >
+            <div *ngIf="objeto.errors.required" class="container-error-message">
+              Este campo es requerido
+            </div>
+            <div
+              *ngIf="objeto.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+            <div
+              *ngIf="objeto.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh">&nbsp;</span>
+            <b> Actualizar Convenio</b>
+          </button>
+        </div>
       </div>
     </form>
   </div>
-  
+</div>

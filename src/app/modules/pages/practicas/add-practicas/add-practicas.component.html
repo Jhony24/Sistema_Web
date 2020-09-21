@@ -2,8 +2,8 @@
   <div class="titulo">
     <h1><b>Formulario de Ingreso de Practicas Pre-Profesionales</b></h1>
   </div>
-  <button class="btn btn-danger" (click)="volver_lista()"><span class="glyphicon glyphicon-arrow-left">&nbsp;</span
-    >Volver</button
+  <button class="btn btn-danger" (click)="volver_lista()">
+    <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
   >&nbsp;&nbsp;&nbsp;
   <br />
   <br />
@@ -27,7 +27,7 @@
           </select>
           <div
             *ngIf="idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)"
-            class="alert alert-danger"
+            class="alert-danger"
           >
             <div
               *ngIf="idcarrera.errors.required"
@@ -56,7 +56,7 @@
 
         <div
           *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
-          class="alert alert-danger"
+          class="alert-danger"
         >
           <div *ngIf="idarea.errors.required" class="container-error-message">
             Este campo es requerido
@@ -81,7 +81,7 @@
         </select>
         <div
           *ngIf="idempresa.invalid && (idempresa.dirty || idempresa.touched)"
-          class="alert alert-danger"
+          class="alert-danger"
         >
           <div
             *ngIf="idempresa.errors.required"
@@ -92,7 +92,7 @@
         </div>
       </div>
     </div>
-   
+
     <div class="container" style="margin-left: initial">
       <div class="form-group col-md-4">
         <label for="inputcupos">Cupos Disponibles</label>
@@ -108,7 +108,7 @@
         />
         <div
           *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
-          class="alert alert-danger"
+          class="alert-danger"
         >
           <div *ngIf="cupos.errors.required" class="container-error-message">
             Este campo es requerido
@@ -132,7 +132,7 @@
             horas_cumplir.invalid &&
             (horas_cumplir.dirty || horas_cumplir.touched)
           "
-          class="alert alert-danger"
+          class="alert-danger"
         >
           <div
             *ngIf="horas_cumplir.errors.required"
@@ -169,7 +169,7 @@
           *ngIf="
             fecha_inicio.invalid && (fecha_inicio.dirty || fecha_inicio.touched)
           "
-          class="alert alert-danger"
+          class="alert-danger"
         >
           <div
             *ngIf="fecha_inicio.errors.required"
@@ -208,9 +208,31 @@
         >
         <textarea
           class="form-control"
-          id="exampleFormControlTextarea1"
           rows="3"
+          name="actividades"
+          id="actividades"
+          formControlName="actividades"
         ></textarea>
+        <div
+          *ngIf="
+            actividades.invalid && (actividades.dirty || actividades.touched)
+          "
+          class="alert-danger"
+          ng-show="!actividades"
+        >
+          <div
+            *ngIf="actividades.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="actividades.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
       </div>
       <div class="form-group col-md-6">
         <label for="exampleFormControlTextarea1"
@@ -218,17 +240,39 @@
         >
         <textarea
           class="form-control"
-          id="exampleFormControlTextarea1"
           rows="3"
+          name="requerimiento"
+          id="requerimiento"
+          formControlName="requerimiento"
         ></textarea>
+        <div
+          *ngIf="
+            requerimiento.invalid &&
+            (requerimiento.dirty || requerimiento.touched)
+          "
+          class="alert-danger"
+          ng-show="!requerimiento"
+        >
+          <div
+            *ngIf="requerimiento.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="requerimiento.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
       </div>
     </div>
     <div class="container">
       <div class="form-group col-md-6">
         <button type="submit" class="btn btn-success">
-          <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span
-            >
-          <b>Registrar Practica</b> 
+          <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>
+          <b>Registrar Practica</b>
         </button>
       </div>
     </div>

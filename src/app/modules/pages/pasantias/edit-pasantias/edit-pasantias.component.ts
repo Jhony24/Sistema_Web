@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Area } from "../../models/Area";
@@ -62,18 +63,32 @@ export class EditPasantiasComponent implements OnInit {
     this.listar_areas();
     this.listar_empresas();
   }
+  volver_lista(): void {
+    this.ruta.navigate(["/principal/list-pasantias"]);
+  }
 
-  put() {
-    this.servicio.actualizarPractica(this.pasantia).subscribe((data) => {
-      this.ruta.navigate(["/principal/list-pasantias"]);
-      Swal.fire({
-        position: "top-right",
-        icon: "success",
-        title: "Pasantia actualizada correctamente",
-        showConfirmButton: false,
-        timer: 1800,
+  put(myform: NgForm) {
+    if(myform.valid==true){
+      this.servicio.actualizarPractica(this.pasantia).subscribe((data) => {
+        this.ruta.navigate(["/principal/list-pasantias"]);
+        Swal.fire({
+          position: "top-right",
+          icon: "success",
+          title: "Pasantia actualizada correctamente",
+          showConfirmButton: false,
+          timer: 1800,
+        });
       });
-    });
+    }else{
+      Swal.fire({
+        position: "top",
+        icon: "info",
+        title: "Campos Obligatorios vacios o invalidos",
+        showConfirmButton: true,
+        //timer: 1800,
+      });
+    }
+    
   }
 
   listar_carreras() {

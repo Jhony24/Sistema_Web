@@ -13,33 +13,31 @@
         <div class="container">
           <div class="form-group col-md-12" style="width: auto">
             <label for="idcarrera">Seleccionar Carrera</label>
-            <div class="form-group mx-sm-3 mb-2">
-              <select
-                required
-                class="form-control"
-                (change)="selectChangeCarrera($event)"
-                formControlName="idcarrera"
+            <select
+              required
+              class="form-control"
+              (change)="selectChangeCarrera($event)"
+              formControlName="idcarrera"
+            >
+              <option value="" hidden selected>Seleccionar Carrera</option>
+              <option
+                *ngFor="let carrera of listcarreras"
+                [ngValue]="carrera.id"
               >
-                <option value="" hidden selected>Seleccionar Carrera</option>
-                <option
-                  *ngFor="let carrera of listcarreras"
-                  [ngValue]="carrera.id"
-                >
-                  {{ carrera.nombrecarreras }}
-                </option>
-              </select>
+                {{ carrera.nombrecarreras }}
+              </option>
+            </select>
+            <div
+              *ngIf="
+                idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
+              "
+              class="alert-danger"
+            >
               <div
-                *ngIf="
-                  idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
-                "
-                class="alert alert-danger"
+                *ngIf="idcarrera.errors.required"
+                class="container-error-message"
               >
-                <div
-                  *ngIf="idcarrera.errors.required"
-                  class="container-error-message"
-                >
-                  Este campo es requerido
-                </div>
+                Este campo es requerido
               </div>
             </div>
           </div>
@@ -47,28 +45,26 @@
         <div class="container">
           <div class="form-group col-md-12" style="width: auto">
             <label for="idarea">Seleccionar Area</label>
-            <div class="form-group mx-sm-3 mb-2">
-              <select
-                required
-                class="form-control"
-                (change)="selectChangeArea($event)"
-                formControlName="idarea"
-              >
-                <option value="" hidden selected>Seleccionar Area</option>
-                <option *ngFor="let area of listarea" [ngValue]="area.id">
-                  {{ area.nombrearea }}
-                </option>
-              </select>
+            <select
+              required
+              class="form-control"
+              (change)="selectChangeArea($event)"
+              formControlName="idarea"
+            >
+              <option value="" hidden selected>Seleccionar Area</option>
+              <option *ngFor="let area of listarea" [ngValue]="area.id">
+                {{ area.nombrearea }}
+              </option>
+            </select>
+            <div
+              *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
+              class="alert-danger"
+            >
               <div
-                *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
-                class="alert alert-danger"
+                *ngIf="idarea.errors.required"
+                class="container-error-message"
               >
-                <div
-                  *ngIf="idarea.errors.required"
-                  class="container-error-message"
-                >
-                  Este campo es requerido
-                </div>
+                Este campo es requerido
               </div>
             </div>
           </div>
@@ -89,7 +85,7 @@
                 nombreprmacro.invalid &&
                 (nombreprmacro.dirty || nombreprmacro.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
               ng-show="!nombre_prmacro"
             >
               <div
@@ -128,7 +124,7 @@
               *ngIf="
                 encargado.invalid && (encargado.dirty || encargado.touched)
               "
-              class="alert alert-danger"
+              class="alert-danger"
               ng-show="!encargado"
             >
               <div
@@ -169,7 +165,7 @@
                   descripcion.invalid &&
                   (descripcion.dirty || descripcion.touched)
                 "
-                class="alert alert-danger"
+                class="alert-danger"
                 ng-show="!nombreempresa"
               >
                 <div

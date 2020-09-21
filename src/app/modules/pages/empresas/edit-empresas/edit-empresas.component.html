@@ -1,127 +1,320 @@
 <div class="container_p">
-    <form>
-      <div class="titulo">
-        <h1>
-          <b
-            >Ingreso de Empresas para realizar Practicas Pre-Profesionales o
-            Pasantias</b
-          >
-        </h1>
-      </div>
-      <button class="btn btn-danger" >Volver</button
-      >&nbsp;&nbsp;&nbsp;
-      <br />
-      <br />
-      <div class="container">
-        <mat-card>
-          <mat-card-title>Datos</mat-card-title>
-  
-          <form >
-
-            
-
-            <div class="form-group">
-              <label for="exampleFormControlInput1"
-                >Nombre de Empresa/Institución/Dependencia</label
-              >
-              <input
-                type="text"
-                [(ngModel)]="empresa.nombreempresa"
-                name="nombreempresa"
-                class="form-control"
-                id="exampleFormControlInput1"
-                placeholder="Gestion de Redes, Laborales 1, etc"
-              />
-            </div>
-  
-            <div  [(ngModel)]="empresa.tipo_empresa"
-            name="tipo_empresa"
-            id="tipo_empresa" class="form-group">
-              <label for="exampleFormControlInput1">Tipo de Empresa</label>
-              <br />
-              <input value ="Privada"style="margin: 5px;" type="radio" name="sexo" id="tipo_empresa" [(ngModel)]="empresa.tipo_empresa" />
-              <label for="tipo_empresa">Privada</label>
-  
-              <input value="Publica" style="margin: 5px;" type="radio" name="sexo" id="tipo_empresa" [(ngModel)]="empresa.tipo_empresa" />
-              <label for="tipo_empresa">Publica</label>
-              <br />
-            </div>
-            <div class="form-group">
-              <label for="exampleFormControlInput1"
-                >Nombre de Representante Legal</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                [(ngModel)]="empresa.nombrerepresentante"
-                name="nombrerepresentante"
-                id="nombrerepresentante"
-                placeholder="Gestion de Redes, Laborales 1, etc"
-              />
-            </div>
-  
-            <div style="margin-left: initial;" class="form-row">
-              <div class="form-group col-md-6">
-                <label for="inputNombre">RUC</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="empresa.ruc"
-                  name="ruc"
-                  id="ruc"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputDireccion">Dirección</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  [(ngModel)]="empresa.direccion"
-                  name="direccion"
-                  id="inputDireccion"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputTelefono">Telefono</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  [(ngModel)]="empresa.telefono"
-                  name="telefono"
-                  id="telefono"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputTelefono">Correo Electronico</label>
-                <input
-                  type="email"
-                  class="form-control"
-                  [(ngModel)]="empresa.correo"
-                  name="correo"
-                  id="inputcorreo"
-                />
-              </div>
-            </div>
-  
-            <div class="form-group">
-              <label for="exampleFormControlTextarea1"
-                >Actividades que realiza la empresa/institucion/dependencia</label
-              >
-              <textarea
-                class="form-control"
-                [(ngModel)]="empresa.actividades"
-                name="actividades"
-                id="exampleFormControlTextarea1"
-                rows="3"
-              ></textarea>
-            </div>
-  
-            <button (click)="put()" class="btn btn-success">
-              Editar Empresa
-            </button>
-          </form>
-        </mat-card>
-      </div>
-    </form>
+  <div class="titulo">
+    <h1>
+      <b
+        >Formulario de Edicion de Empresas para realizar Practicas
+        Pre-Profesionales o Pasantias</b
+      >
+    </h1>
   </div>
-  
+  <button class="btn btn-danger" (click)="volver_lista()">
+    <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
+  >&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <form (ngSubmit)="put(formConvenio)" #formConvenio="ngForm">
+    <div class="container">
+      <div class="form-group col-md-12">
+        <label for="exampleFormControlInput1"
+          >Nombre de Empresa/Institución/Dependencia</label
+        >
+        <input
+          minlength="20"
+          maxlength="250"
+          required
+          type="text"
+          [(ngModel)]="empresa.nombreempresa"
+          name="nombreempresa"
+          class="form-control"
+          id="exampleFormControlInput1"
+          #nombre_empresa="ngModel"
+          placeholder="Gestion de Redes, Laborales 1, etc"
+        />
+        <div
+          *ngIf="
+            nombre_empresa.invalid &&
+            (nombre_empresa.dirty || nombre_empresa.touched)
+          "
+          class="alert-danger"
+          ng-show="!nombre_empresa"
+        >
+          <div
+            *ngIf="nombre_empresa.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+          <div
+            *ngIf="nombre_empresa.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="nombre_empresa.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div
+        [(ngModel)]="empresa.tipo_empresa"
+        name="tipo_empresa"
+        id="tipo_empresa"
+        class="form-group col-md-6"
+      >
+        <label for="exampleFormControlInput1">Tipo de Empresa</label>
+        <br />
+        <input
+          required
+          value="Privada"
+          style="margin: 5px"
+          type="radio"
+          name="sexo"
+          id="tipo_empresa"
+          [(ngModel)]="empresa.tipo_empresa"
+        />
+        <label for="tipo_empresa">Privada</label>
+
+        <input
+          value="Publica"
+          style="margin: 5px"
+          type="radio"
+          name="sexo"
+          id="tipo_empresa"
+          [(ngModel)]="empresa.tipo_empresa"
+        />
+        <label for="tipo_empresa">Publica</label>
+        <br />
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="exampleFormControlInput1"
+          >Nombre de Representante Legal</label
+        >
+        <input
+          minlength="20"
+          maxlength="200"
+          required
+          type="text"
+          class="form-control"
+          [(ngModel)]="empresa.nombrerepresentante"
+          name="nombrerepresentante"
+          id="nombrerepresentante"
+          #representante="ngModel"
+          placeholder="Gestion de Redes, Laborales 1, etc"
+        />
+        <div
+          *ngIf="
+            representante.invalid &&
+            (representante.dirty || representante.touched)
+          "
+          class="alert-danger"
+          ng-show="!representante"
+        >
+          <div
+            *ngIf="representante.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+          <div
+            *ngIf="representante.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="representante.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="inputNombre">RUC</label>
+        <input
+          minlength="13"
+          maxlength="13"
+          required
+          type="text"
+          pattern="[0-9]{13}"
+          class="form-control"
+          #ruc="ngModel"
+          [(ngModel)]="empresa.ruc"
+          name="ruc"
+          id="ruc"
+        />
+        <div
+          *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)"
+          class="alert-danger"
+          ng-show="!ruc"
+        >
+          <div *ngIf="ruc.errors.required" class="container-error-message">
+            Este campo es requerido
+          </div>
+          <div *ngIf="ruc.errors.minlength" class="container-error-message">
+            Longitud de cadena invalida
+          </div>
+          <div *ngIf="ruc.errors.maxlength" class="container-error-message">
+            Longitud de cadena invalida
+          </div>
+          <div *ngIf="ruc.errors.pattern" class="container-error-message">
+            Este campo acepta solo numeros
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputDireccion">Dirección</label>
+        <input
+          minlength="20"
+          maxlength="200"
+          required
+          type="text"
+          class="form-control"
+          #direccion="ngModel"
+          [(ngModel)]="empresa.direccion"
+          name="direccion"
+          id="inputDireccion"
+        />
+        <div
+          *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)"
+          class="alert-danger"
+          ng-show="!direccion"
+        >
+          <div
+            *ngIf="direccion.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+          <div
+            *ngIf="direccion.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="direccion.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="inputTelefono">Telefono</label>
+        <input
+          min="7"
+          max="10"
+          required
+          type="text"
+          class="form-control"
+          #telefono="ngModel"
+          [(ngModel)]="empresa.telefono"
+          name="telefono"
+          id="telefono"
+        />
+        <div
+          *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
+          class="alert-danger"
+          ng-show="!telefono"
+        >
+          <div
+            *ngIf="telefono.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="telefono.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="inputTelefono">Correo Electronico</label>
+        <input
+          pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
+          required
+          type="email"
+          class="form-control"
+          #email="ngModel"
+          [(ngModel)]="empresa.correo"
+          name="correo"
+          id="inputcorreo"
+        />
+        <div
+          *ngIf="email.invalid && (email.dirty || email.touched)"
+          class="alert-danger"
+          ng-show="!email"
+        >
+          <div *ngIf="email.errors.required" class="container-error-message">
+            Este campo es requerido
+          </div>
+          <div *ngIf="email.errors.pattern" class="container-error-message">
+            Email Invalido
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-12">
+        <label for="exampleFormControlTextarea1"
+          >Actividades que realiza la empresa/institucion/dependencia</label
+        >
+        <textarea
+          minlength="20"
+          maxlength="200"
+          class="form-control"
+          [(ngModel)]="empresa.actividades"
+          name="actividades"
+          #actividades="ngModel"
+          id="exampleFormControlTextarea1"
+          rows="3"
+        ></textarea>
+        <div
+          *ngIf="
+            actividades.invalid && (actividades.dirty || actividades.touched)
+          "
+          class="alert-danger"
+          ng-show="!actividades"
+        >
+          <div
+            *ngIf="actividades.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="actividades.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <button type="submit" class="btn btn-success">
+          <span class="glyphicon glyphicon-refresh">&nbsp;</span>
+          <b> Actualizar Empresa</b>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

@@ -1,176 +1,264 @@
 <div class="container_p">
-    <form>
-      <div class="titulo">
-        <h1><b>Ingreso de Proyectos Basicos</b></h1>
-      </div>
-      <button class="btn btn-danger">Volver</button
-      >&nbsp;&nbsp;&nbsp;
-      <br />
-      <br />
+  <div class="titulo">
+    <h1><b>Formulario de Edicion de Proyectos Basicos</b></h1>
+  </div>
+  <button class="btn btn-danger" (click)="volver_lista()">
+    <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
+  >&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <div class="container">
+    <form (ngSubmit)="put(formBasico)" #formBasico="ngForm">
       <div class="container">
-        <mat-card>
-          <mat-card-title>Datos</mat-card-title>
-  
-          <form >
-            <div class="form-group">
-              <form class="form-inline">
-                <div class="form-group">
-                  <label for="id">Proyecto Macro Seleccionado</label>
-                  <form class="form-inline">
-                    <div class="form-group mx-sm-3 mb-2">
-                      <select
-                        disabled
-                        class="form-control"
-                        name="idmacro"
-                        id="idmacro"
-                        [(ngModel)]="basico.idmacro"
-                      >
-                        <option
-                          *ngFor="let macro of listmacro"
-                          [ngValue]="macro.id"
-                          value="macro.id"
-                        >
-                          {{ macro.nombre_prmacro }}
-                        </option>
-                      </select>
-                    </div>
-                  </form>
-                </div>
-              </form>
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="id">Proyecto Macro Seleccionado</label>
+          <select
+            required
+            disabled
+            class="form-control"
+            name="idmacro"
+            id="idmacro"
+            [(ngModel)]="basico.idmacro"
+          >
+            <option
+              *ngFor="let macro of listmacro"
+              [ngValue]="macro.id"
+              value="macro.id"
+            >
+              {{ macro.nombre_prmacro }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="idempresa">Seleccionar Empresa</label>
+          <select
+            required
+            class="form-control"
+            name="idempresa"
+            id="idempresa"
+            [(ngModel)]="basico.idempresa"
+          >
+            <option value="" hidden selected>Seleccionar Empresa</option>
+            <option *ngFor="let empresa of listempresa" [ngValue]="empresa.id">
+              {{ empresa.nombreempresa }}
+            </option>
+          </select>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <input
+          type="hidden"
+          class="form-control"
+          name="idmacro"
+          id="idmacro"
+          [(ngModel)]="basico.idmacro"
+          [value]="basico.id"
+        />
+      </div>
+      <div class="container">
+        <div class="form-group col-md-12">
+          <label for="inputNombre">Nombre de Proyecto Basico</label>
+          <input
+            minlength="20"
+            maxlength="100"
+            required
+            type="text"
+            class="form-control"
+            name="nombre_prbasico"
+            id="nombre_prbasico"
+            #nombre_basico="ngModel"
+            [(ngModel)]="basico.nombre_prbasico"
+          />
+          <div
+            *ngIf="
+              nombre_basico.invalid &&
+              (nombre_basico.dirty || nombre_basico.touched)
+            "
+            class="alert-danger"
+            ng-show="!nombre_basico"
+          >
+            <div
+              *ngIf="nombre_basico.errors.required"
+              class="container-error-message"
+            >
+              Este campo es requerido
             </div>
-            <div class="form-group">
-              <label for="idempresa">Seleccionar Empresa</label>
-              <form  class="form-inline">
-                <div class="form-group mx-sm-3 mb-2">
-                  <label for="inputPassword2" class="sr-only">Password</label>
-                  <select
-                    style="margin: 7px; width: 400px;"
-                    class="form-control"
-                    name="idempresa"
-                    id="idempresa"
-                    [(ngModel)]="basico.idempresa"
-                  >
-                    <option value="" hidden selected>Seleccionar Empresa</option>
-                    <option
-                      *ngFor="let empresa of listempresa"
-                      [ngValue]="empresa.id"
-                      >{{ empresa.nombreempresa }}</option
-                    >
-                  </select>
-                </div>&nbsp;
-                <button
-                  [routerLink]="'/principal/add-convenio'"
-                  type="submit"
-                  class="btn btn-primary mb-2"
-                  style="background-color: green;"
-                >
-                  Nueva Empresa
-                </button>
-              </form>
+            <div
+              *ngIf="nombre_basico.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
             </div>
-            <form>
-              <div class="form-group">
-                <input
-                  type="hidden"
-                  class="form-control"
-                  name="idmacro"
-                  id="idmacro"
-                  [(ngModel)]="basico.idmacro"
-                  [value]="basico.id"
-                />
-              </div>
-  
-              <div class="form-group">
-                <label for="inputNombre">Nombre de Proyecto Basico</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="nombre_prbasico"
-                  id="nombre_prbasico"
-                  [(ngModel)]="basico.nombre_prbasico"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputNombre">Estudiantes Requeridos</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="estudianes_requeridos"
-                  id="estudianes_requeridos"
-                  [(ngModel)]="basico.estudianes_requeridos"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="inputNombre">Horas Totales a Cumplir</label>
-                <input
-                  type="number"
-                  class="form-control"
-                  name="horas_cumplir"
-                  id="horas_cumplir"
-                  [(ngModel)]="basico.horas_cumplir"
-                />
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputDireccion">Fecha de Inicio</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  name="fecha_inicio"
-                  id="fecha_inicio"
-                  [(ngModel)]="basico.fecha_inicio"
-                />
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputDireccion">Fecha de Finazalizacion</label>
-                <input
-                  type="date"
-                  class="form-control"
-                  name="fecha_fin"
-                  id="fecha_fin"
-                  [(ngModel)]="basico.fecha_fin"
-                />
-              </div>
-              <div class="form-group col-md-4">
-                <label for="inputNombre">Ciclo para realizar Proyecto</label>
-                <input
-                  type="text"
-                  class="form-control"
-                  name="ciclo"
-                  id="ciclo"
-                  [(ngModel)]="basico.ciclo"
-                />
-              </div>
-              <div class="form-group col-md-6">
-                <label for="exampleFormControlTextarea1"
-                  >Requerimientos</label
-                >
-                <textarea
-                  class="form-control"
-                  id="requerimientos"
-                  name="requerimientos"
-                  [(ngModel)]="basico.requerimientos"
-                  rows="3"
-                ></textarea>
-              </div>
-              <div class="form-group col-md-6">
-                <label for="exampleFormControlTextarea1"
-                  >Descripcion de Actividades a realizar</label
-                >
-                <textarea
-                  class="form-control"
-                  id="actividades"
-                  name="actividades"
-                  [(ngModel)]="basico.actividades"
-                  rows="3"
-                ></textarea>
-              </div>
-            </form>
-            <button (click)="put()" type="submit" class="btn btn-success">
-              Registrar Proyecto Basico</button
-            >&nbsp;&nbsp;&nbsp;
-          </form>
-        </mat-card>
+            <div
+              *ngIf="nombre_basico.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6">
+          <label for="inputNombre">Estudiantes Requeridos</label>
+          <input
+            required
+            min="1"
+            type="number"
+            class="form-control"
+            name="estudianes_requeridos"
+            id="estudianes_requeridos"
+            #cupos="ngModel"
+            [(ngModel)]="basico.estudianes_requeridos"
+          />
+          <div
+            *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
+            class="alert-danger"
+            ng-show="!cupos"
+          >
+            <div *ngIf="cupos.errors.required" class="container-error-message">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputNombre">Horas Totales a Cumplir</label>
+          <input
+            min="1"
+            type="number"
+            class="form-control"
+            name="horas_cumplir"
+            id="horas_cumplir"
+            [(ngModel)]="basico.horas_cumplir"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-4">
+          <label for="inputDireccion">Fecha de Inicio</label>
+          <input
+            required
+            type="date"
+            class="form-control"
+            name="fecha_inicio"
+            id="fecha_inicio"
+            #fecha="ngModel"
+            [(ngModel)]="basico.fecha_inicio"
+          />
+          <div
+            *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)"
+            class="alert-danger"
+            ng-show="!fecha"
+          >
+            <div *ngIf="fecha.errors.required" class="container-error-message">
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputDireccion">Fecha de Finazalizacion</label>
+          <input
+            type="date"
+            class="form-control"
+            name="fecha_fin"
+            id="fecha_fin"
+            [(ngModel)]="basico.fecha_fin"
+          />
+        </div>
+        <div class="form-group col-md-4">
+          <label for="inputNombre">Ciclo para realizar Proyecto</label>
+          <input
+            type="text"
+            class="form-control"
+            name="ciclo"
+            id="ciclo"
+            [(ngModel)]="basico.ciclo"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlTextarea1">Requerimientos</label>
+          <textarea
+            minlength="20"
+            maxlength="200"
+            class="form-control"
+            id="requerimientos"
+            name="requerimientos"
+            #requerimientos="ngModel"
+            [(ngModel)]="basico.requerimientos"
+            rows="3"
+          ></textarea>
+          <div
+            *ngIf="
+              requerimientos.invalid &&
+              (requerimientos.dirty || requerimientos.touched)
+            "
+            class="alert-danger"
+            ng-show="!requerimientos"
+          >
+            <div
+              *ngIf="requerimientos.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+            <div
+              *ngIf="requerimientos.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+          </div>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="exampleFormControlTextarea1"
+            >Descripcion de Actividades a realizar</label
+          >
+          <textarea
+            minlength="20"
+            maxlength="200"
+            class="form-control"
+            id="actividades"
+            name="actividades"
+            #actividades="ngModel"
+            [(ngModel)]="basico.actividades"
+            rows="3"
+          ></textarea>
+          <div
+            *ngIf="
+              actividades.invalid && (actividades.dirty || actividades.touched)
+            "
+            class="alert-danger"
+            ng-show="!actividades"
+          >
+            <div
+              *ngIf="actividades.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+            <div
+              *ngIf="actividades.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div class="form-group col-md-6">
+          <button type="submit" class="btn btn-success">
+            <span class="glyphicon glyphicon-refresh">&nbsp;</span>
+            <b> Actualizar Proyecto Basico</b>
+          </button>
+        </div>
       </div>
     </form>
   </div>
-  
+</div>
