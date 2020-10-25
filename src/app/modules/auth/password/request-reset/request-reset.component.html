@@ -1,0 +1,43 @@
+<div class="login-box">
+  <div class="login-logo">
+    <a> <b style="font-size: 27px">Restablecer contraseña </b></a>
+  </div>
+  <!-- /.login-logo -->
+  <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
+    <div class="login-box-body">
+      <p class="login-box-msg">Enviar correo electrónico para restablecer contraseña</p>
+
+      <div class="form-group has-feedback">
+        <input
+          class="form-control"
+          placeholder="Correo Electronico"
+          type="email"
+          id="inputEmail3"
+          [(ngModel)]="form.email"
+          name="email"
+         
+          required
+        />
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+      </div>
+
+      <div class="row">
+        <!-- /.col -->
+        <div class="col-md-12">
+          <button
+            type="submit"
+            [disabled]="!loginForm.valid"
+            class="btn btn-primary btn-block btn-flat col-md-4"
+          >
+            <b>Enviar correo electrónico</b>
+          </button>
+        </div>
+        <!-- /.col -->
+      </div>
+    </div>
+  </form>
+
+  <!-- /.login-box-body -->
+</div>
+
+<!-- /.login-box -->

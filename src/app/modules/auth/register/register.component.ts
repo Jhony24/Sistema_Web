@@ -36,9 +36,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   public error = <any>[];
-  //let bar = <any>{};
-
-
   ngOnInit() {
     this.listar_carreras();
     $('body').addClass('hold-transition login-page');

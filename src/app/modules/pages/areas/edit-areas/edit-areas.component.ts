@@ -14,6 +14,8 @@ import { ServiceService } from '../../services/service.service';
 })
 export class EditAreasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
+  public prueba = null;
+
 
   area: Area = {
     nombrearea: null,
@@ -63,6 +65,9 @@ export class EditAreasComponent implements OnInit {
         showConfirmButton: false,
         timer: 1500,
       });
+    },(err)=>{
+      console.log(err);
+      this.handleError(err);
     });
   }else{
     Swal.fire({
@@ -74,7 +79,10 @@ export class EditAreasComponent implements OnInit {
     });
   }
   }
-
+  handleError(error) {
+    this.prueba = error.error;
+    console.log("en el handle",this.prueba);
+  }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(
       (data) => {

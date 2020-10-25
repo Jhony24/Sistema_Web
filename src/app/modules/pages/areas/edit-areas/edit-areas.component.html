@@ -42,6 +42,9 @@
             id="nombrearea"
             required
           />
+          <div class="alert-danger" [hidden]="!prueba">
+            {{ "Este nombre ya esta en uso" }}
+          </div>
           <div
             *ngIf="
               nombre_area.invalid && (nombre_area.dirty || nombre_area.touched)

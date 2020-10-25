@@ -15,8 +15,8 @@ export class AddEmpresasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   selectCarrera: string = "";
   validarForm: FormGroup;
+  public error = <any>[];
   private emailPattern: any = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-
 
   constructor(
     private ruta: Router,
@@ -24,19 +24,42 @@ export class AddEmpresasComponent implements OnInit {
     private servicio: ServiceService
   ) {}
   ngOnInit() {
-
     this.listar_carreras();
 
     this.validarForm = this.formBuilder.group({
       id: 0,
-      nombreempresa: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(100)]],
+      nombreempresa: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(100),
+        ],
+      ],
       tipo_empresa: ["", Validators.required],
-      nombrerepresentante: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(50)]],
+      nombrerepresentante: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(50),
+        ],
+      ],
       ruc: ["", Validators.required],
-      direccion: ["", [Validators.required, Validators.minLength(10), Validators.maxLength(150)]],
+      direccion: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(150),
+        ],
+      ],
       telefono: [""],
-      correo: ["",[Validators.minLength(5), Validators.pattern(this.emailPattern)]],
-      actividades: ["", [Validators.minLength(10), Validators.maxLength(200)]],
+      correo: [
+        "",
+        [Validators.minLength(5), Validators.pattern(this.emailPattern)],
+      ],
+      actividades: ["", [Validators.minLength(20), Validators.maxLength(200)]],
       idcarrera: [this.selectCarrera, Validators.required],
       estadoempresa: ["1"],
     });
@@ -53,16 +76,21 @@ export class AddEmpresasComponent implements OnInit {
 
   onSubmit() {
     if (this.validarForm.valid) {
-      this.servicio.crearEmpresa(this.validarForm.value).subscribe((data) => {
-        this.ruta.navigate(["/principal/list-empresas"]);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Empresa registrada correctamente",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-      });
+      this.servicio.crearEmpresa(this.validarForm.value).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-empresas"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Empresa registrada correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -71,6 +99,10 @@ export class AddEmpresasComponent implements OnInit {
         showConfirmButton: true,
       });
     }
+  }
+
+  handleError(error) {
+    this.error = error.error;
   }
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-empresas"]);
@@ -87,25 +119,25 @@ export class AddEmpresasComponent implements OnInit {
   get idcarrera() {
     return this.validarForm.get("idcarrera");
   }
-  get nombreempresa(){
+  get nombreempresa() {
     return this.validarForm.get("nombreempresa");
   }
-  get tipo_empresa(){
+  get tipo_empresa() {
     return this.validarForm.get("tipo_empresa");
   }
-  get nombrerepresentante(){
+  get nombrerepresentante() {
     return this.validarForm.get("nombrerepresentante");
   }
-  get ruc(){
+  get ruc() {
     return this.validarForm.get("ruc");
   }
-  get direccion(){
+  get direccion() {
     return this.validarForm.get("direccion");
   }
-  get actividades(){
+  get actividades() {
     return this.validarForm.get("actividades");
   }
-  get correo(){
+  get correo() {
     return this.validarForm.get("correo");
   }
 }

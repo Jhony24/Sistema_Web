@@ -11,6 +11,7 @@ import { ServiceService } from "../../services/service.service";
   styleUrls: ["./edit-empresas.component.css"],
 })
 export class EditEmpresasComponent implements OnInit {
+  public error = <any>[];
   empresa: Empresa = {
     nombreempresa: null,
     tipo_empresa: null,
@@ -58,6 +59,9 @@ export class EditEmpresasComponent implements OnInit {
       this.servicio.actualizarEmpresa(this.empresa).subscribe((data) => {
         this.ruta.navigate(["/principal/list-empresas"]);
         Swal.fire("Good ediraste!", "You clicked the button!", "success");
+      },(err)=>{
+        console.log("errorror: ",err);
+        this.handleError(err);
       });
     } else {
       Swal.fire({
@@ -68,6 +72,10 @@ export class EditEmpresasComponent implements OnInit {
         //timer: 1800,
       });
     }
+  }
+  handleError(error) {
+    console.log(this.error);
+    this.error = error.error;
   }
   
 }

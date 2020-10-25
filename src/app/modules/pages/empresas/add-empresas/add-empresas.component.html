@@ -62,9 +62,12 @@
               formControlName="nombreempresa"
               name="nombreempresa"
               class="form-control"
-              id="exampleFormControlInput1"
+              id="nombreempresa"
               placeholder="Ej. Kradac"
             />
+            <div class="alert-danger" [hidden]="!error.nombreempresa">
+              {{ error.nombreempresa }}
+            </div>
             <div
               *ngIf="
                 nombreempresa.invalid &&
@@ -105,8 +108,6 @@
               value="Privada"
               style="margin: 5px"
               type="radio"
-              name="tipo_empresa"
-              id="tipo_empresa"
               formControlName="tipo_empresa"
             />
             <label for="tipo_empresa">Privada</label>
@@ -116,8 +117,6 @@
               value="Publica"
               style="margin: 5px"
               type="radio"
-              name="tipo_empresa"
-              id="tipo_empresa"
               formControlName="tipo_empresa"
             />
             <label for="tipo_empresa">Publica</label>
@@ -180,6 +179,9 @@
               name="ruc"
               id="ruc"
             />
+            <div class="alert-danger" [hidden]="!error.ruc">
+              {{ error.ruc }}
+            </div>
             <div
               *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)"
               class="alert-danger"
@@ -240,6 +242,9 @@
               name="telefono"
               id="telefono"
             />
+            <div class="alert-danger" [hidden]="!error.telefono">
+              {{ error.telefono }}
+            </div>
           </div>
           <div class="form-group col-md-6">
             <label for="inputTelefono">Correo Electronico</label>
@@ -250,13 +255,27 @@
               name="correo"
               id="inputcorreo"
             />
-            <div class="alert-danger" *ngIf="correo.invalid && (correo.dirty || correo.touched)">
-              
-              <div class="container-error-message" *ngIf="correo.errors.minlength">
+            <div class="alert-danger" [hidden]="!error.correo">
+              {{ error.correo }}
+            </div>
+            <div
+              class="alert-danger"
+              *ngIf="correo.invalid && (correo.dirty || correo.touched)"
+            >
+              <div
+                class="container-error-message"
+                *ngIf="correo.errors.minlength"
+              >
                 Longitud de cadena invalida.
               </div>
-              <div class="container-error-message"
-                *ngIf="(correo.dirty || correo.touched) && correo.invalid && correo.errors.pattern">
+              <div
+                class="container-error-message"
+                *ngIf="
+                  (correo.dirty || correo.touched) &&
+                  correo.invalid &&
+                  correo.errors.pattern
+                "
+              >
                 Direccion de correo invalido
               </div>
             </div>

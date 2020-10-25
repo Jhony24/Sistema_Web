@@ -79,26 +79,21 @@
 
       <div for="idcarrera" class="form-group has-feedback">
         <select
-          placeholder="Select"
           class="form-control"
           name="idcarrera"
           id="idcarrera"
           [(ngModel)]="form.idcarrera"
           required
         >
-          <option value="0" [selected]>Seleccionar Carrera</option>
           <option
             selected
             *ngFor="let carrera of listcarreras"
             [ngValue]="carrera.id"
-            value="1"
           >
             {{ carrera.nombrecarreras }}
           </option>
         </select>
       </div>
-
-      
 
       <div class="row">
         <!-- /.col -->

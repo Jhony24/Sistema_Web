@@ -52,13 +52,7 @@
         <div class="alert-danger" [hidden]="!prueba">
           {{ "Este nombre ya esta en uso" }}
         </div>
-        <div *ngIf="listerrores.length > 0" class="container-error-message">
-          <div *ngFor="let e of listerrores">
-            <p>
-              {{ e.length }}
-            </p>
-          </div>
-        </div>
+       
         <div
           *ngIf="nombrearea.invalid && (nombrearea.dirty || nombrearea.touched)"
           class="alert-danger"

@@ -1,18 +1,12 @@
 <div class="login-box">
   <div class="login-logo">
-    <a>
-      <b style="font-size: 27px;"
-        >Sistema de Gestión de Cupos
-      </b></a
-    >
+    <a> <b style="font-size: 27px">Cambiar Contraseña </b></a>
   </div>
   <!-- /.login-logo -->
   <form #loginForm="ngForm" (ngSubmit)="onSubmit()">
     <div class="login-box-body">
-      <p class="login-box-msg">Inicia Sesión para comenzar</p>
-      <div style="text-align: center;" class="alert alert-danger" [hidden]="!prueba">
-        {{ prueba }}
-      </div>
+      <p class="login-box-msg">Ingrese su correo electronico y su nueva contraseña</p>
+
       <div class="form-group has-feedback">
         <input
           class="form-control"
@@ -23,13 +17,12 @@
           [(ngModel)]="form.email"
           required
         />
-      
-        <span
-            class="glyphicon glyphicon-envelope form-control-feedback"
-          ></span>
+        <div class="alert alert-danger" [hidden]="!prueba.email">
+          {{ prueba.email }}
+        </div>
+        <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
       </div>
 
-     
       <div class="form-group has-feedback">
         <input
           class="form-control"
@@ -40,12 +33,26 @@
           [(ngModel)]="form.password"
           required
         />
-       
+        <div class="alert alert-danger" [hidden]="!prueba.password">
+            {{ prueba.password }}
+          </div>
+        <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+      </div>
+      <div class="form-group has-feedback">
+        <input
+          class="form-control"
+          placeholder="Confirmar Contraseña"
+          type="password"
+          id="inputPassword4"
+          name="password_confirmarion"
+          [(ngModel)]="form.password_confirmation"
+          required
+        />
+
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
       </div>
 
-      <div  class="row">
-        
+      <div class="row">
         <!-- /.col -->
         <div class="col-md-12">
           <button
@@ -53,14 +60,11 @@
             [disabled]="!loginForm.valid"
             class="btn btn-primary btn-block btn-flat col-md-4"
           >
-            <b>INICIAR SESIÓN</b>
+            <b>CAMBIAR CONTRASEÑA</b>
           </button>
         </div>
         <!-- /.col -->
       </div>
-
-      <a [routerLink]="'/request-password-reset'">Olvide mi contraseña</a><br />
-      <a [routerLink]="'/login/register'" class="text-center">Registrarme</a>
     </div>
   </form>
 

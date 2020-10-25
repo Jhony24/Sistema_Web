@@ -61,6 +61,39 @@
           </span>
         </a>
       </li>
+      <li class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Postulaciones</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a
+              [routerLink]="'/principal/list-practicas-profesionales'"
+              class="nav-link"
+              ><i class="fa fa-graduation-cap"></i>
+              <span>Pendientes</span></a
+            >
+          </li>
+          <li>
+            <a [routerLink]="'/principal/list-pasantias'" class="nav-link"
+              ><i class="fa fa-money"></i> <span>Aprobadas</span></a
+            >
+          </li>
+          <li>
+            <a [routerLink]="'/principal/list-proyecto'" class="nav-link"
+              ><i class="fa fa-puzzle-piece"></i> <span>Rechazadas</span></a
+            >
+          </li>
+          <li>
+            <a [routerLink]="'/principal/list-proyecto'" class="nav-link"
+              ><i class="fa fa-puzzle-piece"></i> <span>Finalizadas</span></a
+            >
+          </li>
+        </ul>
+      </li>
       <li *ngIf="role == 'admin'" class="treeview">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Administrador</span>
@@ -72,9 +105,7 @@
           <li>
             <a  [routerLink]="'/principal/list-user'" class="nav-link"><i class="fa fa-user"></i> Usuarios</a>
           </li>
-          <li>
-            <a href="../../index2.html"><i class="fa fa-circle-o"></i> Roles</a>
-          </li>
+         
           <li>
             <a [routerLink]="'/principal/list-carreras'" class="nav-link"
               ><i class="fa fa-share-alt"></i> <span>Carreras</span></a
