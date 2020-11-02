@@ -13,7 +13,6 @@ import { AddEmpresasComponent } from "./empresas/add-empresas/add-empresas.compo
 import { EditEmpresasComponent } from "./empresas/edit-empresas/edit-empresas.component";
 import { ListEmpresasComponent } from "./empresas/list-empresas/list-empresas.component";
 import { ListAreasComponent } from "./areas/list-areas/list-areas.component";
-import { PostulacionesComponent } from "./postulaciones/postulaciones.component";
 import { ListCarrerasComponent } from "./carreras/list-carreras/list-carreras.component";
 import { AddCarrerasComponent } from "./carreras/add-carreras/add-carreras.component";
 import { EditCarrerasComponent } from "./carreras/edit-carreras/edit-carreras.component";
@@ -29,6 +28,9 @@ import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.c
 import { ListUserComponent } from "./usuarios/list-user/list-user.component";
 import { ActivarUserComponent } from "./usuarios/activar-user/activar-user.component";
 import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
+import { PendientesComponent } from './postulaciones/pendientes/pendientes.component';
+import { AprobadasComponent } from './postulaciones/aprobadas/aprobadas.component';
+import { RechazadasComponent } from "./postulaciones/rechazadas/rechazadas.component";
 
 const routes: Routes = [
   {
@@ -53,7 +55,6 @@ const routes: Routes = [
       { path: "add-empresas", component: AddEmpresasComponent },
       { path: "edit-empresas/:id", component: EditEmpresasComponent },
       { path: "list-empresas", component: ListEmpresasComponent },
-      { path: "postulaciones", component: PostulacionesComponent },
       { path: "add-carreras", component: AddCarrerasComponent },
       { path: "edit-carreras/:id", component: EditCarrerasComponent },
       { path: "list-carreras", component: ListCarrerasComponent },
@@ -68,7 +69,10 @@ const routes: Routes = [
       { path: "list-basico/:id", component: ListBasicoComponent },
       { path: "list-user", component: ListUserComponent },
       { path: "activar/:id", component: ActivarUserComponent },
-      {path: "aprobar/:id",component:AprobarComponent}
+      {path: "aprobar/:id",component:AprobarComponent},
+      {path: "pendientes",component:PendientesComponent},
+      {path: "aprobadas",component:AprobadasComponent},
+      {path: "rechazadas",component:RechazadasComponent}
     ],
   },
 ];

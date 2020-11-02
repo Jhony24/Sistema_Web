@@ -1,10 +1,11 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import Swal from "sweetalert2";
 import { AuthService } from "../../auth/services/auth.service";
 import { JarwisService } from "../../auth/services/jarwis.service";
 import { TokenService } from "../../auth/services/token.service";
 import { Users } from "../../pages/models/Users";
-import { ServiceService } from '../../pages/services/service.service';
+import { ServiceService } from "../../pages/services/service.service";
 
 @Component({
   selector: "app-header",
@@ -34,9 +35,23 @@ export class HeaderComponent implements OnInit {
   ngOnInit() {}
 
   logout() {
-    this.Token.remove();
-    this.auth.changeAuthStatus(false);
-    this.ruta.navigateByUrl("/login");
+    Swal.fire({
+      position: "top-right",
+      title: "¿Está seguro?",
+      text: "¿Seguro deseas cerrar sesion?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Cerrar Sesion",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.value) {
+        this.Token.remove();
+        this.auth.changeAuthStatus(false);
+        this.ruta.navigateByUrl("/login");
+      }
+    });
   }
   handleResponse(data) {
     this.Token.remove();

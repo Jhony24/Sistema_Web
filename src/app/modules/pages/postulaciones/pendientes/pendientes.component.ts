@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
-import { Postulacion } from '../models/Postulacion';
-import { ServiceService } from '../services/service.service';
+import { Postulacion } from '../../models/Postulacion';
+import { ServiceService } from '../../services/service.service';
 
 @Component({
-  selector: 'app-postulaciones',
-  templateUrl: './postulaciones.component.html',
-  styleUrls: ['./postulaciones.component.css']
+  selector: 'app-pendientes',
+  templateUrl: './pendientes.component.html',
+  styleUrls: ['./pendientes.component.css']
 })
-export class PostulacionesComponent implements OnInit {
+export class PendientesComponent implements OnInit {
 
   listpostulantes = new Array<Postulacion>();
 
@@ -20,8 +20,6 @@ export class PostulacionesComponent implements OnInit {
   listar_postulaciones(){
     this.servicio.getListadoPostulantes().subscribe((data)=>{
       this.listpostulantes=data;
-      console.log(this.listpostulantes);
     })
   }
-
 }

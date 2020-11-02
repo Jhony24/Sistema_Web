@@ -20,6 +20,12 @@ export class RequestResetComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit() {
+    Swal.fire({
+      allowOutsideClick: false,
+      icon: "info",
+      title: "Espere por favor...",
+    });
+    Swal.showLoading();
     this.Jarwis.sendPasswordResetLink(this.form).subscribe(
       (data) => this.handleResponse(data),
       (error) =>this.handleError(error)
@@ -27,6 +33,7 @@ export class RequestResetComponent implements OnInit {
   }
 
   handleResponse(res){
+    Swal.close();
     console.log(res);
     this.form.email=null;
     Swal.fire(
@@ -36,6 +43,7 @@ export class RequestResetComponent implements OnInit {
     );
   }
   handleError(res){
+    Swal.close();
     Swal.fire({
       position: "top-right",
       icon: "error",

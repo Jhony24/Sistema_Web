@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import Swal from 'sweetalert2';
 import { Postulacion } from '../../models/Postulacion';
 import { ServiceService } from '../../services/service.service';
 
@@ -51,5 +52,36 @@ export class AprobarComponent implements OnInit {
 
   ngOnInit(): void {
   }
+  put() {
 
+    Swal.fire({
+      title: '¿Está seguro?',
+      text: "¿Seguro desea aprobar la postulacion a:" + this.postulacion.nombre_completo +"?",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: 'Si, Aprobar',
+      cancelButtonText:'Cancelar'
+    }).then((result) => {
+      if (result.value) {
+        this.servicio.aprobarpsotulacion(this.postulacion).subscribe((data) => {
+          Swal.fire(
+            "Postulacion Aprobada!",
+            "La postulacion ha sidos aprobada satisfactoriamente!",
+            "success"
+          );
+        });
+      }
+    });
+  }
+  rechazar() {
+    this.servicio.rechazarpsotulacion(this.postulacion).subscribe((data) => {
+      Swal.fire(
+        "Postulacion Rechazada!",
+        "La postulacion ha sidos rechazada satisfactoriamente!",
+        "success"
+      );
+    });
+  }
 }

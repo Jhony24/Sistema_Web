@@ -3,10 +3,10 @@
   <!-- sidebar: style can be found in sidebar.less -->
   <section class="sidebar">
     <!-- Sidebar user panel -->
-   
+
     <!-- sidebar menu: : style can be found in sidebar.less -->
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header" style="text-align: center;">MENU DE NAVEGACION</li>
+      <li class="header" style="text-align: center">MENU DE NAVEGACION</li>
 
       <li class="treeview">
         <a href="#">
@@ -52,15 +52,7 @@
         >
       </li>
 
-      <li class="treeview">
-        <a [routerLink]="'/principal/postulaciones'" class="nav-link">
-          <i class="fa fa-address-book"></i>
-          <span>Postulaciones</span>
-          <span class="pull-right-container">
-            <span class="label label-primary pull-right">Nuevos</span>
-          </span>
-        </a>
-      </li>
+     
       <li class="treeview">
         <a href="#">
           <i class="fa fa-dashboard"></i> <span>Postulaciones</span>
@@ -70,21 +62,24 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a
-              [routerLink]="'/principal/list-practicas-profesionales'"
-              class="nav-link"
-              ><i class="fa fa-graduation-cap"></i>
-              <span>Pendientes</span></a
+            <a [routerLink]="'/principal/pendientes'" class="nav-link"
+              ><i class="fa fa-clock-o" aria-hidden="true"></i>
+              <span>Nuevas</span>
+              <span class="pull-right-container">
+                <span class="label label-warning pull-right">{{cont}}</span>
+              </span></a
             >
           </li>
           <li>
-            <a [routerLink]="'/principal/list-pasantias'" class="nav-link"
-              ><i class="fa fa-money"></i> <span>Aprobadas</span></a
+            <a [routerLink]="'/principal/aprobadas'" class="nav-link"
+              ><i class="fa fa-check-square-o" aria-hidden="true"></i>
+              <span>Aprobadas</span></a
             >
           </li>
           <li>
-            <a [routerLink]="'/principal/list-proyecto'" class="nav-link"
-              ><i class="fa fa-puzzle-piece"></i> <span>Rechazadas</span></a
+            <a [routerLink]="'/principal/rechazadas'" class="nav-link"
+              ><i class="fa fa-times" aria-hidden="true"></i>
+              <span>Rechazadas</span></a
             >
           </li>
           <li>
@@ -103,9 +98,11 @@
         </a>
         <ul class="treeview-menu">
           <li>
-            <a  [routerLink]="'/principal/list-user'" class="nav-link"><i class="fa fa-user"></i> Usuarios</a>
+            <a [routerLink]="'/principal/list-user'" class="nav-link"
+              ><i class="fa fa-user"></i> Usuarios</a
+            >
           </li>
-         
+
           <li>
             <a [routerLink]="'/principal/list-carreras'" class="nav-link"
               ><i class="fa fa-share-alt"></i> <span>Carreras</span></a

@@ -4,6 +4,7 @@ export class ProyectoMacro {
     id?: number;
     //idempresa:number;
     idarea:number;
+    externalid_macro?:string;
     idcarrera:number;
     nombre_prmacro:string;
     encargado:string;

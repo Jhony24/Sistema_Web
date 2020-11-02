@@ -20,7 +20,7 @@ export class AddBasicoComponent implements OnInit {
   listempresa = new Array<Empresa>();
 
   macro: ProyectoMacro = {
-    
+
     idarea: null,
     idcarrera: null,
     nombre_prmacro: null,
@@ -29,8 +29,6 @@ export class AddBasicoComponent implements OnInit {
     estadomacro: null,
   };
   id: any;
-  demo = this.macro.id;
-  macro_id: number;
   editing: boolean = false;
   macros: ProyectoMacro[];
 
@@ -41,6 +39,7 @@ export class AddBasicoComponent implements OnInit {
     private formBuilder: FormBuilder
   ) {
     this.id = this.activateRote.snapshot.params["id"];
+    console.log(this.id);
     if (this.id) {
       this.editing = true;
       this.servicio.getListadoProyectoMacro().subscribe(
@@ -55,9 +54,7 @@ export class AddBasicoComponent implements OnInit {
     }
   }
 
-
   ngOnInit() {
-    
     this.listar_macro();
     this.listar_empresas();
 
@@ -65,7 +62,14 @@ export class AddBasicoComponent implements OnInit {
       id: 0,
       idmacro: [this.id],
       idempresa: ["", Validators.required],
-      nombre_prbasico: ["", [Validators.required, Validators.minLength(20), Validators.maxLength(100)]],
+      nombre_prbasico: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(20),
+          Validators.maxLength(100),
+        ],
+      ],
       estudianes_requeridos: ["", Validators.required],
       ciclo: [""],
       horas_cumplir: [""],
@@ -81,13 +85,13 @@ export class AddBasicoComponent implements OnInit {
   }
 
   changeCity(e) {
-    console.log(e.value)
+    console.log(e.value);
     this.idempresa.setValue(e.target.value, {
-      onlySelf: true
-    })
+      onlySelf: true,
+    });
   }
   get cityName() {
-    return this.validarForm.get('idempresa');
+    return this.validarForm.get("idempresa");
   }
   onSubmit() {
     if (this.validarForm.valid) {
@@ -138,7 +142,7 @@ export class AddBasicoComponent implements OnInit {
   get idempresa() {
     return this.validarForm.get("idempresa");
   }
-  
+
   get nonbre() {
     return this.validarForm.get("nombre_prbasico");
   }

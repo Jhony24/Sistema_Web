@@ -27,6 +27,7 @@ export class EditBasicoComponent implements OnInit {
     fecha_fin: null,
     actividades: null,
     requerimientos: null,
+    nombreempresa:null,
     estadobasico: 1,
   };
 

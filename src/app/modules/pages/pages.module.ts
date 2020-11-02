@@ -20,7 +20,6 @@ import { ListEmpresasComponent } from "./empresas/list-empresas/list-empresas.co
 
 import { MatCardModule } from "@angular/material/card";
 import { MatFormFieldModule } from "@angular/material/form-field";
-import { PostulacionesComponent } from "./postulaciones/postulaciones.component";
 import { AddCarrerasComponent } from "./carreras/add-carreras/add-carreras.component";
 import { EditCarrerasComponent } from "./carreras/edit-carreras/edit-carreras.component";
 import { ListCarrerasComponent } from "./carreras/list-carreras/list-carreras.component";
@@ -43,6 +42,9 @@ import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.c
 import { ListUserComponent } from './usuarios/list-user/list-user.component';
 import { ActivarUserComponent } from './usuarios/activar-user/activar-user.component';
 import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
+import { PendientesComponent } from './postulaciones/pendientes/pendientes.component';
+import { AprobadasComponent } from './postulaciones/aprobadas/aprobadas.component';
+import { RechazadasComponent } from './postulaciones/rechazadas/rechazadas.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +61,6 @@ import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
     AddEmpresasComponent,
     EditEmpresasComponent,
     ListEmpresasComponent,
-    PostulacionesComponent,
     AddCarrerasComponent,
     EditCarrerasComponent,
     ListCarrerasComponent,
@@ -75,6 +76,9 @@ import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
     ListUserComponent,
     ActivarUserComponent,
     AprobarComponent,
+    PendientesComponent,
+    AprobadasComponent,
+    RechazadasComponent,
   ],
   imports: [
     CommonModule,

@@ -11,6 +11,7 @@ export class ProyectoBasico {
     actividades:string;
     requerimientos:string;
     estadobasico:number;
+    nombreempresa:string;
     created_at?: Date;
     updated_at?: Date;
   }

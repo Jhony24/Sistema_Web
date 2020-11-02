@@ -206,4 +206,16 @@ export class ServiceService {
   }
 
   //aprobar y rechazar postulacion pendiente
+  aprobarpsotulacion(postulacion: Postulacion): Observable<any> {
+    return this.http.put<Postulacion>(
+      `${this.API_REST}/aprobar` + "/" + postulacion.id,
+      postulacion
+    );
+  }
+  rechazarpsotulacion(postulacion: Postulacion): Observable<any> {
+    return this.http.put<Postulacion>(
+      `${this.API_REST}/rechazar` + "/" + postulacion.id,
+      postulacion
+    );
+  }
 }
