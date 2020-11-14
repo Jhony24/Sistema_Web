@@ -144,6 +144,33 @@
             />
           </div>
 
+          <button style="display: none" type="" class="btn btn-success">
+            <b>Aprobar</b></button
+          >&nbsp;&nbsp;&nbsp;
+          <button style="display: none" type="" class="btn btn-danger">
+            <b>Rechazar</b>
+          </button>
+        </form>
+      </mat-card>
+      <br />
+      <mat-card>
+        <mat-card-title
+          >Ingresar Observaciones de la Postulación</mat-card-title
+        >
+
+        <form>
+          <label for="exampleFormControlTextarea1"
+            >Observaciones</label
+          >
+          <textarea
+            class="form-control"
+            rows="3"
+            name="actividades"
+            id="actividades"
+            formControlName="actividades"
+          >
+          </textarea>
+          <br>
           <button (click)="put()" class="btn btn-success">
             <b>Aprobar</b></button
           >&nbsp;&nbsp;&nbsp;

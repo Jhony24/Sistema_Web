@@ -38,7 +38,7 @@ export class AprobarComponent implements OnInit {
       this.id = this.activateRote.snapshot.params["id"];
     if (this.id) {
       this.editing = true;
-      this.servicio.getListadoPostulantes().subscribe(
+      this.servicio.getListadoPostulantesPracticas().subscribe(
         (data: Postulacion[]) => {
           this.postulaciones = data;
           this.postulacion = this.postulaciones.find((m) => {

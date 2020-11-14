@@ -48,6 +48,7 @@ export class ListBasicoComponent implements OnInit {
       this.servicio.getProyectosBasicos(this.id).subscribe(
         (data) => {
           this.listbasico = data;
+          console.log(this.listbasico);
         },
         (error) => {}
       );
@@ -59,7 +60,7 @@ export class ListBasicoComponent implements OnInit {
       title: "¿Está seguro?",
       text:
         "¿Seguro desea dar de baja al proyecto basico:" +
-        basico.nombre_prbasico +
+        basico.id +
         "?",
       icon: "warning",
       showCancelButton: true,

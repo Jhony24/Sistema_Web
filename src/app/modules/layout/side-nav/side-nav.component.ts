@@ -29,29 +29,42 @@ export class SideNavComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.listar_postulaciones();
+    this.listar_postulacionesPasantias();
     $(document).ready(() => {
       $(".sidebar-menu").tree();
     });
   }
-  listar_postulaciones() {
-    let c:number=0;
-    this.servicio.getListadoPostulantes().subscribe((data) => {
+  listar_postulacionesPasantias() {
+    let pasan:number=0;
+    this.servicio.getListadoPostulantesPasantias().subscribe((data) => {
       for (let i = 0; i < data.length; i++) {
         if(data[i]['estado_postulacion'] == "PENDIENTE"){
          this.cont++;
         }
-        console.log(this.cont);
       }
-      
-     
-       
-          //console.log("hoalallaa",data[i]);
-        
-      
-      //console.log("primero",data[0]['estado_postulacion']);
-      //this.listpostulantes = data;
-      //console.log("en nav", this.listpostulantes);
+
+    });
+  }
+  listar_postulacionesPracticas() {
+    let pract:number=0;
+    this.servicio.getListadoPostulantesPracticas().subscribe((data) => {
+      for (let i = 0; i < data.length; i++) {
+        if(data[i]['estado_postulacion'] == "PENDIENTE"){
+         this.cont++;
+        }
+      }
+
+    });
+  }
+  listar_postulacionesProyectos() {
+    let proy:number=0;
+    this.servicio.getListadoPostulantesProyectos().subscribe((data) => {
+      for (let i = 0; i < data.length; i++) {
+        if(data[i]['estado_postulacion'] == "PENDIENTE"){
+         this.cont++;
+        }
+      }
+
     });
   }
 }

@@ -23,7 +23,7 @@
         <tbody>
             <ng-container *ngFor="let postulacion of listpostulantes"
             style="text-align: center">
-            <tr *ngIf="postulacion.estado_postulacion == 'APROBADA'">
+            <tr *ngIf="postulacion.estado_postulacion == 'FINALIZADA'">
               <td class="hidden">{{ postulacion.id }}</td>
               <td>{{ postulacion.cedula }}</td>
               <td>{{ postulacion.nombre_completo }}</td>

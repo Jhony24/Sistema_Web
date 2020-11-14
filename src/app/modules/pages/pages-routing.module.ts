@@ -27,10 +27,19 @@ import { EditBasicoComponent } from "./proyecto_basico/edit-basico/edit-basico.c
 import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.component";
 import { ListUserComponent } from "./usuarios/list-user/list-user.component";
 import { ActivarUserComponent } from "./usuarios/activar-user/activar-user.component";
-import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
-import { PendientesComponent } from './postulaciones/pendientes/pendientes.component';
-import { AprobadasComponent } from './postulaciones/aprobadas/aprobadas.component';
-import { RechazadasComponent } from "./postulaciones/rechazadas/rechazadas.component";
+import { AprobarComponent } from "./postulaciones/aprobar/aprobar.component";
+import { PracFinalizadasComponent } from "./postulaciones/practicas/prac-finalizadas/prac-finalizadas.component";
+import { PracAprobadasComponent } from "./postulaciones/practicas/prac-aprobadas/prac-aprobadas.component";
+import { PracNuevasComponent } from "./postulaciones/practicas/prac-nuevas/prac-nuevas.component";
+import { PracRechazadasComponent } from "./postulaciones/practicas/prac-rechazadas/prac-rechazadas.component";
+import { PasanNuevasComponent } from "./postulaciones/pasantias/pasan-nuevas/pasan-nuevas.component";
+import { PasanAprobadasComponent } from "./postulaciones/pasantias/pasan-aprobadas/pasan-aprobadas.component";
+import { PasanRechazadasComponent } from "./postulaciones/pasantias/pasan-rechazadas/pasan-rechazadas.component";
+import { PasanFinalizadasComponent } from "./postulaciones/pasantias/pasan-finalizadas/pasan-finalizadas.component";
+import { ProyNuevosComponent } from "./postulaciones/proyectos/proy-nuevos/proy-nuevos.component";
+import { ProyAprobadasComponent } from "./postulaciones/proyectos/proy-aprobadas/proy-aprobadas.component";
+import { ProyRechazadosComponent } from "./postulaciones/proyectos/proy-rechazados/proy-rechazados.component";
+import { ProyFinalizadosComponent } from "./postulaciones/proyectos/proy-finalizados/proy-finalizados.component";
 
 const routes: Routes = [
   {
@@ -69,10 +78,19 @@ const routes: Routes = [
       { path: "list-basico/:id", component: ListBasicoComponent },
       { path: "list-user", component: ListUserComponent },
       { path: "activar/:id", component: ActivarUserComponent },
-      {path: "aprobar/:id",component:AprobarComponent},
-      {path: "pendientes",component:PendientesComponent},
-      {path: "aprobadas",component:AprobadasComponent},
-      {path: "rechazadas",component:RechazadasComponent}
+      { path: "aprobar/:id", component: AprobarComponent },
+      { path: "practicas_nuevas", component: PracNuevasComponent },
+      { path: "practicas_aprobadas", component: PracAprobadasComponent },
+      { path: "practicas_rechazadas", component: PracRechazadasComponent },
+      { path: "practicas_finalizadas", component: PracFinalizadasComponent },
+      { path: "pasantias_nuevas", component: PasanNuevasComponent },
+      { path: "pasantias_aprobadas", component: PasanAprobadasComponent },
+      { path: "pasantias_rechazadas", component: PasanRechazadasComponent },
+      { path: "pasantias_finalizadas", component: PasanFinalizadasComponent },
+      { path: "proyectos_nuevos", component: ProyNuevosComponent },
+      { path: "proyectos_aprobados", component: ProyAprobadasComponent },
+      { path: "proyectos_rechazados", component: ProyRechazadosComponent },
+      { path: "proyectos_finalizados", component: ProyFinalizadosComponent },
     ],
   },
 ];

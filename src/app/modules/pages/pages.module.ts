@@ -42,9 +42,19 @@ import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.c
 import { ListUserComponent } from './usuarios/list-user/list-user.component';
 import { ActivarUserComponent } from './usuarios/activar-user/activar-user.component';
 import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
-import { PendientesComponent } from './postulaciones/pendientes/pendientes.component';
-import { AprobadasComponent } from './postulaciones/aprobadas/aprobadas.component';
-import { RechazadasComponent } from './postulaciones/rechazadas/rechazadas.component';
+import { FilterPipe } from './pipes/filter.pipe';
+import { PracFinalizadasComponent } from './postulaciones/practicas/prac-finalizadas/prac-finalizadas.component';
+import { PracNuevasComponent } from './postulaciones/practicas/prac-nuevas/prac-nuevas.component';
+import { PracRechazadasComponent } from './postulaciones/practicas/prac-rechazadas/prac-rechazadas.component';
+import { PracAprobadasComponent } from './postulaciones/practicas/prac-aprobadas/prac-aprobadas.component';
+import { PasanAprobadasComponent } from './postulaciones/pasantias/pasan-aprobadas/pasan-aprobadas.component';
+import { PasanNuevasComponent } from './postulaciones/pasantias/pasan-nuevas/pasan-nuevas.component';
+import { PasanRechazadasComponent } from './postulaciones/pasantias/pasan-rechazadas/pasan-rechazadas.component';
+import { PasanFinalizadasComponent } from './postulaciones/pasantias/pasan-finalizadas/pasan-finalizadas.component';
+import { ProyAprobadasComponent } from './postulaciones/proyectos/proy-aprobadas/proy-aprobadas.component';
+import { ProyNuevosComponent } from './postulaciones/proyectos/proy-nuevos/proy-nuevos.component';
+import { ProyRechazadosComponent } from './postulaciones/proyectos/proy-rechazados/proy-rechazados.component';
+import { ProyFinalizadosComponent } from './postulaciones/proyectos/proy-finalizados/proy-finalizados.component';
 
 @NgModule({
   declarations: [
@@ -76,9 +86,19 @@ import { RechazadasComponent } from './postulaciones/rechazadas/rechazadas.compo
     ListUserComponent,
     ActivarUserComponent,
     AprobarComponent,
-    PendientesComponent,
-    AprobadasComponent,
-    RechazadasComponent,
+    FilterPipe,
+    PracFinalizadasComponent,
+    PracNuevasComponent,
+    PracRechazadasComponent,
+    PracAprobadasComponent,
+    PasanAprobadasComponent,
+    PasanNuevasComponent,
+    PasanRechazadasComponent,
+    PasanFinalizadasComponent,
+    ProyAprobadasComponent,
+    ProyNuevosComponent,
+    ProyRechazadosComponent,
+    ProyFinalizadosComponent,
   ],
   imports: [
     CommonModule,

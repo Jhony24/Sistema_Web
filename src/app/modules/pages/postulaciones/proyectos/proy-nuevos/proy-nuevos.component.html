@@ -1,0 +1,71 @@
+<div class="container_p">
+    <form>
+      <h1>
+        <b
+          >Listado de Estudiantes Pendientes que postularon para realizar
+          Practicas Pre-Profesionales</b
+        >
+      </h1>
+      <br />
+      <div class="container">
+        <div class="form-group col-md-4" style="position: initial">
+          <input
+            type="text"
+            class="form-control"
+            name="filterPost"
+            placeholder="Ingrese la cedula para buscar..."
+            name="filterPost"
+            [(ngModel)]="filterPost"
+          />
+        </div>
+      </div>
+      <div class="container">
+        <table class="table table-hover">
+          <thead style="text-align: center">
+            <tr style="text-align: center">
+              <th class="hidden">Id</th>
+              <th style="text-align: center">Cedula</th>
+              <th style="text-align: center">Nombre</th>
+              <th style="text-align: center">Area</th>
+              <th style="text-align: center">Empresa</th>
+              <th style="text-align: center">Opciones</th>
+              <th style="text-align: center">Estado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <ng-container
+              *ngFor="let postulacion of listpostulantes | filter: filterPost"
+              style="text-align: center"
+            >
+              <tr *ngIf="postulacion.estado_postulacion == 'PENDIENTE'">
+                <td class="hidden">{{ postulacion.id }}</td>
+                <td>{{ postulacion.cedula }}</td>
+                <td>{{ postulacion.nombre_completo }}</td>
+                <td>{{ postulacion.nombrearea }}</td>
+                <td>{{ postulacion.nombreempresa }}</td>
+                <td>
+                  <div
+                    routerLink="/principal/aprobar/{{ postulacion.id }}"
+                    class="float-right btn btn-info"
+                    style="margin: 5px"
+                    data-toggle="modal"
+                    data-target="#exampleModal"
+                  >
+                    <i class="glyphicon glyphicon-eye-open"></i>
+                  </div>
+                </td>
+                <td>
+                  <h2>
+                    <span class="label label-warning">{{
+                      postulacion.estado_postulacion
+                    }}</span>
+                  </h2>
+                </td>
+              </tr>
+            </ng-container>
+          </tbody>
+        </table>
+      </div>
+    </form>
+  </div>
+  

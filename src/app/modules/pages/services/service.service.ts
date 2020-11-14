@@ -177,7 +177,7 @@ export class ServiceService {
   getba2(): Observable<any[]> {
     return this.http.get<ProyectoBasico[]>(`${this.API_REST}/basico`);
   }
-  getbasicosedit(id:number):Observable<any>{
+  getbasicosedit(id: number): Observable<any> {
     return this.http.get<ProyectoBasico>(`${this.API_REST}/basico` + "/" + id);
   }
   getProyectosBasicos(id: number): Observable<any> {
@@ -201,8 +201,20 @@ export class ServiceService {
 
   ///////////Servicio de Postulacion/////////////////
 
-  getListadoPostulantes(): Observable<any[]> {
-    return this.http.get<Postulacion[]>(`${this.API_REST}/postulacion`);
+  getListadoPostulantesPracticas(): Observable<any[]> {
+    return this.http.get<Postulacion[]>(
+      `${this.API_REST}/postulacionpractica`
+    );
+  }
+  getListadoPostulantesPasantias(): Observable<any[]> {
+    return this.http.get<Postulacion[]>(
+      `${this.API_REST}/postulacionpasantia`
+    );
+  }
+  getListadoPostulantesProyectos(): Observable<any[]> {
+    return this.http.get<Postulacion[]>(
+      `${this.API_REST}/postulacionproyecto`
+    );
   }
 
   //aprobar y rechazar postulacion pendiente

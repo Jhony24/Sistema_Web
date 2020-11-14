@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PendientesComponent } from './pendientes.component';
+import { PasanRechazadasComponent } from './pasan-rechazadas.component';
 
-describe('PendientesComponent', () => {
-  let component: PendientesComponent;
-  let fixture: ComponentFixture<PendientesComponent>;
+describe('PasanRechazadasComponent', () => {
+  let component: PasanRechazadasComponent;
+  let fixture: ComponentFixture<PasanRechazadasComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ PendientesComponent ]
+      declarations: [ PasanRechazadasComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(PendientesComponent);
+    fixture = TestBed.createComponent(PasanRechazadasComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

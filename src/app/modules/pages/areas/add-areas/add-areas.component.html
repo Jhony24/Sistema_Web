@@ -26,7 +26,7 @@
         </select>
         <div
           *ngIf="idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)"
-          class="alert-danger"
+          class="text text-danger"
         >
           <div
             *ngIf="idcarrera.errors.required"
@@ -49,13 +49,13 @@
           id="nombrearea"
           required
         />
-        <div class="alert-danger" [hidden]="!prueba">
+        <div class="text text-danger" [hidden]="!prueba">
           {{ "Este nombre ya esta en uso" }}
         </div>
        
         <div
           *ngIf="nombrearea.invalid && (nombrearea.dirty || nombrearea.touched)"
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!nombrearea"
         >
           <div
