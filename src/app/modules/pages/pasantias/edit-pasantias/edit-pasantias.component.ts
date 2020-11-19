@@ -17,6 +17,8 @@ export class EditPasantiasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
+  fechapractica:string="";
+  public validador=true;
 
   pasantia: Practicas = {
     tipo_practica: 2,
@@ -68,7 +70,7 @@ export class EditPasantiasComponent implements OnInit {
   }
 
   put(myform: NgForm) {
-    if(myform.valid==true){
+    if(myform.valid==true && this.validador==true){
       this.servicio.actualizarPractica(this.pasantia).subscribe((data) => {
         this.ruta.navigate(["/principal/list-pasantias"]);
         Swal.fire({
@@ -114,5 +116,31 @@ export class EditPasantiasComponent implements OnInit {
       },
       (err) => {}
     );
+  }
+
+  validarfecha(event: any) {
+    this.fechapractica = event.target.value;
+    var fecha_actual;
+    let fechaCorrecta = false;
+    var f = new Date();
+    var mes = (f.getMonth() + 1).toString();
+    if (mes.length <= 1) {
+      mes = "0" + mes;
+    }
+    var dia = f.getDate().toString();
+    if (dia.length <= 1) {
+      dia = "0" + dia;
+    }
+    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+
+    if (this.fechapractica > fecha_actual) {
+      fechaCorrecta = true;
+    } else if (this.fechapractica == fecha_actual) {
+      fechaCorrecta = false;
+    } else if (this.fechapractica < fecha_actual) {
+      fechaCorrecta = false;
+    }
+
+    this.validador = fechaCorrecta;
   }
 }

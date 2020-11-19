@@ -79,6 +79,7 @@
         <div class="form-group col-md-4">
           <label for="inputNombre">Cupos Disponibles</label>
           <input
+            pattern="^[0-9]+"
             required
             min="1"
             type="number"
@@ -89,9 +90,19 @@
             [(ngModel)]="pasantia.cupos"
           />
           <div *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)">
-            <div *ngIf="cupos.errors.required" class="alert-danger">
+            <div *ngIf="cupos.errors.required" class="text text-danger">
               Este campo es requerido
             </div>
+          </div>
+          <div
+            class="text text-danger"
+            *ngIf="
+              (cupos.dirty || cupos.touched) &&
+              cupos.invalid &&
+              cupos.errors.pattern
+            "
+          >
+            Solo Valores positivos
           </div>
         </div>
         <div class="form-group col-md-4">
@@ -126,10 +137,17 @@
             name="fecha_inicio"
             id="fecha_inicio"
             #fecha="ngModel"
+            (change)="validarfecha($event)"
             [(ngModel)]="pasantia.fecha_inicio"
           />
+          <div
+            *ngIf="!validador && (fecha.dirty || fecha.touched)"
+            class="text text-danger"
+          >
+            Fecha Invalida
+          </div>
           <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
-            <div *ngIf="fecha.errors.required" class="alert-danger">
+            <div *ngIf="fecha.errors.required" class="text text-danger">
               Este campo es requerido
             </div>
           </div>
@@ -157,13 +175,35 @@
         <div class="form-group col-md-3">
           <label for="salario">Remuneración</label>
           <input
-            type="text"
+            type="number"
+            step="any"
+            min="1"
+            max="100"
             class="form-control"
             name="salario"
             id="salario"
+            #salario="ngModel"
             [(ngModel)]="pasantia.salario"
             [value]="0"
           />
+          <div
+            *ngIf="salario.invalid && (salario.dirty || salario.touched)"
+            class="text text-danger"
+            ng-show="!salario"
+          >
+            <div
+              *ngIf="salario.errors.minlength"
+              class="container-error-message"
+            >
+              Valor Invalido
+            </div>
+            <div
+              *ngIf="salario.errors.maxlength"
+              class="container-error-message"
+            >
+              Valor Invalido
+            </div>
+          </div>
         </div>
       </div>
 
@@ -186,7 +226,7 @@
             *ngIf="
               actividades.invalid && (actividades.dirty || actividades.touched)
             "
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!actividades"
           >
             <div
@@ -222,7 +262,7 @@
               requerimientos.invalid &&
               (requerimientos.dirty || requerimientos.touched)
             "
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!requerimientos"
           >
             <div

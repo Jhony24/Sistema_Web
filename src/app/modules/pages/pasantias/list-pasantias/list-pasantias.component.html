@@ -27,7 +27,7 @@
           <td>{{pasantia.tipo_empresa}}</td>
           <td>{{ pasantia.cupos }}</td>
           <td>{{ pasantia.fecha_inicio | date:'dd/MM/yyyy' }}</td>
-          <td>{{ pasantia.salario == 0 ? "A DEFINIR" : pasantia.salario }}</td>
+          <td>{{ pasantia.salario == 0 ? "A DEFINIR" : "$ "+pasantia.salario+".00" }}</td>
           <td>
             <div routerLink="/principal/edit-pasantias/{{pasantia.id}}" class="float-right mx-1 btn btn-success" style="margin: 5px;">
               <i class="fa fa-edit"></i>

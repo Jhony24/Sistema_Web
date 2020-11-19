@@ -88,9 +88,7 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   handleResponse(data) {
-    console.log("handeresponse", this.validador);
     Swal.close();
-    console.log(this.validador, this.validadorDeCedula);
     if (this.validador == true) {
       this.token.handle(data.access_token);
       Swal.fire(

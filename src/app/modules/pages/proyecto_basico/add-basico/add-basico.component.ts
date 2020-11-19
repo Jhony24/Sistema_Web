@@ -1,8 +1,6 @@
-import { NullTemplateVisitor } from "@angular/compiler";
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
 import { ProyectoMacro } from "../../models/ProyectoMacro";
-import { ProyectoBasico } from "../../models/ProyectoBasico";
 import { ServiceService } from "../../services/service.service";
 import Swal from "sweetalert2";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
@@ -15,12 +13,13 @@ import { Empresa } from "../../models/Empresa";
 })
 export class AddBasicoComponent implements OnInit {
   selectEmpresa: string = "";
+  fechapractica: string = "";
+  public validador;
   listmacro = new Array<ProyectoMacro>();
   validarForm: FormGroup;
   listempresa = new Array<Empresa>();
 
   macro: ProyectoMacro = {
-
     idarea: null,
     idcarrera: null,
     nombre_prmacro: null,
@@ -94,7 +93,7 @@ export class AddBasicoComponent implements OnInit {
     return this.validarForm.get("idempresa");
   }
   onSubmit() {
-    if (this.validarForm.valid) {
+    if (this.validarForm.valid && this.validador==true) {
       this.servicio
         .crearProyectoBasico(this.validarForm.value)
         .subscribe((data) => {
@@ -138,6 +137,31 @@ export class AddBasicoComponent implements OnInit {
     console.log(event.value);
     this.selectEmpresa = event.target.value;
   }
+  validarfecha(event: any) {
+    this.fechapractica = event.target.value;
+    var fecha_actual;
+    let fechaCorrecta = false;
+    var f = new Date();
+    var mes = (f.getMonth() + 1).toString();
+    if (mes.length <= 1) {
+      mes = "0" + mes;
+    }
+    var dia = f.getDate().toString();
+    if (dia.length <= 1) {
+      dia = "0" + dia;
+    }
+    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+
+    if (this.fechapractica > fecha_actual) {
+      fechaCorrecta = true;
+    } else if (this.fechapractica == fecha_actual) {
+      fechaCorrecta = false;
+    } else if (this.fechapractica < fecha_actual) {
+      fechaCorrecta = false;
+    }
+
+    this.validador = fechaCorrecta;
+  }
 
   get idempresa() {
     return this.validarForm.get("idempresa");
@@ -157,5 +181,8 @@ export class AddBasicoComponent implements OnInit {
   }
   get requerimientos() {
     return this.validarForm.get("requerimientos");
+  }
+  get horastotales(){
+    return this.validarForm.get("horas_cumplir");
   }
 }

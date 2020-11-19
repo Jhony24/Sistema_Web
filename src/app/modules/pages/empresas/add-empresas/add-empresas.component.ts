@@ -32,8 +32,8 @@ export class AddEmpresasComponent implements OnInit {
         "",
         [
           Validators.required,
-          Validators.minLength(10),
-          Validators.maxLength(100),
+          Validators.minLength(20),
+          Validators.maxLength(200),
         ],
       ],
       tipo_empresa: ["", Validators.required],
@@ -45,12 +45,16 @@ export class AddEmpresasComponent implements OnInit {
           Validators.maxLength(50),
         ],
       ],
-      ruc: ["", Validators.required],
+      ruc: [
+        "",
+        Validators.required,
+       
+      ],
       direccion: [
         "",
         [
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(20),
           Validators.maxLength(150),
         ],
       ],
@@ -115,7 +119,12 @@ export class AddEmpresasComponent implements OnInit {
   selectChangeCarrera(event: any) {
     this.selectCarrera = event.target.value;
   }
-
+  validaNumericos(event) {
+    if(event.charCode >= 48 && event.charCode <= 57){
+      return true;
+     }
+     return false;        
+}
   get idcarrera() {
     return this.validarForm.get("idcarrera");
   }

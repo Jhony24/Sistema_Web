@@ -78,7 +78,7 @@
               nombre_basico.invalid &&
               (nombre_basico.dirty || nombre_basico.touched)
             "
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!nombre_basico"
           >
             <div
@@ -117,7 +117,7 @@
           />
           <div
             *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!cupos"
           >
             <div *ngIf="cupos.errors.required" class="container-error-message">
@@ -147,11 +147,18 @@
             name="fecha_inicio"
             id="fecha_inicio"
             #fecha="ngModel"
+            (change)="validarfecha($event)"
             [(ngModel)]="basico.fecha_inicio"
           />
           <div
+            *ngIf="!validador && (fecha.dirty || fecha.touched)"
+            class="text text-danger"
+          >
+            Fecha Invalida
+          </div>
+          <div
             *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)"
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!fecha"
           >
             <div *ngIf="fecha.errors.required" class="container-error-message">
@@ -198,7 +205,7 @@
               requerimientos.invalid &&
               (requerimientos.dirty || requerimientos.touched)
             "
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!requerimientos"
           >
             <div
@@ -233,7 +240,7 @@
             *ngIf="
               actividades.invalid && (actividades.dirty || actividades.touched)
             "
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!actividades"
           >
             <div

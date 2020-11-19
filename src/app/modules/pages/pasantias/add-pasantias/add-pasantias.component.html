@@ -113,6 +113,7 @@
             <div class="form-group col-md-4">
               <label for="inputNombre">Cupos Disponibles</label>
               <input
+                pattern="^[0-9]+"
                 required
                 type="number"
                 class="form-control"
@@ -122,6 +123,16 @@
                 formControlName="cupos"
                 placeholder="Ej. 3"
               />
+              <div
+                class="text text-danger"
+                *ngIf="
+                  (cupos.dirty || cupos.touched) &&
+                  cupos.invalid &&
+                  cupos.errors.pattern
+                "
+              >
+                Solo Valores positivos
+              </div>
               <div
                 *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
                 class="alert-danger"
@@ -183,8 +194,17 @@
                 class="form-control"
                 name="fecha_inicio"
                 id="fecha_inicio"
+                (change)="validarfecha($event)"
                 formControlName="fecha_inicio"
               />
+              <div
+                *ngIf="
+                  !validador && (fecha_inicio.dirty || fecha_inicio.touched)
+                "
+                class="text text-danger"
+              >
+                Fecha Invalida
+              </div>
               <div
                 *ngIf="
                   fecha_inicio.invalid &&
@@ -223,7 +243,10 @@
             <div class="form-group col-md-3">
               <label for="salario">Remuneración</label>
               <input
-                type="text"
+                type="number"
+                step="any"
+                min="0"
+                max="100"
                 class="form-control"
                 name="salario"
                 id="salario"

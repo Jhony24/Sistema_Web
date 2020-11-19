@@ -56,13 +56,22 @@ export class EditEmpresasComponent implements OnInit {
 
   put(myform: NgForm) {
     if (myform.valid == true) {
-      this.servicio.actualizarEmpresa(this.empresa).subscribe((data) => {
-        this.ruta.navigate(["/principal/list-empresas"]);
-        Swal.fire("Good ediraste!", "You clicked the button!", "success");
-      },(err)=>{
-        console.log("errorror: ",err);
-        this.handleError(err);
-      });
+      this.servicio.actualizarEmpresa(this.empresa).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-empresas"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Empresa actualizada correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          console.log("errorror: ", err);
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -77,5 +86,4 @@ export class EditEmpresasComponent implements OnInit {
     console.log(this.error);
     this.error = error.error;
   }
-  
 }

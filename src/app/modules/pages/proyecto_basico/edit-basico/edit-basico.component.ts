@@ -15,6 +15,8 @@ import { ServiceService } from "../../services/service.service";
 export class EditBasicoComponent implements OnInit {
   listmacro = new Array<ProyectoMacro>();
   listempresa = new Array<Empresa>();
+  fechapractica: string = "";
+  public validador = true;
 
   basico: ProyectoBasico = {
     idmacro: null,
@@ -27,7 +29,7 @@ export class EditBasicoComponent implements OnInit {
     fecha_fin: null,
     actividades: null,
     requerimientos: null,
-    nombreempresa:null,
+    nombreempresa: null,
     estadobasico: 1,
   };
 
@@ -64,7 +66,7 @@ export class EditBasicoComponent implements OnInit {
   }
 
   put(myform: NgForm) {
-    if (myform.valid == true) {
+    if (myform.valid == true && this.validador == true) {
       this.servicio.actualizarBasico(this.basico).subscribe((data) => {
         this.ruta.navigate(["/principal/list-basico/", this.basico.idmacro]);
         Swal.fire({
@@ -97,5 +99,30 @@ export class EditBasicoComponent implements OnInit {
       },
       (err) => {}
     );
+  }
+  validarfecha(event: any) {
+    this.fechapractica = event.target.value;
+    var fecha_actual;
+    let fechaCorrecta = false;
+    var f = new Date();
+    var mes = (f.getMonth() + 1).toString();
+    if (mes.length <= 1) {
+      mes = "0" + mes;
+    }
+    var dia = f.getDate().toString();
+    if (dia.length <= 1) {
+      dia = "0" + dia;
+    }
+    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+
+    if (this.fechapractica > fecha_actual) {
+      fechaCorrecta = true;
+    } else if (this.fechapractica == fecha_actual) {
+      fechaCorrecta = false;
+    } else if (this.fechapractica < fecha_actual) {
+      fechaCorrecta = false;
+    }
+
+    this.validador = fechaCorrecta;
   }
 }

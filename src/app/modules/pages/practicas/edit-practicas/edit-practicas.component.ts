@@ -17,6 +17,8 @@ export class EditPracticasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
+  fechapractica: string = "";
+  public validador = true;
 
   practica: Practicas = {
     tipo_practica: 1,
@@ -62,10 +64,11 @@ export class EditPracticasComponent implements OnInit {
     this.listar_carreras();
     this.listar_areas();
     this.listar_empresas();
+   console.log(this.validador);
   }
 
   put(myform: NgForm) {
-    if (myform.valid == true) {
+    if (myform.valid == true && this.validador==true) {
       this.servicio.actualizarPractica(this.practica).subscribe((data) => {
         this.ruta.navigate(["/principal/list-practicas-profesionales"]);
         Swal.fire({
@@ -112,5 +115,33 @@ export class EditPracticasComponent implements OnInit {
   }
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-practicas-profesionales"]);
+  }
+
+  validarfecha(event: any) {
+    this.fechapractica = event.target.value;
+    console.log(this.fechapractica);
+    var fecha_actual;
+    let fechaCorrecta = false;
+    var f = new Date();
+    var mes = (f.getMonth() + 1).toString();
+    if (mes.length <= 1) {
+      mes = "0" + mes;
+    }
+    var dia = f.getDate().toString();
+    if (dia.length <= 1) {
+      dia = "0" + dia;
+    }
+    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+
+    console.log(fecha_actual);
+    if (this.fechapractica > fecha_actual) {
+      fechaCorrecta = true;
+    } else if (this.fechapractica == fecha_actual) {
+      fechaCorrecta = false;
+    } else if (this.fechapractica < fecha_actual) {
+      fechaCorrecta = false;
+    }
+
+    this.validador = fechaCorrecta;
   }
 }

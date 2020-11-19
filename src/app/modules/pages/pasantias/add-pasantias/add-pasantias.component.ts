@@ -19,6 +19,9 @@ export class AddPasantiasComponent implements OnInit {
   selectCarrera: string = "";
   selectArea: string = "";
   selectEmpresa: string = "";
+  fechapractica: string = "";
+  public validador;
+
   validarForm: FormGroup;
   constructor(
     private ruta: Router,
@@ -46,12 +49,15 @@ export class AddPasantiasComponent implements OnInit {
       idarea: [this.selectArea, Validators.required],
       idempresa: [this.selectEmpresa, Validators.required],
       actividades: ["", [Validators.minLength(10), Validators.maxLength(200)]],
-      requerimientos: ["", [Validators.minLength(10), Validators.maxLength(200)]],
+      requerimientos: [
+        "",
+        [Validators.minLength(10), Validators.maxLength(200)],
+      ],
     });
   }
 
   onSubmit() {
-    if (this.validarForm.valid) {
+    if (this.validarForm.valid && this.validador == true) {
       this.servicio.crearPractica(this.validarForm.value).subscribe((data) => {
         this.ruta.navigate(["/principal/list-pasantias"]);
         Swal.fire({
@@ -117,6 +123,32 @@ export class AddPasantiasComponent implements OnInit {
     this.selectEmpresa = event.target.value;
   }
 
+  validarfecha(event: any) {
+    this.fechapractica = event.target.value;
+    var fecha_actual;
+    let fechaCorrecta = false;
+    var f = new Date();
+    var mes = (f.getMonth() + 1).toString();
+    if (mes.length <= 1) {
+      mes = "0" + mes;
+    }
+    var dia = f.getDate().toString();
+    if (dia.length <= 1) {
+      dia = "0" + dia;
+    }
+    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+
+    if (this.fechapractica > fecha_actual) {
+      fechaCorrecta = true;
+    } else if (this.fechapractica == fecha_actual) {
+      fechaCorrecta = false;
+    } else if (this.fechapractica < fecha_actual) {
+      fechaCorrecta = false;
+    }
+
+    this.validador = fechaCorrecta;
+  }
+
   get idcarrera() {
     return this.validarForm.get("idcarrera");
   }
@@ -142,4 +174,5 @@ export class AddPasantiasComponent implements OnInit {
   get requerimientos() {
     return this.validarForm.get("requerimientos");
   }
+
 }

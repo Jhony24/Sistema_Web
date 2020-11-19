@@ -61,7 +61,7 @@
               *ngIf="
                 idempresa.invalid && (idempresa.dirty || idempresa.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
             >
               <div
                 *ngIf="idempresa.errors.required"
@@ -87,15 +87,37 @@
             <div class="form-group col-md-12">
               <label for="inputNombre">Nombre de Proyecto Basico</label>
               <input
+                required
+                minlength="20"
+                maxlength="100"
                 type="text"
                 class="form-control"
                 name="nombre_prbasico"
                 id="nombre_prbasico"
                 formControlName="nombre_prbasico"
+                placeholder="Ej. Minería de Datos en la toma de decisiones inteligentes en la empresa Zerimar. "
               />
               <div
                 *ngIf="nonbre.invalid && (nonbre.dirty || nonbre.touched)"
-                class="alert-danger"
+                class="text text-danger"
+                ng-show="!nonbre"
+              >
+                <div
+                  *ngIf="nonbre.errors.minlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+                <div
+                  *ngIf="nonbre.errors.maxlength"
+                  class="container-error-message"
+                >
+                  Longitud de cadena invalida
+                </div>
+              </div>
+              <div
+                *ngIf="nonbre.invalid && (nonbre.dirty || nonbre.touched)"
+                class="text text-danger"
               >
                 <div
                   *ngIf="nonbre.errors.required"
@@ -110,18 +132,32 @@
             <div class="form-group col-md-6">
               <label for="inputNombre">Estudiantes Requeridos</label>
               <input
+                required
+                pattern="^[0-9]+"
                 type="number"
+                min="1"
                 class="form-control"
                 name="estudianes_requeridos"
                 id="estudianes_requeridos"
                 formControlName="estudianes_requeridos"
+                placeholder="Ej. 5"
               />
+              <div
+                class="text text-danger"
+                *ngIf="
+                  (estudiantes.dirty || estudiantes.touched) &&
+                  estudiantes.invalid &&
+                  estudiantes.errors.pattern
+                "
+              >
+                Solo Valores positivos
+              </div>
               <div
                 *ngIf="
                   estudiantes.invalid &&
                   (estudiantes.dirty || estudiantes.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
               >
                 <div
                   *ngIf="estudiantes.errors.required"
@@ -134,12 +170,25 @@
             <div class="form-group col-md-6">
               <label for="inputNombre">Horas Totales a Cumplir</label>
               <input
+                pattern="^[0-9]+"
                 type="number"
+                min="1"
                 class="form-control"
                 name="horas_cumplir"
                 id="horas_cumplir"
                 formControlName="horas_cumplir"
+                placeholder="Ej. 180"
               />
+              <div
+                class="text text-danger"
+                *ngIf="
+                  (horastotales.dirty || horastotales.touched) &&
+                  horastotales.invalid &&
+                  horastotales.errors.pattern
+                "
+              >
+                Solo Valores positivos
+              </div>
             </div>
           </div>
           <div class="container">
@@ -151,14 +200,23 @@
                 class="form-control"
                 name="fecha_inicio"
                 id="fecha_inicio"
+                (change)="validarfecha($event)"
                 formControlName="fecha_inicio"
               />
+              <div
+                *ngIf="
+                  !validador && (fecha_inicio.dirty || fecha_inicio.touched)
+                "
+                class="text text-danger"
+              >
+                Fecha Invalida
+              </div>
               <div
                 *ngIf="
                   fecha_inicio.invalid &&
                   (fecha_inicio.dirty || fecha_inicio.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
               >
                 <div
                   *ngIf="fecha_inicio.errors.required"
@@ -204,7 +262,7 @@
                   requerimientos.invalid &&
                   (requerimientos.dirty || requerimientos.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
                 ng-show="!requerimientos"
               >
                 <div
@@ -237,7 +295,7 @@
                   actividades.invalid &&
                   (actividades.dirty || actividades.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
                 ng-show="!actividades"
               >
                 <div

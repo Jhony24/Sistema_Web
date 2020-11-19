@@ -64,6 +64,7 @@
         <div class="form-group col-md-4">
           <label for="inputNombre">Cupos Disponibles</label>
           <input
+            pattern="^[0-9]+"
             type="number"
             min="1"
             class="form-control"
@@ -73,8 +74,18 @@
             [(ngModel)]="practica.cupos"
             required
           />
+          <div
+            class="text text-danger"
+            *ngIf="
+              (cupos.dirty || cupos.touched) &&
+              cupos.invalid &&
+              cupos.errors.pattern
+            "
+          >
+            Solo Valores positivos
+          </div>
           <div *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)">
-            <div *ngIf="cupos.errors.required" class="alert-danger">
+            <div *ngIf="cupos.errors.required" class="text text-danger">
               Este campo es requerido
             </div>
           </div>
@@ -92,7 +103,7 @@
             required
           />
           <div *ngIf="horas.invalid && (horas.dirty || horas.touched)">
-            <div *ngIf="horas.errors.required" class="alert-danger">
+            <div *ngIf="horas.errors.required" class="text text-danger">
               Este campo es requerido
             </div>
           </div>
@@ -100,7 +111,7 @@
         <div class="form-group col-md-4">
           <label for="inputNombre">Ciclo para realizar Practica</label>
           <input
-            type="number"
+            type="text"
             class="form-control"
             name="ciclo"
             id="ciclo"
@@ -117,11 +128,18 @@
             name="fecha_inicio"
             id="fecha_inicio"
             #fecha="ngModel"
+            (change)="validarfecha($event)"
             [(ngModel)]="practica.fecha_inicio"
             required
           />
+          <div
+            *ngIf="!validador && (fecha.dirty || fecha.touched)"
+            class="text text-danger"
+          >
+            Fecha Invalida
+          </div>
           <div *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)">
-            <div *ngIf="fecha.errors.required" class="alert-danger">
+            <div *ngIf="fecha.errors.required" class="text text-danger">
               Este campo es requerido
             </div>
           </div>
@@ -166,7 +184,7 @@
             *ngIf="
               actividades.invalid && (actividades.dirty || actividades.touched)
             "
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!nombrearea"
           >
             <div
@@ -202,7 +220,7 @@
               requrimientos.invalid &&
               (requrimientos.dirty || requrimientos.touched)
             "
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!nombrearea"
           >
             <div

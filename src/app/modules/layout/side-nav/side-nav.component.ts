@@ -15,7 +15,9 @@ declare var $;
 export class SideNavComponent implements OnInit {
   UserProfile: Users;
   role = "";
-  cont=0;
+  contpasantias=0;
+  contpracticas=0;
+  contproyectos=0;
   listpostulantes = new Array<Postulacion>();
 
   constructor(private servicio: ServiceService) {
@@ -39,7 +41,7 @@ export class SideNavComponent implements OnInit {
     this.servicio.getListadoPostulantesPasantias().subscribe((data) => {
       for (let i = 0; i < data.length; i++) {
         if(data[i]['estado_postulacion'] == "PENDIENTE"){
-         this.cont++;
+         this.contpasantias++;
         }
       }
 
@@ -50,7 +52,7 @@ export class SideNavComponent implements OnInit {
     this.servicio.getListadoPostulantesPracticas().subscribe((data) => {
       for (let i = 0; i < data.length; i++) {
         if(data[i]['estado_postulacion'] == "PENDIENTE"){
-         this.cont++;
+         this.contpracticas++;
         }
       }
 
@@ -61,7 +63,7 @@ export class SideNavComponent implements OnInit {
     this.servicio.getListadoPostulantesProyectos().subscribe((data) => {
       for (let i = 0; i < data.length; i++) {
         if(data[i]['estado_postulacion'] == "PENDIENTE"){
-         this.cont++;
+         this.contproyectos++;
         }
       }
 

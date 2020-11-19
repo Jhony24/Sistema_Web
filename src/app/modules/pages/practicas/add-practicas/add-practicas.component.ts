@@ -19,7 +19,9 @@ export class AddPracticasComponent implements OnInit {
   selectCarrera: string = "";
   selectArea: string = "";
   selectEmpresa: string = "";
+  fechapractica: string = "";
   validarForm: FormGroup;
+  public validador;
   constructor(
     private ruta: Router,
     private formBuilder: FormBuilder,
@@ -44,14 +46,17 @@ export class AddPracticasComponent implements OnInit {
       idcarrera: [this.selectCarrera, Validators.required],
       idarea: [this.selectArea, Validators.required],
       idempresa: [this.selectEmpresa, Validators.required],
-      actividades:["",[Validators.minLength(20),Validators.maxLength(150)]],
-      requerimiento:["",[Validators.minLength(20), Validators.maxLength(150)]]
+      actividades: ["", [Validators.minLength(20), Validators.maxLength(150)]],
+      requerimiento: [
+        "",
+        [Validators.minLength(20), Validators.maxLength(150)],
+      ],
     });
   }
 
   onSubmit() {
-    if (this.validarForm.valid) {
-      this.servicio.crearPractica(this.validarForm.value).subscribe((data) => {
+    if (this.validarForm.valid && this.validador == true) {
+      this.servicio.crearPractica(this.validarForm.value).subscribe(() => {
         this.ruta.navigate(["/principal/list-practicas-profesionales"]);
         Swal.fire({
           position: "top-right",
@@ -76,7 +81,7 @@ export class AddPracticasComponent implements OnInit {
       (data) => {
         this.listcarreras = data;
       },
-      (err) => {}
+      () => {}
     );
   }
   listar_empresas() {
@@ -84,7 +89,7 @@ export class AddPracticasComponent implements OnInit {
       (data) => {
         this.listempresa = data;
       },
-      (err) => {}
+      () => {}
     );
   }
   listar_areas() {
@@ -92,7 +97,7 @@ export class AddPracticasComponent implements OnInit {
       (data) => {
         this.listarea = data;
       },
-      (err) => {}
+      () => {}
     );
   }
 
@@ -115,6 +120,31 @@ export class AddPracticasComponent implements OnInit {
   selectChangeEmpresa(event: any) {
     this.selectEmpresa = event.target.value;
   }
+  validarfecha(event: any) {
+    this.fechapractica = event.target.value;
+    var fecha_actual;
+    let fechaCorrecta = false;
+    var f = new Date();
+    var mes = (f.getMonth() + 1).toString();
+    if (mes.length <= 1) {
+      mes = "0" + mes;
+    }
+    var dia = f.getDate().toString();
+    if (dia.length <= 1) {
+      dia = "0" + dia;
+    }
+    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+
+    if (this.fechapractica > fecha_actual) {
+      fechaCorrecta = true;
+    } else if (this.fechapractica == fecha_actual) {
+      fechaCorrecta = false;
+    } else if (this.fechapractica < fecha_actual) {
+      fechaCorrecta = false;
+    }
+
+    this.validador = fechaCorrecta;
+  }
 
   get idcarrera() {
     return this.validarForm.get("idcarrera");
@@ -134,11 +164,10 @@ export class AddPracticasComponent implements OnInit {
   get fecha_inicio() {
     return this.validarForm.get("fecha_inicio");
   }
-  get actividades(){
+  get actividades() {
     return this.validarForm.get("actividades");
   }
-  get requerimiento(){
+  get requerimiento() {
     return this.validarForm.get("requerimiento");
   }
-  
 }

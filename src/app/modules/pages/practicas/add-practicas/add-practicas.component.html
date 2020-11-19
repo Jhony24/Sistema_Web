@@ -56,7 +56,7 @@
 
         <div
           *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
-          class="alert-danger"
+          class="text text-danger"
         >
           <div *ngIf="idarea.errors.required" class="container-error-message">
             Este campo es requerido
@@ -81,7 +81,7 @@
         </select>
         <div
           *ngIf="idempresa.invalid && (idempresa.dirty || idempresa.touched)"
-          class="alert-danger"
+          class="text text-danger"
         >
           <div
             *ngIf="idempresa.errors.required"
@@ -97,18 +97,29 @@
       <div class="form-group col-md-4">
         <label for="inputcupos">Cupos Disponibles</label>
         <input
+          pattern="^[0-9]+"
           type="number"
           min="1"
           placeholder="Ej. 5"
           class="form-control"
           name="cupos"
-          id="inputcupos"
+          id="cupos"
           formControlName="cupos"
           required
         />
         <div
+          class="text text-danger"
+          *ngIf="
+            (cupos.dirty || cupos.touched) &&
+            cupos.invalid &&
+            cupos.errors.pattern
+          "
+        >
+          Solo Valores positivos
+        </div>
+        <div
           *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
-          class="alert-danger"
+          class="text text-danger"
         >
           <div *ngIf="cupos.errors.required" class="container-error-message">
             Este campo es requerido
@@ -132,7 +143,7 @@
             horas_cumplir.invalid &&
             (horas_cumplir.dirty || horas_cumplir.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
         >
           <div
             *ngIf="horas_cumplir.errors.required"
@@ -162,14 +173,21 @@
           class="form-control"
           name="fecha_inicio"
           id="fecha_inicio"
+          (change)="validarfecha($event)"
           formControlName="fecha_inicio"
           required
         />
         <div
+          *ngIf="!validador && (fecha_inicio.dirty || fecha_inicio.touched)"
+          class="text text-danger"
+        >
+          Fecha Invalida
+        </div>
+        <div
           *ngIf="
             fecha_inicio.invalid && (fecha_inicio.dirty || fecha_inicio.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
         >
           <div
             *ngIf="fecha_inicio.errors.required"
@@ -217,7 +235,7 @@
           *ngIf="
             actividades.invalid && (actividades.dirty || actividades.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!actividades"
         >
           <div
@@ -250,7 +268,7 @@
             requerimiento.invalid &&
             (requerimiento.dirty || requerimiento.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!requerimiento"
         >
           <div

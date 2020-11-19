@@ -21,10 +21,10 @@
           maxlength="10"
           required
         />
-        <small
+        <div
           *ngIf="!validador && (cedula.dirty || cedula.touched)"
-          class="text-danger"
-          >Cedula Invalida</small
+          class="text text-danger"
+          >Cedula Invalida</div
         >
         <div class="text text-danger" [hidden]="!error.cedula">
           {{ error.cedula }}

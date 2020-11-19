@@ -35,7 +35,7 @@
             nombre_empresa.invalid &&
             (nombre_empresa.dirty || nombre_empresa.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!nombre_empresa"
         >
           <div
@@ -114,7 +114,7 @@
             representante.invalid &&
             (representante.dirty || representante.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!representante"
         >
           <div
@@ -156,7 +156,7 @@
         />
         <div
           *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)"
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!ruc"
         >
           <div *ngIf="ruc.errors.required" class="container-error-message">
@@ -188,7 +188,7 @@
         />
         <div
           *ngIf="direccion.invalid && (direccion.dirty || direccion.touched)"
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!direccion"
         >
           <div
@@ -228,7 +228,7 @@
         />
         <div
           *ngIf="telefono.invalid && (telefono.dirty || telefono.touched)"
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!telefono"
         >
           <div
@@ -259,7 +259,7 @@
         />
         <div
           *ngIf="email.invalid && (email.dirty || email.touched)"
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!email"
         >
           <div *ngIf="email.errors.required" class="container-error-message">
@@ -290,7 +290,7 @@
           *ngIf="
             actividades.invalid && (actividades.dirty || actividades.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!actividades"
         >
           <div
