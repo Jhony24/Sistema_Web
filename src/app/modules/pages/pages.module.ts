@@ -41,7 +41,6 @@ import { EditBasicoComponent } from "./proyecto_basico/edit-basico/edit-basico.c
 import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.component";
 import { ListUserComponent } from './usuarios/list-user/list-user.component';
 import { ActivarUserComponent } from './usuarios/activar-user/activar-user.component';
-import { AprobarComponent } from './postulaciones/aprobar/aprobar.component';
 import { FilterPipe } from './pipes/filter.pipe';
 import { PracFinalizadasComponent } from './postulaciones/practicas/prac-finalizadas/prac-finalizadas.component';
 import { PracNuevasComponent } from './postulaciones/practicas/prac-nuevas/prac-nuevas.component';
@@ -88,7 +87,6 @@ import { AprobarProyectosComponent } from './postulaciones/proyectos/aprobar-pro
     ListBasicoComponent,
     ListUserComponent,
     ActivarUserComponent,
-    AprobarComponent,
     FilterPipe,
     PracFinalizadasComponent,
     PracNuevasComponent,

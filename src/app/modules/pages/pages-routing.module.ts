@@ -27,7 +27,6 @@ import { EditBasicoComponent } from "./proyecto_basico/edit-basico/edit-basico.c
 import { ListBasicoComponent } from "./proyecto_basico/list-basico/list-basico.component";
 import { ListUserComponent } from "./usuarios/list-user/list-user.component";
 import { ActivarUserComponent } from "./usuarios/activar-user/activar-user.component";
-import { AprobarComponent } from "./postulaciones/aprobar/aprobar.component";
 import { PracFinalizadasComponent } from "./postulaciones/practicas/prac-finalizadas/prac-finalizadas.component";
 import { PracAprobadasComponent } from "./postulaciones/practicas/prac-aprobadas/prac-aprobadas.component";
 import { PracNuevasComponent } from "./postulaciones/practicas/prac-nuevas/prac-nuevas.component";
@@ -81,7 +80,6 @@ const routes: Routes = [
       { path: "list-basico/:id", component: ListBasicoComponent },
       { path: "list-user", component: ListUserComponent },
       { path: "activar/:id", component: ActivarUserComponent },
-      { path: "aprobar/:id", component: AprobarComponent },
       { path: "practicas_nuevas", component: PracNuevasComponent },
       { path: "practicas_aprobadas", component: PracAprobadasComponent },
       { path: "practicas_rechazadas", component: PracRechazadasComponent },
