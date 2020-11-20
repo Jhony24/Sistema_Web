@@ -32,6 +32,8 @@ export class SideNavComponent implements OnInit {
 
   ngOnInit() {
     this.listar_postulacionesPasantias();
+    this.listar_postulacionesProyectos();
+    this.listar_postulacionesPracticas();
     $(document).ready(() => {
       $(".sidebar-menu").tree();
     });

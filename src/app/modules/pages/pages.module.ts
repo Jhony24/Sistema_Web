@@ -55,6 +55,9 @@ import { ProyAprobadasComponent } from './postulaciones/proyectos/proy-aprobadas
 import { ProyNuevosComponent } from './postulaciones/proyectos/proy-nuevos/proy-nuevos.component';
 import { ProyRechazadosComponent } from './postulaciones/proyectos/proy-rechazados/proy-rechazados.component';
 import { ProyFinalizadosComponent } from './postulaciones/proyectos/proy-finalizados/proy-finalizados.component';
+import { AprobarPasantiasComponent } from './postulaciones/pasantias/aprobar-pasantias/aprobar-pasantias.component';
+import { AprobarPracticasComponent } from './postulaciones/practicas/aprobar-practicas/aprobar-practicas.component';
+import { AprobarProyectosComponent } from './postulaciones/proyectos/aprobar-proyectos/aprobar-proyectos.component';
 
 @NgModule({
   declarations: [
@@ -99,6 +102,9 @@ import { ProyFinalizadosComponent } from './postulaciones/proyectos/proy-finaliz
     ProyNuevosComponent,
     ProyRechazadosComponent,
     ProyFinalizadosComponent,
+    AprobarPasantiasComponent,
+    AprobarPracticasComponent,
+    AprobarProyectosComponent,
   ],
   imports: [
     CommonModule,

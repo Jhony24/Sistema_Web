@@ -1,9 +1,11 @@
 <div class="container_p">
   <form>
     <h1>
-      <b>Formulario de Detalles de Postulación</b>
+      <b>Formulario de Detalles de Postulación para Proyectos Basicos</b>
     </h1>
-    <button class="btn btn-danger">Volver</button>&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver
+    </button>
     <br />
     <br />
     <div class="container">
@@ -95,7 +97,7 @@
         <mat-card-title>Datos de la Postulacion</mat-card-title>
 
         <form>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
             <label for="tipo">Tipo</label>
             <input
               autocomplete="off"
@@ -103,7 +105,31 @@
               name="tipo_practica"
               class="form-control"
               id="nombrearea"
-              [(ngModel)]="postulacion.tipo_practica"
+              value="Proyecto"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="nombre_prmacro">Proyecto Macro</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="nombre_prmacro"
+              class="form-control"
+              id="nombre_prmacro"
+              [(ngModel)]="postulacion.nombre_prmacro"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-4">
+            <label for="nombre_prbasico">Proyecto Basico</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="nombre_prbasico"
+              class="form-control"
+              id="nombre_prbasico"
+              [(ngModel)]="postulacion.nombre_prbasico"
               disabled
             />
           </div>
@@ -116,6 +142,18 @@
               class="form-control"
               id="fecha_inicio"
               [(ngModel)]="postulacion.fecha_inicio"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="ciclo_necesario">Ciclo Necesario</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="ciclo_necesario"
+              class="form-control"
+              id="ciclo_necesario"
+              [(ngModel)]="postulacion.ciclo_necesario"
               disabled
             />
           </div>

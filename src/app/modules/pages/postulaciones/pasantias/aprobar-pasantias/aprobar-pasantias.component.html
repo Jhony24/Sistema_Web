@@ -1,9 +1,11 @@
 <div class="container_p">
   <form>
     <h1>
-      <b>Formulario de Detalles de Postulación</b>
+      <b>Formulario de Detalles de Postulación para Pasantías</b>
     </h1>
-    <button class="btn btn-danger">Volver</button>&nbsp;&nbsp;&nbsp;
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver
+    </button>
     <br />
     <br />
     <div class="container">
@@ -95,23 +97,21 @@
         <mat-card-title>Datos de la Postulacion</mat-card-title>
 
         <form>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
             <label for="tipo">Tipo</label>
             <input
               autocomplete="off"
-              placeholder="Nombre Completo"
               name="tipo_practica"
               class="form-control"
               id="nombrearea"
-              [(ngModel)]="postulacion.tipo_practica"
+              value="Practica Pre-Profesional"
               disabled
             />
           </div>
-          <div class="form-group col-md-6">
+          <div class="form-group col-md-4">
             <label for="fecha_inicio">Fecha de Inicio</label>
             <input
               autocomplete="off"
-              placeholder="Nombre Completo"
               name="fecha_inicio"
               class="form-control"
               id="fecha_inicio"
@@ -119,11 +119,21 @@
               disabled
             />
           </div>
+          <div class="form-group col-md-4">
+            <label for="ciclo_necesario">Ciclo Necesario</label>
+            <input
+              autocomplete="off"
+              name="ciclo_necesario"
+              class="form-control"
+              id="ciclo_necesario"
+              [(ngModel)]="postulacion.ciclo_necesario"
+              disabled
+            />
+          </div>
           <div class="form-group col-md-6">
             <label for="nombrearea">Area</label>
             <input
               autocomplete="off"
-              placeholder="Nombre Completo"
               name="nombrearea"
               class="form-control"
               id="nombrearea"
@@ -135,7 +145,6 @@
             <label for="nombreempresa">Empresa</label>
             <input
               autocomplete="off"
-              placeholder="Nombre Completo"
               name="nombreempresa"
               class="form-control"
               id="nombreempresa"

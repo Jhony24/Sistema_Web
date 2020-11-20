@@ -9,7 +9,7 @@ import { ServiceService } from "../../../services/service.service";
 })
 export class PracNuevasComponent implements OnInit {
   listpostulantes = new Array<Postulacion>();
-
+  tipo = "";
   constructor(private servicio: ServiceService) {}
   filterPost = "";
 
@@ -19,7 +19,9 @@ export class PracNuevasComponent implements OnInit {
 
   listar_postulaciones() {
     this.servicio.getListadoPostulantesPracticas().subscribe((data) => {
+  
       this.listpostulantes = data;
+      console.log(this.tipo);
     });
   }
 }

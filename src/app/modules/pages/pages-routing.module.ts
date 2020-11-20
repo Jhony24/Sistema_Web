@@ -40,6 +40,9 @@ import { ProyNuevosComponent } from "./postulaciones/proyectos/proy-nuevos/proy-
 import { ProyAprobadasComponent } from "./postulaciones/proyectos/proy-aprobadas/proy-aprobadas.component";
 import { ProyRechazadosComponent } from "./postulaciones/proyectos/proy-rechazados/proy-rechazados.component";
 import { ProyFinalizadosComponent } from "./postulaciones/proyectos/proy-finalizados/proy-finalizados.component";
+import { AprobarPracticasComponent } from "./postulaciones/practicas/aprobar-practicas/aprobar-practicas.component";
+import { AprobarPasantiasComponent } from "./postulaciones/pasantias/aprobar-pasantias/aprobar-pasantias.component";
+import { AprobarProyectosComponent } from "./postulaciones/proyectos/aprobar-proyectos/aprobar-proyectos.component";
 
 const routes: Routes = [
   {
@@ -91,6 +94,9 @@ const routes: Routes = [
       { path: "proyectos_aprobados", component: ProyAprobadasComponent },
       { path: "proyectos_rechazados", component: ProyRechazadosComponent },
       { path: "proyectos_finalizados", component: ProyFinalizadosComponent },
+      { path: "apro-recha_practicas/:id", component: AprobarPracticasComponent },
+      { path: "apro-recha_pasantias/:id", component: AprobarPasantiasComponent },
+      { path: "apro-recha_proyectos/:id", component: AprobarProyectosComponent },
     ],
   },
 ];

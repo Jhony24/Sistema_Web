@@ -26,6 +26,7 @@
               <th class="hidden">Id</th>
               <th style="text-align: center">Cedula</th>
               <th style="text-align: center">Nombre</th>
+              <th style="text-align: center">Proyecto Basico</th>
               <th style="text-align: center">Area</th>
               <th style="text-align: center">Empresa</th>
               <th style="text-align: center">Opciones</th>
@@ -41,11 +42,12 @@
                 <td class="hidden">{{ postulacion.id }}</td>
                 <td>{{ postulacion.cedula }}</td>
                 <td>{{ postulacion.nombre_completo }}</td>
+                <td>{{ postulacion.nombre_prbasico }}</td>
                 <td>{{ postulacion.nombrearea }}</td>
                 <td>{{ postulacion.nombreempresa }}</td>
                 <td>
                   <div
-                    routerLink="/principal/aprobar/{{ postulacion.id }}"
+                    routerLink="/principal/apro-recha_proyectos/{{ postulacion.id }}"
                     class="float-right btn btn-info"
                     style="margin: 5px"
                     data-toggle="modal"
