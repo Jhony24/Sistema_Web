@@ -44,7 +44,6 @@ export class AprobarPracticasComponent implements OnInit {
       this.servicio.getListadoPostulantesPracticas().subscribe(
         (data: Postulacion[]) => {
           this.postulaciones = data;
-          console.log("fffffffff", this.postulaciones);
           this.postulacion = this.postulaciones.find((m) => {
             return m.id == this.id;
           });
@@ -70,11 +69,20 @@ export class AprobarPracticasComponent implements OnInit {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.value) {
+        Swal.fire({
+          allowOutsideClick: false,
+          icon: "info",
+          title: "Espere por favor...",
+        });
+        Swal.showLoading();
         this.servicio.aprobarpsotulacion(this.postulacion).subscribe((data) => {
+          Swal.close();
           this.ruta.navigate(["/principal/practicas_nuevas"]);
           Swal.fire(
-            "Postulacion Aprobada!",
-            "La postulacion ha sidos aprobada satisfactoriamente!",
+            "Postulacion Aprobada satisfactoriamente!",
+            "Se le ha notificado a " +
+              this.postulacion.nombre_completo +
+              " por medio de correo electronico",
             "success"
           );
         });
@@ -82,12 +90,40 @@ export class AprobarPracticasComponent implements OnInit {
     });
   }
   rechazar() {
-    this.servicio.rechazarpsotulacion(this.postulacion).subscribe((data) => {
-      Swal.fire(
-        "Postulacion Rechazada!",
-        "La postulacion ha sidos rechazada satisfactoriamente!",
-        "success"
-      );
+    Swal.fire({
+      title: "¿Está seguro?",
+      text:
+        "¿Seguro desea rechazar la postulacion a:" +
+        this.postulacion.nombre_completo +
+        "?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Rechazar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire({
+          allowOutsideClick: false,
+          icon: "info",
+          title: "Espere por favor...",
+        });
+        Swal.showLoading();
+        this.servicio
+          .rechazarpsotulacion(this.postulacion)
+          .subscribe((data) => {
+            Swal.close();
+            this.ruta.navigate(["/principal/practicas_nuevas"]);
+            Swal.fire(
+              "Postulacion Rechazada satisfactoriamente!",
+              "Se le ha notificado a " +
+                this.postulacion.nombre_completo +
+                " por medio de correo electronico",
+              "success"
+            );
+          });
+      }
     });
   }
   volver_lista(): void {

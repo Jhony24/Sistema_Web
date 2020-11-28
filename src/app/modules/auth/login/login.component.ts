@@ -46,7 +46,7 @@ export class LoginComponent implements OnInit, OnDestroy {
     Swal.close();
     this.token.handle(data.access_token);
     this.auth.changeAuthStatus(true);
-    this.ruta.navigateByUrl("/principal");
+    this.ruta.navigateByUrl("/principal/dashboard");
   }
 
   handleError(error) {

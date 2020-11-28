@@ -15,6 +15,7 @@ import { ServiceService } from "../../services/service.service";
 export class EditProyectoComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
+  public error = <any>[];
 
   macro: ProyectoMacro = {
     //idempresa:number;
@@ -61,16 +62,21 @@ export class EditProyectoComponent implements OnInit {
 
   put(myform: NgForm) {
     if (myform.valid == true) {
-      this.servicio.actualizarMacro(this.macro).subscribe((data) => {
-        this.ruta.navigate(["/principal/list-proyecto"]);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Proyecto Macro actualizado correctamente",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-      });
+      this.servicio.actualizarMacro(this.macro).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-proyecto"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Proyecto Macro actualizado correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -81,7 +87,9 @@ export class EditProyectoComponent implements OnInit {
       });
     }
   }
-
+  handleError(error) {
+    this.error = error.error;
+  }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(
       (data) => {

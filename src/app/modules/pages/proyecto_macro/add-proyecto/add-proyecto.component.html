@@ -27,11 +27,14 @@
                 {{ carrera.nombrecarreras }}
               </option>
             </select>
+            <div class="text text-danger" [hidden]="!error.idcarrera">
+              {{ "Campo requerido" }}
+            </div>
             <div
               *ngIf="
                 idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
             >
               <div
                 *ngIf="idcarrera.errors.required"
@@ -56,9 +59,12 @@
                 {{ area.nombrearea }}
               </option>
             </select>
+            <div class="text text-danger" [hidden]="!error.idarea">
+              {{ "Campo Requerido" }}
+            </div>
             <div
               *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
-              class="alert-danger"
+              class="text text-danger"
             >
               <div
                 *ngIf="idarea.errors.required"
@@ -79,13 +85,17 @@
               name="nombre_prmacro"
               id="nombre_prmacro"
               formControlName="nombre_prmacro"
+              required
             />
+            <div class="text text-danger" [hidden]="!error.nombre_prmacro">
+              {{ error.nombre_prmacro }}
+            </div>
             <div
               *ngIf="
                 nombreprmacro.invalid &&
                 (nombreprmacro.dirty || nombreprmacro.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
               ng-show="!nombre_prmacro"
             >
               <div
@@ -119,12 +129,16 @@
               name="encargado"
               id="encargado"
               formControlName="encargado"
+              required
             />
+            <div class="text text-danger" [hidden]="!error.encargado">
+              {{ error.encargado }}
+            </div>
             <div
               *ngIf="
                 encargado.invalid && (encargado.dirty || encargado.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
               ng-show="!encargado"
             >
               <div
@@ -160,12 +174,15 @@
                 formControlName="descripcion"
                 rows="3"
               ></textarea>
+              <div class="text text-danger" [hidden]="!error.descripcion">
+                {{ error.descripcion }}
+              </div>
               <div
                 *ngIf="
                   descripcion.invalid &&
                   (descripcion.dirty || descripcion.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
                 ng-show="!nombreempresa"
               >
                 <div

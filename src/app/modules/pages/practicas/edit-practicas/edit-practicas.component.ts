@@ -18,18 +18,22 @@ export class EditPracticasComponent implements OnInit {
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
   fechapractica: string = "";
+  cupos: number;
   public validador = true;
+  public validarcupo = true;
+  public error = <any>[];
 
   practica: Practicas = {
     tipo_practica: 1,
     cupos: null,
     horas_cumplir: null,
-    ciclo: null,
+    ciclo_necesario: null,
     fecha_inicio: null,
     hora_entrada: null,
     hora_salida: null,
     actividades: null,
     requerimientos: null,
+    //modalidad: null,
     ppestado: 1,
     idcarrera: null,
     idarea: null,
@@ -51,6 +55,7 @@ export class EditPracticasComponent implements OnInit {
       this.servicio.getListadoPracticas().subscribe(
         (data: Practicas[]) => {
           this.practicas = data;
+          console.log("fffffffff", this.practicas);
           this.practica = this.practicas.find((m) => {
             return m.id == this.id;
           });
@@ -64,21 +69,29 @@ export class EditPracticasComponent implements OnInit {
     this.listar_carreras();
     this.listar_areas();
     this.listar_empresas();
-   console.log(this.validador);
   }
 
   put(myform: NgForm) {
-    if (myform.valid == true && this.validador==true) {
-      this.servicio.actualizarPractica(this.practica).subscribe((data) => {
-        this.ruta.navigate(["/principal/list-practicas-profesionales"]);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Practica Pre-Profesional actualizada correctamente",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-      });
+    if (
+      myform.valid == true &&
+      this.validador == true &&
+      this.validarcupo == true
+    ) {
+      this.servicio.actualizarPractica(this.practica).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-practicas-profesionales"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Practica Pre-Profesional actualizada correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -89,6 +102,9 @@ export class EditPracticasComponent implements OnInit {
     }
   }
 
+  handleError(error) {
+    this.error = error.error;
+  }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(
       (data) => {
@@ -143,5 +159,18 @@ export class EditPracticasComponent implements OnInit {
     }
 
     this.validador = fechaCorrecta;
+  }
+  validarcupos(event: any) {
+    this.cupos = event.target.value;
+    console.log(this.cupos);
+    let cupocorrecto = false;
+    if (this.cupos > 20) {
+      cupocorrecto = false;
+    } else {
+      cupocorrecto = true;
+    }
+
+    this.validarcupo = cupocorrecto;
+    console.log(this.validarcupo);
   }
 }

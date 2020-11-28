@@ -7,6 +7,7 @@ export class ProyectoBasico {
     ciclo:number;
     horas_cumplir:number;
     fecha_inicio:Date;
+    modalidad:string;
     fecha_fin:Date;
     actividades:string;
     requerimientos:string;

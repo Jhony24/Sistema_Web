@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NgForm } from '@angular/forms';
+import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Area } from "../../models/Area";
@@ -17,19 +17,23 @@ export class EditPasantiasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
-  fechapractica:string="";
-  public validador=true;
+  fechapractica: string = "";
+  cupos: number;
+  public validador = true;
+  public validarcupo = true;
+  public error = <any>[];
 
   pasantia: Practicas = {
     tipo_practica: 2,
     cupos: null,
     horas_cumplir: null,
-    ciclo: null,
+    ciclo_necesario: null,
     fecha_inicio: null,
     hora_entrada: null,
     hora_salida: null,
     actividades: null,
     salario: null,
+    //modalidad: null,
     requerimientos: null,
     ppestado: 1,
     idcarrera: null,
@@ -51,6 +55,7 @@ export class EditPasantiasComponent implements OnInit {
       this.servicio.getListadoPasantias().subscribe(
         (data: Practicas[]) => {
           this.pasantias = data;
+          console.log("daros de aaosos", this.pasantia);
           this.pasantia = this.pasantias.find((m) => {
             return m.id == this.id;
           });
@@ -70,18 +75,23 @@ export class EditPasantiasComponent implements OnInit {
   }
 
   put(myform: NgForm) {
-    if(myform.valid==true && this.validador==true){
-      this.servicio.actualizarPractica(this.pasantia).subscribe((data) => {
-        this.ruta.navigate(["/principal/list-pasantias"]);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Pasantia actualizada correctamente",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-      });
-    }else{
+    if (myform.valid == true && this.validador == true) {
+      this.servicio.actualizarPractica(this.pasantia).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-pasantias"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Pasantia actualizada correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
+    } else {
       Swal.fire({
         position: "top",
         icon: "info",
@@ -90,9 +100,10 @@ export class EditPasantiasComponent implements OnInit {
         //timer: 1800,
       });
     }
-    
   }
-
+  handleError(error) {
+    this.error = error.error;
+  }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(
       (data) => {

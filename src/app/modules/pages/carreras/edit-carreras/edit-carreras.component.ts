@@ -10,7 +10,7 @@ import { ServiceService } from '../../services/service.service';
   styleUrls: ['./edit-carreras.component.css']
 })
 export class EditCarrerasComponent implements OnInit {
-
+  role="";
   carrera: Carrera = {
     nombrecarreras: null,
     estadocarreras: 1
@@ -22,6 +22,9 @@ export class EditCarrerasComponent implements OnInit {
   constructor( private activateRote: ActivatedRoute,
     private servicio: ServiceService,
     private ruta: Router) { 
+      this.servicio.getRoles().subscribe((data: any) => {
+        this.role = data;
+      });
       this.id = this.activateRote.snapshot.params["id"];
       if (this.id) {
         this.editing = true;

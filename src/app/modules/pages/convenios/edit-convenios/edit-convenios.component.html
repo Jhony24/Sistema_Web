@@ -29,7 +29,7 @@
               <option value="" hidden selected>Seleccionar Carrera</option>
               <option
                 *ngFor="let carrera of listcarreras"
-                [ngValue]="carrera.id"
+                [value]="carrera.id"
                 value="carrera.id"
               >
                 {{ carrera.nombrecarreras }}
@@ -49,18 +49,21 @@
             [(ngModel)]="convenio.idempresa"
           >
             <option value="" hidden selected>Seleccionar Empresa</option>
-            <option *ngFor="let empresa of listempresa" [ngValue]="empresa.id">
+            <option *ngFor="let empresa of listempresa" [value]="empresa.id">
               {{ empresa.nombreempresa }}
             </option>
           </select>
+          <div class="text text-danger" [hidden]="!error.idempresa">
+            {{ error.idempresa }}
+          </div>
         </div>
       </div>
       <div class="container">
         <div class="form-group col-md-12">
           <label for="exampleFormControlInput1">Tipo de Convenio</label>
           <input
-            minlength="20"
-            maxlength="100"
+            minlength="10"
+            maxlength="50"
             required
             type="text"
             class="form-control"
@@ -70,9 +73,12 @@
             [(ngModel)]="convenio.tipo_convenio"
             placeholder="Gestion de Redes, Laborales 1, etc"
           />
+          <div class="text text-danger" [hidden]="!error.tipo_convenio">
+            {{ error.tipo_convenio }}
+          </div>
           <div
             *ngIf="tipo.invalid && (tipo.dirty || tipo.touched)"
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!tipo"
           >
             <div *ngIf="tipo.errors.required" class="container-error-message">
@@ -99,9 +105,12 @@
             #fecha="ngModel"
             [(ngModel)]="convenio.fecha_inicio"
           />
+          <div class="text text-danger" [hidden]="!error.fecha_inicio">
+            {{ error.fecha_inicio }}
+          </div>
           <div
             *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)"
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!fecha"
           >
             <div *ngIf="fecha.errors.required" class="container-error-message">
@@ -112,22 +121,32 @@
         <div class="form-group col-md-6">
           <label for="inputDireccion">Fecha de Culminación</label>
           <input
-            minlength="5"
-            maxlength="20"
+            minlength="1"
+            maxlength="7"
             type="text"
             class="form-control"
             name="fecha_culminacion"
             id="fecha_culminacion"
             #culminacion="ngModel"
             [(ngModel)]="convenio.fecha_culminacion"
+            required
           />
+          <div class="text text-danger" [hidden]="!error.fecha_culminacion">
+            {{ error.fecha_culminacion }}
+          </div>
           <div
             *ngIf="
               culminacion.invalid && (culminacion.dirty || culminacion.touched)
             "
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!culminacion"
           >
+            <div
+              *ngIf="culminacion.errors.required"
+              class="container-error-message"
+            >
+              Este campo es requerido
+            </div>
             <div
               *ngIf="culminacion.errors.minlength"
               class="container-error-message"
@@ -148,7 +167,7 @@
           <label for="exampleFormControlInput1">Objeto</label>
           <input
             minlength="20"
-            maxlength="200"
+            maxlength="100"
             required
             type="text"
             class="form-control"
@@ -158,9 +177,12 @@
             [(ngModel)]="convenio.objeto"
             placeholder="Gestion de Redes, Laborales 1, etc"
           />
+          <div class="text text-danger" [hidden]="!error.objeto">
+            {{ error.objeto }}
+          </div>
           <div
             *ngIf="objeto.invalid && (objeto.dirty || objeto.touched)"
-            class="alert-danger"
+            class="text text-danger"
             ng-show="!objeto"
           >
             <div *ngIf="objeto.errors.required" class="container-error-message">

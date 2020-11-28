@@ -39,6 +39,7 @@ export class EditEmpresasComponent implements OnInit {
       this.servicio.getListadoEmpresa().subscribe(
         (data: Empresa[]) => {
           this.empresas = data;
+          console.log("daros de aaosos", this.empresas);
           this.empresa = this.empresas.find((m) => {
             return m.id == this.id;
           });

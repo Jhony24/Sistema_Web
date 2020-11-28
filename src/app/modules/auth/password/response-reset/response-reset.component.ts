@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute, Router } from "@angular/router";
-import { SnotifyService } from 'ng-snotify';
 import Swal from 'sweetalert2';
 import { JarwisService } from '../../services/jarwis.service';
 
@@ -22,8 +21,7 @@ export class ResponseResetComponent implements OnInit {
   constructor(
     private route: ActivatedRoute, 
     private Jarwis: JarwisService,
-    private router:Router,
-    private notify: SnotifyService) {
+    private router:Router) {
     route.queryParams.subscribe((params) => {
       this.form.resetToken = params["token"];
     });

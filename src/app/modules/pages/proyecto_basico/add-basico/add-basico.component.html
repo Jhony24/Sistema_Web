@@ -57,6 +57,9 @@
                 {{ empresa.nombreempresa }}
               </option>
             </select>
+            <div class="text text-danger" [hidden]="!error.idempresa">
+              {{ error.idempresa }}
+            </div>
             <div
               *ngIf="
                 idempresa.invalid && (idempresa.dirty || idempresa.touched)
@@ -88,8 +91,6 @@
               <label for="inputNombre">Nombre de Proyecto Basico</label>
               <input
                 required
-                minlength="20"
-                maxlength="100"
                 type="text"
                 class="form-control"
                 name="nombre_prbasico"
@@ -97,6 +98,9 @@
                 formControlName="nombre_prbasico"
                 placeholder="Ej. Minería de Datos en la toma de decisiones inteligentes en la empresa Zerimar. "
               />
+              <div class="text text-danger" [hidden]="!error.nombre_prbasico">
+                {{ error.nombre_prbasico }}
+              </div>
               <div
                 *ngIf="nonbre.invalid && (nonbre.dirty || nonbre.touched)"
                 class="text text-danger"
@@ -130,10 +134,35 @@
           </div>
           <div class="container">
             <div class="form-group col-md-6">
+              <label for="exampleFormControlInput1"
+                >Modalidad de Proyecto</label
+              >
+              <br />
+              <input
+                required
+                value="Presencial"
+                style="margin: 5px"
+                type="radio"
+                formControlName="modalidad"
+              />
+              <label for="modalidad">Presencial</label>
+
+              <input
+                required
+                value="TeleTrabajo"
+                style="margin: 5px"
+                type="radio"
+                formControlName="modalidad"
+              />
+              <label for="modalidad">TeleTrabajo</label>
+              <br />
+            </div>
+          </div>
+          <div class="container">
+            <div class="form-group col-md-6">
               <label for="inputNombre">Estudiantes Requeridos</label>
               <input
                 required
-                pattern="^[0-9]+"
                 type="number"
                 min="1"
                 class="form-control"
@@ -144,33 +173,41 @@
               />
               <div
                 class="text text-danger"
-                *ngIf="
-                  (estudiantes.dirty || estudiantes.touched) &&
-                  estudiantes.invalid &&
-                  estudiantes.errors.pattern
-                "
+                [hidden]="!error.estudianes_requeridos"
               >
-                Solo Valores positivos
+                {{ error.estudianes_requeridos }}
               </div>
+             
               <div
                 *ngIf="
-                  estudiantes.invalid &&
-                  (estudiantes.dirty || estudiantes.touched)
+                  estudianes_requeridos.invalid &&
+                  (estudianes_requeridos.dirty || estudianes_requeridos.touched)
                 "
                 class="text text-danger"
               >
                 <div
-                  *ngIf="estudiantes.errors.required"
+                  *ngIf="estudianes_requeridos.errors.required"
                   class="container-error-message"
                 >
                   Este campo es requerido
                 </div>
+                <div
+                *ngIf="estudianes_requeridos.errors.min"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="estudianes_requeridos.errors.max"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
               </div>
             </div>
             <div class="form-group col-md-6">
               <label for="inputNombre">Horas Totales a Cumplir</label>
               <input
-                pattern="^[0-9]+"
                 type="number"
                 min="1"
                 class="form-control"
@@ -178,16 +215,36 @@
                 id="horas_cumplir"
                 formControlName="horas_cumplir"
                 placeholder="Ej. 180"
+                required
               />
+              <div class="text text-danger" [hidden]="!error.horas_cumplir">
+                {{ error.horas_cumplir }}
+              </div>
               <div
-                class="text text-danger"
                 *ngIf="
-                  (horastotales.dirty || horastotales.touched) &&
                   horastotales.invalid &&
-                  horastotales.errors.pattern
+                  (horastotales.dirty || horastotales.touched)
                 "
+                class="text text-danger"
               >
-                Solo Valores positivos
+                <div
+                  *ngIf="horastotales.errors.required"
+                  class="container-error-message"
+                >
+                  Este campo es requerido
+                </div>
+                <div
+                *ngIf="horastotales.errors.min"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
+              <div
+                *ngIf="horastotales.errors.max"
+                class="container-error-message"
+              >
+                Longitud de cadena invalida
+              </div>
               </div>
             </div>
           </div>
@@ -203,6 +260,9 @@
                 (change)="validarfecha($event)"
                 formControlName="fecha_inicio"
               />
+              <div class="text text-danger" [hidden]="!error.fecha_inicio">
+                {{ error.fecha_inicio }}
+              </div>
               <div
                 *ngIf="
                   !validador && (fecha_inicio.dirty || fecha_inicio.touched)
@@ -235,6 +295,9 @@
                 id="fecha_fin"
                 formControlName="fecha_fin"
               />
+              <div class="text text-danger" [hidden]="!error.fecha_fin">
+                {{ error.fecha_fin }}
+              </div>
             </div>
             <div class="form-group col-md-4">
               <label for="inputNombre">Ciclo para realizar Proyecto</label>
@@ -245,6 +308,26 @@
                 id="ciclo"
                 formControlName="ciclo"
               />
+              <div class="text text-danger" [hidden]="!error.ciclo">
+                {{ error.ciclo }}
+              </div>
+              <div
+                *ngIf="ciclo.invalid && (ciclo.dirty || ciclo.touched)"
+                class="text text-danger"
+              >
+                <div
+                  *ngIf="ciclo.errors.minlength"
+                  class="container-error-message"
+                >
+                  Campo Invalido
+                </div>
+                <div
+                  *ngIf="ciclo.errors.maxlength"
+                  class="container-error-message"
+                >
+                  Campo Invalido
+                </div>
+              </div>
             </div>
           </div>
           <div class="container">
@@ -257,6 +340,9 @@
                 formControlName="requerimientos"
                 rows="3"
               ></textarea>
+              <div class="text text-danger" [hidden]="!error.requerimientos">
+                {{ error.requerimientos }}
+              </div>
               <div
                 *ngIf="
                   requerimientos.invalid &&
@@ -290,6 +376,9 @@
                 formControlName="actividades"
                 rows="3"
               ></textarea>
+              <div class="text text-danger" [hidden]="!error.actividades">
+                {{ error.actividades }}
+              </div>
               <div
                 *ngIf="
                   actividades.invalid &&

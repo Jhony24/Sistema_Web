@@ -6,6 +6,9 @@ import { Router, Routes } from "@angular/router";
 })
 export class TokenService {
   private iss = {
+    //http://127.0.0.1:8000/api
+   //login: "https://proeditsclub.com/mendoza/backendPracticas/public/index.php/api/login",
+    //register: "https://proeditsclub.com/mendoza/backendPracticas/public/index.php/api/register",
     login: "http://127.0.0.1:8000/api/login",
     register: "http://127.0.0.1:8000/api/register",
   };

@@ -24,7 +24,7 @@
             <option value="" hidden selected>Seleccionar Carrera</option>
             <option
               *ngFor="let carrera of listcarreras"
-              [ngValue]="carrera.id"
+              [value]="carrera.id"
               value="carrera.id"
             >
               {{ carrera.nombrecarreras }}
@@ -44,10 +44,13 @@
           [(ngModel)]="macro.idarea"
         >
           <option value="" hidden selected>Seleccionar Area</option>
-          <option *ngFor="let area of listarea" [ngValue]="area.id">
+          <option *ngFor="let area of listarea" [value]="area.id">
             {{ area.nombrearea }}
           </option>
         </select>
+        <div class="text text-danger" [hidden]="!error.idarea">
+          {{ "Campo Obligatorio" }}
+        </div>
       </div>
     </div>
     <div class="container">
@@ -64,11 +67,14 @@
           #nombre_macro="ngModel"
           [(ngModel)]="macro.nombre_prmacro"
         />
+        <div class="text text-danger" [hidden]="!error.nombre_prmacro">
+          {{ error.nombre_prmacro }}
+        </div>
         <div
           *ngIf="
             nombre_macro.invalid && (nombre_macro.dirty || nombre_macro.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!nombre_macro"
         >
           <div
@@ -96,7 +102,7 @@
       <div class="form-group col-md-12">
         <label for="inputNombre">Nombre de Encargado del Proyecto</label>
         <input
-          minlength="20"
+          minlength="10"
           maxlength="100"
           required
           type="text"
@@ -106,9 +112,12 @@
           #encargado="ngModel"
           [(ngModel)]="macro.encargado"
         />
+        <div class="text text-danger" [hidden]="!error.encargado">
+          {{ error.encargado }}
+        </div>
         <div
           *ngIf="encargado.invalid && (encargado.dirty || encargado.touched)"
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!encargado"
         >
           <div
@@ -138,7 +147,7 @@
         <label for="exampleFormControlTextarea1">Descripcion</label>
         <textarea
           minlength="20"
-          maxlength="200"
+          maxlength="250"
           class="form-control"
           id="descripcion"
           name="descripcion"
@@ -146,11 +155,14 @@
           [(ngModel)]="macro.descripcion"
           rows="3"
         ></textarea>
+        <div class="text text-danger" [hidden]="!error.descripcion">
+          {{ error.descripcion }}
+        </div>
         <div
           *ngIf="
             descripcion.invalid && (descripcion.dirty || descripcion.touched)
           "
-          class="alert-danger"
+          class="text text-danger"
           ng-show="!descripcion"
         >
           <div

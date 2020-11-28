@@ -18,6 +18,7 @@ export class AddBasicoComponent implements OnInit {
   listmacro = new Array<ProyectoMacro>();
   validarForm: FormGroup;
   listempresa = new Array<Empresa>();
+  public error = <any>[];
 
   macro: ProyectoMacro = {
     idarea: null,
@@ -25,6 +26,7 @@ export class AddBasicoComponent implements OnInit {
     nombre_prmacro: null,
     encargado: null,
     descripcion: null,
+
     estadomacro: null,
   };
   id: any;
@@ -59,25 +61,32 @@ export class AddBasicoComponent implements OnInit {
 
     this.validarForm = this.formBuilder.group({
       id: 0,
-      idmacro: [this.id],
-      idempresa: ["", Validators.required],
+      idmacro: [this.id, Validators.required],
+      idempresa: [this.selectEmpresa, Validators.required],
       nombre_prbasico: [
         "",
         [
           Validators.required,
-          Validators.minLength(20),
+          Validators.minLength(10),
           Validators.maxLength(100),
         ],
       ],
-      estudianes_requeridos: ["", Validators.required],
-      ciclo: [""],
-      horas_cumplir: [""],
+      estudianes_requeridos: [
+        "",
+        [Validators.required, Validators.min(1), Validators.max(20)],
+      ],
+      ciclo: ["", [Validators.minLength(3), Validators.maxLength(20)]],
+      horas_cumplir: [
+        "",
+        [Validators.required, Validators.min(1), Validators.max(200)],
+      ],
       fecha_inicio: ["", Validators.required],
-      fecha_fin: [""],
-      actividades: ["", [Validators.minLength(10), Validators.maxLength(200)]],
+      //fecha_fin: [""],
+      modalidad: ["", Validators.required],
+      actividades: ["", [Validators.minLength(20), Validators.maxLength(250)]],
       requerimientos: [
         "",
-        [Validators.minLength(10), Validators.maxLength(200)],
+        [Validators.minLength(20), Validators.maxLength(250)],
       ],
       estadobasico: ["1"],
     });
@@ -93,10 +102,9 @@ export class AddBasicoComponent implements OnInit {
     return this.validarForm.get("idempresa");
   }
   onSubmit() {
-    if (this.validarForm.valid && this.validador==true) {
-      this.servicio
-        .crearProyectoBasico(this.validarForm.value)
-        .subscribe((data) => {
+    if (this.validarForm.valid && this.validador == true) {
+      this.servicio.crearProyectoBasico(this.validarForm.value).subscribe(
+        (data) => {
           this.ruta.navigate(["/principal/list-proyecto"]);
           Swal.fire({
             position: "top-right",
@@ -105,7 +113,11 @@ export class AddBasicoComponent implements OnInit {
             showConfirmButton: false,
             timer: 1500,
           });
-        });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -114,6 +126,9 @@ export class AddBasicoComponent implements OnInit {
         showConfirmButton: true,
       });
     }
+  }
+  handleError(error) {
+    this.error = error.error;
   }
 
   volver_lista(): void {
@@ -170,7 +185,7 @@ export class AddBasicoComponent implements OnInit {
   get nonbre() {
     return this.validarForm.get("nombre_prbasico");
   }
-  get estudiantes() {
+  get estudianes_requeridos() {
     return this.validarForm.get("estudianes_requeridos");
   }
   get fecha_inicio() {
@@ -182,7 +197,10 @@ export class AddBasicoComponent implements OnInit {
   get requerimientos() {
     return this.validarForm.get("requerimientos");
   }
-  get horastotales(){
+  get horastotales() {
     return this.validarForm.get("horas_cumplir");
+  }
+  get ciclo() {
+    return this.validarForm.get("ciclo");
   }
 }

@@ -71,24 +71,61 @@ export class AprobarPasantiasComponent implements OnInit {
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.value) {
-        this.servicio.aprobarpsotulacion(this.postulacion).subscribe((data) => {
-          this.ruta.navigate(["/principal/prasantias_nuevas"]);
-          Swal.fire(
-            "Postulacion Aprobada!",
-            "La postulacion ha sidos aprobada satisfactoriamente!",
-            "success"
-          );
+        Swal.fire({
+          allowOutsideClick: false,
+          icon: "info",
+          title: "Espere por favor...",
         });
+        Swal.showLoading();
+        this.servicio
+          .aprobarpsotulacion(this.postulacion)
+          .subscribe((data) => {});
+        this.ruta.navigateByUrl("/principal/pasantias_nuevas");
+        Swal.fire(
+          "Postulacion Aprobada satisfactoriamente!",
+          "Se le ha notificado a " +
+            this.postulacion.nombre_completo +
+            " por medio de correo electronico",
+          "success"
+        );
       }
     });
   }
   rechazar() {
-    this.servicio.rechazarpsotulacion(this.postulacion).subscribe((data) => {
-      Swal.fire(
-        "Postulacion Rechazada!",
-        "La postulacion ha sidos rechazada satisfactoriamente!",
-        "success"
-      );
+    Swal.fire({
+      title: "¿Está seguro?",
+      text:
+        "¿Seguro desea rechazar la postulacion a:" +
+        this.postulacion.nombre_completo +
+        "?",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Rechazar",
+      cancelButtonText: "Cancelar",
+    }).then((result) => {
+      if (result.value) {
+        Swal.fire({
+          allowOutsideClick: false,
+          icon: "info",
+          title: "Espere por favor...",
+        });
+        Swal.showLoading();
+        this.servicio
+          .rechazarpsotulacion(this.postulacion)
+          .subscribe((data) => {
+            Swal.close();
+            Swal.fire(
+              "Postulacion Rechazada satisfactoriamente!",
+              "Se le ha notificado a " +
+                this.postulacion.nombre_completo +
+                " por medio de correo electronico",
+              "success"
+            );
+            this.ruta.navigate(["/principal/pasantias_nuevas"]);
+          });
+      }
     });
   }
   volver_lista(): void {

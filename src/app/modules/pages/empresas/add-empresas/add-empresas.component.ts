@@ -32,7 +32,7 @@ export class AddEmpresasComponent implements OnInit {
         "",
         [
           Validators.required,
-          Validators.minLength(20),
+          Validators.minLength(10),
           Validators.maxLength(200),
         ],
       ],
@@ -42,14 +42,10 @@ export class AddEmpresasComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(10),
-          Validators.maxLength(50),
+          Validators.maxLength(100),
         ],
       ],
-      ruc: [
-        "",
-        Validators.required,
-       
-      ],
+      ruc: ["", [Validators.required]],
       direccion: [
         "",
         [
@@ -107,6 +103,22 @@ export class AddEmpresasComponent implements OnInit {
 
   handleError(error) {
     this.error = error.error;
+    if (this.error.error) {
+      Swal.fire({
+        position: "top",
+        icon: "info",
+        title: this.error.error,
+        showConfirmButton: true,
+      });
+    }
+  }
+  mostrar() {
+    Swal.fire({
+      position: "top",
+      icon: "info",
+      title: "Campos Obligatorios Vacios o Invalidos",
+      showConfirmButton: true,
+    });
   }
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-empresas"]);
@@ -120,11 +132,11 @@ export class AddEmpresasComponent implements OnInit {
     this.selectCarrera = event.target.value;
   }
   validaNumericos(event) {
-    if(event.charCode >= 48 && event.charCode <= 57){
+    if (event.charCode >= 48 && event.charCode <= 57) {
       return true;
-     }
-     return false;        
-}
+    }
+    return false;
+  }
   get idcarrera() {
     return this.validarForm.get("idcarrera");
   }

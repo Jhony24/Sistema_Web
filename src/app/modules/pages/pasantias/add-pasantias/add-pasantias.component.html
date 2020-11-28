@@ -30,11 +30,14 @@
                   {{ carrera.nombrecarreras }}
                 </option>
               </select>
+              <div class="text text-danger" [hidden]="!error.idcarrera">
+                {{ error.idcarrera }}
+              </div>
               <div
                 *ngIf="
                   idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
               >
                 <div
                   *ngIf="idcarrera.errors.required"
@@ -60,10 +63,12 @@
                 {{ area.nombrearea }}
               </option>
             </select>
-
+            <div class="text text-danger" [hidden]="!error.idarea">
+              {{ error.idarea }}
+            </div>
             <div
               *ngIf="idarea.invalid && (idarea.dirty || idarea.touched)"
-              class="alert-danger"
+              class="text text-danger"
             >
               <div
                 *ngIf="idarea.errors.required"
@@ -92,11 +97,14 @@
                 {{ empresa.nombreempresa }}
               </option>
             </select>
+            <div class="text text-danger" [hidden]="!error.idempresa">
+              {{ error.idempresa }}
+            </div>
             <div
               *ngIf="
                 idempresa.invalid && (idempresa.dirty || idempresa.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
             >
               <div
                 *ngIf="idempresa.errors.required"
@@ -107,13 +115,38 @@
             </div>
           </div>
         </div>
+        <div class="container">
+          <div class="form-group col-md-6">
+            <label for="exampleFormControlInput1">Modalidad de Pratica</label>
+            <br />
+            <input
+              required
+              value="Presencial"
+              style="margin: 5px"
+              type="radio"
+              formControlName="modalidad"
+            />
+            <label for="tipo_empresa">Presencial</label>
 
+            <input
+              required
+              value="TeleTrabajo"
+              style="margin: 5px"
+              type="radio"
+              formControlName="modalidad"
+            />
+            <label for="tipo_empresa">TeleTrabajo</label>
+            <br />
+          </div>
+          <div class="text text-danger" [hidden]="!error.modalidad">
+            {{ error.modalidad }}
+          </div>
+        </div>
         <div style="margin-left: initial" class="form-row">
           <div class="container">
             <div class="form-group col-md-4">
               <label for="inputNombre">Cupos Disponibles</label>
               <input
-                pattern="^[0-9]+"
                 required
                 type="number"
                 class="form-control"
@@ -123,25 +156,24 @@
                 formControlName="cupos"
                 placeholder="Ej. 3"
               />
-              <div
-                class="text text-danger"
-                *ngIf="
-                  (cupos.dirty || cupos.touched) &&
-                  cupos.invalid &&
-                  cupos.errors.pattern
-                "
-              >
-                Solo Valores positivos
+              <div class="text text-danger" [hidden]="!error.cupos">
+                {{ error.cupos }}
               </div>
               <div
                 *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
-                class="alert-danger"
+                class="text text-danger"
               >
                 <div
                   *ngIf="cupos.errors.required"
                   class="container-error-message"
                 >
                   Este campo es requerido
+                </div>
+                <div *ngIf="cupos.errors.min" class="container-error-message">
+                  Campo Invalido
+                </div>
+                <div *ngIf="cupos.errors.max" class="container-error-message">
+                  Campo Invalido
                 </div>
               </div>
             </div>
@@ -157,18 +189,33 @@
                 placeholder="Ej. 180"
                 min="1"
               />
+              <div class="text text-danger" [hidden]="!error.horas_cumplir">
+                {{ error.horas_cumplir }}
+              </div>
               <div
                 *ngIf="
                   horas_cumplir.invalid &&
                   (horas_cumplir.dirty || horas_cumplir.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
               >
                 <div
                   *ngIf="horas_cumplir.errors.required"
                   class="container-error-message"
                 >
                   Este campo es requerido
+                </div>
+                <div
+                  *ngIf="horas_cumplir.errors.min"
+                  class="container-error-message"
+                >
+                  Campo Invalido
+                </div>
+                <div
+                  *ngIf="horas_cumplir.errors.max"
+                  class="container-error-message"
+                >
+                  Campo Invalido
                 </div>
               </div>
             </div>
@@ -177,12 +224,35 @@
               <input
                 type="text"
                 class="form-control"
-                name="ciclo"
-                id="ciclo"
-                formControlName="ciclo"
+                name="ciclo_necesario"
+                id="ciclo_necesario"
+                formControlName="ciclo_necesario"
                 min="1"
                 placeholder="Ej. 180"
               />
+              <div class="text text-danger" [hidden]="!error.ciclo_necesario">
+                {{ error.ciclo_necesario }}
+              </div>
+              <div
+                *ngIf="
+                  ciclo_necesario.invalid &&
+                  (ciclo_necesario.dirty || ciclo_necesario.touched)
+                "
+                class="text text-danger"
+              >
+                <div
+                  *ngIf="ciclo_necesario.errors.minlength"
+                  class="container-error-message"
+                >
+                  Campo Invalido
+                </div>
+                <div
+                  *ngIf="ciclo_necesario.errors.maxlength"
+                  class="container-error-message"
+                >
+                  Campo Invalido
+                </div>
+              </div>
             </div>
           </div>
           <div class="container">
@@ -197,6 +267,9 @@
                 (change)="validarfecha($event)"
                 formControlName="fecha_inicio"
               />
+              <div class="text text-danger" [hidden]="!error.fecha_inicio">
+                {{ error.fecha_inicio }}
+              </div>
               <div
                 *ngIf="
                   !validador && (fecha_inicio.dirty || fecha_inicio.touched)
@@ -210,7 +283,7 @@
                   fecha_inicio.invalid &&
                   (fecha_inicio.dirty || fecha_inicio.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
               >
                 <div
                   *ngIf="fecha_inicio.errors.required"
@@ -270,12 +343,15 @@
               formControlName="actividades"
             >
             </textarea>
+            <div class="text text-danger" [hidden]="!error.actividades">
+              {{ error.actividades }}
+            </div>
             <div
               *ngIf="
                 actividades.invalid &&
                 (actividades.dirty || actividades.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
               ng-show="!actividades"
             >
               <div
@@ -303,12 +379,15 @@
               id="requerimientos"
               formControlName="requerimientos"
             ></textarea>
+            <div class="text text-danger" [hidden]="!error.requerimientos">
+              {{ error.requerimientos }}
+            </div>
             <div
               *ngIf="
                 requerimientos.invalid &&
                 (requerimientos.dirty || requerimientos.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
               ng-show="!requerimientos"
             >
               <div

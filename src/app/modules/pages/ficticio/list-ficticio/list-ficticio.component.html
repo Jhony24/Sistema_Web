@@ -1,0 +1,56 @@
+<div class="container_p">
+  <form>
+    <h1>
+      <b>Listado de Proyectos Para 3er Ciclo</b>
+    </h1>
+    <button class="btn btn-primary" (click)="add_ficticio()">
+      <span class="glyphicon glyphicon-plus-sign">&nbsp;</span
+      ><b> Nuevo Proyecto</b></button
+    >&nbsp;&nbsp;&nbsp;
+    <table class="table table-hover">
+      <thead style="text-align: center">
+        <tr style="text-align: center">
+          <th class="hidden">Id</th>
+          <th style="text-align: center">Area</th>
+          <th style="text-align: center">Empresa</th>
+          <th style="text-align: center">Nombre Proyecto</th>
+          <th style="text-align: center">Vacantes</th>
+          <th style="text-align: center">Fecha de Inicio</th>
+          <th style="text-align: center">Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr
+          *ngFor="let ficticio of listficticio"
+          style="text-align: center"
+        >
+          <td class="hidden">{{ ficticio.id }}</td>
+          <td>{{ ficticio.nombrearea }}</td>
+          <td>
+            {{ ficticio.nombreempresa }}
+          </td>
+          <td>
+            {{ ficticio.nombre_prficticio }}
+          </td>
+          <td>{{ ficticio.estudianes_requeridos }}</td>
+          <td>{{ ficticio.fecha_inicio | date: "dd/MM/yyyy" }}</td>
+
+          <td>
+            <div
+              routerLink="/principal/edit-proyecto_3ero/{{
+                ficticio.id
+              }}"
+              class="float-right mx-1 btn btn-success"
+              style="margin: 5px"
+            >
+              <i class="fa fa-edit"></i>
+            </div>
+            <div (click)="eliminar_ficticio(ficticio)" class="float-right mx-1 btn btn-danger">
+              <i class="fa fa-trash"></i>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </form>
+</div>

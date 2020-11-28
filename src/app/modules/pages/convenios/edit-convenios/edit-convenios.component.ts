@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { NgForm } from '@angular/forms';
+import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Carrera } from "../../models/Carrera";
@@ -15,6 +15,7 @@ import { ServiceService } from "../../services/service.service";
 export class EditConveniosComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listempresa = new Array<Empresa>();
+  public error = <any>[];
 
   convenio: Convenio = {
     tipo_convenio: null,
@@ -58,21 +59,34 @@ export class EditConveniosComponent implements OnInit {
     this.listar_empresas();
   }
 
-  put(myform:NgForm) {
-    if(myform.valid==true){
-    this.servicio.actualizarConvenio(this.convenio).subscribe((data) => {
-      this.ruta.navigate(["/principal/list-convenio"]);
-      Swal.fire("Good ediraste!", "You clicked the button!", "success");
-    });
+  put(myform: NgForm) {
+    if (myform.valid == true) {
+      this.servicio.actualizarConvenio(this.convenio).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-convenio"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Convenio actualizado correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
+    } else {
+      Swal.fire({
+        position: "top",
+        icon: "info",
+        title: "Campos Obligatorios Vacios o Invalidos",
+        showConfirmButton: true,
+      });
+    }
   }
-  else{
-    Swal.fire({
-      position: "top",
-      icon: "info",
-      title: "Campos Obligatorios Vacios o Invalidos",
-      showConfirmButton: true,
-    });
-  }
+  handleError(error) {
+    this.error = error.error;
   }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(

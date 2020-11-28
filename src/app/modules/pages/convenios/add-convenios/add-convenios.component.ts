@@ -1,4 +1,4 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Component, OnInit } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Router } from "@angular/router";
@@ -18,13 +18,14 @@ export class AddConveniosComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listempresa = new Array<Empresa>();
   validarForm: FormGroup;
+  public error = <any>[];
   public filesToUpload: Array<File>;
   fileToUpload: File = null;
-  uploadedFiles: Array < File > ;
+  uploadedFiles: Array<File>;
 
-  private httpHeader = new HttpHeaders( {
-    'Content-Type' : 'application/json' ,
-    });
+  private httpHeader = new HttpHeaders({
+    "Content-Type": "application/json",
+  });
 
   constructor(
     private ruta: Router,
@@ -39,29 +40,51 @@ export class AddConveniosComponent implements OnInit {
 
     this.validarForm = this.formBuilder.group({
       id: 0,
-      tipo_convenio: ["", [Validators.required,Validators.minLength(10),Validators.maxLength(70)]],
+      tipo_convenio: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(10),
+          Validators.maxLength(50),
+        ],
+      ],
       idempresa: [this.selectEmpresa, Validators.required],
       fecha_inicio: ["", Validators.required],
-      fecha_culminacion: ["", [Validators.required,Validators.minLength(5),Validators.maxLength(20)]],
-      objeto: ["", [Validators.required,Validators.minLength(10),Validators.maxLength(150)]],
+      fecha_culminacion: [
+        "",
+        [Validators.required, Validators.minLength(1), Validators.maxLength(7)],
+      ],
+      objeto: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(20),
+          Validators.maxLength(100),
+        ],
+      ],
       idcarrera: [this.selectCarrera, Validators.required],
       estado_convenio: ["1"],
-      archivo_convenio:[""]
+      archivo_convenio: [""],
     });
   }
 
   onSubmit() {
     if (this.validarForm.valid) {
-      this.servicio.crearConvenio(this.validarForm.value).subscribe((data) => {
-        this.ruta.navigate(["/principal/list-convenio"]);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Convenio registrado correctamente",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-      });
+      this.servicio.crearConvenio(this.validarForm.value).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-convenio"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Convenio registrado correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -72,7 +95,7 @@ export class AddConveniosComponent implements OnInit {
       });
     }
 
-   /*var formData: any = new FormData();
+    /*var formData: any = new FormData();
     formData.append("id",this.validarForm.get('id').value);
     formData.append("tipo_convenio",this.validarForm.get('tipo_convenio').value);
     formData.append("idempresa",this.validarForm.get('idempresa').value);
@@ -87,15 +110,17 @@ export class AddConveniosComponent implements OnInit {
     (response) => console.log("respuesta: ",response),
     (error) => console.log("error de imagen: ",error)
   )*/
-
+  }
+  handleError(error) {
+    this.error = error.error;
   }
 
   uploadFile(event) {
     const file = (event.target as HTMLInputElement).files[0];
     this.validarForm.patchValue({
-      archivo_convenio: file
+      archivo_convenio: file,
     });
-    this.validarForm.get('archivo_convenio').updateValueAndValidity()
+    this.validarForm.get("archivo_convenio").updateValueAndValidity();
   }
   volver_lista(): void {
     this.validarForm.reset();
@@ -133,12 +158,12 @@ export class AddConveniosComponent implements OnInit {
     this.selectEmpresa = event.target.value;
   }
 
-  fileChangeEvent(fileInput:any){
-    this.filesToUpload=<Array<File>> fileInput.target.files;
-}
-handleFileInput(files: FileList) {
-  this.fileToUpload = files.item(0);
-}
+  fileChangeEvent(fileInput: any) {
+    this.filesToUpload = <Array<File>>fileInput.target.files;
+  }
+  handleFileInput(files: FileList) {
+    this.fileToUpload = files.item(0);
+  }
 
   get idcarrera() {
     return this.validarForm.get("idcarrera");
@@ -148,16 +173,16 @@ handleFileInput(files: FileList) {
     return this.validarForm.get("idempresa");
   }
 
-  get tipo_convenio(){
+  get tipo_convenio() {
     return this.validarForm.get("tipo_convenio");
   }
-  get fecha_incio(){
+  get fecha_incio() {
     return this.validarForm.get("fecha_inicio");
   }
-  get fecha_culminacion(){
+  get fecha_culminacion() {
     return this.validarForm.get("fecha_culminacion");
   }
-  get objeto(){
+  get objeto() {
     return this.validarForm.get("objeto");
   }
 }

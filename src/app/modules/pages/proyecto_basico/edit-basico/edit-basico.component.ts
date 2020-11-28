@@ -17,6 +17,7 @@ export class EditBasicoComponent implements OnInit {
   listempresa = new Array<Empresa>();
   fechapractica: string = "";
   public validador = true;
+  public error = <any>[];
 
   basico: ProyectoBasico = {
     idmacro: null,
@@ -27,6 +28,7 @@ export class EditBasicoComponent implements OnInit {
     horas_cumplir: null,
     fecha_inicio: null,
     fecha_fin: null,
+    modalidad: null,
     actividades: null,
     requerimientos: null,
     nombreempresa: null,
@@ -62,21 +64,26 @@ export class EditBasicoComponent implements OnInit {
     this.listar_empresas();
   }
   volver_lista(): void {
-    this.ruta.navigate(["/principal/list-basico"]);
+    this.ruta.navigate(["/principal/list-basico/", this.basico.idmacro]);
   }
 
   put(myform: NgForm) {
     if (myform.valid == true && this.validador == true) {
-      this.servicio.actualizarBasico(this.basico).subscribe((data) => {
-        this.ruta.navigate(["/principal/list-basico/", this.basico.idmacro]);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Proyecto Basico actualizado correctamente",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-      });
+      this.servicio.actualizarBasico(this.basico).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-basico/", this.basico.idmacro]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Proyecto Basico actualizado correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -86,6 +93,9 @@ export class EditBasicoComponent implements OnInit {
         //timer: 1800,
       });
     }
+  }
+  handleError(error) {
+    this.error = error.error;
   }
   listar_macro() {
     this.servicio.getListadoProyectoMacro().subscribe((data) => {

@@ -2,8 +2,8 @@
   <form>
     <h1>
       <b
-        >Listado de Empresas o Instituciones para realizar Practicas Pre-Profesionales o
-        Pasantias</b
+        >Listado de Empresas o Instituciones para realizar Practicas
+        Pre-Profesionales o Pasantias</b
       >
     </h1>
     <button class="btn btn-primary" (click)="add_empresas()">
@@ -14,20 +14,23 @@
     <br />
 
     <table class="table table-hover">
-      <thead style="text-align: center;">
-        <tr style="text-align: center;">
+      <thead style="text-align: center">
+        <tr style="text-align: center">
           <th class="hidden">Id</th>
-          <th style="text-align: center;">Nro.</th>
-          <th style="text-align: center;">Nombre Empresa</th>
-          <th style="text-align: center;">Representante Legal</th>
-          <th style="text-align: center;">Correo Electonico</th>
-          <th style="text-align: center;">Dirección:</th>
-          <th style="text-align: center;">Telefonos:</th>
-          <th style="text-align: center;">Opciones</th>
+          <th style="text-align: center">Nro.</th>
+          <th style="text-align: center">Nombre Empresa</th>
+          <th style="text-align: center">Representante Legal</th>
+          <th style="text-align: center">Correo Electonico</th>
+          <th style="text-align: center">Dirección:</th>
+          <th style="text-align: center">Telefonos:</th>
+          <th style="text-align: center">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let empresa of listempresas; let indice = index" style="text-align: center;">
+        <tr
+          *ngFor="let empresa of listempresas; let indice = index"
+          style="text-align: center"
+        >
           <td class="hidden">{{ empresa.id }}</td>
           <td>{{ indice + 1 }}</td>
           <td>{{ empresa.nombreempresa }}</td>
@@ -36,10 +39,17 @@
           <td>{{ empresa.direccion }}</td>
           <td>{{ empresa.telefono }}</td>
           <td>
-            <div routerLink="/principal/edit-empresas/{{empresa.id}}" class="float-right mx-1 btn btn-success" style="margin: 5px;">
+            <div
+              routerLink="/principal/edit-empresas/{{ empresa.id }}"
+              class="float-right mx-1 btn btn-success"
+              style="margin: 5px"
+            >
               <i class="fa fa-edit"></i>
             </div>
-            <div class="float-right mx-1 btn btn-danger">
+            <div
+              (click)="eliminar_emresa(empresa)"
+              class="float-right mx-1 btn btn-danger"
+            >
               <i class="fa fa-trash"></i>
             </div>
           </td>

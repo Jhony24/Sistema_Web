@@ -17,6 +17,7 @@ export class AddProyectoComponent implements OnInit {
   selectCarrera: string = "";
   selectArea: string = "";
   validarForm: FormGroup;
+  public error = <any>[];
 
   constructor(
     private ruta: Router,
@@ -43,11 +44,11 @@ export class AddProyectoComponent implements OnInit {
         [
           Validators.required,
           Validators.minLength(10),
-          Validators.maxLength(50),
+          Validators.maxLength(100),
         ],
       ],
       estadomacro: ["1"],
-      descripcion: ["", [Validators.minLength(15), Validators.maxLength(200)]],
+      descripcion: ["", [Validators.minLength(20), Validators.maxLength(250)]],
       idcarrera: [this.selectCarrera, Validators.required],
       idarea: [this.selectArea, Validators.required],
     });
@@ -55,9 +56,8 @@ export class AddProyectoComponent implements OnInit {
 
   onSubmit() {
     if (this.validarForm.valid) {
-      this.servicio
-        .crearProyectoMacro(this.validarForm.value)
-        .subscribe((data) => {
+      this.servicio.crearProyectoMacro(this.validarForm.value).subscribe(
+        (data) => {
           this.ruta.navigate(["/principal/list-proyecto"]);
           Swal.fire({
             position: "top-right",
@@ -66,7 +66,11 @@ export class AddProyectoComponent implements OnInit {
             showConfirmButton: false,
             timer: 1800,
           });
-        });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -76,7 +80,9 @@ export class AddProyectoComponent implements OnInit {
       });
     }
   }
-
+  handleError(error) {
+    this.error = error.error;
+  }
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-proyecto"]);
   }

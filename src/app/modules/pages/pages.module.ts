@@ -57,6 +57,10 @@ import { ProyFinalizadosComponent } from './postulaciones/proyectos/proy-finaliz
 import { AprobarPasantiasComponent } from './postulaciones/pasantias/aprobar-pasantias/aprobar-pasantias.component';
 import { AprobarPracticasComponent } from './postulaciones/practicas/aprobar-practicas/aprobar-practicas.component';
 import { AprobarProyectosComponent } from './postulaciones/proyectos/aprobar-proyectos/aprobar-proyectos.component';
+import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
+import { AddFicticioComponent } from './ficticio/add-ficticio/add-ficticio.component';
+import { EditFicticioComponent } from './ficticio/edit-ficticio/edit-ficticio.component';
+import { ListFicticioComponent } from './ficticio/list-ficticio/list-ficticio.component';
 
 @NgModule({
   declarations: [
@@ -103,6 +107,10 @@ import { AprobarProyectosComponent } from './postulaciones/proyectos/aprobar-pro
     AprobarPasantiasComponent,
     AprobarPracticasComponent,
     AprobarProyectosComponent,
+    DashboardComponent,
+    AddFicticioComponent,
+    EditFicticioComponent,
+    ListFicticioComponent,
   ],
   imports: [
     CommonModule,

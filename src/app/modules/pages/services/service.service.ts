@@ -5,6 +5,7 @@ import { Area } from "../models/Area";
 import { Carrera } from "../models/Carrera";
 import { Convenio } from "../models/Convenio";
 import { Empresa } from "../models/Empresa";
+import { Ficticio } from "../models/Ficticio";
 import { Postulacion } from "../models/Postulacion";
 import { Practicas } from "../models/Practicas";
 import { ProyectoBasico } from "../models/ProyectoBasico";
@@ -16,6 +17,8 @@ import { Users } from "../models/Users";
   providedIn: "root",
 })
 export class ServiceService {
+  //private API_REST =
+  //"https://proeditsclub.com/mendoza/backendPracticas/public/index.php/api";
   private API_REST = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient) {}
@@ -27,6 +30,9 @@ export class ServiceService {
   //obtener el usuario del perfil
   getuser(): Observable<any> {
     return this.http.get(`${this.API_REST}/user-profile`);
+  }
+  getusercarrera(): Observable<any> {
+    return this.http.get(`${this.API_REST}/user-carrera`);
   }
 
   /////////////Servicio de Areas//////////////////7
@@ -202,19 +208,13 @@ export class ServiceService {
   ///////////Servicio de Postulacion/////////////////
 
   getListadoPostulantesPracticas(): Observable<any[]> {
-    return this.http.get<Postulacion[]>(
-      `${this.API_REST}/postulacionpractica`
-    );
+    return this.http.get<Postulacion[]>(`${this.API_REST}/postulacionpractica`);
   }
   getListadoPostulantesPasantias(): Observable<any[]> {
-    return this.http.get<Postulacion[]>(
-      `${this.API_REST}/postulacionpasantia`
-    );
+    return this.http.get<Postulacion[]>(`${this.API_REST}/postulacionpasantia`);
   }
   getListadoPostulantesProyectos(): Observable<any[]> {
-    return this.http.get<Postulacion[]>(
-      `${this.API_REST}/postulacionproyecto`
-    );
+    return this.http.get<Postulacion[]>(`${this.API_REST}/postulacionproyecto`);
   }
 
   //aprobar y rechazar postulacion pendiente
@@ -229,5 +229,23 @@ export class ServiceService {
       `${this.API_REST}/rechazar` + "/" + postulacion.id,
       postulacion
     );
+  }
+
+  //////////////Ficticio
+  getListadoProyectoFicticio(): Observable<any[]> {
+    return this.http.get<Ficticio[]>(`${this.API_REST}/ficticio`);
+  }
+  crearFicticio(newficticio: Ficticio): Observable<any> {
+    return this.http.post<Ficticio>(`${this.API_REST}/ficticio`, newficticio);
+  }
+
+  actualizarFiciticio(myficticio: Ficticio): Observable<any> {
+    return this.http.put<Ficticio>(
+      `${this.API_REST}/ficticio` + "/" + myficticio.id,
+      myficticio
+    );
+  }
+  eliminarFicticio(id: number): Observable<any> {
+    return this.http.delete<Ficticio>(`${this.API_REST}/ficticio` + "/" + id);
   }
 }

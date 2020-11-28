@@ -34,6 +34,11 @@
               ><i class="fa fa-puzzle-piece"></i> <span>Proyecto Macro</span></a
             >
           </li>
+          <li *ngIf="userCarrera == 'Computación'">
+            <a [routerLink]="'/principal/list-proyecto_3ero'" class="nav-link"
+              ><i class="fa fa-puzzle-piece"></i> <span>Proyecto Ficticio 3er ciclo</span></a
+            >
+          </li>
         </ul>
       </li>
       <li>

@@ -59,9 +59,9 @@ export class AuthInterceptorService implements HttpInterceptor {
           this.auth.changeAuthStatus(false);
           this.ruta.navigateByUrl("/login");
         }
-        if (err.status === 403){
+        if (err.status === 403) {
           console.log("error 403");
-          this.ruta.navigateByUrl("/principal/list-practicas-profesionales");
+          //this.ruta.navigateByUrl("/principal/list-practicas-profesionales");
         }
 
         return throwError(err);

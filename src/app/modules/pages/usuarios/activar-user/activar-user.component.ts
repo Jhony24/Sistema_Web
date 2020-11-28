@@ -10,6 +10,7 @@ import { ServiceService } from "../../services/service.service";
   styleUrls: ["./activar-user.component.css"],
 })
 export class ActivarUserComponent implements OnInit {
+  role=""
   user: Users = {
     cedula: null,
     nombre_completo: null,
@@ -30,6 +31,9 @@ export class ActivarUserComponent implements OnInit {
     private activateRote: ActivatedRoute,
     private ruta: Router
   ) {
+    this.servicio.getRoles().subscribe((data: any) => {
+      this.role = data;
+    });
     this.id = this.activateRote.snapshot.params["id"];
     if (this.id) {
       this.editing = true;

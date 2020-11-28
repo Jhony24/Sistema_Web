@@ -141,10 +141,11 @@
           [(ngModel)]="form.idcarrera"
           required
         >
+        <option value="" hidden selected>Seleccione su Carrera</option>
           <option
             selected
             *ngFor="let carrera of listcarreras"
-            [ngValue]="carrera.id"
+            [value]="carrera.id"
           >
             {{ carrera.nombrecarreras }}
           </option>

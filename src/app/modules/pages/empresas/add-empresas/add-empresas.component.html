@@ -13,6 +13,7 @@
     >&nbsp;&nbsp;&nbsp;
     <br />
     <br />
+
     <div class="container">
       <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
         <div class="container">
@@ -35,6 +36,9 @@
                   {{ carrera.nombrecarreras }}
                 </option>
               </select>
+              <div class="text text-danger" [hidden]="!error.idcarrera">
+                {{ error.idcarrera }}
+              </div>
               <div
                 *ngIf="
                   idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
@@ -65,8 +69,9 @@
               id="nombreempresa"
               placeholder="Ej. Kradac"
             />
-            <div class="text text-danger" [hidden]="!error.nombreempresa">
-              {{ error.nombreempresa }}
+
+            <div class="text text-danger" [hidden]="!error.idempresa">
+              {{ error.idempresa }}
             </div>
             <div
               *ngIf="
@@ -136,8 +141,11 @@
               formControlName="nombrerepresentante"
               name="nombrerepresentante"
               id="nombrerepresentante"
-              placeholder="Gestion de Redes, Laborales 1, etc"
+              placeholder="Ej. Jhony Xavier Mendoza Japón"
             />
+            <div class="text text-danger" [hidden]="!error.nombrerepresentante">
+              {{ error.nombrerepresentante }}
+            </div>
             <div
               *ngIf="
                 nombrerepresentante.invalid &&
@@ -173,12 +181,14 @@
             <label for="inputNombre">RUC</label>
             <input
               required
-              type="text"
+              type="number"
               pattern="[0-9]{13}"
               class="form-control"
               formControlName="ruc"
               name="ruc"
               id="ruc"
+              min="1"
+              placeholder="Ej. 1104808412001"
             />
             <div class="text text-danger" [hidden]="!error.ruc">
               {{ error.ruc }}
@@ -191,14 +201,9 @@
               <div *ngIf="ruc.errors.required" class="container-error-message">
                 Este campo es requerido
               </div>
-              <div *ngIf="ruc.errors.minlength" class="container-error-message">
-                Longitud de cadena invalida
-              </div>
-              <div *ngIf="ruc.errors.maxlength" class="container-error-message">
-                Longitud de cadena invalida
-              </div>
+
               <div *ngIf="ruc.errors.pattern" class="container-error-message">
-                Este campo acepta solo numeros
+                Longitud Invalidad
               </div>
             </div>
           </div>
@@ -211,7 +216,11 @@
               formControlName="direccion"
               name="direccion"
               id="inputDireccion"
+              placeholder="Ej. Av Universitaria"
             />
+            <div class="text text-danger" [hidden]="!error.direccion">
+              {{ error.direccion }}
+            </div>
             <div
               *ngIf="
                 direccion.invalid && (direccion.dirty || direccion.touched)
@@ -251,6 +260,7 @@
               formControlName="telefono"
               name="telefono"
               id="telefono"
+              placeholder="Ej. 0991933294"
             />
             <div class="text text-danger" [hidden]="!error.telefono">
               {{ error.telefono }}
@@ -264,6 +274,7 @@
               formControlName="correo"
               name="correo"
               id="inputcorreo"
+              placeholder="Ej. marketingoderbiz@gmail.com"
             />
             <div class="text text-danger" [hidden]="!error.correo">
               {{ error.correo }}
@@ -304,6 +315,9 @@
               id="exampleFormControlTextarea1"
               rows="3"
             ></textarea>
+            <div class="text text-danger" [hidden]="!error.actividades">
+              {{ error.actividades }}
+            </div>
             <div
               *ngIf="
                 actividades.invalid &&

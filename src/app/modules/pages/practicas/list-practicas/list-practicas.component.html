@@ -13,8 +13,9 @@
           <th class="hidden">Id</th>
           <th style="text-align: center">Area</th>
           <th style="text-align: center">Empresa</th>
+          <th style="text-align: center">Modalidad</th>
           <th style="text-align: center">Tipo de Empresa</th>
-          <th style="text-align: center">Cupos Disponibles</th>
+          <th style="text-align: center">Vacantes</th>
           <th style="text-align: center">Fecha de Inicio</th>
           <th style="text-align: center">Opciones</th>
         </tr>
@@ -25,6 +26,9 @@
           <td>{{ practica.nombrearea }}</td>
           <td>
             {{ practica.nombreempresa }}
+          </td>
+          <td>
+            {{ practica.modalidad }}
           </td>
           <td>{{ practica.tipo_empresa }}</td>
           <td>{{ practica.cupos }}</td>

@@ -1,0 +1,312 @@
+<div class="container_p">
+  <div class="titulo">
+    <h1><b>Formulario de Ingreso de Proyectos para estudiantes de 3er ciclo</b></h1>
+  </div>
+  <button class="btn btn-danger" (click)="volver_lista()">
+    <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
+  >&nbsp;&nbsp;&nbsp;
+  <br />
+  <br />
+  <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
+    <div class="container">
+      <div class="form-group">
+        <div class="form-group col-md-6" style="width: auto">
+          <label for="idcarrera">Seleccionar Carrera</label>
+
+          <select
+            style="width: auto"
+            required
+            class="form-control"
+            (change)="selectChangeCarrera($event)"
+            formControlName="idcarrera"
+          >
+            <option value="" hidden selected>Seleccionar Carrera</option>
+            <option *ngFor="let carrera of listcarreras" [ngValue]="carrera.id">
+              {{ carrera.nombrecarreras }}
+            </option>
+          </select>
+          <div
+            *ngIf="idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)"
+            class="text-danger"
+          >
+            <div
+              *ngIf="idcarrera.errors.required"
+              class="container-error-message"
+            >
+              Este campo es requerido
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="inputciclo">Nombre de Empresa</label>
+        <input
+          type="text"
+          placeholder="Ej. Cooperativa de Ahorro y Credito CREDIAMIGO "
+          class="form-control"
+          name="nombreempresa"
+          id="nombreempresa"
+          formControlName="nombreempresa"
+          required
+        />
+        <div
+          *ngIf="
+            nombreempresa.invalid &&
+            (nombreempresa.dirty || nombreempresa.touched)
+          "
+          class="text text-danger"
+        >
+          <div
+            *ngIf="nombreempresa.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+          <div
+            *ngIf="nombreempresa.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="nombreempresa.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="inputciclo">Nombre de Area</label>
+        <input
+          type="text"
+          placeholder="Ej. Base de Datos "
+          class="form-control"
+          name="nombrearea"
+          id="nombrearea"
+          formControlName="nombrearea"
+          required
+        />
+        <div
+          *ngIf="
+            nombrearea.invalid &&
+            (nombrearea.dirty || nombrearea.touched)
+          "
+          class="text text-danger"
+        >
+          <div
+            *ngIf="nombrearea.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+          <div
+            *ngIf="nombrearea.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="nombrearea.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-8">
+        <label for="inputciclo">Nombre de Proyecto</label>
+        <input
+          type="text"
+          placeholder="Ej. Base de Datos "
+          class="form-control"
+          name="nombre_prficticio"
+          id="nombre_prficticio"
+          formControlName="nombre_prficticio"
+        />
+      </div>
+    </div>
+
+    <div class="container" style="margin-left: initial">
+      <div class="form-group col-md-4">
+        <label for="inputcupos">Estudiantes Requeridos</label>
+        <input
+          pattern="^[0-9]+"
+          type="number"
+          min="1"
+          placeholder="Ej. 5"
+          class="form-control"
+          name="estudianes_requeridos"
+          id="estudianes_requeridos"
+          formControlName="estudianes_requeridos"
+          required
+        />
+        <div
+          class="text text-danger"
+          *ngIf="
+            (estudianes_requeridos.dirty || estudianes_requeridos.touched) &&
+            estudianes_requeridos.invalid &&
+            estudianes_requeridos.errors.pattern
+          "
+        >
+          Solo Valores positivos
+        </div>
+        <div
+          *ngIf="
+            estudianes_requeridos.invalid &&
+            (estudianes_requeridos.dirty || estudianes_requeridos.touched)
+          "
+          class="text text-danger"
+        >
+          <div
+            *ngIf="estudianes_requeridos.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputhoras_cumplir">Horas Totales a Cumplir</label>
+        <input
+          type="number"
+          min="1"
+          placeholder="Ej. 180"
+          class="form-control"
+          name="horas_cumplir"
+          id="horas_cumplir"
+          formControlName="horas_cumplir"
+          required
+        />
+        <div
+          *ngIf="
+            horas_cumplir.invalid &&
+            (horas_cumplir.dirty || horas_cumplir.touched)
+          "
+          class="text text-danger"
+        >
+          <div
+            *ngIf="horas_cumplir.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="inputfecha_inicio">Fecha de Inicio</label>
+        <input
+          type="date"
+          class="form-control"
+          name="fecha_inicio"
+          id="fecha_inicio"
+          (change)="validarfecha($event)"
+          formControlName="fecha_inicio"
+          required
+        />
+        <div
+          *ngIf="!validador && (fecha_inicio.dirty || fecha_inicio.touched)"
+          class="text text-danger"
+        >
+          Fecha Invalida
+        </div>
+        <div
+          *ngIf="
+            fecha_inicio.invalid && (fecha_inicio.dirty || fecha_inicio.touched)
+          "
+          class="text text-danger"
+        >
+          <div
+            *ngIf="fecha_inicio.errors.required"
+            class="container-error-message"
+          >
+            Este campo es requerido
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="form-group col-md-6">
+        <label for="exampleFormControlTextarea1"
+          >Descripcion de Actividades a realizar</label
+        >
+        <textarea
+          class="form-control"
+          rows="3"
+          name="actividades"
+          id="actividades"
+          formControlName="actividades"
+        ></textarea>
+        <div
+          *ngIf="
+            actividades.invalid && (actividades.dirty || actividades.touched)
+          "
+          class="text text-danger"
+          ng-show="!actividades"
+        >
+          <div
+            *ngIf="actividades.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="actividades.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="exampleFormControlTextarea1"
+          >Requisitos del Estudiante</label
+        >
+        <textarea
+          class="form-control"
+          rows="3"
+          name="requerimiento"
+          id="requerimiento"
+          formControlName="requerimiento"
+        ></textarea>
+        <div
+          *ngIf="
+            requerimiento.invalid &&
+            (requerimiento.dirty || requerimiento.touched)
+          "
+          class="text text-danger"
+          ng-show="!requerimiento"
+        >
+          <div
+            *ngIf="requerimiento.errors.minlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+          <div
+            *ngIf="requerimiento.errors.maxlength"
+            class="container-error-message"
+          >
+            Longitud de cadena invalida
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-group col-md-6">
+        <button type="submit" class="btn btn-success">
+          <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>
+          <b>Registrar Proyecto</b>
+        </button>
+      </div>
+    </div>
+  </form>
+</div>

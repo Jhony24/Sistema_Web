@@ -16,6 +16,7 @@ export class AddPracticasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
+  public error = <any>[];
   selectCarrera: string = "";
   selectArea: string = "";
   selectEmpresa: string = "";
@@ -36,36 +37,40 @@ export class AddPracticasComponent implements OnInit {
     this.validarForm = this.formBuilder.group({
       id: 0,
       tipo_practica: ["1"],
-      cupos: ["", Validators.required],
-      horas_cumplir: [""],
-      ciclo: [""],
+      cupos: ["", [Validators.required, Validators.min(1), Validators.max(20)]],
+      horas_cumplir: ["",[Validators.required, Validators.min(1), Validators.max(200)]],
+      ciclo_necesario: ["",[Validators.minLength(3), Validators.maxLength(20)]],
       fecha_inicio: ["", Validators.required],
-      hora_entrada: [""],
-      hora_salida: [""],
       ppestado: ["1"],
+      modalidad: ["", Validators.required],
       idcarrera: [this.selectCarrera, Validators.required],
       idarea: [this.selectArea, Validators.required],
       idempresa: [this.selectEmpresa, Validators.required],
-      actividades: ["", [Validators.minLength(20), Validators.maxLength(150)]],
-      requerimiento: [
+      actividades: ["", [Validators.minLength(20), Validators.maxLength(250)]],
+      requerimientos: [
         "",
-        [Validators.minLength(20), Validators.maxLength(150)],
+        [Validators.minLength(20), Validators.maxLength(250)],
       ],
     });
   }
 
   onSubmit() {
     if (this.validarForm.valid && this.validador == true) {
-      this.servicio.crearPractica(this.validarForm.value).subscribe(() => {
-        this.ruta.navigate(["/principal/list-practicas-profesionales"]);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Practica Pre-Profesional registrada correctamente",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-      });
+      this.servicio.crearPractica(this.validarForm.value).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-practicas-profesionales"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Practica Pre-Profesional registrada correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -76,6 +81,9 @@ export class AddPracticasComponent implements OnInit {
     }
   }
 
+  handleError(error) {
+    this.error = error.error;
+  }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(
       (data) => {
@@ -167,7 +175,10 @@ export class AddPracticasComponent implements OnInit {
   get actividades() {
     return this.validarForm.get("actividades");
   }
-  get requerimiento() {
-    return this.validarForm.get("requerimiento");
+  get requerimientos() {
+    return this.validarForm.get("requerimientos");
+  }
+  get ciclo_necesario() {
+    return this.validarForm.get("ciclo_necesario");
   }
 }

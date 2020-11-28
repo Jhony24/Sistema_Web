@@ -39,11 +39,14 @@
                   {{ carrera.nombrecarreras }}
                 </option>
               </select>
+              <div class="text text-danger" [hidden]="!error.idcarrera">
+                {{ error.idcarrera }}
+              </div>
               <div
                 *ngIf="
                   idcarrera.invalid && (idcarrera.dirty || idcarrera.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
               >
                 <div
                   *ngIf="idcarrera.errors.required"
@@ -72,11 +75,14 @@
                 {{ empresa.nombreempresa }}
               </option>
             </select>
+            <div class="text text-danger" [hidden]="!error.idempresa">
+              {{ error.idempresa }}
+            </div>
             <div
               *ngIf="
                 idempresa.invalid && (idempresa.dirty || idempresa.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
             >
               <div
                 *ngIf="idempresa.errors.required"
@@ -99,12 +105,15 @@
               id="tipo_convenio"
               placeholder="Ej. Carta Compromiso"
             />
+            <div class="text text-danger" [hidden]="!error.tipo_convenio">
+              {{ error.tipo_convenio }}
+            </div>
             <div
               *ngIf="
                 tipo_convenio.invalid &&
                 (tipo_convenio.dirty || tipo_convenio.touched)
               "
-              class="alert-danger"
+              class="text text-danger"
               ng-show="!tipo_convenio"
             >
               <div
@@ -141,12 +150,15 @@
                 name="fecha_inicio"
                 id="fecha_inicio"
               />
+              <div class="text text-danger" [hidden]="!error.fecha_inicio">
+                {{ error.fecha_inicio }}
+              </div>
               <div
                 *ngIf="
                   fecha_incio.invalid &&
                   (fecha_incio.dirty || fecha_incio.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
                 ng-show="!fecha_incio"
               >
                 <div
@@ -168,12 +180,15 @@
                 id="fecha_culminacion"
                 placeholder="Ej. 3 años"
               />
+              <div class="text text-danger" [hidden]="!error.fecha_culminacion">
+                {{ error.fecha_culminacion }}
+              </div>
               <div
                 *ngIf="
                   fecha_culminacion.invalid &&
                   (fecha_culminacion.dirty || fecha_culminacion.touched)
                 "
-                class="alert-danger"
+                class="text text-danger"
                 ng-show="!fecha_culminacion"
               >
                 <div
@@ -211,9 +226,12 @@
               id="objeto"
               placeholder="Ej. Cooperación interinstitucional para pasantías y prácticas pre profesionales."
             />
+            <div class="text text-danger" [hidden]="!error.objeto">
+              {{ error.objeto }}
+            </div>
             <div
               *ngIf="objeto.invalid && (objeto.dirty || objeto.touched)"
-              class="alert-danger"
+              class="text text-danger"
               ng-show="!objeto"
             >
               <div

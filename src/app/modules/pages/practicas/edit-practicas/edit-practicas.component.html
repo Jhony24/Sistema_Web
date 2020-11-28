@@ -20,7 +20,7 @@
         >
           <option
             *ngFor="let carrera of listcarreras"
-            [ngValue]="carrera.id"
+            [value]="carrera.id"
             value="carrera.id"
           >
             {{ carrera.nombrecarreras }}
@@ -37,10 +37,13 @@
             id="idarea"
             [(ngModel)]="practica.idarea"
           >
-            <option *ngFor="let area of listarea" [ngValue]="area.id">
+            <option *ngFor="let area of listarea" [value]="area.id">
               {{ area.nombrearea }}
             </option>
           </select>
+          <div class="text text-danger" [hidden]="!error.idarea">
+            {{ error.idarea }}
+          </div>
         </div>
       </div>
       <div class="container">
@@ -53,11 +56,46 @@
             id="idempresa"
             [(ngModel)]="practica.idempresa"
           >
-            <option value="" hidden selected>Seleccionar Empresa</option>
-            <option *ngFor="let empresa of listempresa" [ngValue]="empresa.id">
+            <option value="" hidden selected>Selecciones practica</option>
+            <option *ngFor="let empresa of listempresa" [value]="empresa.id">
               {{ empresa.nombreempresa }}
             </option>
           </select>
+          <div class="text text-danger" [hidden]="!error.idempresa">
+            {{ error.idempresa }}
+          </div>
+        </div>
+      </div>
+      <div class="container">
+        <div
+          [(ngModel)]="practica.modalidad"
+          name="modalidad"
+          id="modalidad"
+          class="form-group col-md-6"
+        >
+          <label for="exampleFormControlInput1">Modalidad de Practica</label>
+          <br />
+          <input
+            required
+            value="TeleTrabajo"
+            style="margin: 5px"
+            type="radio"
+            name="sexo"
+            id="modalidad"
+            [(ngModel)]="practica.modalidad"
+          />
+          <label for="modalidad">TeleTrabajo</label>
+
+          <input
+            value="Presencial"
+            style="margin: 5px"
+            type="radio"
+            name="sexo"
+            id="modalidad"
+            [(ngModel)]="practica.modalidad"
+          />
+          <label for="modalidad">Presencial</label>
+          <br />
         </div>
       </div>
       <div class="container">
@@ -67,13 +105,24 @@
             pattern="^[0-9]+"
             type="number"
             min="1"
+            max="20"
             class="form-control"
             name="cupos"
             id="cupos"
             #cupos="ngModel"
+            (change)="validarcupos($event)"
             [(ngModel)]="practica.cupos"
             required
           />
+          <div class="text text-danger" [hidden]="!error.cupos">
+            {{ error.cupos }}
+          </div>
+          <div
+            *ngIf="!validarcupo && (cupos.dirty || cupos.touched)"
+            class="text text-danger"
+          >
+            Numero Invalido
+          </div>
           <div
             class="text text-danger"
             *ngIf="
@@ -93,6 +142,7 @@
         <div class="form-group col-md-4">
           <label for="inputNombre">Horas Totales a Cumplir</label>
           <input
+            pattern="^[0-9]+"
             type="number"
             min="1"
             class="form-control"
@@ -102,6 +152,19 @@
             [(ngModel)]="practica.horas_cumplir"
             required
           />
+          <div class="text text-danger" [hidden]="!error.horas_cumplir">
+            {{ error.horas_cumplir }}
+          </div>
+          <div
+            class="text text-danger"
+            *ngIf="
+              (horas.dirty || horas.touched) &&
+              horas.invalid &&
+              horas.errors.pattern
+            "
+          >
+            Solo Valores positivos
+          </div>
           <div *ngIf="horas.invalid && (horas.dirty || horas.touched)">
             <div *ngIf="horas.errors.required" class="text text-danger">
               Este campo es requerido
@@ -111,12 +174,39 @@
         <div class="form-group col-md-4">
           <label for="inputNombre">Ciclo para realizar Practica</label>
           <input
+            minlength="3"
+            maxlength="20"
             type="text"
             class="form-control"
-            name="ciclo"
-            id="ciclo"
-            [(ngModel)]="practica.ciclo"
+            name="ciclo_necesario"
+            #ciclo_necesario="ngModel"
+            id="ciclo_necesario"
+            [(ngModel)]="practica.ciclo_necesario"
           />
+          <div class="text text-danger" [hidden]="!error.ciclo_necesario">
+            {{ error.ciclo_necesario }}
+          </div>
+          <div
+            *ngIf="
+              ciclo_necesario.invalid &&
+              (ciclo_necesario.dirty || ciclo_necesario.touched)
+            "
+            class="text text-danger"
+            ng-show="!ciclo_necesario"
+          >
+            <div
+              *ngIf="ciclo_necesario.errors.minlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+            <div
+              *ngIf="ciclo_necesario.errors.maxlength"
+              class="container-error-message"
+            >
+              Longitud de cadena invalida
+            </div>
+          </div>
         </div>
       </div>
       <div class="container">
@@ -132,6 +222,9 @@
             [(ngModel)]="practica.fecha_inicio"
             required
           />
+          <div class="text text-danger" [hidden]="!error.fecha_inicio">
+            {{ error.fecha_inicio }}
+          </div>
           <div
             *ngIf="!validador && (fecha.dirty || fecha.touched)"
             class="text text-danger"
@@ -172,7 +265,7 @@
           >
           <textarea
             minlength="20"
-            maxlength="200"
+            maxlength="250"
             class="form-control"
             name="actividades"
             id="actividades"
@@ -180,6 +273,9 @@
             [(ngModel)]="practica.actividades"
             rows="3"
           ></textarea>
+          <div class="text text-danger" [hidden]="!error.actividades">
+            {{ error.actividades }}
+          </div>
           <div
             *ngIf="
               actividades.invalid && (actividades.dirty || actividades.touched)
@@ -207,7 +303,7 @@
           >
           <textarea
             minlength="20"
-            maxlength="200"
+            maxlength="250"
             class="form-control"
             name="requerimientos"
             id="requerimientos"
@@ -215,6 +311,9 @@
             [(ngModel)]="practica.requerimientos"
             rows="3"
           ></textarea>
+          <div class="text text-danger" [hidden]="!error.requerimientos">
+            {{ error.requerimientos }}
+          </div>
           <div
             *ngIf="
               requrimientos.invalid &&

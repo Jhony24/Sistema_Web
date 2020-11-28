@@ -11,13 +11,18 @@ import { ServiceService } from '../../services/service.service';
   styleUrls: ["./add-carreras.component.css"],
 })
 export class AddCarrerasComponent implements OnInit {
+  role="";
   validarForm: FormGroup;
 
   constructor(
     private formBuilder: FormBuilder,
     private ruta: Router,
     private servicio: ServiceService
-  ) {}
+  ) {
+    this.servicio.getRoles().subscribe((data: any) => {
+      this.role = data;
+    });
+  }
 
   ngOnInit() {
     this.validarForm = this.formBuilder.group({

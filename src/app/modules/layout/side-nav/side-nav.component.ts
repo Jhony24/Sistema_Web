@@ -15,6 +15,7 @@ declare var $;
 export class SideNavComponent implements OnInit {
   UserProfile: Users;
   role = "";
+  userCarrera="";
   contpasantias=0;
   contpracticas=0;
   contproyectos=0;
@@ -27,6 +28,9 @@ export class SideNavComponent implements OnInit {
 
     this.servicio.getRoles().subscribe((data: any) => {
       this.role = data;
+    });
+    this.servicio.getusercarrera().subscribe((data: any) => {
+      this.userCarrera = data['nombrecarreras'];
     });
   }
 

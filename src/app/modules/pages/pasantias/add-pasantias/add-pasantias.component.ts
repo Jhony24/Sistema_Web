@@ -21,6 +21,7 @@ export class AddPasantiasComponent implements OnInit {
   selectEmpresa: string = "";
   fechapractica: string = "";
   public validador;
+  public error = <any>[];
 
   validarForm: FormGroup;
   constructor(
@@ -37,37 +38,47 @@ export class AddPasantiasComponent implements OnInit {
     this.validarForm = this.formBuilder.group({
       id: 0,
       tipo_practica: ["2", Validators.required],
-      cupos: ["", Validators.required],
-      horas_cumplir: ["", Validators.required],
-      ciclo: [""],
+      cupos: ["", [Validators.required, Validators.min(1), Validators.max(20)]],
+      horas_cumplir: [
+        "",
+        [Validators.required, Validators.min(1), Validators.max(200)],
+      ],
+      ciclo_necesario: [
+        "",
+        [Validators.minLength(3), Validators.maxLength(20)],
+      ],
       fecha_inicio: ["", Validators.required],
-      hora_entrada: [""],
-      hora_salida: [""],
       ppestado: ["1"],
       salario: [""],
+      modalidad: ["", Validators.required],
       idcarrera: [this.selectCarrera, Validators.required],
       idarea: [this.selectArea, Validators.required],
       idempresa: [this.selectEmpresa, Validators.required],
-      actividades: ["", [Validators.minLength(10), Validators.maxLength(200)]],
+      actividades: ["", [Validators.minLength(20), Validators.maxLength(250)]],
       requerimientos: [
         "",
-        [Validators.minLength(10), Validators.maxLength(200)],
+        [Validators.minLength(20), Validators.maxLength(250)],
       ],
     });
   }
 
   onSubmit() {
     if (this.validarForm.valid && this.validador == true) {
-      this.servicio.crearPractica(this.validarForm.value).subscribe((data) => {
-        this.ruta.navigate(["/principal/list-pasantias"]);
-        Swal.fire({
-          position: "top-right",
-          icon: "success",
-          title: "Pasantia registrada correctamente",
-          showConfirmButton: false,
-          timer: 1800,
-        });
-      });
+      this.servicio.crearPractica(this.validarForm.value).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-pasantias"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Pasantia registrada correctamente",
+            showConfirmButton: false,
+            timer: 1800,
+          });
+        },
+        (err) => {
+          this.handleError(err);
+        }
+      );
     } else {
       Swal.fire({
         position: "top",
@@ -76,6 +87,9 @@ export class AddPasantiasComponent implements OnInit {
         showConfirmButton: true,
       });
     }
+  }
+  handleError(error) {
+    this.error = error.error;
   }
 
   listar_carreras() {
@@ -164,6 +178,9 @@ export class AddPasantiasComponent implements OnInit {
   get horas_cumplir() {
     return this.validarForm.get("horas_cumplir");
   }
+  get ciclo_necesario() {
+    return this.validarForm.get("ciclo_necesario");
+  }
 
   get fecha_inicio() {
     return this.validarForm.get("fecha_inicio");
@@ -174,5 +191,4 @@ export class AddPasantiasComponent implements OnInit {
   get requerimientos() {
     return this.validarForm.get("requerimientos");
   }
-
 }

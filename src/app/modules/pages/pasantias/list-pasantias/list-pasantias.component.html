@@ -3,36 +3,54 @@
     <h1><b>Listado de Pasantías Disponibles</b></h1>
     <button class="btn btn-primary" (click)="add_pasantias()">
       <span class="glyphicon glyphicon-plus-sign">&nbsp;</span
-      ><b> Nueva Pasantía</b></button>&nbsp;&nbsp;&nbsp;
+      ><b> Nueva Pasantía</b></button
+    >&nbsp;&nbsp;&nbsp;
     <table class="table table-hover">
-      <thead style="text-align: center;">
-        <tr style="text-align: center;">
+      <thead style="text-align: center">
+        <tr style="text-align: center">
           <th class="hidden">Id</th>
-          <th style="text-align: center;">Area</th>
-          <th style="text-align: center;">Empresa</th>
-          <th style="text-align: center;">Tipo de Empresa</th>
-          <th style="text-align: center;">Cupos Disponibles</th>
-          <th style="text-align: center;">Fecha de Inicio</th>
-          <th style="text-align: center;">Remuneracion</th>
-          <th style="text-align: center;">Opciones</th>
+          <th style="text-align: center">Area</th>
+          <th style="text-align: center">Empresa</th>
+          <th style="text-align: center">Modalidad</th>
+          <th style="text-align: center">Tipo de Empresa</th>
+          <th style="text-align: center">Vacantes</th>
+          <th style="text-align: center">Fecha de Inicio</th>
+          <th style="text-align: center">Remuneracion</th>
+          <th style="text-align: center">Opciones</th>
         </tr>
       </thead>
       <tbody>
-        <tr *ngFor="let pasantia of listpracticas" style="text-align: center;">
+        <tr *ngFor="let pasantia of listpracticas" style="text-align: center">
           <td class="hidden">{{ pasantia.id }}</td>
           <td>{{ pasantia.nombrearea }}</td>
           <td>
             {{ pasantia.nombreempresa }}
           </td>
-          <td>{{pasantia.tipo_empresa}}</td>
-          <td>{{ pasantia.cupos }}</td>
-          <td>{{ pasantia.fecha_inicio | date:'dd/MM/yyyy' }}</td>
-          <td>{{ pasantia.salario == 0 ? "A DEFINIR" : "$ "+pasantia.salario+".00" }}</td>
           <td>
-            <div routerLink="/principal/edit-pasantias/{{pasantia.id}}" class="float-right mx-1 btn btn-success" style="margin: 5px;">
+            {{ pasantia.modalidad }}
+          </td>
+          <td>{{ pasantia.tipo_empresa }}</td>
+          <td>{{ pasantia.cupos }}</td>
+          <td>{{ pasantia.fecha_inicio | date: "dd/MM/yyyy" }}</td>
+          <td>
+            {{
+              pasantia.salario == 0
+                ? "A DEFINIR"
+                : "$ " + pasantia.salario + ".00"
+            }}
+          </td>
+          <td>
+            <div
+              routerLink="/principal/edit-pasantias/{{ pasantia.id }}"
+              class="float-right mx-1 btn btn-success"
+              style="margin: 5px"
+            >
               <i class="fa fa-edit"></i>
             </div>
-            <div (click)="eliminar_pasantia(pasantia)" class="float-right mx-1 btn btn-danger">
+            <div
+              (click)="eliminar_pasantia(pasantia)"
+              class="float-right mx-1 btn btn-danger"
+            >
               <i class="fa fa-trash"></i>
             </div>
           </td>

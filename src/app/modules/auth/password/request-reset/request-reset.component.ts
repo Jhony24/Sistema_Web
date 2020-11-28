@@ -1,6 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { SnotifyService } from 'ng-snotify';
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 import { JarwisService } from "../../services/jarwis.service";
 
 @Component({
@@ -13,9 +12,7 @@ export class RequestResetComponent implements OnInit {
     email: null,
   };
 
-  constructor(
-    private Jarwis: JarwisService, 
-    private notify: SnotifyService) {}
+  constructor(private Jarwis: JarwisService) {}
 
   ngOnInit(): void {}
 
@@ -28,21 +25,17 @@ export class RequestResetComponent implements OnInit {
     Swal.showLoading();
     this.Jarwis.sendPasswordResetLink(this.form).subscribe(
       (data) => this.handleResponse(data),
-      (error) =>this.handleError(error)
+      (error) => this.handleError(error)
     );
   }
 
-  handleResponse(res){
+  handleResponse(res) {
     Swal.close();
     console.log(res);
-    this.form.email=null;
-    Swal.fire(
-      'Confirmacion!',
-      res.data,
-      'success'
-    );
+    this.form.email = null;
+    Swal.fire("Confirmacion!", res.data, "success");
   }
-  handleError(res){
+  handleError(res) {
     Swal.close();
     Swal.fire({
       position: "top-right",

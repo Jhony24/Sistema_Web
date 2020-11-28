@@ -12,7 +12,6 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { AuthInterceptorService } from "./modules/pages/services/auth-interceptor.service";
 import { FormsModule } from "@angular/forms";
 import { ReactiveFormsModule } from "@angular/forms";
-import { SnotifyModule, SnotifyService, ToastDefaults } from "ng-snotify";
 
 @NgModule({
   declarations: [AppComponent],
@@ -25,12 +24,8 @@ import { SnotifyModule, SnotifyService, ToastDefaults } from "ng-snotify";
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    SnotifyModule,
   ],
   providers: [
-    { provide: "SnotifyToastConfig", useValue: ToastDefaults },
-    SnotifyService,
-
     {
       provide: HTTP_INTERCEPTORS,
       useClass: AuthInterceptorService,
