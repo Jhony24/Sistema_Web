@@ -1,0 +1,83 @@
+<div class="container_p">
+    <form>
+      <h1>
+        <b
+          >Listado de Estudiantes de 3er ciclo Aprobados para realizar Proyectos</b
+        >
+      </h1>
+      <button class="btn btn-primary">Generar Informe</button>&nbsp;&nbsp;&nbsp;
+  
+      <table class="table table-hover">
+        <thead style="text-align: center">
+          <tr style="text-align: center">
+            <th class="hidden">Id</th>
+            <th style="text-align: center">Cedula</th>
+            <th style="text-align: center">Nombre</th>
+            <th style="text-align: center">Area</th>
+            <th style="text-align: center">Empresa</th>
+            <th style="text-align: center">Opciones</th>
+            <th style="text-align: center">Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+            <ng-container *ngFor="let postulacion of listpostulantes"
+            style="text-align: center">
+            <tr *ngIf="postulacion.estado_postulacion == 'APROBADA'">
+              <td class="hidden">{{ postulacion.id }}</td>
+              <td>{{ postulacion.cedula }}</td>
+              <td>{{ postulacion.nombre_completo }}</td>
+              <td>{{ postulacion.nombrearea }}</td>
+              <td>{{ postulacion.nombreempresa }}</td>
+              <td>
+               
+                <div class="float-right mx-1 btn btn-danger">
+                  <i class="fa fa-trash"></i>
+                </div>
+              </td>
+              <td><h2><span class="label label-success">{{ postulacion.estado_postulacion }}</span></h2></td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </form>
+  </div>
+  
+  <div
+    class="modal fade"
+    id="exampleModal"
+    tabindex="-1"
+    role="dialog"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2 class="modal-title" id="exampleModalLabel">
+            Datos de Solicitud de Practica
+          </h2>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="recipient-name" class="col-form-label"
+                >Recipient:</label
+              >
+              <input type="text" class="form-control" id="recipient-name" />
+            </div>
+            <div class="form-group">
+              <label for="message-text" class="col-form-label">Message:</label>
+              <textarea class="form-control" id="message-text"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">
+            Rechazar
+          </button>
+          <button type="button" class="btn btn-success">Aprobar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

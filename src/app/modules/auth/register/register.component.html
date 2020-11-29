@@ -22,7 +22,7 @@
           required
         />
         <div
-          *ngIf="!validador && (cedula.dirty || cedula.touched)"
+          *ngIf="!validador && (cedula.touched)"
           class="text text-danger"
           >Cedula Invalida</div
         >
@@ -50,7 +50,7 @@
           "
           class="text text-danger"
         >
-          <div *ngIf="nombre_completo.errors.required" class="alert-danger">
+          <div *ngIf="nombre_completo.errors.required" class="text text-danger">
             Este campo es requerido
           </div>
           <div
@@ -102,7 +102,7 @@
           *ngIf="password.invalid && (password.dirty || password.touched)"
           class="text text-danger"
         >
-          <div *ngIf="password.errors.required" class="alert-danger">
+          <div *ngIf="password.errors.required" class="text text-danger">
             Este campo es requerido
           </div>
           <div *ngIf="password.errors.maxlength" class="text text-danger">

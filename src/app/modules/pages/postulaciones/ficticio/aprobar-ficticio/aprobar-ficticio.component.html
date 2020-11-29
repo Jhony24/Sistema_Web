@@ -1,0 +1,209 @@
+<div class="container_p">
+  <form>
+    <h1>
+      <b>Formulario de Detalles de Postulación para Proyectos de 3er ciclo</b>
+    </h1>
+    <button class="btn btn-danger" (click)="volver_lista()">
+      <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver
+    </button>
+    <br />
+    <br />
+    <div class="container">
+      <mat-card>
+        <mat-card-title>Datos del Estudiante</mat-card-title>
+
+        <form>
+          <div class="form-group col-md-6">
+            <label for="cedula">Cedula</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="cedula"
+              class="form-control"
+              id="cedula"
+              [(ngModel)]="postulacion.cedula"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cedula">Nombre</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="nombre_completo"
+              class="form-control"
+              id="nombre_completo"
+              [(ngModel)]="postulacion.nombre_completo"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="telefono">Telefono</label>
+            <input
+              autocomplete="off"
+              name="telefono"
+              class="form-control"
+              id="telefono"
+              [(ngModel)]="postulacion.telefono"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cedula">Correo Electronico</label>
+            <input
+              autocomplete="off"
+              name="email"
+              class="form-control"
+              id="email"
+              [(ngModel)]="postulacion.email"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="cedula">Carrera</label>
+            <input
+              autocomplete="off"
+              name="nombrecarreras"
+              class="form-control"
+              id="nombrecarreras"
+              [(ngModel)]="postulacion.nombrecarreras"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="ciclo">Ciclo</label>
+            <input
+              autocomplete="off"
+              name="ciclo"
+              class="form-control"
+              id="ciclo"
+              [(ngModel)]="postulacion.ciclo"
+              disabled
+            />
+          </div>
+
+          <button style="display: none" type="" class="btn btn-success">
+            <b>Aprobar</b></button
+          >&nbsp;&nbsp;&nbsp;
+          <button style="display: none" class="btn btn-danger">
+            <b>Rechazar</b>
+          </button>
+        </form>
+      </mat-card>
+      <br />
+    </div>
+    <div class="container">
+      <mat-card>
+        <mat-card-title>Datos de la Postulacion</mat-card-title>
+
+        <form>
+          <div class="form-group col-md-6">
+            <label for="tipo">Tipo</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="tipo_practica"
+              class="form-control"
+              id="nombrearea"
+              value="Proyecto"
+              disabled
+            />
+          </div>
+
+          <div class="form-group col-md-6">
+            <label for="nombre_prbasico">Proyecto</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="nombre_prbasico"
+              class="form-control"
+              id="nombre_prbasico"
+              [(ngModel)]="postulacion.nombre_prficticio"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="fecha_inicio">Fecha de Inicio</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="fecha_inicio"
+              class="form-control"
+              id="fecha_inicio"
+              [(ngModel)]="postulacion.fecha_inicio"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="ciclo_necesario">Ciclo Necesario</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="ciclo_necesario"
+              class="form-control"
+              id="ciclo_necesario"
+              value="3er ciclo"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="nombrearea">Area</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="nombrearea"
+              class="form-control"
+              id="nombrearea"
+              [(ngModel)]="postulacion.nombrearea"
+              disabled
+            />
+          </div>
+          <div class="form-group col-md-6">
+            <label for="nombreempresa">Empresa</label>
+            <input
+              autocomplete="off"
+              placeholder="Nombre Completo"
+              name="nombreempresa"
+              class="form-control"
+              id="nombreempresa"
+              [(ngModel)]="postulacion.nombreempresa"
+              disabled
+            />
+          </div>
+
+          <button style="display: none" type="" class="btn btn-success">
+            <b>Aprobar</b></button
+          >&nbsp;&nbsp;&nbsp;
+          <button style="display: none" type="" class="btn btn-danger">
+            <b>Rechazar</b>
+          </button>
+        </form>
+      </mat-card>
+      <br />
+      <mat-card>
+        <mat-card-title
+          >Ingresar Observaciones de la Postulación</mat-card-title
+        >
+
+        <form>
+          <label for="exampleFormControlTextarea1">Observaciones</label>
+          <textarea
+            class="form-control"
+            rows="3"
+            name="observacion"
+            id="observacion"
+            [(ngModel)]="postulacion.observacion"
+          >
+          </textarea>
+          <br />
+          <button (click)="put()" class="btn btn-success">
+            <b>Aprobar</b></button
+          >&nbsp;&nbsp;&nbsp;
+          <button (click)="rechazar()" class="btn btn-danger">
+            <b>Rechazar</b>
+          </button>
+        </form>
+      </mat-card>
+    </div>
+  </form>
+</div>

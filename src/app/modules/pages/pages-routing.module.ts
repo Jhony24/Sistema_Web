@@ -46,6 +46,11 @@ import { DashboardComponent } from "./dashboard/dashboard/dashboard.component";
 import { AddFicticioComponent } from "./ficticio/add-ficticio/add-ficticio.component";
 import { EditFicticioComponent } from "./ficticio/edit-ficticio/edit-ficticio.component";
 import { ListFicticioComponent } from "./ficticio/list-ficticio/list-ficticio.component";
+import { AprobarFicticioComponent } from "./postulaciones/ficticio/aprobar-ficticio/aprobar-ficticio.component";
+import { FictNuevosComponent } from "./postulaciones/ficticio/fict-nuevos/fict-nuevos.component";
+import { FictAprobadosComponent } from "./postulaciones/ficticio/fict-aprobados/fict-aprobados.component";
+import { FictRechazadosComponent } from "./postulaciones/ficticio/fict-rechazados/fict-rechazados.component";
+import { FictFinalizadosComponent } from "./postulaciones/ficticio/fict-finalizados/fict-finalizados.component";
 
 const routes: Routes = [
   {
@@ -120,6 +125,26 @@ const routes: Routes = [
       {
         path: "list-proyecto_3ero",
         component: ListFicticioComponent,
+      },
+      {
+        path: "aprob-proyecto_3ero/:id",
+        component: AprobarFicticioComponent,
+      },
+      {
+        path: "proyecto_3ero-nuevos",
+        component: FictNuevosComponent,
+      },
+      {
+        path: "proyecto_3ero-aprobados",
+        component: FictAprobadosComponent,
+      },
+      {
+        path: "proyecto_3ero-rechazados",
+        component: FictRechazadosComponent,
+      },
+      {
+        path: "proyecto_3ero-finalizados",
+        component: FictFinalizadosComponent,
       },
     ],
   },

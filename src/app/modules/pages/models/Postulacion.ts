@@ -13,6 +13,7 @@ export class Postulacion {
   nombre_completo: string;
   nombre_prbasico?:string;
   nombre_prmacro?:string;
+  nombre_prficticio?:string;
   telefono: string;
   genero?: string;
   ciclo: string;

@@ -17,9 +17,9 @@ import { Users } from "../models/Users";
   providedIn: "root",
 })
 export class ServiceService {
-  //private API_REST =
-  //"https://proeditsclub.com/mendoza/backendPracticas/public/index.php/api";
-  private API_REST = "http://127.0.0.1:8000/api";
+  private API_REST =
+  "https://proeditsclub.com/mendoza/backendPracticas/public/index.php/api";
+  //private API_REST = "http://127.0.0.1:8000/api";
 
   constructor(private http: HttpClient) {}
 
@@ -215,6 +215,9 @@ export class ServiceService {
   }
   getListadoPostulantesProyectos(): Observable<any[]> {
     return this.http.get<Postulacion[]>(`${this.API_REST}/postulacionproyecto`);
+  }
+  getListadoPostulantesFicticio(): Observable<any[]> {
+    return this.http.get<Postulacion[]>(`${this.API_REST}/postulacionficticio`);
   }
 
   //aprobar y rechazar postulacion pendiente

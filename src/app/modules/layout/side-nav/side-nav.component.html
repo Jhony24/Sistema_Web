@@ -36,7 +36,8 @@
           </li>
           <li *ngIf="userCarrera == 'Computación'">
             <a [routerLink]="'/principal/list-proyecto_3ero'" class="nav-link"
-              ><i class="fa fa-puzzle-piece"></i> <span>Proyecto Ficticio 3er ciclo</span></a
+              ><i class="fa fa-puzzle-piece"></i>
+              <span>Proyecto Ficticio 3er ciclo</span></a
             >
           </li>
         </ul>
@@ -65,7 +66,9 @@
               ><i class="fa fa-clock-o" aria-hidden="true"></i>
               <span>Nuevas</span>
               <span class="pull-right-container">
-                <span class="label label-warning pull-right">{{ contpracticas }}</span>
+                <span class="label label-warning pull-right">{{
+                  contpracticas
+                }}</span>
               </span></a
             >
           </li>
@@ -82,7 +85,9 @@
             >
           </li>
           <li>
-            <a [routerLink]="'/principal/practicas_finalizadas'" class="nav-link"
+            <a
+              [routerLink]="'/principal/practicas_finalizadas'"
+              class="nav-link"
               ><i class="fa fa-puzzle-piece"></i> <span>Finalizadas</span></a
             >
           </li>
@@ -101,7 +106,9 @@
               ><i class="fa fa-clock-o" aria-hidden="true"></i>
               <span>Nuevas</span>
               <span class="pull-right-container">
-                <span class="label label-warning pull-right">{{ contpasantias }}</span>
+                <span class="label label-warning pull-right">{{
+                  contpasantias
+                }}</span>
               </span></a
             >
           </li>
@@ -118,7 +125,9 @@
             >
           </li>
           <li>
-            <a [routerLink]="'/principal/pasantias_finalizadas'" class="nav-link"
+            <a
+              [routerLink]="'/principal/pasantias_finalizadas'"
+              class="nav-link"
               ><i class="fa fa-puzzle-piece"></i> <span>Finalizadas</span></a
             >
           </li>
@@ -137,7 +146,9 @@
               ><i class="fa fa-clock-o" aria-hidden="true"></i>
               <span>Nuevas</span>
               <span class="pull-right-container">
-                <span class="label label-warning pull-right">{{ contproyectos }}</span>
+                <span class="label label-warning pull-right">{{
+                  contproyectos
+                }}</span>
               </span></a
             >
           </li>
@@ -154,7 +165,53 @@
             >
           </li>
           <li>
-            <a [routerLink]="'/principal/proyectos_finalizados'" class="nav-link"
+            <a
+              [routerLink]="'/principal/proyectos_finalizados'"
+              class="nav-link"
+              ><i class="fa fa-puzzle-piece"></i> <span>Finalizadas</span></a
+            >
+          </li>
+        </ul>
+      </li>
+      <li *ngIf="userCarrera == 'Computación'" class="treeview">
+        <a href="#">
+          <i class="fa fa-dashboard"></i> <span>Proyectos 3ero</span>
+          <span class="pull-right-container">
+            <i class="fa fa-angle-left pull-right"></i>
+          </span>
+        </a>
+        <ul class="treeview-menu">
+          <li>
+            <a [routerLink]="'/principal/proyecto_3ero-nuevos'" class="nav-link"
+              ><i class="fa fa-clock-o" aria-hidden="true"></i>
+              <span>Nuevas</span>
+              <span class="pull-right-container">
+                <span class="label label-warning pull-right">{{
+                  contproyectos
+                }}</span>
+              </span></a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="'/principal/proyecto_3ero-aprobados'"
+              class="nav-link"
+              ><i class="fa fa-check-square-o" aria-hidden="true"></i>
+              <span>Aprobadas</span></a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="'/principal/proyecto_3ero-rechazados'"
+              class="nav-link"
+              ><i class="fa fa-times" aria-hidden="true"></i>
+              <span>Rechazadas</span></a
+            >
+          </li>
+          <li>
+            <a
+              [routerLink]="'/principal/proyecto_3ero-finalizados'"
+              class="nav-link"
               ><i class="fa fa-puzzle-piece"></i> <span>Finalizadas</span></a
             >
           </li>

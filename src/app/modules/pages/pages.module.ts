@@ -61,6 +61,11 @@ import { DashboardComponent } from './dashboard/dashboard/dashboard.component';
 import { AddFicticioComponent } from './ficticio/add-ficticio/add-ficticio.component';
 import { EditFicticioComponent } from './ficticio/edit-ficticio/edit-ficticio.component';
 import { ListFicticioComponent } from './ficticio/list-ficticio/list-ficticio.component';
+import { AprobarFicticioComponent } from './postulaciones/ficticio/aprobar-ficticio/aprobar-ficticio.component';
+import { FictAprobadosComponent } from './postulaciones/ficticio/fict-aprobados/fict-aprobados.component';
+import { FictFinalizadosComponent } from './postulaciones/ficticio/fict-finalizados/fict-finalizados.component';
+import { FictNuevosComponent } from './postulaciones/ficticio/fict-nuevos/fict-nuevos.component';
+import { FictRechazadosComponent } from './postulaciones/ficticio/fict-rechazados/fict-rechazados.component';
 
 @NgModule({
   declarations: [
@@ -111,6 +116,11 @@ import { ListFicticioComponent } from './ficticio/list-ficticio/list-ficticio.co
     AddFicticioComponent,
     EditFicticioComponent,
     ListFicticioComponent,
+    AprobarFicticioComponent,
+    FictAprobadosComponent,
+    FictFinalizadosComponent,
+    FictNuevosComponent,
+    FictRechazadosComponent,
   ],
   imports: [
     CommonModule,
