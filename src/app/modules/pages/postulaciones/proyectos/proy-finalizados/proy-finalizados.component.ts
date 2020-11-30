@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Postulacion } from '../../../models/Postulacion';
-import { ServiceService } from '../../../services/service.service';
+import { Component, OnInit } from "@angular/core";
+import Swal from "sweetalert2";
+import { Postulacion } from "../../../models/Postulacion";
+import { ServiceService } from "../../../services/service.service";
 
 @Component({
-  selector: 'app-proy-finalizados',
-  templateUrl: './proy-finalizados.component.html',
-  styleUrls: ['./proy-finalizados.component.css']
+  selector: "app-proy-finalizados",
+  templateUrl: "./proy-finalizados.component.html",
+  styleUrls: ["./proy-finalizados.component.css"],
 })
 export class ProyFinalizadosComponent implements OnInit {
   listpostulantes = new Array<Postulacion>();
@@ -22,5 +23,13 @@ export class ProyFinalizadosComponent implements OnInit {
       console.log(this.listpostulantes);
     });
   }
+  informe() {
+    Swal.fire({
+      position: "top-right",
+      icon: "success",
+      title: "Esta funcionalidad pronto estara disponible",
+      showConfirmButton: false,
+      timer: 1800,
+    });
+  }
 }
-

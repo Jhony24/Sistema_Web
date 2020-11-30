@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import Swal from 'sweetalert2';
 import { Postulacion } from '../../../models/Postulacion';
 import { ServiceService } from '../../../services/service.service';
 
@@ -20,6 +21,15 @@ export class PasanFinalizadasComponent implements OnInit {
     this.servicio.getListadoPostulantesPasantias().subscribe((data) => {
       this.listpostulantes = data;
       console.log(this.listpostulantes);
+    });
+  }
+  informe(){
+    Swal.fire({
+      position: "top-right",
+      icon: "success",
+      title: "Esta funcionalidad pronto estara disponible",
+      showConfirmButton: false,
+      timer: 1800,
     });
   }
 }

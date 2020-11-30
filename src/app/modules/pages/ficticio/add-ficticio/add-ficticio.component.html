@@ -1,6 +1,8 @@
-<div class="container_p">
+<div *ngIf="userCarrera == 'Computación'; else elseBlock" class="container_p">
   <div class="titulo">
-    <h1><b>Formulario de Ingreso de Proyectos para estudiantes de 3er ciclo</b></h1>
+    <h1>
+      <b>Formulario de Ingreso de Proyectos para estudiantes de 3er ciclo</b>
+    </h1>
   </div>
   <button class="btn btn-danger" (click)="volver_lista()">
     <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
@@ -93,10 +95,7 @@
           required
         />
         <div
-          *ngIf="
-            nombrearea.invalid &&
-            (nombrearea.dirty || nombrearea.touched)
-          "
+          *ngIf="nombrearea.invalid && (nombrearea.dirty || nombrearea.touched)"
           class="text text-danger"
         >
           <div
@@ -310,3 +309,17 @@
     </div>
   </form>
 </div>
+
+<ng-template #elseBlock>
+  <h1 style="text-align: center; font-size: 100;"><p style="font-size: 200;">No Autorizado</p></h1>
+
+  <p style="text-align: center">
+    Lo sentimos, pero la pagina a la que intentas ingresar esta denegada.
+  </p>
+
+  <script>
+    var GOOG_FIXURL_LANG = (navigator.language || "").slice(0, 2),
+      GOOG_FIXURL_SITE = location.host;
+  </script>
+  <script src="//linkhelp.clients.google.com/tbproxy/lh/wm/fixurl.js"></script>
+</ng-template>

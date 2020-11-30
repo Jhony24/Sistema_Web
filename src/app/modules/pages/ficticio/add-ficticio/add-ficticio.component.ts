@@ -14,6 +14,7 @@ export class AddFicticioComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   selectCarrera: string = "";
   selectArea: string = "";
+  userCarrera: string = "";
   selectEmpresa: string = "";
   fechapractica: string = "";
   validarForm: FormGroup;
@@ -24,7 +25,11 @@ export class AddFicticioComponent implements OnInit {
     private ruta: Router,
     private formBuilder: FormBuilder,
     private servicio: ServiceService
-  ) {}
+  ) {
+    this.servicio.getusercarrera().subscribe((data: any) => {
+      this.userCarrera = data["nombrecarreras"];
+    });
+  }
 
   ngOnInit() {
     this.listar_carreras();

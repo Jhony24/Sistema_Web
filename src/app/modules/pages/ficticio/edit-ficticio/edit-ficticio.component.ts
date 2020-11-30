@@ -1,19 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import Swal from 'sweetalert2';
-import { Carrera } from '../../models/Carrera';
-import { Ficticio } from '../../models/Ficticio';
-import { ServiceService } from '../../services/service.service';
+import { Component, OnInit } from "@angular/core";
+import { NgForm } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import Swal from "sweetalert2";
+import { Carrera } from "../../models/Carrera";
+import { Ficticio } from "../../models/Ficticio";
+import { ServiceService } from "../../services/service.service";
 
 @Component({
-  selector: 'app-edit-ficticio',
-  templateUrl: './edit-ficticio.component.html',
-  styleUrls: ['./edit-ficticio.component.css']
+  selector: "app-edit-ficticio",
+  templateUrl: "./edit-ficticio.component.html",
+  styleUrls: ["./edit-ficticio.component.css"],
 })
 export class EditFicticioComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   fechapractica: string = "";
+  userCarrera: string = "";
   public validador = true;
 
   ficticio: Ficticio = {
@@ -26,7 +27,7 @@ export class EditFicticioComponent implements OnInit {
     horas_cumplir: null,
     actividades: null,
     requerimientos: null,
-    estadoficticio:1,
+    estadoficticio: 1,
   };
 
   id: any;
@@ -38,6 +39,9 @@ export class EditFicticioComponent implements OnInit {
     private servicio: ServiceService,
     private ruta: Router
   ) {
+    this.servicio.getusercarrera().subscribe((data: any) => {
+      this.userCarrera = data["nombrecarreras"];
+    });
     this.id = this.activateRote.snapshot.params["id"];
     if (this.id) {
       this.editing = true;
@@ -87,8 +91,7 @@ export class EditFicticioComponent implements OnInit {
       (err) => {}
     );
   }
-  
-  
+
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-proyecto_3ero"]);
   }
