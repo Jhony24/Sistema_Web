@@ -1,66 +1,33 @@
 <div class="container_p">
   <h1 style="text-align: center">
     <b
-      >Sistema de Gestión de Cupos para Practicas Pre-Profesionales y
+      >Sistema de Gestión de Cupos para Prácticas Pre-Profesionales y
       Pasantías</b
     >
   </h1>
+
   <div class="container">
-    <h2>Información General de Practicas Pre-Profesionales</h2>
-    <div class="row">
-      <div class="col-lg-3 col-xs-6">
-        <div class="small-box bg-red">
-          <div class="inner">
-            <h3>{{ contpracticas_pasadas }}</h3>
-
-            <p *ngIf="contpracticas_pasadas == 1">Practica Vencida</p>
-            <p *ngIf="contpracticas_pasadas > 1">Practicas Vencidas</p>
-            <p *ngIf="contpracticas_pasadas == 0">Practicas Vencidas</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-close"></i>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-6">
-        <div class="small-box bg-red">
-          <div class="inner">
-            <h3>{{ contpasantias_pasadas }}</h3>
-
-            <p *ngIf="contpasantias_pasadas == 1">Pasantías Vencida</p>
-            <p *ngIf="contpasantias_pasadas > 1">Pasantías Vencidas</p>
-            <p *ngIf="contpasantias_pasadas == 0">Pasantías Vencidas</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-close"></i>
-          </div>
-        </div>
-      </div>
-      <div class="col-lg-3 col-xs-6">
-        <div class="small-box bg-red">
-          <div class="inner">
-            <h3>{{ contparoyectos_pasadas }}</h3>
-
-            <p *ngIf="contparoyectos_pasadas == 1">Proyecto Vencido</p>
-            <p *ngIf="contparoyectos_pasadas > 1">Proyectos Vencidos</p>
-            <p *ngIf="contparoyectos_pasadas == 0">Proyectos Vencidos</p>
-          </div>
-          <div class="icon">
-            <i class="ion ion-close"></i>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div *ngIf="contconvenios > 0" class="container">
     <h2>Información de Convenios</h2>
     <div class="row">
       <div class="col-lg-3 col-xs-6">
+        <div class="small-box bg-aqua">
+          <div class="inner">
+            <h3>{{ conttotalconvenios }}</h3>&nbsp;
+            <p *ngIf="conttotalconvenios == 0">Convenios Establecidos</p>
+            <p *ngIf="conttotalconvenios == 1">Convenio Establecido</p>
+            <p *ngIf="conttotalconvenios > 1">Convenios Establecidos</p>
+          </div>
+          <div class="icon">
+            <i class="ion ion-briefcase"></i>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3 col-xs-6">
         <div class="small-box bg-red">
           <div class="inner">
-            <h3>{{ contconvenios }}</h3>
-
+            <h3>{{ contconvenios }}</h3>&nbsp;
+            <p *ngIf="contconvenios == 0">Convenios Vencidos</p>
             <p *ngIf="contconvenios == 1">Convenio Vencido</p>
             <p *ngIf="contconvenios > 1">Convenios Vencidos</p>
           </div>
@@ -80,7 +47,7 @@
             <h3>{{ contpracticas }}</h3>
             &nbsp;
 
-            <p>Postulaciones para practicas</p>
+            <p>Postulaciones para prácticas</p>
           </div>
           <div class="icon">
             <i class="ion ion-university"></i>

@@ -1,6 +1,6 @@
 <div class="container_p">
   <div class="titulo">
-    <h1><b>Formulario de Edicion de Proyectos Basicos</b></h1>
+    <h1><b>Formulario de Edición de Proyectos Básicos</b></h1>
   </div>
   <button class="btn btn-danger" (click)="volver_lista()">
     <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
@@ -61,7 +61,7 @@
       </div>
       <div class="container">
         <div class="form-group col-md-12">
-          <label for="inputNombre">Nombre de Proyecto Basico</label>
+          <label for="inputNombre">Nombre de Proyecto Básico</label>
           <input
             minlength="10"
             maxlength="100"
@@ -94,13 +94,13 @@
               *ngIf="nombre_basico.errors.minlength"
               class="container-error-message"
             >
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
             <div
               *ngIf="nombre_basico.errors.maxlength"
               class="container-error-message"
             >
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
           </div>
         </div>
@@ -112,7 +112,7 @@
           id="modalidad"
           class="form-group col-md-6"
         >
-          <label for="exampleFormControlInput1">Modalidad de Practica</label>
+          <label for="exampleFormControlInput1">Modalidad de Proyecto</label>
           <br />
           <input
             required
@@ -237,7 +237,7 @@
             *ngIf="!validador && (fecha.dirty || fecha.touched)"
             class="text text-danger"
           >
-            Fecha Invalida
+            Fecha Inválida
           </div>
           <div
             *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)"
@@ -250,7 +250,7 @@
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label for="inputDireccion">Fecha de Finazalizacion</label>
+          <label for="inputDireccion">Fecha de Finazalización</label>
           <input
             type="date"
             class="form-control"
@@ -280,10 +280,10 @@
             ng-show="!ciclo"
           >
             <div *ngIf="ciclo.errors.minlength" class="container-error-message">
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
             <div *ngIf="ciclo.errors.maxlength" class="container-error-message">
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
           </div>
         </div>
@@ -316,19 +316,19 @@
               *ngIf="requerimientos.errors.minlength"
               class="container-error-message"
             >
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
             <div
               *ngIf="requerimientos.errors.maxlength"
               class="container-error-message"
             >
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
           </div>
         </div>
         <div class="form-group col-md-6">
           <label for="exampleFormControlTextarea1"
-            >Descripcion de Actividades a realizar</label
+            >Descripción de Actividades a realizar</label
           >
           <textarea
             minlength="20"
@@ -354,13 +354,13 @@
               *ngIf="actividades.errors.minlength"
               class="container-error-message"
             >
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
             <div
               *ngIf="actividades.errors.maxlength"
               class="container-error-message"
             >
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
           </div>
         </div>
@@ -369,7 +369,7 @@
         <div class="form-group col-md-6">
           <button type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-refresh">&nbsp;</span>
-            <b> Actualizar Proyecto Basico</b>
+            <b> Actualizar Proyecto Básico</b>
           </button>
         </div>
       </div>

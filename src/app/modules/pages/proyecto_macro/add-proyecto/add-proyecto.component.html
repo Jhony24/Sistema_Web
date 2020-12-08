@@ -47,14 +47,14 @@
         </div>
         <div class="container">
           <div class="form-group col-md-12" style="width: auto">
-            <label for="idarea">Seleccionar Area</label>
+            <label for="idarea">Seleccionar Área</label>
             <select
               required
               class="form-control"
               (change)="selectChangeArea($event)"
               formControlName="idarea"
             >
-              <option value="" hidden selected>Seleccionar Area</option>
+              <option value="" hidden selected>Seleccionar Área</option>
               <option *ngFor="let area of listarea" [ngValue]="area.id">
                 {{ area.nombrearea }}
               </option>
@@ -109,13 +109,13 @@
                 *ngIf="nombreprmacro.errors.minlength"
                 class="container-error-message"
               >
-                Longitud de cadena invalida
+                Longitud de cadena inválida
               </div>
               <div
                 *ngIf="nombreprmacro.errors.maxlength"
                 class="container-error-message"
               >
-                Longitud de cadena invalida
+                Longitud de cadena inválida
               </div>
             </div>
           </div>
@@ -152,13 +152,13 @@
                 *ngIf="encargado.errors.minlength"
                 class="container-error-message"
               >
-                Longitud de cadena invalida
+                Longitud de cadena inválida
               </div>
               <div
                 *ngIf="encargado.errors.maxlength"
                 class="container-error-message"
               >
-                Longitud de cadena invalida
+                Longitud de cadena inválida
               </div>
             </div>
           </div>
@@ -166,7 +166,7 @@
         <div class="container">
           <div style="margin-left: initial" class="form-row">
             <div class="form-group col-md-12">
-              <label for="exampleFormControlTextarea1">Descripcion</label>
+              <label for="exampleFormControlTextarea1">Descripción</label>
               <textarea
                 class="form-control"
                 id="descripcion"
@@ -189,13 +189,13 @@
                   *ngIf="descripcion.errors.minlength"
                   class="container-error-message"
                 >
-                  Longitud de cadena invalida
+                  Longitud de cadena inválida
                 </div>
                 <div
                   *ngIf="descripcion.errors.maxlength"
                   class="container-error-message"
                 >
-                  Longitud de cadena invalida
+                  Longitud de cadena inválida
                 </div>
               </div>
             </div>

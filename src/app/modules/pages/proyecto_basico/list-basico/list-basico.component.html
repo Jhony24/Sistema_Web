@@ -1,7 +1,7 @@
 <div class="container_p">
   <form>
     <h1>
-      <b>Lista de Proyectos Basicos</b>
+      <b>Lista de Proyectos Básicos</b>
     </h1>
     <button class="btn btn-danger" (click)="volver_lista()">
       <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
@@ -14,7 +14,7 @@
       <thead style="text-align: center">
         <tr style="text-align: center">
           <th class="hidden">Id</th>
-          <th style="text-align: center">Nombre de Proyecto Basico</th>
+          <th style="text-align: center">Nombre de Proyecto Básico</th>
           <th style="text-align: center">Empresa</th>
           <th style="text-align: center">Estudiantes Requeridos</th>
           <th style="text-align: center">Horas a cumplir</th>
@@ -22,31 +22,37 @@
           <th style="text-align: center">Opciones</th>
         </tr>
       </thead>
+      <tbody></tbody>
       <tbody>
-        <tr *ngFor="let basico of listbasico" style="text-align: center">
-          <td class="hidden">{{ basico.id }}</td>
-          <td>{{ basico.nombre_prbasico }}</td>
-          <td>{{ basico.nombreempresa }}</td>
-          <td>{{ basico.estudianes_requeridos }}</td>
-          <td>{{ basico.horas_cumplir }}</td>
-          <td>{{ basico.fecha_inicio }}</td>
+        <ng-container
+          *ngFor="let basico of listbasico"
+          style="text-align: center"
+        >
+          <tr *ngIf="basico.estudianes_requeridos > 0">
+            <td class="hidden">{{ basico.id }}</td>
+            <td>{{ basico.nombre_prbasico }}</td>
+            <td>{{ basico.nombreempresa }}</td>
+            <td>{{ basico.estudianes_requeridos }}</td>
+            <td>{{ basico.horas_cumplir }}</td>
+            <td>{{ basico.fecha_inicio }}</td>
 
-          <td>
-            <div
-              routerLink="/principal/edit-basico/{{ basico.id }}"
-              class="float-right mx-1 btn btn-success"
-              style="margin: 5px"
-            >
-              <i class="fa fa-edit"></i>
-            </div>
-            <div
-              (click)="eliminar_basico(basico)"
-              class="float-right mx-1 btn btn-danger"
-            >
-              <i class="fa fa-trash"></i>
-            </div>
-          </td>
-        </tr>
+            <td>
+              <div
+                routerLink="/principal/edit-basico/{{ basico.id }}"
+                class="float-right mx-1 btn btn-success"
+                style="margin: 5px"
+              >
+                <i class="fa fa-edit"></i>
+              </div>
+              <div
+                (click)="eliminar_basico(basico)"
+                class="float-right mx-1 btn btn-danger"
+              >
+                <i class="fa fa-trash"></i>
+              </div>
+            </td>
+          </tr>
+        </ng-container>
       </tbody>
     </table>
   </form>

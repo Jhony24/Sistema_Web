@@ -1,6 +1,6 @@
 <div class="container_p">
   <div class="titulo">
-    <h1><b>Formulario de Edicion de Proyectos Macro</b></h1>
+    <h1><b>Formulario de Edición de Proyectos Macro</b></h1>
   </div>
   <button class="btn btn-danger" (click)="volver_lista()">
     <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
@@ -43,7 +43,7 @@
           id="idarea"
           [(ngModel)]="macro.idarea"
         >
-          <option value="" hidden selected>Seleccionar Area</option>
+          <option value="" hidden selected>Seleccionar Área</option>
           <option *ngFor="let area of listarea" [value]="area.id">
             {{ area.nombrearea }}
           </option>
@@ -87,13 +87,13 @@
             *ngIf="nombre_macro.errors.minlength"
             class="container-error-message"
           >
-            Longitud de cadena invalida
+            Longitud de cadena inválida
           </div>
           <div
             *ngIf="nombre_macro.errors.maxlength"
             class="container-error-message"
           >
-            Longitud de cadena invalida
+            Longitud de cadena inválida
           </div>
         </div>
       </div>
@@ -130,13 +130,13 @@
             *ngIf="encargado.errors.minlength"
             class="container-error-message"
           >
-            Longitud de cadena invalida
+            Longitud de cadena inválida
           </div>
           <div
             *ngIf="encargado.errors.maxlength"
             class="container-error-message"
           >
-            Longitud de cadena invalida
+            Longitud de cadena inválida
           </div>
         </div>
       </div>
@@ -144,7 +144,7 @@
 
     <div class="container">
       <div class="form-group col-md-12">
-        <label for="exampleFormControlTextarea1">Descripcion</label>
+        <label for="exampleFormControlTextarea1">Descripción</label>
         <textarea
           minlength="20"
           maxlength="250"
@@ -169,13 +169,13 @@
             *ngIf="descripcion.errors.minlength"
             class="container-error-message"
           >
-            Longitud de cadena invalida
+            Longitud de cadena inválida
           </div>
           <div
             *ngIf="descripcion.errors.maxlength"
             class="container-error-message"
           >
-            Longitud de cadena invalida
+            Longitud de cadena inválida
           </div>
         </div>
       </div>

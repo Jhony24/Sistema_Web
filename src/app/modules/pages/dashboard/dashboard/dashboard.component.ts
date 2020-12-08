@@ -16,6 +16,7 @@ export class DashboardComponent implements OnInit {
   contpracticas = 0;
   contproyectos = 0;
   contconvenios = 0;
+  conttotalconvenios = 0;
   contpracticas_pasadas = 0;
   contpasantias_pasadas = 0;
   contparoyectos_pasadas = 0;
@@ -65,6 +66,7 @@ export class DashboardComponent implements OnInit {
 
   listar_convenios() {
     this.servicio.getListadoConvenios().subscribe((data) => {
+      this.conttotalconvenios = data.length;
       var fecha_convertida;
       var fecha_actual;
       var fecha_hoy;

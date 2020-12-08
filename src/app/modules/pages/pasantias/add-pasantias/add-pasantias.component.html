@@ -1,7 +1,7 @@
 <div class="container_p">
   <form>
     <div class="titulo">
-      <h1><b>Formulario de Ingreso de Pasantias</b></h1>
+      <h1><b>Formulario de Ingreso de Pasantías</b></h1>
     </div>
     <button class="btn btn-danger" (click)="volver_lista()">
       <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
@@ -51,14 +51,14 @@
         </div>
         <div class="container">
           <div class="form-group col-md-6" style="width: auto">
-            <label for="idempresa">Seleccionar Area</label>
+            <label for="idempresa">Seleccionar Área</label>
             <select
               required
               class="form-control"
               (change)="selectChangeArea($event)"
               formControlName="idarea"
             >
-              <option value="" hidden selected>Seleccionar Area</option>
+              <option value="" hidden selected>Seleccionar Área</option>
               <option *ngFor="let area of listarea" [ngValue]="area.id">
                 {{ area.nombrearea }}
               </option>
@@ -117,7 +117,7 @@
         </div>
         <div class="container">
           <div class="form-group col-md-6">
-            <label for="exampleFormControlInput1">Modalidad de Pratica</label>
+            <label for="exampleFormControlInput1">Modalidad de Pasantía</label>
             <br />
             <input
               required
@@ -170,10 +170,10 @@
                   Este campo es requerido
                 </div>
                 <div *ngIf="cupos.errors.min" class="container-error-message">
-                  Campo Invalido
+                  Campo Inválido
                 </div>
                 <div *ngIf="cupos.errors.max" class="container-error-message">
-                  Campo Invalido
+                  Campo Inválido
                 </div>
               </div>
             </div>
@@ -209,18 +209,18 @@
                   *ngIf="horas_cumplir.errors.min"
                   class="container-error-message"
                 >
-                  Campo Invalido
+                  Campo Inválido
                 </div>
                 <div
                   *ngIf="horas_cumplir.errors.max"
                   class="container-error-message"
                 >
-                  Campo Invalido
+                  Campo Inválido
                 </div>
               </div>
             </div>
             <div class="form-group col-md-4">
-              <label for="inputNombre">Ciclo para realizar Practica</label>
+              <label for="inputNombre">Ciclo para realizar Pasantía</label>
               <input
                 type="text"
                 class="form-control"
@@ -244,13 +244,13 @@
                   *ngIf="ciclo_necesario.errors.minlength"
                   class="container-error-message"
                 >
-                  Campo Invalido
+                  Campo Inválido
                 </div>
                 <div
                   *ngIf="ciclo_necesario.errors.maxlength"
                   class="container-error-message"
                 >
-                  Campo Invalido
+                  Campo Inválido
                 </div>
               </div>
             </div>
@@ -333,7 +333,7 @@
         <div class="container">
           <div class="form-group col-md-6">
             <label for="exampleFormControlTextarea1"
-              >Descripcion de Actividades a realizar</label
+              >Descripción de Actividades a realizar</label
             >
             <textarea
               class="form-control"

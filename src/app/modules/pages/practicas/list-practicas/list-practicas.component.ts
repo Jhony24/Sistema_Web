@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
-import Swal from 'sweetalert2';
-import { Practicas } from '../../models/Practicas';
-import { ServiceService } from '../../services/service.service';
+import Swal from "sweetalert2";
+import { Practicas } from "../../models/Practicas";
+import { ServiceService } from "../../services/service.service";
 
 @Component({
   selector: "app-list-practicas",
@@ -10,11 +10,11 @@ import { ServiceService } from '../../services/service.service';
   styleUrls: ["./list-practicas.component.css"],
 })
 export class ListPracticasComponent implements OnInit {
-
   listpracticas = new Array<Practicas>();
-  constructor(private ruta: Router, private servicio:ServiceService) {}
+  fecha= new Date();
+  constructor(private ruta: Router, private servicio: ServiceService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.listar_practicas();
   }
 
@@ -28,32 +28,35 @@ export class ListPracticasComponent implements OnInit {
     this.ruta.navigate(["/principal/add-practicas-profesionales"]);
   }
 
-  eliminar_practica(practica:Practicas):void{
+  eliminar_practica(practica: Practicas): void {
     Swal.fire({
-      title: '¿Está seguro?',
-      text: "¿Seguro desea dar de baja a la practica:" + practica.nombrearea +"?",
-      icon: 'warning',
+      title: "¿Está seguro?",
+      text:
+        "¿Seguro desea dar de baja a la practica:" + practica.nombrearea + "?",
+      icon: "warning",
       showCancelButton: true,
-      confirmButtonColor: '#3085d6',
-      cancelButtonColor: '#d33',
-      confirmButtonText: 'Si, Dar de Baja',
-      cancelButtonText:'Cancelar'
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Si, Dar de Baja",
+      cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.value) {
         this.servicio.eliminarPractica(practica.id).subscribe(
-          data=>{
+          (data) => {
             this.listar_practicas();
-          },(err)=>{
-            console.log('Hubo un error al Eliminar el Cargo => '+ err.toString());
+          },
+          (err) => {
+            console.log(
+              "Hubo un error al Eliminar el Cargo => " + err.toString()
+            );
           }
         );
         Swal.fire(
-          'Dar de Baja!',
-          'Se ha dado de baja a la practica: '+practica.nombrearea,
-          'success'
-        )
+          "Dar de Baja!",
+          "Se ha dado de baja a la practica: " + practica.nombrearea,
+          "success"
+        );
       }
     });
-
   }
 }

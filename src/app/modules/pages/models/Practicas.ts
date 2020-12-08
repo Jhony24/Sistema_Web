@@ -13,7 +13,7 @@ export class Practicas {
   actividades?: string;
   tipo_empresa?: string;
   requerimientos?: string;
-  salario?: number;
+  salario?: string;
   ppestado: number;
   idcarrera: number;
   modalidad?: string;

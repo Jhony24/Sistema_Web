@@ -1,7 +1,7 @@
 <div class="container_p">
   <form [formGroup]="validarForm" (ngSubmit)="onSubmit()">
     <h1>
-      <b>Formulario de Ingreso de Areas para Practicas Pre-Profesionales o Pasantias</b>
+      <b>Formulario de Ingreso de Áreas para Prácticas Pre-Profesionales o Pasantías</b>
     </h1>
     <button class="btn btn-danger" (click)="volver_lista()">
       <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver
@@ -39,7 +39,7 @@
     </div>
     <div class="container">
       <div class="form-group col-md-6">
-        <label for="nombrearea">Nombre de Area</label>
+        <label for="nombrearea">Nombre de Área</label>
         <input
           autocomplete="off"
           formControlName="nombrearea"
@@ -69,13 +69,13 @@
             *ngIf="nombrearea.errors.minlength"
             class="container-error-message"
           >
-            Longitud de cadena invalida
+            Longitud de cadena inválida
           </div>
           <div
             *ngIf="nombrearea.errors.maxlength"
             class="container-error-message"
           >
-            Longitud de cadena invalida
+            Longitud de cadena inválida
           </div>
         </div>
       </div>
@@ -84,7 +84,7 @@
       <div class="form-group col-md-6">
         <button type="submit" class="btn btn-success">
           <span class="glyphicon glyphicon-floppy-saved">&nbsp;</span>
-          <b>Registrar Area</b>
+          <b>Registrar Área</b>
         </button>
       </div>
     </div>

@@ -1,6 +1,6 @@
 <div class="container_p">
   <h1>
-    <b>Edición de Areas para Practicas Pre-Profesionales o Pasantias</b>
+    <b>Edición de Áreas para Prácticas Pre-Profesionales o Pasantías</b>
   </h1>
   <button class="btn btn-danger" (click)="volver_lista()">
     <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
@@ -29,7 +29,7 @@
       </div>
       <div class="container">
         <div class="form-group col-md-12">
-          <label for="nombrearea">Nombre de Area</label>
+          <label for="nombrearea">Nombre de Área</label>
           <input
             minlength="20"
             maxlength="50"
@@ -62,13 +62,13 @@
               *ngIf="nombre_area.errors.minlength"
               class="container-error-message"
             >
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
             <div
               *ngIf="nombre_area.errors.maxlength"
               class="container-error-message"
             >
-              Longitud de cadena invalida
+              Longitud de cadena inválida
             </div>
           </div>
         </div>
@@ -78,7 +78,7 @@
         <div class="form-group col-md-6">
           <button type="submit" class="btn btn-success">
             <span class="glyphicon glyphicon-refresh">&nbsp;</span>
-            <b> Actualizar Area</b>
+            <b> Actualizar Área</b>
           </button>
         </div>
       </div>

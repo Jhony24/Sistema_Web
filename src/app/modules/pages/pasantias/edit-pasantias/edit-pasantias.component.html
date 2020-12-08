@@ -1,6 +1,6 @@
 <div class="container_p">
   <div class="titulo">
-    <h1><b>Formulario de Edicion de Pasantías</b></h1>
+    <h1><b>Formulario de Edición de Pasantías</b></h1>
   </div>
   <button class="btn btn-danger" (click)="volver_lista()">
     <span class="glyphicon glyphicon-arrow-left">&nbsp;</span>Volver</button
@@ -33,7 +33,7 @@
       </div>
       <div class="container">
         <div class="form-group col-md-6" style="width: auto">
-          <label for="idarea">Seleccionar Area</label>
+          <label for="idarea">Seleccionar Área</label>
           <form class="form-inline">
             <div class="form-group mx-sm-3 mb-2">
               <select
@@ -43,7 +43,7 @@
                 id="idarea"
                 [(ngModel)]="pasantia.idarea"
               >
-                <option value="" hidden selected>Seleccionar Area</option>
+                <option value="" hidden selected>Seleccionar Área</option>
                 <option *ngFor="let area of listarea" [value]="area.id">
                   {{ area.nombrearea }}
                 </option>
@@ -78,7 +78,7 @@
           id="modalidad"
           class="form-group col-md-6"
         >
-          <label for="exampleFormControlInput1">Modalidad de Practica</label>
+          <label for="exampleFormControlInput1">Modalidad de Pasantía</label>
           <br />
           <input
             required
@@ -169,7 +169,7 @@
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label for="inputNombre">Ciclo para realizar Practica</label>
+          <label for="inputNombre">Ciclo para realizar Pasantía</label>
           <input
             minlength="3"
             maxlength="20"
@@ -277,13 +277,13 @@
               *ngIf="salario.errors.minlength"
               class="container-error-message"
             >
-              Valor Invalido
+              Valor Inválido
             </div>
             <div
               *ngIf="salario.errors.maxlength"
               class="container-error-message"
             >
-              Valor Invalido
+              Valor Inválido
             </div>
           </div>
         </div>
@@ -292,7 +292,7 @@
       <div class="container">
         <div class="form-group col-md-6">
           <label for="exampleFormControlTextarea1"
-            >Descripcion de Actividades a realizar</label
+            >Descripción de Actividades a realizar</label
           >
           <textarea
             minlength="20"
