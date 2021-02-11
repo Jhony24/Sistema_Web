@@ -27,17 +27,19 @@
         >
           <tr *ngIf="pasantia.cupos > 0">
             <td class="hidden">{{ pasantia.id }}</td>
-            <td>{{ pasantia.nombrearea }}</td>
-            <td>
+            <td style="text-align: center">{{ pasantia.nombrearea }}</td>
+            <td style="text-align: center">
               {{ pasantia.nombreempresa }}
             </td>
-            <td>
+            <td style="text-align: center">
               {{ pasantia.modalidad }}
             </td>
-            <td>{{ pasantia.tipo_empresa }}</td>
-            <td>{{ pasantia.cupos }}</td>
-            <td>{{ pasantia.fecha_inicio | date: "dd/MM/yyyy" }}</td>
-            <td>
+            <td style="text-align: center">{{ pasantia.tipo_empresa }}</td>
+            <td style="text-align: center">{{ pasantia.cupos }}</td>
+            <td style="text-align: center">
+              {{ pasantia.fecha_inicio | date: "dd/MM/yyyy" }}
+            </td>
+            <td style="text-align: center">
               {{
                 pasantia.salario == "0.0"
                   ? "A DEFINIR"

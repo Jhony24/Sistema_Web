@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Area } from "../../models/Area";
 import { Carrera } from "../../models/Carrera";
+import { Convenio } from "../../models/Convenio";
 import { Empresa } from "../../models/Empresa";
 import { ServiceService } from "../../services/service.service";
 
@@ -16,11 +17,13 @@ export class AddPracticasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
+  listconvenios = new Array<Convenio>();
   public error = <any>[];
   selectCarrera: string = "";
   selectArea: string = "";
   selectEmpresa: string = "";
   fechapractica: string = "";
+  horas: string = "";
   validarForm: FormGroup;
   public validador;
   constructor(
@@ -33,13 +36,20 @@ export class AddPracticasComponent implements OnInit {
     this.listar_carreras();
     this.listar_areas();
     this.listar_empresas();
+    this.listar_convenios();
 
     this.validarForm = this.formBuilder.group({
       id: 0,
       tipo_practica: ["1"],
       cupos: ["", [Validators.required, Validators.min(1), Validators.max(20)]],
-      horas_cumplir: ["",[Validators.required, Validators.min(1), Validators.max(200)]],
-      ciclo_necesario: ["",[Validators.minLength(3), Validators.maxLength(20)]],
+      horas_cumplir: [
+        "",
+        [Validators.required, Validators.min(1), Validators.max(200)],
+      ],
+      ciclo_necesario: [
+        "",
+        [Validators.minLength(3), Validators.maxLength(20)],
+      ],
       fecha_inicio: ["", Validators.required],
       ppestado: ["1"],
       modalidad: ["", Validators.required],
@@ -83,6 +93,11 @@ export class AddPracticasComponent implements OnInit {
 
   handleError(error) {
     this.error = error.error;
+  }
+  listar_convenios() {
+    this.servicio.getListadoConvenios().subscribe((data) => {
+      this.listconvenios = data;
+    });
   }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(
@@ -152,6 +167,11 @@ export class AddPracticasComponent implements OnInit {
     }
 
     this.validador = fechaCorrecta;
+  }
+
+  validarhora(event: any) {
+    this.horas = event.target.value;
+    console.log(this.horas);
   }
 
   get idcarrera() {

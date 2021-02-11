@@ -5,6 +5,7 @@ import { ServiceService } from "../../services/service.service";
 import Swal from "sweetalert2";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
 import { Empresa } from "../../models/Empresa";
+import { Convenio } from "../../models/Convenio";
 
 @Component({
   selector: "app-add-basico",
@@ -18,6 +19,7 @@ export class AddBasicoComponent implements OnInit {
   listmacro = new Array<ProyectoMacro>();
   validarForm: FormGroup;
   listempresa = new Array<Empresa>();
+  listconvenios = new Array<Convenio>();
   public error = <any>[];
 
   macro: ProyectoMacro = {
@@ -58,6 +60,7 @@ export class AddBasicoComponent implements OnInit {
   ngOnInit() {
     this.listar_macro();
     this.listar_empresas();
+    this.listar_convenios();
 
     this.validarForm = this.formBuilder.group({
       id: 0,
@@ -133,6 +136,11 @@ export class AddBasicoComponent implements OnInit {
 
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-proyecto"]);
+  }
+  listar_convenios() {
+    this.servicio.getListadoConvenios().subscribe((data) => {
+      this.listconvenios = data;
+    });
   }
 
   listar_macro() {

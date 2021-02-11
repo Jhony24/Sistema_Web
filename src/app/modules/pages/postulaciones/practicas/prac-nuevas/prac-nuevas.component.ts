@@ -19,7 +19,6 @@ export class PracNuevasComponent implements OnInit {
 
   listar_postulaciones() {
     this.servicio.getListadoPostulantesPracticas().subscribe((data) => {
-  
       this.listpostulantes = data;
       console.log(this.tipo);
     });

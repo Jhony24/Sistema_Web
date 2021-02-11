@@ -12,7 +12,8 @@
       <div class="col-lg-3 col-xs-6">
         <div class="small-box bg-aqua">
           <div class="inner">
-            <h3>{{ conttotalconvenios }}</h3>&nbsp;
+            <h3>{{ conttotalconvenios }}</h3>
+            &nbsp;
             <p *ngIf="conttotalconvenios == 0">Convenios Establecidos</p>
             <p *ngIf="conttotalconvenios == 1">Convenio Establecido</p>
             <p *ngIf="conttotalconvenios > 1">Convenios Establecidos</p>
@@ -26,7 +27,8 @@
       <div class="col-lg-3 col-xs-6">
         <div class="small-box bg-red">
           <div class="inner">
-            <h3>{{ contconvenios }}</h3>&nbsp;
+            <h3>{{ contconvenios }}</h3>
+            &nbsp;
             <p *ngIf="contconvenios == 0">Convenios Vencidos</p>
             <p *ngIf="contconvenios == 1">Convenio Vencido</p>
             <p *ngIf="contconvenios > 1">Convenios Vencidos</p>
@@ -45,9 +47,14 @@
         <div class="small-box bg-aqua">
           <div class="inner">
             <h3>{{ contpracticas }}</h3>
-            &nbsp;
-
-            <p>Postulaciones para prácticas</p>
+            &nbsp; &nbsp;
+            <p>
+              <a
+                [routerLink]="'/principal/practicas_nuevas'"
+                style="color: white"
+                ><b>Postulaciones para prácticas</b></a
+              >
+            </p>
           </div>
           <div class="icon">
             <i class="ion ion-university"></i>
@@ -58,9 +65,15 @@
         <div class="small-box bg-aqua">
           <div class="inner">
             <h3>{{ contpasantias }}</h3>
-            &nbsp;
+            &nbsp; &nbsp;
 
-            <p>Postulaciones para Pasantías</p>
+            <p>
+              <a
+                [routerLink]="'/principal/pasantias_nuevas'"
+                style="color: white"
+                ><b>Postulaciones para pasantías</b></a
+              >
+            </p>
           </div>
           <div class="icon">
             <i class="ion ion-cash"></i>
@@ -71,12 +84,18 @@
         <div class="small-box bg-aqua">
           <div class="inner">
             <h3>{{ contproyectos }}</h3>
-            &nbsp;
+            &nbsp;&nbsp;
 
-            <p><b>Postulaciones para Proyectos</b></p>
+            <p>
+              <a
+                [routerLink]="'/principal/proyectos_nuevos'"
+                style="color: white"
+                ><b>Postulaciones para proyectos</b></a
+              >
+            </p>
           </div>
           <div class="icon">
-            <i class="ion ion-load-a"></i>
+            <i class="ion ion-document-text"></i>
           </div>
         </div>
       </div>

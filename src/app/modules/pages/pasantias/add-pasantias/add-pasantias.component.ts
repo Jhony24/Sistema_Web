@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Area } from "../../models/Area";
 import { Carrera } from "../../models/Carrera";
+import { Convenio } from "../../models/Convenio";
 import { Empresa } from "../../models/Empresa";
 import { ServiceService } from "../../services/service.service";
 
@@ -16,6 +17,7 @@ export class AddPasantiasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
+  listconvenios = new Array<Convenio>();
   selectCarrera: string = "";
   selectArea: string = "";
   selectEmpresa: string = "";
@@ -34,6 +36,7 @@ export class AddPasantiasComponent implements OnInit {
     this.listar_carreras();
     this.listar_areas();
     this.listar_empresas();
+    this.listar_convenios();
 
     this.validarForm = this.formBuilder.group({
       id: 0,
@@ -92,6 +95,11 @@ export class AddPasantiasComponent implements OnInit {
     this.error = error.error;
   }
 
+  listar_convenios() {
+    this.servicio.getListadoConvenios().subscribe((data) => {
+      this.listconvenios = data;
+    });
+  }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(
       (data) => {

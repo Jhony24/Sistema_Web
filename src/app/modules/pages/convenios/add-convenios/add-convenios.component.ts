@@ -13,6 +13,11 @@ import { ServiceService } from "../../services/service.service";
   styleUrls: ["./add-convenios.component.css"],
 })
 export class AddConveniosComponent implements OnInit {
+  fecha_c: string = "";
+  fff: string = "";
+  verSeleccion: string = "";
+  lista: number[] = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+  listaAnos: string[] = ["años", "meses"];
   selectCarrera: string = "";
   selectEmpresa: string = "";
   listcarreras = new Array<Carrera>();
@@ -22,6 +27,8 @@ export class AddConveniosComponent implements OnInit {
   public filesToUpload: Array<File>;
   fileToUpload: File = null;
   uploadedFiles: Array<File>;
+  private fechaPattern: any = /^([0-9][a-zA-Z ](?=.{2,254}$))$/;
+  private regex = /[0-9]\s(?=meses|años)/g;
 
   private httpHeader = new HttpHeaders({
     "Content-Type": "application/json",
@@ -32,7 +39,9 @@ export class AddConveniosComponent implements OnInit {
     private servicio: ServiceService,
     private formBuilder: FormBuilder,
     private http: HttpClient
-  ) {}
+  ) {
+    console.log(this.fecha_c);
+  }
 
   ngOnInit() {
     this.listar_carreras();
@@ -52,7 +61,7 @@ export class AddConveniosComponent implements OnInit {
       fecha_inicio: ["", Validators.required],
       fecha_culminacion: [
         "",
-        [Validators.required, Validators.minLength(1), Validators.maxLength(7)],
+        [Validators.required, Validators.pattern(this.regex)],
       ],
       objeto: [
         "",
@@ -69,6 +78,7 @@ export class AddConveniosComponent implements OnInit {
   }
 
   onSubmit() {
+    console.log("fffff", this.fff);
     if (this.validarForm.valid) {
       this.servicio.crearConvenio(this.validarForm.value).subscribe(
         (data) => {
@@ -153,6 +163,7 @@ export class AddConveniosComponent implements OnInit {
   }
   selectChangeCarrera(event: any) {
     this.selectCarrera = event.target.value;
+    console.log(this.selectCarrera);
   }
   selectChangeEmpresa(event: any) {
     this.selectEmpresa = event.target.value;
@@ -184,5 +195,17 @@ export class AddConveniosComponent implements OnInit {
   }
   get objeto() {
     return this.validarForm.get("objeto");
+  }
+
+  capturar(event: any) {
+    this.verSeleccion = event.target.value;
+    this.fff = this.verSeleccion + " " + this.fecha_c;
+    console.log(this.fff);
+  }
+
+  capturar2(event: any) {
+    this.fecha_c = event.target.value;
+    this.fff = this.verSeleccion + " " + this.fecha_c;
+    console.log(this.fff);
   }
 }

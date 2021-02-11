@@ -64,8 +64,11 @@
               [(ngModel)]="pasantia.idempresa"
             >
               <option value="" hidden selected>Seleccionar Empresa</option>
-              <option *ngFor="let empresa of listempresa" [value]="empresa.id">
-                {{ empresa.nombreempresa }}
+              <option
+                *ngFor="let convenio of listconvenios"
+                [value]="convenio.idempresa"
+              >
+                {{ convenio.nombreempresa }}
               </option>
             </select>
           </div>

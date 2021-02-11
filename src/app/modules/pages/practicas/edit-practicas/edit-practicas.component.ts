@@ -4,6 +4,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Area } from "../../models/Area";
 import { Carrera } from "../../models/Carrera";
+import { Convenio } from "../../models/Convenio";
 import { Empresa } from "../../models/Empresa";
 import { Practicas } from "../../models/Practicas";
 import { ServiceService } from "../../services/service.service";
@@ -17,6 +18,7 @@ export class EditPracticasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
+  listconvenios=new Array<Convenio>();
   fechapractica: string = "";
   cupos: number;
   public validador = true;
@@ -55,7 +57,6 @@ export class EditPracticasComponent implements OnInit {
       this.servicio.getListadoPracticas().subscribe(
         (data: Practicas[]) => {
           this.practicas = data;
-          console.log("fffffffff", this.practicas);
           this.practica = this.practicas.find((m) => {
             return m.id == this.id;
           });
@@ -69,6 +70,7 @@ export class EditPracticasComponent implements OnInit {
     this.listar_carreras();
     this.listar_areas();
     this.listar_empresas();
+    this.listar_convenios();
   }
 
   put(myform: NgForm) {
@@ -104,6 +106,11 @@ export class EditPracticasComponent implements OnInit {
 
   handleError(error) {
     this.error = error.error;
+  }
+  listar_convenios() {
+    this.servicio.getListadoConvenios().subscribe((data) => {
+      this.listconvenios = data;
+    });
   }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(

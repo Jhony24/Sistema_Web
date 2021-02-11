@@ -27,16 +27,16 @@
         >
           <tr *ngIf="practica.cupos > 0">
             <td class="hidden">{{ practica.id }}</td>
-            <td>{{ practica.nombrearea }}</td>
-            <td>
+            <td style="text-align: center">{{ practica.nombrearea }}</td>
+            <td style="text-align: center">
               {{ practica.nombreempresa }}
             </td>
-            <td>
+            <td style="text-align: center">
               {{ practica.modalidad }}
             </td>
-            <td>{{ practica.tipo_empresa }}</td>
-            <td>{{ practica.cupos }}</td>
-            <td>{{ practica.fecha_inicio | date: "dd/MM/yyyy" }}</td>
+            <td style="text-align: center">{{ practica.tipo_empresa }}</td>
+            <td style="text-align: center">{{ practica.cupos }}</td>
+            <td style="text-align: center">{{ practica.fecha_inicio | date: "dd/MM/yyyy" }}</td>
 
             <td>
               <div

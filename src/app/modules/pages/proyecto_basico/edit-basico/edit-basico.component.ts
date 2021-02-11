@@ -2,6 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
+import { Convenio } from "../../models/Convenio";
 import { Empresa } from "../../models/Empresa";
 import { ProyectoBasico } from "../../models/ProyectoBasico";
 import { ProyectoMacro } from "../../models/ProyectoMacro";
@@ -15,6 +16,7 @@ import { ServiceService } from "../../services/service.service";
 export class EditBasicoComponent implements OnInit {
   listmacro = new Array<ProyectoMacro>();
   listempresa = new Array<Empresa>();
+  listconvenios = new Array<Convenio>();
   fechapractica: string = "";
   public validador = true;
   public error = <any>[];
@@ -62,9 +64,15 @@ export class EditBasicoComponent implements OnInit {
   ngOnInit() {
     this.listar_macro();
     this.listar_empresas();
+    this.listar_convenios();
   }
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-basico/", this.basico.idmacro]);
+  }
+  listar_convenios() {
+    this.servicio.getListadoConvenios().subscribe((data) => {
+      this.listconvenios = data;
+    });
   }
 
   put(myform: NgForm) {

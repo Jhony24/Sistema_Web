@@ -80,8 +80,11 @@
           formControlName="idempresa"
         >
           <option value="" hidden selected>Seleccionar Empresa</option>
-          <option *ngFor="let empresa of listempresa" [ngValue]="empresa.id">
-            {{ empresa.nombreempresa }}
+          <option
+            *ngFor="let convenio of listconvenios"
+            [ngValue]="convenio.idempresa"
+          >
+            {{ convenio.nombreempresa }}
           </option>
         </select>
         <div class="text text-danger" [hidden]="!error.idempresa">
@@ -141,7 +144,7 @@
         <div class="text text-danger" [hidden]="!error.cupos">
           {{ error.cupos }}
         </div>
-       
+
         <div
           *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)"
           class="text text-danger"
@@ -270,6 +273,7 @@
           class="form-control"
           name="hora_entrada"
           id="hora_entrada"
+          (change)="validarhora($event)"
           formControlName="hora_entrada"
         />
       </div>

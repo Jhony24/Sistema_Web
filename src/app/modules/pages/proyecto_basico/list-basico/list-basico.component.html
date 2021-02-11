@@ -30,11 +30,13 @@
         >
           <tr *ngIf="basico.estudianes_requeridos > 0">
             <td class="hidden">{{ basico.id }}</td>
-            <td>{{ basico.nombre_prbasico }}</td>
-            <td>{{ basico.nombreempresa }}</td>
-            <td>{{ basico.estudianes_requeridos }}</td>
-            <td>{{ basico.horas_cumplir }}</td>
-            <td>{{ basico.fecha_inicio }}</td>
+            <td style="text-align: center">{{ basico.nombre_prbasico }}</td>
+            <td style="text-align: center">{{ basico.nombreempresa }}</td>
+            <td style="text-align: center">
+              {{ basico.estudianes_requeridos }}
+            </td>
+            <td style="text-align: center">{{ basico.horas_cumplir }}</td>
+            <td style="text-align: center">{{ basico.fecha_inicio }}</td>
 
             <td>
               <div

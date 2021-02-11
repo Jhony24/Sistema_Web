@@ -1,8 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
 import Swal from "sweetalert2";
-import { Empresa } from '../../models/Empresa';
-import { ServiceService } from '../../services/service.service';
+import { Empresa } from "../../models/Empresa";
+import { ServiceService } from "../../services/service.service";
 
 @Component({
   selector: "app-list-empresas",
@@ -10,11 +10,10 @@ import { ServiceService } from '../../services/service.service';
   styleUrls: ["./list-empresas.component.css"],
 })
 export class ListEmpresasComponent implements OnInit {
-
   listempresas = new Array<Empresa>();
-  constructor(private ruta: Router,private servicio:ServiceService) {}
+  constructor(private ruta: Router, private servicio: ServiceService) {}
 
-  ngOnInit(){
+  ngOnInit() {
     this.listar_empresas();
   }
   listar_empresas() {
@@ -24,6 +23,9 @@ export class ListEmpresasComponent implements OnInit {
   }
   add_empresas(): void {
     this.ruta.navigate(["/principal/add-empresas"]);
+  }
+  list_convenios(): void {
+    this.ruta.navigate(["/principal/list-convenio"]);
   }
   eliminar_emresa(empresa: Empresa): void {
     Swal.fire({

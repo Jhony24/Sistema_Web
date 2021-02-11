@@ -91,10 +91,10 @@
             >
               <option value="" hidden selected>Seleccionar Empresa</option>
               <option
-                *ngFor="let empresa of listempresa"
-                [ngValue]="empresa.id"
+                *ngFor="let convenio of listconvenios"
+                [ngValue]="convenio.idempresa"
               >
-                {{ empresa.nombreempresa }}
+                {{ convenio.nombreempresa }}
               </option>
             </select>
             <div class="text text-danger" [hidden]="!error.idempresa">

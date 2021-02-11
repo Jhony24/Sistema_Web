@@ -147,18 +147,18 @@
 
     <div class="container">
       <div class="form-group col-md-6">
-        <label for="inputNombre">RUC</label>
+        <label for="inputNombre">RUC/NIT/DNI/Otros</label>
         <input
         
           required
-          type="number"
-          pattern="[0-9]{13}"
+          type="text"
           class="form-control"
           #ruc="ngModel"
           [(ngModel)]="empresa.ruc"
           name="ruc"
           id="ruc"
-          min="1"
+          min="6"
+          max="13"
         />
         <div
           *ngIf="ruc.invalid && (ruc.dirty || ruc.touched)"

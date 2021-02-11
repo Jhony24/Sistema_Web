@@ -32,7 +32,7 @@ export class AddEmpresasComponent implements OnInit {
         "",
         [
           Validators.required,
-          Validators.minLength(10),
+          Validators.minLength(3),
           Validators.maxLength(200),
         ],
       ],
@@ -45,12 +45,19 @@ export class AddEmpresasComponent implements OnInit {
           Validators.maxLength(100),
         ],
       ],
-      ruc: ["", [Validators.required]],
+      ruc: [
+        "",
+        [
+          Validators.required,
+          Validators.minLength(6),
+          Validators.maxLength(13),
+        ],
+      ],
       direccion: [
         "",
         [
           Validators.required,
-          Validators.minLength(20),
+          Validators.minLength(10),
           Validators.maxLength(150),
         ],
       ],
@@ -59,10 +66,15 @@ export class AddEmpresasComponent implements OnInit {
         "",
         [Validators.minLength(5), Validators.pattern(this.emailPattern)],
       ],
+
       actividades: ["", [Validators.minLength(20), Validators.maxLength(200)]],
       idcarrera: [this.selectCarrera, Validators.required],
       estadoempresa: ["1"],
     });
+  }
+
+  private valid(): any {
+    return [Validators.required];
   }
 
   listar_carreras() {
@@ -161,4 +173,29 @@ export class AddEmpresasComponent implements OnInit {
   get correo() {
     return this.validarForm.get("correo");
   }
+  get otro() {
+    return this.validarForm.get("otro");
+  }
+
+  readonly = false;
+  habilitar() {
+    //mostrar
+    document.getElementById("nombrerepresentante").style.visibility = "visible";
+    //habilitar
+    this.readonly = false;
+  }
+
+  desabilitar() {
+    //ocultar
+    document.getElementById("input").style.visibility = "collapse";
+    //deshabilitar
+    this.readonly = true;
+  }
+
+  // evento para el input radio del "si"
+}
+function habilitar() {
+  document.getElementById("nombrerepresentante").style.visibility = "visible";
+  //habilitar
+  this.readonly = true;
 }
