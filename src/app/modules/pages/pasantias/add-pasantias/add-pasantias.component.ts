@@ -22,7 +22,10 @@ export class AddPasantiasComponent implements OnInit {
   selectArea: string = "";
   selectEmpresa: string = "";
   fechapractica: string = "";
+  horas: string = "";
   public validador;
+  public validadorhora = true;
+  public validadorhorasalida = true;
   public error = <any>[];
 
   validarForm: FormGroup;
@@ -53,6 +56,8 @@ export class AddPasantiasComponent implements OnInit {
       fecha_inicio: ["", Validators.required],
       ppestado: ["1"],
       salario: [""],
+      hora_entrada: [""],
+      hora_salida: [""],
       modalidad: ["", Validators.required],
       idcarrera: [this.selectCarrera, Validators.required],
       idarea: [this.selectArea, Validators.required],
@@ -66,7 +71,12 @@ export class AddPasantiasComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.validarForm.valid && this.validador == true) {
+    if (
+      this.validarForm.valid &&
+      this.validador == true &&
+      this.validadorhora == true &&
+      this.validadorhorasalida == true
+    ) {
       this.servicio.crearPractica(this.validarForm.value).subscribe(
         (data) => {
           this.ruta.navigate(["/principal/list-pasantias"]);
@@ -170,6 +180,45 @@ export class AddPasantiasComponent implements OnInit {
 
     this.validador = fechaCorrecta;
   }
+  validarhora(event: any) {
+    let horacorrecta = false;
+    this.horas = event.target.value;
+    console.log(this.horas.substring(0, 2));
+    if (
+      this.horas.substring(0, 2).includes("23") ||
+      this.horas.substring(0, 2).includes("00") ||
+      this.horas.substring(0, 2).includes("01") ||
+      this.horas.substring(0, 2).includes("02") ||
+      this.horas.substring(0, 2).includes("03") ||
+      this.horas.substring(0, 2).includes("04") ||
+      this.horas.substring(0, 2).includes("05")
+    ) {
+      horacorrecta = false;
+    } else {
+      horacorrecta = true;
+    }
+    this.validadorhora = horacorrecta;
+  }
+
+  validarhorasalida(event: any) {
+    let horacorrecta = false;
+    this.horas = event.target.value;
+    console.log(this.horas.substring(0, 2));
+    if (
+      this.horas.substring(0, 2).includes("23") ||
+      this.horas.substring(0, 2).includes("00") ||
+      this.horas.substring(0, 2).includes("01") ||
+      this.horas.substring(0, 2).includes("02") ||
+      this.horas.substring(0, 2).includes("03") ||
+      this.horas.substring(0, 2).includes("04") ||
+      this.horas.substring(0, 2).includes("05")
+    ) {
+      horacorrecta = false;
+    } else {
+      horacorrecta = true;
+    }
+    this.validadorhorasalida = horacorrecta;
+  }
 
   get idcarrera() {
     return this.validarForm.get("idcarrera");
@@ -192,6 +241,12 @@ export class AddPasantiasComponent implements OnInit {
 
   get fecha_inicio() {
     return this.validarForm.get("fecha_inicio");
+  }
+  get hora_entrada() {
+    return this.validarForm.get("hora_entrada");
+  }
+  get hora_salida() {
+    return this.validarForm.get("hora_salida");
   }
   get actividades() {
     return this.validarForm.get("actividades");

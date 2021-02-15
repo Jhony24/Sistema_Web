@@ -18,11 +18,14 @@ export class EditPracticasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listarea = new Array<Area>();
   listempresa = new Array<Empresa>();
-  listconvenios=new Array<Convenio>();
+  listconvenios = new Array<Convenio>();
   fechapractica: string = "";
   cupos: number;
+  horas: string = "";
   public validador = true;
   public validarcupo = true;
+  public validadorhora = true;
+  public validadorhorasalida = true;
   public error = <any>[];
 
   practica: Practicas = {
@@ -77,7 +80,9 @@ export class EditPracticasComponent implements OnInit {
     if (
       myform.valid == true &&
       this.validador == true &&
-      this.validarcupo == true
+      this.validarcupo == true &&
+      this.validadorhora == true &&
+      this.validadorhorasalida == true
     ) {
       this.servicio.actualizarPractica(this.practica).subscribe(
         (data) => {
@@ -169,7 +174,6 @@ export class EditPracticasComponent implements OnInit {
   }
   validarcupos(event: any) {
     this.cupos = event.target.value;
-    console.log(this.cupos);
     let cupocorrecto = false;
     if (this.cupos > 20) {
       cupocorrecto = false;
@@ -178,6 +182,44 @@ export class EditPracticasComponent implements OnInit {
     }
 
     this.validarcupo = cupocorrecto;
-    console.log(this.validarcupo);
+  }
+  validarhora(event: any) {
+    let horacorrecta = false;
+    this.horas = event.target.value;
+    console.log(this.horas.substring(0, 2));
+    if (
+      this.horas.substring(0, 2).includes("23") ||
+      this.horas.substring(0, 2).includes("00") ||
+      this.horas.substring(0, 2).includes("01") ||
+      this.horas.substring(0, 2).includes("02") ||
+      this.horas.substring(0, 2).includes("03") ||
+      this.horas.substring(0, 2).includes("04") ||
+      this.horas.substring(0, 2).includes("05")
+    ) {
+      horacorrecta = false;
+    } else {
+      horacorrecta = true;
+    }
+    this.validadorhora = horacorrecta;
+  }
+
+  validarhorasalida(event: any) {
+    let horacorrecta = false;
+    this.horas = event.target.value;
+    console.log(this.horas.substring(0, 2));
+    if (
+      this.horas.substring(0, 2).includes("23") ||
+      this.horas.substring(0, 2).includes("00") ||
+      this.horas.substring(0, 2).includes("01") ||
+      this.horas.substring(0, 2).includes("02") ||
+      this.horas.substring(0, 2).includes("03") ||
+      this.horas.substring(0, 2).includes("04") ||
+      this.horas.substring(0, 2).includes("05")
+    ) {
+      horacorrecta = false;
+    } else {
+      horacorrecta = true;
+    }
+    this.validadorhorasalida = horacorrecta;
   }
 }

@@ -76,7 +76,7 @@
           id="modalidad"
           class="form-group col-md-6"
         >
-          <label for="exampleFormControlInput1">Modalidad de Práctica</label>
+          <label for="exampleFormControlInput1">Modalidad de Práctica<label style="color: #a94442"> *</label></label>
           <br />
           <input
             required
@@ -247,8 +247,18 @@
             class="form-control"
             name="hora_entrada"
             id="hora_entrada"
+            #hora_entrada="ngModel"
+            (change)="validarhora($event)"
             [(ngModel)]="practica.hora_entrada"
           />
+          <div
+            *ngIf="
+              !validadorhora && (hora_entrada.dirty || hora_entrada.touched)
+            "
+            class="text text-danger"
+          >
+            Hora Invalida
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label for="inputDireccion">Horario Salida</label>
@@ -257,8 +267,18 @@
             class="form-control"
             name="hora_salida"
             id="hora_salida"
+            (change)="validarhorasalida($event)"
+            #hora_salida="ngModel"
             [(ngModel)]="practica.hora_salida"
           />
+          <div
+            *ngIf="
+              !validadorhorasalida && (hora_salida.dirty || hora_salida.touched)
+            "
+            class="text text-danger"
+          >
+            Hora Invalida
+          </div>
         </div>
       </div>
       <div class="container">
