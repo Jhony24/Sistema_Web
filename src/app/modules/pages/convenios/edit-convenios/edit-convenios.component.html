@@ -122,7 +122,8 @@
           <label for="inputDireccion">Fecha de Culminación</label>
           <input
             minlength="1"
-            maxlength="7"
+            maxlength="10"
+            [pattern]="regex"
             type="text"
             class="form-control"
             name="fecha_culminacion"
@@ -159,12 +160,25 @@
             >
               Longitud de cadena inválida
             </div>
+            <div
+              *ngIf="culminacion.errors.pattern"
+              class="container-error-message"
+            >
+              Error de ingreso existe un espacio en blanco o intente ingresar
+              asi Ej. 3 años, 6 meses
+            </div>
           </div>
         </div>
       </div>
       <div class="container">
         <div class="form-group col-md-12">
-          <label for="exampleFormControlInput1">Objeto</label>
+          <label for="exampleFormControlInput1"
+            >Objeto &nbsp;<abbr
+              style="color: green"
+              title="Este dato lo puede encontrar en el documento de Diseño de su carrera sección convenios o puede ingresar. Ej. Cooperación interinstitucional para pasantías y prácticas preprofesionales. "
+              ><b>Ayuda</b></abbr
+            ></label
+          >
           <input
             minlength="20"
             maxlength="100"

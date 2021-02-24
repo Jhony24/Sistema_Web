@@ -95,39 +95,43 @@ export class DashboardComponent implements OnInit {
 
         var suma;
         if (data[i]["fecha_culminacion"].includes("años")) {
-          console.log("hay años");
-          suma = Number.parseInt(data[i]["fecha_culminacion"]);
-          fecha_actual = fecha_convertida.getFullYear() + "-" + mes + "-" + dia;
-          otrafechaAños.setFullYear(fecha_convertida.getFullYear());
-          otrafechaAños.setMonth(mes);
-          otrafechaAños.setFullYear(otrafechaAños.getFullYear() + suma);
-          console.log(otrafechaAños.getFullYear());
-          if (
-            (f.getFullYear() > otrafechaAños.getFullYear() &&
-              parseInt(mes_actual) >= otrafechaAños.getMonth()) ||
-            (f.getFullYear() > otrafechaAños.getFullYear() &&
-              parseInt(mes_actual) < otrafechaAños.getMonth())
-          ) {
-            this.contconvenios++;
+          if (Number.parseInt(data[i]["fecha_culminacion"]) > 0) {
+            suma = Number.parseInt(data[i]["fecha_culminacion"]);
+            fecha_actual =
+              fecha_convertida.getFullYear() + "-" + mes + "-" + dia;
+            otrafechaAños.setFullYear(fecha_convertida.getFullYear());
+            otrafechaAños.setMonth(mes);
+            otrafechaAños.setFullYear(otrafechaAños.getFullYear() + suma);
+            console.log(otrafechaAños.getFullYear());
+            if (
+              (f.getFullYear() > otrafechaAños.getFullYear() &&
+                parseInt(mes_actual) >= otrafechaAños.getMonth()) ||
+              (f.getFullYear() > otrafechaAños.getFullYear() &&
+                parseInt(mes_actual) < otrafechaAños.getMonth())
+            ) {
+              this.contconvenios++;
+            }
+            console.log("años " + otrafechaAños.getFullYear());
           }
-          console.log("años " + otrafechaAños.getFullYear());
         } else if (data[i]["fecha_culminacion"].includes("meses")) {
-          console.log("hay meses");
-          suma = Number.parseInt(data[i]["fecha_culminacion"]);
+          if (Number.parseInt(data[i]["fecha_culminacion"]) > 0) {
+            suma = Number.parseInt(data[i]["fecha_culminacion"]);
 
-          fecha_actual = fecha_convertida.getFullYear() + "-" + mes + "-" + dia;
-          otrafecha.setMonth(mes);
-          otrafecha.setFullYear(fecha_convertida.getFullYear());
-          otrafecha.setDate(dia);
-          otrafecha.setMonth(otrafecha.getMonth() + suma);
+            fecha_actual =
+              fecha_convertida.getFullYear() + "-" + mes + "-" + dia;
+            otrafecha.setMonth(mes);
+            otrafecha.setFullYear(fecha_convertida.getFullYear());
+            otrafecha.setDate(dia);
+            otrafecha.setMonth(otrafecha.getMonth() + suma);
 
-          if (
-            (otrafecha.getFullYear() >= fecha_convertida.getFullYear() &&
-              parseInt(mes_actual) > otrafecha.getMonth()) ||
-            (otrafecha.getFullYear() < fecha_convertida.getFullYear() &&
-              parseInt(mes_actual) > otrafecha.getMonth())
-          ) {
-            this.contconvenios++;
+            if (
+              (otrafecha.getFullYear() >= fecha_convertida.getFullYear() &&
+                parseInt(mes_actual) > otrafecha.getMonth()) ||
+              (otrafecha.getFullYear() < fecha_convertida.getFullYear() &&
+                parseInt(mes_actual) > otrafecha.getMonth())
+            ) {
+              this.contconvenios++;
+            }
           }
         }
       }

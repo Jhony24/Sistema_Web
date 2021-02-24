@@ -95,7 +95,13 @@
         </div>
         <div class="container">
           <div class="form-group col-md-12">
-            <label for="exampleFormControlInput1">Tipo de Convenio</label>
+            <label for="exampleFormControlInput1"
+              >Tipo de Convenio&nbsp;<abbr
+                style="color: green"
+                title="Si son entidades que estan dentro de su universidad en este campo puede ingresar Convenio Interno"
+                ><b>Información</b></abbr
+              ></label
+            >
             <input
               required
               type="text"
@@ -103,7 +109,7 @@
               formControlName="tipo_convenio"
               name="tipo_convenio"
               id="tipo_convenio"
-              placeholder="Ej. Carta Compromiso"
+              placeholder="Ej. Carta de Compromiso, Convenio Interno, Convenio de Cooperación"
             />
             <div class="text text-danger" [hidden]="!error.tipo_convenio">
               {{ error.tipo_convenio }}
@@ -221,7 +227,13 @@
               </div>
             </div>-->
             <div class="form-group col-md-6">
-              <label for="inputDireccion">Fecha de Culminación</label>
+              <label for="inputDireccion"
+                >Fecha de Culminación&nbsp;<abbr
+                  style="color: green"
+                  title="Si la fecha de culminación no esta definida ingrese 0 años o 0 meses"
+                  ><b>Información</b></abbr
+                ></label
+              >
               <input
                 required
                 type="text"
@@ -281,8 +293,8 @@
             <label for="exampleFormControlInput1"
               >Objeto &nbsp;<abbr
                 style="color: green"
-                title="Este dato lo puede encontrar en el documento de Diseño de su carrera seccion convenios. Ej. Cooperación interinstitucional para pasantías y prácticas preprofesionales. "
-                ><b>?</b></abbr
+                title="Este dato lo puede encontrar en el documento de Diseño de su carrera sección convenios o puede ingresar. Ej. Cooperación interinstitucional para pasantías y prácticas preprofesionales. "
+                ><b>Ayuda</b></abbr
               ></label
             >
             <input

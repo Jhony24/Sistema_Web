@@ -16,6 +16,9 @@ export class EditConveniosComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   listempresa = new Array<Empresa>();
   public error = <any>[];
+  horas: string = "";
+  public validador = true;
+  regex = /[0-9]\s(?=meses|años)/g;
 
   convenio: Convenio = {
     tipo_convenio: null,
@@ -104,4 +107,5 @@ export class EditConveniosComponent implements OnInit {
       (err) => {}
     );
   }
+
 }
