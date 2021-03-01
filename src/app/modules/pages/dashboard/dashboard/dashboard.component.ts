@@ -102,7 +102,6 @@ export class DashboardComponent implements OnInit {
             otrafechaAños.setFullYear(fecha_convertida.getFullYear());
             otrafechaAños.setMonth(mes);
             otrafechaAños.setFullYear(otrafechaAños.getFullYear() + suma);
-            console.log(otrafechaAños.getFullYear());
             if (
               (f.getFullYear() > otrafechaAños.getFullYear() &&
                 parseInt(mes_actual) >= otrafechaAños.getMonth()) ||
@@ -111,7 +110,6 @@ export class DashboardComponent implements OnInit {
             ) {
               this.contconvenios++;
             }
-            console.log("años " + otrafechaAños.getFullYear());
           }
         } else if (data[i]["fecha_culminacion"].includes("meses")) {
           if (Number.parseInt(data[i]["fecha_culminacion"]) > 0) {

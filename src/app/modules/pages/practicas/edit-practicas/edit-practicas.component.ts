@@ -90,7 +90,7 @@ export class EditPracticasComponent implements OnInit {
           Swal.fire({
             position: "top-right",
             icon: "success",
-            title: "Practica Pre-Profesional actualizada correctamente",
+            title: "Práctica Pre-Profesional actualizada correctamente",
             showConfirmButton: false,
             timer: 1800,
           });
@@ -103,7 +103,7 @@ export class EditPracticasComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
       });
     }
@@ -161,7 +161,6 @@ export class EditPracticasComponent implements OnInit {
     }
     fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
 
-    console.log(fecha_actual);
     if (this.fechapractica > fecha_actual) {
       fechaCorrecta = true;
     } else if (this.fechapractica == fecha_actual) {
@@ -186,7 +185,6 @@ export class EditPracticasComponent implements OnInit {
   validarhora(event: any) {
     let horacorrecta = false;
     this.horas = event.target.value;
-    console.log(this.horas.substring(0, 2));
     if (
       this.horas.substring(0, 2).includes("23") ||
       this.horas.substring(0, 2).includes("00") ||
@@ -206,7 +204,6 @@ export class EditPracticasComponent implements OnInit {
   validarhorasalida(event: any) {
     let horacorrecta = false;
     this.horas = event.target.value;
-    console.log(this.horas.substring(0, 2));
     if (
       this.horas.substring(0, 2).includes("23") ||
       this.horas.substring(0, 2).includes("00") ||

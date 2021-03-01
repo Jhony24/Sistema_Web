@@ -11,7 +11,7 @@ import { ServiceService } from "../../services/service.service";
 })
 export class ListPracticasComponent implements OnInit {
   listpracticas = new Array<Practicas>();
-  fecha= new Date();
+  fecha = new Date();
   constructor(private ruta: Router, private servicio: ServiceService) {}
 
   ngOnInit() {
@@ -32,7 +32,7 @@ export class ListPracticasComponent implements OnInit {
     Swal.fire({
       title: "¿Está seguro?",
       text:
-        "¿Seguro desea dar de baja a la practica:" + practica.nombrearea + "?",
+        "¿Seguro desea dar de baja a la práctica:" + practica.nombrearea + "?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
@@ -53,7 +53,7 @@ export class ListPracticasComponent implements OnInit {
         );
         Swal.fire(
           "Dar de Baja!",
-          "Se ha dado de baja a la practica: " + practica.nombrearea,
+          "Se ha dado de baja a la práctica: " + practica.nombrearea,
           "success"
         );
       }

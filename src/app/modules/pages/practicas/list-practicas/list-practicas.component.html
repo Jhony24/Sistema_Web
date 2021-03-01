@@ -25,7 +25,7 @@
           *ngFor="let practica of listpracticas"
           style="text-align: center"
         >
-          <tr *ngIf="practica.cupos > 0">
+          <tr *ngIf="practica.cupos>0 ">
             <td class="hidden">{{ practica.id }}</td>
             <td style="text-align: center">{{ practica.nombrearea }}</td>
             <td style="text-align: center">
@@ -36,7 +36,9 @@
             </td>
             <td style="text-align: center">{{ practica.tipo_empresa }}</td>
             <td style="text-align: center">{{ practica.cupos }}</td>
-            <td style="text-align: center">{{ practica.fecha_inicio | date: "dd/MM/yyyy" }}</td>
+            <td style="text-align: center">
+              {{ practica.fecha_inicio | date: "dd/MM/yyyy" }}
+            </td>
 
             <td>
               <div

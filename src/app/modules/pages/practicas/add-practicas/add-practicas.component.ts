@@ -27,7 +27,7 @@ export class AddPracticasComponent implements OnInit {
   validarForm: FormGroup;
   public validador;
   public validadorhora = true;
-  public validadorhorasalida=true;
+  public validadorhorasalida = true;
   constructor(
     private ruta: Router,
     private formBuilder: FormBuilder,
@@ -81,7 +81,7 @@ export class AddPracticasComponent implements OnInit {
           Swal.fire({
             position: "top-right",
             icon: "success",
-            title: "Practica Pre-Profesional registrada correctamente",
+            title: "Práctica Pre-Profesional registrada correctamente",
             showConfirmButton: false,
             timer: 1800,
           });
@@ -94,7 +94,7 @@ export class AddPracticasComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
       });
     }
@@ -181,7 +181,6 @@ export class AddPracticasComponent implements OnInit {
   validarhora(event: any) {
     let horacorrecta = false;
     this.horas = event.target.value;
-    console.log(this.horas.substring(0, 2));
     if (
       this.horas.substring(0, 2).includes("23") ||
       this.horas.substring(0, 2).includes("00") ||
@@ -201,7 +200,6 @@ export class AddPracticasComponent implements OnInit {
   validarhorasalida(event: any) {
     let horacorrecta = false;
     this.horas = event.target.value;
-    console.log(this.horas.substring(0, 2));
     if (
       this.horas.substring(0, 2).includes("23") ||
       this.horas.substring(0, 2).includes("00") ||

@@ -18,7 +18,10 @@ export class EditBasicoComponent implements OnInit {
   listempresa = new Array<Empresa>();
   listconvenios = new Array<Convenio>();
   fechapractica: string = "";
+  fechapracticafina: string = "";
   public validador = true;
+  public validador3 = true;
+  public validador2 = true;
   public error = <any>[];
 
   basico: ProyectoBasico = {
@@ -76,14 +79,19 @@ export class EditBasicoComponent implements OnInit {
   }
 
   put(myform: NgForm) {
-    if (myform.valid == true && this.validador == true) {
+    if (
+      myform.valid == true &&
+      this.validador == true &&
+      this.validador2 == true &&
+      this.validador3 == true
+    ) {
       this.servicio.actualizarBasico(this.basico).subscribe(
         (data) => {
           this.ruta.navigate(["/principal/list-basico/", this.basico.idmacro]);
           Swal.fire({
             position: "top-right",
             icon: "success",
-            title: "Proyecto Basico actualizado correctamente",
+            title: "Proyecto Básico actualizado correctamente",
             showConfirmButton: false,
             timer: 1800,
           });
@@ -96,7 +104,7 @@ export class EditBasicoComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
         //timer: 1800,
       });
@@ -119,9 +127,15 @@ export class EditBasicoComponent implements OnInit {
     );
   }
   validarfecha(event: any) {
+    var fechafin = (document.getElementById("fecha_fin") as HTMLInputElement)
+      .value;
+    var datefin = new Date(fechafin);
+
     this.fechapractica = event.target.value;
     var fecha_actual;
+    var fecha_actual2;
     let fechaCorrecta = false;
+    let fechaCorrecta2 = false;
     var f = new Date();
     var mes = (f.getMonth() + 1).toString();
     if (mes.length <= 1) {
@@ -133,6 +147,16 @@ export class EditBasicoComponent implements OnInit {
     }
     fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
 
+    var mes2 = (datefin.getMonth() + 1).toString();
+    if (mes2.length <= 1) {
+      mes2 = "0" + mes2;
+    }
+    var dia2 = (datefin.getDate() + 1).toString();
+    if (dia2.length <= 1) {
+      dia2 = "0" + dia2;
+    }
+    fecha_actual2 = datefin.getFullYear() + "-" + mes2 + "-" + dia2;
+
     if (this.fechapractica > fecha_actual) {
       fechaCorrecta = true;
     } else if (this.fechapractica == fecha_actual) {
@@ -141,6 +165,44 @@ export class EditBasicoComponent implements OnInit {
       fechaCorrecta = false;
     }
 
+    if (this.fechapractica > fecha_actual2) {
+      fechaCorrecta2 = false;
+    } else if (this.fechapractica == fecha_actual2) {
+      fechaCorrecta2 = false;
+    } else if (this.fechapractica < fecha_actual2) {
+      fechaCorrecta2 = true;
+    }
+
+    this.validador3 = fechaCorrecta2;
     this.validador = fechaCorrecta;
+  }
+  validarfechafinalizacion(event: any) {
+    var fechainicio = (document.getElementById(
+      "fecha_inicio"
+    ) as HTMLInputElement).value;
+
+    this.fechapracticafina = event.target.value;
+    var fecha_actual;
+    let fechaCorrecta = false;
+    var f = new Date(fechainicio);
+    var mes = (f.getMonth() + 1).toString();
+    if (mes.length <= 1) {
+      mes = "0" + mes;
+    }
+    var dia = f.getDate().toString();
+    if (dia.length <= 1) {
+      dia = "0" + dia;
+    }
+    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+
+    if (this.fechapracticafina > fecha_actual) {
+      fechaCorrecta = true;
+    } else if (this.fechapracticafina == fecha_actual) {
+      fechaCorrecta = false;
+    } else if (this.fechapracticafina < fecha_actual) {
+      fechaCorrecta = false;
+    }
+
+    this.validador2 = fechaCorrecta;
   }
 }

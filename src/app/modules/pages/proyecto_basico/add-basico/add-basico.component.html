@@ -294,8 +294,15 @@
                 class="form-control"
                 name="fecha_fin"
                 id="fecha_fin"
+                (change)="validarfechafinalizacion($event)"
                 formControlName="fecha_fin"
               />
+              <div
+                *ngIf="!validador2 && (fecha_fin.dirty || fecha_fin.touched)"
+                class="text text-danger"
+              >
+                Fecha de Finalización debe ser mayor a Fecha de Inicio
+              </div>
               <div class="text text-danger" [hidden]="!error.fecha_fin">
                 {{ error.fecha_fin }}
               </div>

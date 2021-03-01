@@ -81,7 +81,7 @@ export class EditProyectoComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
         //timer: 1800,
       });

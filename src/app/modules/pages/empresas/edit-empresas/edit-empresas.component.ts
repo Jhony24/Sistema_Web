@@ -39,7 +39,6 @@ export class EditEmpresasComponent implements OnInit {
       this.servicio.getListadoEmpresa().subscribe(
         (data: Empresa[]) => {
           this.empresas = data;
-          console.log("daros de aaosos", this.empresas);
           this.empresa = this.empresas.find((m) => {
             return m.id == this.id;
           });
@@ -69,7 +68,6 @@ export class EditEmpresasComponent implements OnInit {
           });
         },
         (err) => {
-          console.log("errorror: ", err);
           this.handleError(err);
         }
       );
@@ -77,14 +75,13 @@ export class EditEmpresasComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
         //timer: 1800,
       });
     }
   }
   handleError(error) {
-    console.log(this.error);
     this.error = error.error;
   }
 }

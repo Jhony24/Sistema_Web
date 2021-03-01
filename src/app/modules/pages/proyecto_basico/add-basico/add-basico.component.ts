@@ -15,7 +15,9 @@ import { Convenio } from "../../models/Convenio";
 export class AddBasicoComponent implements OnInit {
   selectEmpresa: string = "";
   fechapractica: string = "";
+  fechapracticafina: string = "";
   public validador;
+  public validador2;
   listmacro = new Array<ProyectoMacro>();
   validarForm: FormGroup;
   listempresa = new Array<Empresa>();
@@ -84,7 +86,7 @@ export class AddBasicoComponent implements OnInit {
         [Validators.required, Validators.min(1), Validators.max(200)],
       ],
       fecha_inicio: ["", Validators.required],
-      //fecha_fin: [""],
+      fecha_fin: [""],
       modalidad: ["", Validators.required],
       actividades: ["", [Validators.minLength(20), Validators.maxLength(250)]],
       requerimientos: [
@@ -105,14 +107,18 @@ export class AddBasicoComponent implements OnInit {
     return this.validarForm.get("idempresa");
   }
   onSubmit() {
-    if (this.validarForm.valid && this.validador == true) {
+    if (
+      this.validarForm.valid &&
+      this.validador == true &&
+      this.validador2 == true
+    ) {
       this.servicio.crearProyectoBasico(this.validarForm.value).subscribe(
         (data) => {
           this.ruta.navigate(["/principal/list-proyecto"]);
           Swal.fire({
             position: "top-right",
             icon: "success",
-            title: "Proyecto Basico registrado correctamente",
+            title: "Proyecto Básico registrado correctamente",
             showConfirmButton: false,
             timer: 1500,
           });
@@ -125,7 +131,7 @@ export class AddBasicoComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
       });
     }
@@ -157,7 +163,6 @@ export class AddBasicoComponent implements OnInit {
     );
   }
   selectChangeEmpresa(event: any) {
-    console.log(event.value);
     this.selectEmpresa = event.target.value;
   }
   validarfecha(event: any) {
@@ -186,6 +191,32 @@ export class AddBasicoComponent implements OnInit {
     this.validador = fechaCorrecta;
   }
 
+  validarfechafinalizacion(event: any) {
+    this.fechapracticafina = event.target.value;
+    var fecha_actual;
+    let fechaCorrecta = false;
+    var f = new Date(this.fechapractica);
+    var mes = (f.getMonth() + 1).toString();
+    if (mes.length <= 1) {
+      mes = "0" + mes;
+    }
+    var dia = f.getDate().toString();
+    if (dia.length <= 1) {
+      dia = "0" + dia;
+    }
+    fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
+
+    if (this.fechapracticafina > fecha_actual) {
+      fechaCorrecta = true;
+    } else if (this.fechapracticafina == fecha_actual) {
+      fechaCorrecta = false;
+    } else if (this.fechapracticafina < fecha_actual) {
+      fechaCorrecta = false;
+    }
+
+    this.validador2 = fechaCorrecta;
+  }
+
   get idempresa() {
     return this.validarForm.get("idempresa");
   }
@@ -198,6 +229,9 @@ export class AddBasicoComponent implements OnInit {
   }
   get fecha_inicio() {
     return this.validarForm.get("fecha_inicio");
+  }
+  get fecha_fin() {
+    return this.validarForm.get("fecha_fin");
   }
   get actividades() {
     return this.validarForm.get("actividades");

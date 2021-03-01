@@ -59,8 +59,8 @@ export class ListBasicoComponent implements OnInit {
     Swal.fire({
       title: "¿Está seguro?",
       text:
-        "¿Seguro desea dar de baja al proyecto basico:" +
-        basico.id +
+        "¿Seguro desea dar de baja al proyecto básico:" +
+        basico.nombre_prbasico +
         "?",
       icon: "warning",
       showCancelButton: true,
@@ -82,7 +82,7 @@ export class ListBasicoComponent implements OnInit {
         );
         Swal.fire(
           "Dar de Baja!",
-          "Se ha dado de baja al proyecto basico: " + basico.nombre_prbasico,
+          "Se ha dado de baja al proyecto básico: " + basico.nombre_prbasico,
           "success"
         );
       }

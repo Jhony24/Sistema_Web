@@ -83,7 +83,7 @@ export class AddPasantiasComponent implements OnInit {
           Swal.fire({
             position: "top-right",
             icon: "success",
-            title: "Pasantia registrada correctamente",
+            title: "Pasantía registrada correctamente",
             showConfirmButton: false,
             timer: 1800,
           });
@@ -96,7 +96,7 @@ export class AddPasantiasComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
       });
     }
@@ -183,7 +183,6 @@ export class AddPasantiasComponent implements OnInit {
   validarhora(event: any) {
     let horacorrecta = false;
     this.horas = event.target.value;
-    console.log(this.horas.substring(0, 2));
     if (
       this.horas.substring(0, 2).includes("23") ||
       this.horas.substring(0, 2).includes("00") ||
@@ -203,7 +202,6 @@ export class AddPasantiasComponent implements OnInit {
   validarhorasalida(event: any) {
     let horacorrecta = false;
     this.horas = event.target.value;
-    console.log(this.horas.substring(0, 2));
     if (
       this.horas.substring(0, 2).includes("23") ||
       this.horas.substring(0, 2).includes("00") ||

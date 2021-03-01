@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { FormGroup, FormBuilder, Validators, NgForm } from "@angular/forms";
 import Swal from "sweetalert2";
 import { Carrera } from "../../models/Carrera";
-import { ServiceService } from '../../services/service.service';
+import { ServiceService } from "../../services/service.service";
 
 @Component({
   selector: "app-add-carreras",
@@ -11,7 +11,7 @@ import { ServiceService } from '../../services/service.service';
   styleUrls: ["./add-carreras.component.css"],
 })
 export class AddCarrerasComponent implements OnInit {
-  role="";
+  role = "";
   validarForm: FormGroup;
 
   constructor(
@@ -32,17 +32,19 @@ export class AddCarrerasComponent implements OnInit {
     });
   }
   onSubmit() {
-    if(this.validarForm.valid){
-      this.servicio
-      .crearCarrera(this.validarForm.value)
-      .subscribe((data) => {
+    if (this.validarForm.valid) {
+      this.servicio.crearCarrera(this.validarForm.value).subscribe((data) => {
         this.ruta.navigate(["/principal/list-carreras"]);
         Swal.fire("Registro de Carrera", "Satisfactorio!", "success");
       });
-    }else{
-      alert("Complete los campos Obligatorios")
+    } else {
+      Swal.fire({
+        position: "top",
+        icon: "info",
+        title: "Campos Obligatorios Vacíos o Inválidos",
+        showConfirmButton: true,
+      });
     }
-   
   }
   volver_lista(): void {
     this.ruta.navigate(["/principal/list-carreras"]);

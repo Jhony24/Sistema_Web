@@ -36,7 +36,9 @@
               {{ basico.estudianes_requeridos }}
             </td>
             <td style="text-align: center">{{ basico.horas_cumplir }}</td>
-            <td style="text-align: center">{{ basico.fecha_inicio }}</td>
+            <td style="text-align: center">
+              {{ basico.fecha_inicio | date: "dd/MM/yyyy" }}
+            </td>
 
             <td>
               <div

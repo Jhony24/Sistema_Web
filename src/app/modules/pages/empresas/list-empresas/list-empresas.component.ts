@@ -31,9 +31,7 @@ export class ListEmpresasComponent implements OnInit {
     Swal.fire({
       title: "¿Está seguro?",
       text:
-        "¿Seguro desea dar de baja al proyecto basico:" +
-        empresa.nombreempresa +
-        "?",
+        "¿Seguro desea dar de baja a la empresa:" + empresa.nombreempresa + "?",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#3085d6",

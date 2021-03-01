@@ -10,7 +10,7 @@ import { ServiceService } from "../../services/service.service";
   styleUrls: ["./activar-user.component.css"],
 })
 export class ActivarUserComponent implements OnInit {
-  role=""
+  role = "";
   user: Users = {
     cedula: null,
     nombre_completo: null,
@@ -55,7 +55,7 @@ export class ActivarUserComponent implements OnInit {
     this.servicio.activarusuario(this.user).subscribe((data) => {
       Swal.fire(
         "Usuario Activado!",
-        "El usuario se activo satisfactoriamente!",
+        "El usuario se activó satisfactoriamente!",
         "success"
       );
       this.ruta.navigate(["/principal/list-user"]);
@@ -65,11 +65,10 @@ export class ActivarUserComponent implements OnInit {
     this.servicio.desactivarusuario(this.user).subscribe((data) => {
       Swal.fire(
         "Usuario Desactivado!",
-        "El usuario se activo satisfactoriamente!",
+        "El usuario se desactivó satisfactoriamente!",
         "success"
       );
       this.ruta.navigate(["/principal/list-user"]);
     });
-
   }
 }

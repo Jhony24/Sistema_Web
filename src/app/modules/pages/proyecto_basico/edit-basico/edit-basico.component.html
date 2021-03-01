@@ -247,6 +247,12 @@
             Fecha Inválida
           </div>
           <div
+            *ngIf="!validador3 && (fecha.dirty || fecha.touched)"
+            class="text text-danger"
+          >
+            Fecha de Inicio es mayor a la Fecha de Finalización
+          </div>
+          <div
             *ngIf="fecha.invalid && (fecha.dirty || fecha.touched)"
             class="text text-danger"
             ng-show="!fecha"
@@ -257,14 +263,22 @@
           </div>
         </div>
         <div class="form-group col-md-4">
-          <label for="inputDireccion">Fecha de Finazalización</label>
+          <label for="inputDireccion">Fecha de Finalización</label>
           <input
             type="date"
             class="form-control"
             name="fecha_fin"
             id="fecha_fin"
+            #fecha_fin="ngModel"
+            (change)="validarfechafinalizacion($event)"
             [(ngModel)]="basico.fecha_fin"
           />
+          <div
+            *ngIf="!validador2 && (fecha_fin.dirty || fecha_fin.touched)"
+            class="text text-danger"
+          >
+            Fecha de Finalización debe ser mayor a Fecha de Inicio
+          </div>
         </div>
         <div class="form-group col-md-4">
           <label for="inputNombre">Ciclo para realizar Proyecto</label>

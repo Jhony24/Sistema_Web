@@ -77,7 +77,7 @@ export class EditFicticioComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
       });
     }
@@ -98,7 +98,6 @@ export class EditFicticioComponent implements OnInit {
 
   validarfecha(event: any) {
     this.fechapractica = event.target.value;
-    console.log(this.fechapractica);
     var fecha_actual;
     let fechaCorrecta = false;
     var f = new Date();
@@ -112,7 +111,6 @@ export class EditFicticioComponent implements OnInit {
     }
     fecha_actual = f.getFullYear() + "-" + mes + "-" + dia;
 
-    console.log(fecha_actual);
     if (this.fechapractica > fecha_actual) {
       fechaCorrecta = true;
     } else if (this.fechapractica == fecha_actual) {

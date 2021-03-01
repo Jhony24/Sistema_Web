@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from "@angular/router";
 import Swal from "sweetalert2";
 import { Area } from "../../models/Area";
 import { Carrera } from "../../models/Carrera";
-import { ServiceService } from '../../services/service.service';
+import { ServiceService } from "../../services/service.service";
 
 @Component({
   selector: "app-edit-areas",
@@ -15,7 +15,6 @@ import { ServiceService } from '../../services/service.service';
 export class EditAreasComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   public prueba = null;
-
 
   area: Area = {
     nombrearea: null,
@@ -30,7 +29,7 @@ export class EditAreasComponent implements OnInit {
   constructor(
     private activateRote: ActivatedRoute,
     private servicio: ServiceService,
-    private ruta: Router,
+    private ruta: Router
   ) {
     this.id = this.activateRote.snapshot.params["id"];
     if (this.id) {
@@ -55,33 +54,36 @@ export class EditAreasComponent implements OnInit {
   }
 
   put(myform: NgForm) {
-    if(myform.valid==true){
-    this.servicio.actualizarArea(this.area).subscribe((data) => {
-      this.ruta.navigate(["/principal/list-areas"]);
+    if (myform.valid == true) {
+      this.servicio.actualizarArea(this.area).subscribe(
+        (data) => {
+          this.ruta.navigate(["/principal/list-areas"]);
+          Swal.fire({
+            position: "top-right",
+            icon: "success",
+            title: "Área actualizada correctamente",
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        },
+        (err) => {
+          console.log(err);
+          this.handleError(err);
+        }
+      );
+    } else {
       Swal.fire({
-        position: "top-right",
-        icon: "success",
-        title: "Area actualizada correctamente",
-        showConfirmButton: false,
-        timer: 1500,
+        position: "top",
+        icon: "info",
+        title: "Campos Obligatorios Vacíos o Inválidos",
+        showConfirmButton: true,
+        //timer: 1800,
       });
-    },(err)=>{
-      console.log(err);
-      this.handleError(err);
-    });
-  }else{
-    Swal.fire({
-      position: "top",
-      icon: "info",
-      title: "Campos Obligatorios Vacios o Invalidos",
-      showConfirmButton: true,
-      //timer: 1800,
-    });
-  }
+    }
   }
   handleError(error) {
     this.prueba = error.error;
-    console.log("en el handle",this.prueba);
+    console.log("en el handle", this.prueba);
   }
   listar_carreras() {
     this.servicio.getListadoCarreras().subscribe(

@@ -78,7 +78,6 @@ export class AddConveniosComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log("fffff", this.fff);
     if (this.validarForm.valid) {
       this.servicio.crearConvenio(this.validarForm.value).subscribe(
         (data) => {
@@ -99,7 +98,7 @@ export class AddConveniosComponent implements OnInit {
       Swal.fire({
         position: "top",
         icon: "info",
-        title: "Campos Obligatorios Vacios o Invalidos",
+        title: "Campos Obligatorios Vacíos o Inválidos",
         showConfirmButton: true,
         //timer: 1800,
       });
