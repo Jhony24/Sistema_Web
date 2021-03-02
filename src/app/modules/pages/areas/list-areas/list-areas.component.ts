@@ -41,7 +41,7 @@ export class ListAreasComponent implements OnInit {
       showCancelButton: true,
       confirmButtonColor: "#3085d6",
       cancelButtonColor: "#d33",
-      confirmButtonText: "Si, eliminar",
+      confirmButtonText: "Si, Dar de baja",
       cancelButtonText: "Cancelar",
     }).then((result) => {
       if (result.value) {

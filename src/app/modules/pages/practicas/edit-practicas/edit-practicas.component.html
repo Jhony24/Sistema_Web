@@ -128,7 +128,7 @@
             *ngIf="!validarcupo && (cupos.dirty || cupos.touched)"
             class="text text-danger"
           >
-            Numero Inválido
+            Error rango entre 1 a 20
           </div>
           <div
             class="text text-danger"
@@ -157,6 +157,7 @@
             name="horas_cumplir"
             id="horas_cumplir"
             #horas="ngModel"
+            (change)="validarcumplir($event)"
             [(ngModel)]="practica.horas_cumplir"
             required
           />
@@ -173,12 +174,17 @@
           >
             Solo Valores positivos
           </div>
+          <div
+            *ngIf="!validadorcumplir && (horas.dirty || horas.touched)"
+            class="text text-danger"
+          >
+            Error rango entre 1 a 200
+          </div>
           <div *ngIf="horas.invalid && (horas.dirty || horas.touched)">
             <div *ngIf="horas.errors.required" class="text text-danger">
               Este campo es requerido
             </div>
           </div>
-          
         </div>
         <div class="form-group col-md-4">
           <label for="inputNombre">Ciclo para realizar Practica</label>

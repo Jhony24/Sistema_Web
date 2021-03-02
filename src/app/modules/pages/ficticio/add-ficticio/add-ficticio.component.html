@@ -124,11 +124,12 @@
         <label for="inputciclo">Nombre de Proyecto</label>
         <input
           type="text"
-          placeholder="Ej. Base de Datos "
+          placeholder="Ej. Sistemas inteligentes aplicados en la empresa."
           class="form-control"
           name="nombre_prficticio"
           id="nombre_prficticio"
           formControlName="nombre_prficticio"
+          required
         />
       </div>
     </div>
@@ -140,6 +141,7 @@
           pattern="^[0-9]+"
           type="number"
           min="1"
+          max="20"
           placeholder="Ej. 5"
           class="form-control"
           name="estudianes_requeridos"
@@ -170,6 +172,18 @@
           >
             Este campo es requerido
           </div>
+          <div
+            *ngIf="estudianes_requeridos.errors.min"
+            class="container-error-message"
+          >
+            Rango minimo 1
+          </div>
+          <div
+            *ngIf="estudianes_requeridos.errors.max"
+            class="container-error-message"
+          >
+            Rango minimo 20
+          </div>
         </div>
       </div>
       <div class="form-group col-md-4">
@@ -177,6 +191,7 @@
         <input
           type="number"
           min="1"
+          max="200"
           placeholder="Ej. 180"
           class="form-control"
           name="horas_cumplir"
@@ -196,6 +211,12 @@
             class="container-error-message"
           >
             Este campo es requerido
+          </div>
+          <div *ngIf="horas_cumplir.errors.min" class="container-error-message">
+            Rango minimo 1
+          </div>
+          <div *ngIf="horas_cumplir.errors.max" class="container-error-message">
+            Rango minimo 200
           </div>
         </div>
       </div>
@@ -311,7 +332,9 @@
 </div>
 
 <ng-template #elseBlock>
-  <h1 style="text-align: center; font-size: 100;"><p style="font-size: 200;">No Autorizado</p></h1>
+  <h1 style="text-align: center; font-size: 100">
+    <p style="font-size: 200">No Autorizado</p>
+  </h1>
 
   <p style="text-align: center">
     Lo sentimos, pero la pagina a la que intentas ingresar esta denegada.

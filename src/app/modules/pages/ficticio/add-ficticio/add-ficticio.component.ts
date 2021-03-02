@@ -35,8 +35,14 @@ export class AddFicticioComponent implements OnInit {
     this.listar_carreras();
     this.validarForm = this.formBuilder.group({
       id: 0,
-      estudianes_requeridos: ["", Validators.required],
-      horas_cumplir: [""],
+      estudianes_requeridos: [
+        "",
+        [Validators.required, Validators.min(1), Validators.max(20)],
+      ],
+      horas_cumplir: [
+        "",
+        [Validators.required, Validators.min(1), Validators.max(200)],
+      ],
       fecha_inicio: ["", Validators.required],
       nombre_prficticio: ["", Validators.required],
       estadoficticio: ["1"],
@@ -66,7 +72,7 @@ export class AddFicticioComponent implements OnInit {
   }
 
   onSubmit() {
-    if (this.validarForm.valid) {
+    if (this.validarForm.valid && this.validador == true) {
       this.servicio.crearFicticio(this.validarForm.value).subscribe(
         (data) => {
           this.ruta.navigate(["/principal/list-proyecto_3ero"]);

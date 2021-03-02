@@ -21,10 +21,12 @@ export class EditPracticasComponent implements OnInit {
   listconvenios = new Array<Convenio>();
   fechapractica: string = "";
   cupos: number;
+  cumplir: number;
   horas: string = "";
   public validador = true;
   public validarcupo = true;
   public validadorhora = true;
+  public validadorcumplir = true;
   public validadorhorasalida = true;
   public error = <any>[];
 
@@ -82,7 +84,8 @@ export class EditPracticasComponent implements OnInit {
       this.validador == true &&
       this.validarcupo == true &&
       this.validadorhora == true &&
-      this.validadorhorasalida == true
+      this.validadorhorasalida == true &&
+      this.validadorcumplir == true
     ) {
       this.servicio.actualizarPractica(this.practica).subscribe(
         (data) => {
@@ -181,6 +184,17 @@ export class EditPracticasComponent implements OnInit {
     }
 
     this.validarcupo = cupocorrecto;
+  }
+  validarcumplir(event: any) {
+    this.cumplir = event.target.value;
+    let cumplircorrecto = false;
+    if (this.cumplir > 200) {
+      cumplircorrecto = false;
+    } else {
+      cumplircorrecto = true;
+    }
+
+    this.validadorcumplir = cumplircorrecto;
   }
   validarhora(event: any) {
     let horacorrecta = false;

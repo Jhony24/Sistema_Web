@@ -105,7 +105,9 @@
     </div>
     <div class="container">
       <div class="form-group col-md-6">
-        <label for="exampleFormControlInput1">Modalidad de Práctica<label style="color: #a94442"> *</label></label>
+        <label for="exampleFormControlInput1"
+          >Modalidad de Práctica<label style="color: #a94442"> *</label></label
+        >
         <br />
         <input
           required
@@ -153,10 +155,10 @@
             Este campo es requerido
           </div>
           <div *ngIf="cupos.errors.min" class="container-error-message">
-            Campo Invalido
+            Rango minimo 1
           </div>
           <div *ngIf="cupos.errors.max" class="container-error-message">
-            Campo Invalido
+            Rango maximo 20
           </div>
         </div>
       </div>
@@ -190,10 +192,10 @@
             Este campo es requerido
           </div>
           <div *ngIf="horas_cumplir.errors.min" class="container-error-message">
-            Campo Invalido
+            Rango minimo 1
           </div>
           <div *ngIf="horas_cumplir.errors.max" class="container-error-message">
-            Campo Invalido
+            Rango maximo 200
           </div>
         </div>
       </div>
@@ -295,11 +297,13 @@
           formControlName="hora_salida"
         />
         <div
-        *ngIf="!validadorhorasalida && (hora_salida.dirty || hora_salida.touched)"
-        class="text text-danger"
-      >
-        Hora Invalida
-      </div>
+          *ngIf="
+            !validadorhorasalida && (hora_salida.dirty || hora_salida.touched)
+          "
+          class="text text-danger"
+        >
+          Hora Invalida
+        </div>
       </div>
     </div>
 

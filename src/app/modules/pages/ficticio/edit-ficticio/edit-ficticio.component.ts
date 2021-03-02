@@ -15,7 +15,12 @@ export class EditFicticioComponent implements OnInit {
   listcarreras = new Array<Carrera>();
   fechapractica: string = "";
   userCarrera: string = "";
+  estudiantes: number;
+  horas: number;
+
   public validador = true;
+  public validarcupo = true;
+  public validarhorascumplir = true;
 
   ficticio: Ficticio = {
     idcarrera: null,
@@ -62,7 +67,12 @@ export class EditFicticioComponent implements OnInit {
   }
 
   put(myform: NgForm) {
-    if (myform.valid == true && this.validador == true) {
+    if (
+      myform.valid == true &&
+      this.validador == true &&
+      this.validarcupo == true &&
+      this.validarhorascumplir == true
+    ) {
       this.servicio.actualizarFiciticio(this.ficticio).subscribe((data) => {
         this.ruta.navigate(["/principal/list-proyecto_3ero"]);
         Swal.fire({
@@ -120,5 +130,27 @@ export class EditFicticioComponent implements OnInit {
     }
 
     this.validador = fechaCorrecta;
+  }
+  validarcupos(event: any) {
+    this.estudiantes = event.target.value;
+    let cupocorrecto = false;
+    if (this.estudiantes > 20) {
+      cupocorrecto = false;
+    } else {
+      cupocorrecto = true;
+    }
+
+    this.validarcupo = cupocorrecto;
+  }
+  validarhoras(event: any) {
+    this.horas = event.target.value;
+    let cupocorrecto = false;
+    if (this.horas > 20) {
+      cupocorrecto = false;
+    } else {
+      cupocorrecto = true;
+    }
+
+    this.validarhorascumplir = cupocorrecto;
   }
 }

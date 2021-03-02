@@ -86,7 +86,6 @@ export class AddBasicoComponent implements OnInit {
         [Validators.required, Validators.min(1), Validators.max(200)],
       ],
       fecha_inicio: ["", Validators.required],
-      fecha_fin: [""],
       modalidad: ["", Validators.required],
       actividades: ["", [Validators.minLength(20), Validators.maxLength(250)]],
       requerimientos: [
@@ -107,11 +106,7 @@ export class AddBasicoComponent implements OnInit {
     return this.validarForm.get("idempresa");
   }
   onSubmit() {
-    if (
-      this.validarForm.valid &&
-      this.validador == true &&
-      this.validador2 == true
-    ) {
+    if (this.validarForm.valid && this.validador == true) {
       this.servicio.crearProyectoBasico(this.validarForm.value).subscribe(
         (data) => {
           this.ruta.navigate(["/principal/list-proyecto"]);

@@ -81,7 +81,11 @@
           id="modalidad"
           class="form-group col-md-6"
         >
-          <label for="exampleFormControlInput1">Modalidad de Pasantía<label style="color: #a94442"> *</label></label>
+          <label for="exampleFormControlInput1"
+            >Modalidad de Pasantía<label style="color: #a94442">
+              *</label
+            ></label
+          >
           <br />
           <input
             required
@@ -113,15 +117,23 @@
             pattern="^[0-9]+"
             required
             min="1"
+            max="20"
             type="number"
             class="form-control"
             name="cupos"
             #cupos="ngModel"
+            (change)="validarcupos($event)"
             id="inputcupos"
             [(ngModel)]="pasantia.cupos"
           />
           <div class="text text-danger" [hidden]="!error.cupos">
             {{ error.cupos }}
+          </div>
+          <div
+            *ngIf="!validarcupo && (cupos.dirty || cupos.touched)"
+            class="text text-danger"
+          >
+            Error rango entre 1 a 20
           </div>
           <div *ngIf="cupos.invalid && (cupos.dirty || cupos.touched)">
             <div *ngIf="cupos.errors.required" class="text text-danger">
@@ -149,6 +161,7 @@
             name="horas_cumplir"
             id="horas_cumplir"
             #horas="ngModel"
+            (change)="validarcumplir($event)"
             [(ngModel)]="pasantia.horas_cumplir"
             required
           />
@@ -159,6 +172,12 @@
             <div *ngIf="horas.errors.required" class="text text-danger">
               Este campo es requerido
             </div>
+          </div>
+          <div
+            *ngIf="!validadorcumplir && (horas.dirty || horas.touched)"
+            class="text text-danger"
+          >
+            Error rango entre 1 a 200
           </div>
           <div
             class="text text-danger"

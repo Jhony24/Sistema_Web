@@ -196,13 +196,13 @@
                   *ngIf="estudianes_requeridos.errors.min"
                   class="container-error-message"
                 >
-                  Longitud de cadena inválida
+                  Rango minimo 1
                 </div>
                 <div
                   *ngIf="estudianes_requeridos.errors.max"
                   class="container-error-message"
                 >
-                  Longitud de cadena inválida
+                  Rango maximo 20
                 </div>
               </div>
             </div>
@@ -238,19 +238,19 @@
                   *ngIf="horastotales.errors.min"
                   class="container-error-message"
                 >
-                  Longitud de cadena inválida
+                  Rango minimo 1
                 </div>
                 <div
                   *ngIf="horastotales.errors.max"
                   class="container-error-message"
                 >
-                  Longitud de cadena inválida
+                  Rango maximo 200
                 </div>
               </div>
             </div>
           </div>
           <div class="container">
-            <div class="form-group col-md-4">
+            <div class="form-group col-md-6">
               <label for="inputDireccion">Fecha de Inicio</label>
               <input
                 required
@@ -287,7 +287,7 @@
                 </div>
               </div>
             </div>
-            <div class="form-group col-md-4">
+            <!--<div class="form-group col-md-4">
               <label for="inputDireccion">Fecha de Finalización</label>
               <input
                 type="date"
@@ -306,11 +306,12 @@
               <div class="text text-danger" [hidden]="!error.fecha_fin">
                 {{ error.fecha_fin }}
               </div>
-            </div>
-            <div class="form-group col-md-4">
+            </div>-->
+            <div class="form-group col-md-6">
               <label for="inputNombre">Ciclo para realizar Proyecto</label>
               <input
                 type="text"
+                placeholder="Ej. 6to - 10mo ciclo "
                 class="form-control"
                 name="ciclo"
                 id="ciclo"

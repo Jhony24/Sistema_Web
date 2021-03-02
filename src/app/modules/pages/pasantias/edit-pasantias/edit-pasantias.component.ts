@@ -21,11 +21,13 @@ export class EditPasantiasComponent implements OnInit {
   listconvenios = new Array<Convenio>();
   fechapractica: string = "";
   cupos: number;
+  cumplir: number;
   horas: string = "";
   public validador = true;
   public validarcupo = true;
   public validadorhora = true;
   public validadorhorasalida = true;
+  public validadorcumplir = true;
   public error = <any>[];
 
   pasantia: Practicas = {
@@ -84,7 +86,9 @@ export class EditPasantiasComponent implements OnInit {
       myform.valid == true &&
       this.validador == true &&
       this.validadorhora == true &&
-      this.validadorhorasalida == true
+      this.validadorhorasalida == true &&
+      this.validarcupo == true &&
+      this.validadorcumplir == true
     ) {
       this.servicio.actualizarPractica(this.pasantia).subscribe(
         (data) => {
@@ -205,5 +209,27 @@ export class EditPasantiasComponent implements OnInit {
       horacorrecta = true;
     }
     this.validadorhorasalida = horacorrecta;
+  }
+  validarcupos(event: any) {
+    this.cupos = event.target.value;
+    let cupocorrecto = false;
+    if (this.cupos > 20) {
+      cupocorrecto = false;
+    } else {
+      cupocorrecto = true;
+    }
+
+    this.validarcupo = cupocorrecto;
+  }
+  validarcumplir(event: any) {
+    this.cumplir = event.target.value;
+    let cumplircorrecto = false;
+    if (this.cumplir > 200) {
+      cumplircorrecto = false;
+    } else {
+      cumplircorrecto = true;
+    }
+
+    this.validadorcumplir = cumplircorrecto;
   }
 }
